@@ -1,0 +1,101 @@
+NAME
+find_prev_dll_node - Find the previous node in a double linked list.
+SYNOPSIS
+	#include <dllist.h>
+
+	struct dllistnode *find_prev_dll_node(
+					struct dllistnode *currentnode);
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a double linked list.
+
+find_prev_dll_node looks for the node in the linked list prior to currentnode.
+.br
+mge_errno will always be zero.
+PARAMETERS
+currentnode - Is a pointer to the current node.
+RETURN VALUE
+A pointer to the found node, or, NULL if no previous node exists in the linked
+list.
+ERRORS
+None.
+EXAMPLE
+A simple example using a character string:-
+
+	#include <dllist.h>
+	#include <mge-errno.h>
+
+	//...
+
+	struct dllistnode *root;
+	char *key = "John";
+	root = NULL;
+
+	root = add_dll_node(root, key, strlen(key) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	char *key1 = "Henry";
+
+	root = add_dll_node(root, key1, strlen(key1) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	struct dllistnode *nextnode = find_next_dll_node(root);
+
+	// This will print Searching for node after root (John),
+	// found node with object Henry.
+
+	printf("Searching for node after root, found object %s\\n",
+		nextnode->object);
+
+	nextnode = find_prev_dll_node(nextnode);
+
+	// This will print Searching for node before Henry,
+	// found node with object John.
+
+	printf("Searching for node before Henry, found object %s\\n",
+		nextnode->object);
+
+OVERVIEW
+This is one of a series of functions implementing a double linked list. A double
+linked list has forward and backward links to the next and previous nodes. The
+node, which is defined in dllist.h, is shown below:-
+
+	struct dllistnode {
+		void *object;
+		struct dllistnode *prevnode;
+		struct dllistnode *nextnode;
+	};
+
+Each node in the linked list has an object as payload. It can be any form of
+data element, memory permitting.
+
+This double linked list implementation is supported by the following functions:-
+
+add_dll_node() - add a node to the end of a double linked list.
+
+find_prev_dll_node() - find the node prior to the supplied node.
+
+find_next_dll_node() - find the next node after the supplied node.
+
+free_dllist() - Delete the entire double linked list.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_dll_node(3) find_next_dll_node(3) free_dllist(3) mge_strerror(3)

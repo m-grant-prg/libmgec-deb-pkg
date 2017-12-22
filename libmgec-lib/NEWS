@@ -1,0 +1,41 @@
+Release 1.1.0 2017-05-03
+Return NULL pointer, -1 or error number when possible on error.
+Apply coding standards from template atclstv v1.0.0
+Add buffer, message and memory functions.
+Introduce library-wide mge_errno variable and error handling.
+Add bst trace function to provide node coordinates.
+Add exhaustive bstree tests.
+Introduce concept and support for a discreet bst object.
+
+Release 1.0.7 2016-05-06
+Add double linked list functionality.
+
+Release 1.0.6 2016-05-05
+Add single linked list functionality.
+
+Release 1.0.5 2015-11-04
+Change from bt and btree names to bst and bstree as this is a binary search tree,
+not a b-tree.
+
+Release 1.0.4 2015-10-25
+Restructure and change to conform to AutoTools General Template v1.0.6.
+
+Release 1.0.3 2015-09-18
+All changes are to btree.
+Change function names to XXX_bt_node().
+Change find_bt_node() to get_counter_bt_node() as it returns the count.
+Add find_bt_node(), upd_bt_node().
+Change free_btree() to return NULL.
+Add unique flag to add_bt_node().
+Improve overall use of btree_errno.
+Modify del_bt_node() to decrement the node counter instead of deleting the
+node if the counter is > 1, (i.e. duplicates are allowed).
+Add function parameter checking.
+Change defined flags and errors to be easily identifiable as btree elements.
+Complies with MG AutoTools General standard version 1.0.4.
+
+Release 1.0.2 2015-08-11
+Add btree functions delnode() and static freenode().
+
+Release 1.0.1 2015-08-07
+Initial release.

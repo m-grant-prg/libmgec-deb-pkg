@@ -1,0 +1,36 @@
+Standard Populated Binary Serach Tree for Testing
+=================================================
+
+
+The standard populated binary search tree for testing purposes is populated with
+the following words added in the order shown:-
+
+consistency is all i ask give us this day our daily mask
+
+The resulting bst tree can be pictorially represented as:-
+
+
+				(0, 0)consistency[1]
+					|
+		-------------------------------------------------
+		|						|
+	 (-1, 1)all[1]					  (1, 1)is[1]
+		|						|
+		---------				-----------------
+			|				|		|
+		  (0, 2)ask[1]			  (0, 2)i[1]	  (2, 2)us[1]
+							|		|
+						---------	---------
+						|		|
+					 (-1, 3)give[1]	  (1, 3)this[1]
+						|		|
+					---------	---------
+					|		|
+				 (-2, 4)day[1]	  (0, 4)our[1]
+					|		|
+				---------	---------
+				|		|
+			 (-3, 5)daily[1] (-1, 5)mask[1]
+
+Whilst the method of allocating coordinates does not result in a unique
+coordinate, it is sufficient to prove tests.

@@ -1,0 +1,43 @@
+NAME
+concat_buf - Concatenate a memory block into an mgebuffer struct.
+SYNOPSIS
+#include <mgebuffer.h>
+
+struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
+		struct mgebuffer *m_buf);
+
+DESCRIPTION
+concat_buf() concatenates s_buf_os of a memory block s_buf into an mgebuffer
+struct m_buf. The buffer size is manipulated as required.
+
+PARAMETERS
+s_buf - a pointer to the memory block to be added to the buffer.
+.br
+s_buf_os - the size of the incoming block to process.
+.br
+m_buf - a pointer to the mgebuffer struct buffer to use as the target.
+
+RETURN VALUE
+Return value is a pointer to the updated mgebuffer struct or NULL on error.
+
+ERRORS
+mge_errno is set as required.
+On error the functions arguments are unchanged.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+clear_msg(3) deconstruct_msg(3) get_msg(3) print_buf(3) print_msg(3) pull_msg(3)
+trim_buf(3)

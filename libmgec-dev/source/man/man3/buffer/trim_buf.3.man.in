@@ -1,0 +1,38 @@
+NAME
+trim_buf - Remove a complete message from an mgebuffer struct.
+SYNOPSIS
+#include <mgebuffer.h>
+
+struct mgebuffer *trim_buf(struct mgebuffer *msg_buf);
+
+DESCRIPTION
+trim_buf() removes the message (from 0 to the value of the offset field) from
+the buffer.
+
+PARAMETERS
+msg_buf - a pointer to the mgebuffer struct buffer to use.
+
+RETURN VALUE
+Return value is a pointer to the updated mgebuffer struct or NULL on error.
+
+ERRORS
+mge_errno is set as required.
+On error the functions arguments are unchanged.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+clear_msg(3) concat_buf(3) deconstruct_msg(3) get_msg(3) print_buf(3)
+print_msg(3) pull_msg(3)

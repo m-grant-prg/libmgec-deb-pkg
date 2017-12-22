@@ -1,0 +1,34 @@
+NAME
+mge_strerror - Produce description of mge-errno or errno if that is the source.
+SYNOPSIS
+#include <mge-errno.h>
+
+const char *mge_strerror(const int mge_err);
+
+DESCRIPTION
+Produces a string decription of mge-errno. If mge_errno == MGE_ERRNO then it
+suggests the real error is in errno and returns the result of strerror(errno).
+Likewise if mge_errno == MGE_GAI then the returned value is the result of
+gai_strerror(error).
+PARAMETERS
+mge_err - the error number to process.
+
+RETURN VALUE
+Returns a char * to a string descriptive of the error.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+errno(3) strerror(3)

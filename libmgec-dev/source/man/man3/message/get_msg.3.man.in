@@ -1,0 +1,44 @@
+NAME
+get_msg - Get a message from the buffer.
+SYNOPSIS
+#include <mgemessage.h>
+
+struct mgemessage *get_msg(struct mgebuffer *buf,
+		struct mgemessage *msg);
+
+DESCRIPTION
+If a complete message exists in the buffer, get_msg() populates the mgemessage
+struct message field and sets the complete field. The mgemessage struct is not
+fully populated on exit, use deconstruct_msg() for that. The buffer offset is
+updated but the message is not actually removed from the buffer, use trim_buf()
+for that.
+
+mge_errno is set as required.
+PARAMETERS
+buf - a pointer to the mgebuffer struct buffer to use as the source.
+.br
+msg - a pointer to the mgemessage struct to populate.
+
+RETURN VALUE
+Return value is a pointer to the not fully populated mgemessage struct.
+
+ERRORS
+mge_errno is zero on success, non-zero on error.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+clear_msg(3) concat_buf(3) deconstruct_msg(3) print_buf(3) print_msg(3)
+pull_msg(3) trim_buf(3) mge_strerror(3)
