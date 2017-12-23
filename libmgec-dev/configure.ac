@@ -41,10 +41,13 @@
 # 04/04/2017	MG	1.0.11	Tidy AC_INIT and pkgversion AC_SUBST	#
 #				onto multiple lines.			#
 # 22/12/2017	MG	1.0.12	Add SPDX license tags to source files.	#
+# 23/12/2017	MG	1.0.13	Change to manual package version	#
+#				numbering on adoption of project /	#
+#				sub-project structure.			#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.12 $])
+AC_REVISION([$Revision: 1.0.13 $])
 
 AC_PREREQ([2.65])
 
