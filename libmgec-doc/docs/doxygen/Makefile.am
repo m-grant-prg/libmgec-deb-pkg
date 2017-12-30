@@ -25,6 +25,8 @@
 
 docpkg = $(PACKAGE_TARNAME)-doxy-$(PACKAGE_VERSION).tar.gz
 
+docbasedir = $(datarootdir)/doc-base
+
 
 # The dependencies below start with Doxyfile which is produced by configure, so
 # thereafter no updates to these documents will happen by make alone. Re-run
@@ -48,20 +50,45 @@ doxygen.stamp: Doxyfile
 	echo Timestamp > $@
 
 
+libmgec: Makefile
+	mkdir -p $(@D)
+	rm -f $@
+	$(edit) $(srcdir)/$(@F).in > $@
+
+libmgec: $(srcdir)/libmgec.in
+
+
 html_DATA = $(docpkg)
 
 
+docbase_DATA = libmgec
+
+
+# If doc-base is installed register the documents then update dochelp if it is
+# installed.
 install-data-hook:
 	cd $(DESTDIR)$(htmldir) && tar xf $(docpkg)
+	if command -v install-docs >/dev/null 2>&1; then \
+		install-docs -vi $(docbasedir)/libmgec; \
+	fi
+	if command -v dochelp >/dev/null 2>&1; then \
+		dochelp update; \
+	fi
 
 uninstall-hook:
 	cd $(DESTDIR)$(htmldir) && rm -rf html
+	if command -v install-docs >/dev/null 2>&1; then \
+		install-docs -vr libmgec; \
+	fi
+	if command -v dochelp >/dev/null 2>&1; then \
+		dochelp update; \
+	fi
 
 
-EXTRA_DIST = $(docpkg)
+EXTRA_DIST = $(docpkg) libmgec.in
 
 
-CLEANFILES = doxywarn.txt doxygen.stamp $(docpkg)
+CLEANFILES = doxywarn.txt doxygen.stamp $(docpkg) libmgec
 
 clean-local:
 	rm -rf html
