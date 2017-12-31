@@ -20,7 +20,7 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 22/12/2017	MG	1.0.1	First release.				#
+# 30/12/2017	MG	1.0.1	First release.				#
 #									#
 #########################################################################
 
@@ -37,7 +37,7 @@ AC_PREREQ([2.65])
 #
 ########################
 
-AC_INIT([[MGE general C library documentation.]], [v0.0.0],
+AC_INIT([[MGE general C library documentation.]], [v1.0.0-rc1],
 		[m.grant.prg@gmail.com], [libmgec-doc])
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
