@@ -32,6 +32,10 @@
 # 13/04/2017	MG	1.0.6	Overhaul for new bstree object.		#
 #				Change source file suffixes to .man.in	#
 # 22/12/2017	MG	1.0.7	Add SPDX license tags to source files.	#
+# 31/12/2017	MG	1.0.8	Determine the manual section from the	#
+#				target suffix. If the suffix is blank	#
+#				(foo.) or if there is no suffix (foo)	#
+#				then error out.				#
 #									#
 #########################################################################
 
@@ -42,7 +46,19 @@ add_bst_node.3 cre_bst.3 del_bst.3 del_bst_node.3 find_bst_node.3 \
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
-	txt2manwrap $(@F) 3 "MGE General C Library Manual" $@.tmp $@
+	targfile=$(@F);	\
+	if [[ $$targfile == *"."* ]]; then \
+		if [[ $${targfile##*.} == "" ]]; then \
+			echo "Source file suffix used as section but empty."; \
+			exit 1; \
+		else \
+			section=$${targfile##*.}; \
+		fi; \
+	else \
+		echo "Source file suffix used as section but no dot & empty."; \
+		exit 1; \
+	fi; \
+	txt2manwrap $(@F) $$section "MGE General C Library Manual" $@.tmp $@
 	rm -f $@.tmp
 
 add_bst_node.3: $(srcdir)/add_bst_node.3.man.in
