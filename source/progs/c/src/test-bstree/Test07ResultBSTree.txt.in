@@ -1,0 +1,99 @@
+The Binary Serach Tree After Running Test 7
+===========================================
+
+
+The starting point is the standard populated binary search tree for testing
+purposes. This is populated with the following words added in the order shown:-
+
+consistency is all i ask give us this day our daily mask
+
+The first stage is to add the word 'twin'.
+
+The resulting intermediate bst tree can be pictorially represented as:-
+
+
+				(0, 0)consistency[1]
+					|
+		-------------------------------------------------
+		|						|
+	 (-1, 1)all[1]					  (1, 1)is[1]
+		|						|
+		---------				-----------------
+			|				|		|
+		  (0, 2)ask[1]			  (0, 2)i[1]	  (2, 2)us[1]
+							|		|
+						---------	---------
+						|		|
+					 (-1, 3)give[1]	  (1, 3)this[1]
+						|		|
+					---------	-----------------
+					|		|		|
+				 (-2, 4)day[1]	  (0, 4)our[1]	  (2, 4)twin[1]
+					|		|
+				---------	---------
+				|		|
+			 (-3, 5)daily[1] (-1, 5)mask[1]
+
+
+
+
+The second stage is to delete the word 'this'.
+
+The intermediate bst tree can be pictorially represented as:-
+
+
+				(0, 0)consistency[1]
+					|
+		-------------------------------------------------
+		|						|
+	 (-1, 1)all[1]					  (1, 1)is[1]
+		|						|
+		---------				-----------------
+			|				|		|
+		  (0, 2)ask[1]			  (0, 2)i[1]	  (2, 2)us[1]
+							|		|
+						---------	---------
+						|		|
+					 (-1, 3)give[1]	  (1, 3)our[1]
+						|		|
+					---------	-----------------
+					|		|		|
+				 (-2, 4)day[1]	  (0, 4)mask[1]	  (2, 4)twin[1]
+					|
+				---------
+				|
+			 (-3, 5)daily[1]
+
+
+
+
+The third stage is to delete the root node 'consistency'.
+
+The final bst tree can be pictorially represented as:-
+
+
+			  (0, 0)all[1]
+				|
+				---------
+					|
+				  (1, 1)ask[1]
+					|
+					---------
+						|
+					  (2, 2)is[1]
+						|
+					-----------------
+					|		|
+				  (1, 3)i[1]	  (3, 3)us[1]
+					|		|
+				---------	---------
+				|		|
+			  (0, 4)give[1]	  (2, 4)our[1]
+				|		|
+			---------	-----------------
+			|		|		|
+		 (-1, 5)day[1]	  (1, 5)mask[1]	  (3, 5)twin[1]
+			|
+		---------
+		|
+	 (-2, 6)daily[1]
