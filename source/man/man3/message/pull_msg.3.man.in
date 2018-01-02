@@ -1,0 +1,42 @@
+NAME
+pull_msg - Pull a message from the buffer.
+SYNOPSIS
+#include <mgemessage.h>
+
+struct mgemessage *pull_msg(struct mgebuffer *buf,
+		struct mgemessage *msg);
+
+DESCRIPTION
+A pull_msg() involves getting a message from the buffer, deconstructing the
+message into an mgemessage struct and then removing the message from the buffer;
+ie a get_msg(), a deconstruct_msg() and a trim_buf().
+
+mge_errno is set as required.
+PARAMETERS
+buf - a pointer to the mgebuffer struct buffer to use as the source.
+.br
+msg - a pointer to the mgemessage struct to populate.
+
+RETURN VALUE
+Return value is a pointer to the mgemessage struct.
+
+ERRORS
+mge_errno is zero on success, non-zero on error.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+clear_msg(3) concat_buf(3) deconstruct_msg(3) get_msg(3) print_buf(3)
+print_msg(3) trim_buf(3) mge_strerror(3)

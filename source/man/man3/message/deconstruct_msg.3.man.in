@@ -1,0 +1,38 @@
+NAME
+deconstruct_msg - Parse a message.
+SYNOPSIS
+#include <mgemessage.h>
+
+struct mgemessage *deconstruct_msg(struct mgemessage *msg);
+
+DESCRIPTION
+deconstruct_msg() parses the message field of the mgemessage struct and
+populates the struct with the individual elements.
+
+mge_errno is set as required.
+PARAMETERS
+msg - a pointer to the mgemessage struct to populate.
+
+RETURN VALUE
+Return value is a pointer to the fully populated mgemessage struct.
+
+ERRORS
+mge_errno is zero on success, non-zero on error.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+clear_msg(3) concat_buf(3) get_msg(3) print_buf(3) print_msg(3)
+pull_msg(3) trim_buf(3) mge_strerror(3)

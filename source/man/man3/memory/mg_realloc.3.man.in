@@ -1,0 +1,45 @@
+NAME
+mg_realloc - Wrapper for realloc to include error handling.
+SYNOPSIS
+#include <mgememory.h>
+
+char *mg_realloc(char *mem_ptr, const size_t mem_sz);
+
+DESCRIPTION
+Performs a realloc() but makes a syslog entry on error.
+.br
+mge_errno will be set as required. If memory cannot be allocated then mge_errno
+is set to MGE_ERRNO and sav_errno will be a copy of errno as set by malloc.
+PARAMETERS
+mem_ptr - a pointer to the memory area to be changed. As with realloc(), if
+mem_ptr is NULL, mg_realloc acts as malloc().
+.br
+mem_sz - the new size required.
+
+RETURN VALUE
+Return value is a pointer to the new area of memory or NULL if an error occurs.
+The pointer returned may be different from the one supplied, mem_ptr.
+ERRORS
+These values for mge_errno are defined in mge-errno.h:-
+
+MGE_ERRNO - Memory allocation via malloc produced an error. See the copy of
+errno in sav_errno and / or use mge_strerror(mge_errno).
+
+If an error occurs, mem_ptr remains unaltered pointing to the still un-freed
+original memory block.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright 2015-2017 Mark Grant.
+.br
+License GPLv3+: GNU GPL version 3 or later
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+realloc(3) malloc(3) mge-strerror(3)

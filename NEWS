@@ -1,0 +1,64 @@
+Release 1.1.0 2017-05-03
+Add binary search tree object.
+Update all man pages with respect to the new bst object.
+Improve bst man pages re error handling.
+Add trace function to provide bst node coordinates.
+Add message and config file errors.
+Utilise errors library-wide.
+Add buffer, memory and message headers.
+Add all buffer, memory and message related man pages.
+Update source tree formatting & coding style to atcldpc template v1.0.0
+Make get_counter_bst_node() return -1 on error.
+
+Release 1.0.13 2016-05-06
+Add double linked lists headers and man 3 pages.
+
+Release 1.0.12 2016-05-04
+Add single linked lists headers and man 3 pages.
+
+Release 1.0.11 2015-11-07
+Update man pages to reflect BST_ and bstree_errno move to LAS_ and las_errno.
+
+Release 1.0.10 2015-11-07
+Elevate errno defs to listsandsorts.h.
+
+Release 1.0.9 2015-11-05
+Extract binary search tree header leaving listsandsorts.h as an umbrella.
+
+Release 1.0.8 2015-11-04
+Change from bt and btree names to bst and bstree as this is a binary search tree,
+not a b-tree.
+
+Release 1.0.7 2015-10-25
+Restructure and change to conform to AutoTools General Template v1.0.6.
+
+Release 1.0.6 2015-09-20
+Change from using cnv2man to txt2manwrap.
+Complies with MG AutoTools General standard version 1.0.4.
+
+Release 1.0.5 2015-09-18
+Change btree section 3 man page AutoMake script to use cnv2man which copes
+with .3 extensions.
+
+Release 1.0.4 2015-09-16
+Add AutoConf check for txt2man program.
+Add Section 3 manual pages for add_bt_node(), del_bt_node(), find_bt_node(),
+find_next_bt_node(), find_prev_bt_node(), free_btree(), get_counter_bt_node(),
+upd_bt_node().
+Add btree_errno values BT_NOT_FOUND and BT_PARAM_ERR.
+Add unique / duplicate flag to add_bt_node().
+Add upd_bt_node() function.
+Change function name structure to XXX_bt_node().
+Remove nextobj parameter in findnext() and findprev() as it has no purpose
+outside of the function.
+Change find() to findcount() as it returns the count and implement new find()
+which returns the object if found.
+
+Release 1.0.3 2015-08-11
+Add btree function delnode().
+
+Release 1.0.2 2015-08-06
+Add listsandsorts.h and libmgec.h in support of btree in libmgec.
+
+Release 1.0.1 2015-07-12
+Initial release.
