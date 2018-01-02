@@ -1,19 +1,16 @@
 #########################################################################
 #									#
-# Script ID: ./configure.ac						#
-# Author: Copyright (C) 2017-2018  Mark Grant				#
+# Script ID: dev/configure.ac						#
+# Author: Copyright (C) 2015-2018  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
-#	Top level AutoConf script file to configure full libmgec	#
-# project including sub-projects.					#
+#	AutoConf script file to configure libmgec-dev project.		#
 #									#
-# cmd line syntax:							#
-# ./configure	[--enable-debug=<yes|no> [default: no]]			#
-# Any command line arguments are passed to the sub-project configure's.	#
-# This accepts any sub-project supported arguments.			#
+# configure cmd line syntax: ./configure				#
+#									#
 #									#
 #########################################################################
 
@@ -23,66 +20,59 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 18/12/2017	MG	1.0.1	First release.				#
-# 02/01/2018	MG	1.0.2	Move to new source directory structure.	#
+# 12/07/2015	MG	1.0.1	First release.				#
+# 05/09/2015	MG	1.0.2	Add creation of btree manual page	#
+#				Makefile. Add check for txt2man.	#
+# 20/09/2015	MG	1.0.3	Check for txt2manwrap converting from	#
+#				cnv2man.				#
+# 25/10/2015	MG	1.0.4	Restructure and change to conform to	#
+#				AutoTools General Template v1.0.6.	#
+# 03/11/2015	MG	1.0.5	Change from bt and btree names to bst	#
+#				and bstree as this is a binary search	#
+#				tree, not a b-tree.			#
+# 03/05/2016	MG	1.0.6	Add single linked list man pages	#
+#				Makefile creation.			#
+# 06/05/2016	MG	1.0.7	Add double linked list man pages	#
+#				Makefile creation.			#
+# 31/12/2016	MG	1.0.8	Add memory, buffer and message man	#
+#				pages Makefile creation.		#
+# 24/01/2017	MG	1.0.9	Add errno man pages.			#
+# 12/03/2017	MG	1.0.10	Adopt new code formatting standard.	#
+# 04/04/2017	MG	1.0.11	Tidy AC_INIT and pkgversion AC_SUBST	#
+#				onto multiple lines.			#
+# 22/12/2017	MG	1.0.12	Add SPDX license tags to source files.	#
+# 23/12/2017	MG	1.0.13	Change to manual package version	#
+#				numbering on adoption of project /	#
+#				sub-project structure.			#
+# 02/01/2018	MG	1.0.14	Move to new source directory structure.	#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.2 $])
+AC_REVISION([$Revision: 1.0.14 $])
 
 AC_PREREQ([2.65])
 
 
 ########################
 #
-# The following two macros use git to provide versioning information.
-# If git is not initialised or no commit has been made, then 'Pre-Release'
-# will be used.
-# If no Tag has been created then just a commit identifier will be used.
-# If a tag has been created then the most recent tag, plus number of commits
-# since the tag, plus a commit identifier will be used.
+# The package version in ac init will be used to create an output variable which
+# can be used by ac output and / or the sed setup below to substitute bookmarks
+# in source files.
 #
 ########################
 
-AC_INIT([[MGE General C library all projects.]], m4_esyscmd([ \
-		git describe --always 1>/dev/null 2>/dev/null \
-		&& git describe --always | tr -d '\n' \
-		|| echo 'Pre-Release' | tr -d '\n']),
-		[m.grant.prg@gmail.com], [libmgec-full])
+AC_INIT([[MGE general C library development package.]], [v1.1.0-rc1],
+		[m.grant.prg@gmail.com], [libmgec-dev])
 
-AC_SUBST([pkgversion], [m4_esyscmd([ \
-		git describe --always 1>/dev/null 2>/dev/null \
-		&& git describe --always | tr -d '\n' \
-		|| echo 'Pre-Release' | tr -d '\n'])])
-
-
-########################
-#
-# The following allows for an enable-debug=yes/no command line option. The
-# conditional DEBUG is made available to the makefiles.
-#
-########################
-
-AC_ARG_ENABLE([debug],
-	[  --enable-debug    Compile for debugging],
-	[case "${enableval}" in
-		yes) debug=true ;;
-		no)  debug=false ;;
-		*) AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
-	esac],[debug=false])
-AM_CONDITIONAL([DEBUG], [test x$debug = xtrue])
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Build in debug mode.])
-fi
+AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 
 ########################
 #
 # Now set up a sed sequence to substitute bookmarks in script files with either
 # standard GNU Directory Variables, or with programmer-defined variables set up
-# using an AC_SUBST macro above. This sed sequence will be invoked at programmer
-# discretion at sub-directory Makefile.am level.
+# using an AC_SUBST macro above. This sed sequence will be invoked at
+# programmer discretion at sub-directory Makefile.am level.
 # ----------------------
 #
 # prefix	/usr/local (typically)
@@ -148,64 +138,14 @@ AC_SUBST([edit], ["sed \
 
 # Passes the options to all am files. Puts objects in the sub-directory
 # containing the source.
-# This also checks :-	BSD install	make variable set	mkdir -p
-#			gawk
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running am init automake.])
-fi
-
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
 
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running am init automake.])
-fi
+# Checks the compiler to use and stores it in the cc variable.
+AC_PROG_CC
 
-
-# Checks the c++ compiler to use, stores it in the cxx variable and checks its
-# capabilities. (Required by ltmain.sh).
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog cxx. (Required by ltmain.sh).])
-fi
-
-AC_PROG_CXX
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog cxx.])
-fi
-
-
-# Check for ranlib recommended by autoscan for ltmain.sh but rendered obsolete
-# by lt init.
-
-
-# Check for libtool minimum version.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt prereq.])
-fi
-
-LT_PREREQ([2.4.6])
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt prereq.])
-fi
-
-
-# Turn on shared libraries.
-# Also checks for fgrep, linker capabilities, ranlib, sed.
-# Also checks for:-	ANSI C header files	sys/types.h	sys/stat.h
-#			stdlib.h	string.h	memory.h
-#			strings.h	inttypes.h	stdint.h
-#			unistd.h	dlfcn.h
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt init.])
-fi
-
-LT_INIT
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt init.])
-fi
-
+# Causes AC_OUTPUT to create a c preprocessor file with #define statements about
+# the configuration.
+AC_CONFIG_HEADERS([source/progs/c/sysgen/inc/config.h])
 
 
 ########################
@@ -217,42 +157,39 @@ fi
 #
 ########################
 
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac config macro dir.])
-fi
-
-
 AC_CONFIG_MACRO_DIR([m4])
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac config macro dir.])
-fi
 
 
 ########################
 #
 # Checks for programs.
-# If using am init automake, gl early or lt init the following programs are
-# automatically checked:-
-#
-# am init automake
-#	BSD install	mkdir -p	gawk
-#
-# gl early
-#	ar	grep	egrep	ranlib
-#
-# lt init
-#	fgrep	ranlib	sed
-#
+# install, mkdir and gawk are checked by AM_INIT_AUTOMAKE.
+# grep, egrep and ranlib are also automatically checked.
 # Particular and generic program checks follow:
 #
 ########################
 
 AC_MSG_NOTICE([checking for generic programs required by this application])
+AC_CHECK_PROG([TAR], [tar], [yes], [no])
+if test "x$TAR" = "xno" ; then
+	AC_MSG_ERROR([tar not found])
+fi
+
+AC_CHECK_PROG([TXT2MAN], [txt2man], [yes], [no])
+if test "x$TXT2MAN" = "xno" ; then
+	AC_MSG_ERROR([txt2man not found])
+fi
+
+AC_CHECK_PROG([TXT2MANWRAP], [txt2manwrap], [yes], [no])
+if test "x$TXT2MANWRAP" = "xno" ; then
+   	AC_MSG_ERROR([txt2manwrap not found])
+fi
 
 # Checks for libraries.
 
+
 # Checks for C header files.
+AC_CHECK_HEADERS([sys/types.h], [], [AC_MSG_ERROR([header not found])])
 
 # Checks for C++ header files.
 
@@ -260,10 +197,18 @@ AC_MSG_NOTICE([checking for generic programs required by this application])
 
 # Checks for library functions.
 
-# Sub-project configure.ac locations
-AC_CONFIG_SUBDIRS([dev lib doc])
-
-# Project files to create.
-AC_CONFIG_FILES([Makefile])
+# Project Makefiles to create.
+AC_CONFIG_FILES([Makefile
+		source/man/man3/bstree/Makefile
+		source/man/man3/dllist/Makefile
+		source/man/man3/sllist/Makefile
+		source/man/man3/buffer/Makefile
+		source/man/man3/errno/Makefile
+		source/man/man3/memory/Makefile
+		source/man/man3/message/Makefile
+		source/progs/c/inc/Makefile
+		source/progs/c/src/libmgec.pc
+		source/progs/c/src/Makefile
+		])
 
 AC_OUTPUT

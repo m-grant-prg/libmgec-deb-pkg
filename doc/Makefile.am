@@ -1,14 +1,14 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Script ID: ./Makefile.am						#
+# Script ID: doc/Makefile.am						#
 # Author: Copyright (C) 2017-2018  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
-#	AutoMake script file to generate libmgec all projects from	#
+#	AutoMake script file to generate libmgec-doc project from	#
 # source.								#
 #									#
 #########################################################################
@@ -26,5 +26,4 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-
-SUBDIRS = dev lib doc
+SUBDIRS = source/docs/doxygen

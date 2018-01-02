@@ -1,19 +1,16 @@
 #########################################################################
 #									#
-# Script ID: ./configure.ac						#
+# Script ID: doc/configure.ac						#
 # Author: Copyright (C) 2017-2018  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
-#	Top level AutoConf script file to configure full libmgec	#
-# project including sub-projects.					#
+#	AutoConf script file to configure libmgec-doc project.		#
 #									#
 # cmd line syntax:							#
 # ./configure	[--enable-debug=<yes|no> [default: no]]			#
-# Any command line arguments are passed to the sub-project configure's.	#
-# This accepts any sub-project supported arguments.			#
 #									#
 #########################################################################
 
@@ -23,7 +20,7 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 18/12/2017	MG	1.0.1	First release.				#
+# 30/12/2017	MG	1.0.1	First release.				#
 # 02/01/2018	MG	1.0.2	Move to new source directory structure.	#
 #									#
 #########################################################################
@@ -35,25 +32,16 @@ AC_PREREQ([2.65])
 
 ########################
 #
-# The following two macros use git to provide versioning information.
-# If git is not initialised or no commit has been made, then 'Pre-Release'
-# will be used.
-# If no Tag has been created then just a commit identifier will be used.
-# If a tag has been created then the most recent tag, plus number of commits
-# since the tag, plus a commit identifier will be used.
+# The package version in ac init will be used to create an output variable which
+# can be used by ac output and / or the sed setup below to substitute bookmarks
+# in source files.
 #
 ########################
 
-AC_INIT([[MGE General C library all projects.]], m4_esyscmd([ \
-		git describe --always 1>/dev/null 2>/dev/null \
-		&& git describe --always | tr -d '\n' \
-		|| echo 'Pre-Release' | tr -d '\n']),
-		[m.grant.prg@gmail.com], [libmgec-full])
+AC_INIT([[MGE general C library documentation.]], [v1.0.0-rc2],
+		[m.grant.prg@gmail.com], [libmgec-doc])
 
-AC_SUBST([pkgversion], [m4_esyscmd([ \
-		git describe --always 1>/dev/null 2>/dev/null \
-		&& git describe --always | tr -d '\n' \
-		|| echo 'Pre-Release' | tr -d '\n'])])
+AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 
 ########################
@@ -81,8 +69,8 @@ fi
 #
 # Now set up a sed sequence to substitute bookmarks in script files with either
 # standard GNU Directory Variables, or with programmer-defined variables set up
-# using an AC_SUBST macro above. This sed sequence will be invoked at programmer
-# discretion at sub-directory Makefile.am level.
+# using an AC_SUBST macro above. This sed sequence will be invoked at
+# programmer discretion at sub-directory Makefile.am level.
 # ----------------------
 #
 # prefix	/usr/local (typically)
@@ -161,53 +149,6 @@ if test "x${debug}" = xtrue; then
 fi
 
 
-# Checks the c++ compiler to use, stores it in the cxx variable and checks its
-# capabilities. (Required by ltmain.sh).
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog cxx. (Required by ltmain.sh).])
-fi
-
-AC_PROG_CXX
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog cxx.])
-fi
-
-
-# Check for ranlib recommended by autoscan for ltmain.sh but rendered obsolete
-# by lt init.
-
-
-# Check for libtool minimum version.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt prereq.])
-fi
-
-LT_PREREQ([2.4.6])
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt prereq.])
-fi
-
-
-# Turn on shared libraries.
-# Also checks for fgrep, linker capabilities, ranlib, sed.
-# Also checks for:-	ANSI C header files	sys/types.h	sys/stat.h
-#			stdlib.h	string.h	memory.h
-#			strings.h	inttypes.h	stdint.h
-#			unistd.h	dlfcn.h
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt init.])
-fi
-
-LT_INIT
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt init.])
-fi
-
-
-
 ########################
 #
 # Standard macros will be automatically placed in m4.
@@ -249,8 +190,19 @@ fi
 ########################
 
 AC_MSG_NOTICE([checking for generic programs required by this application])
+AC_CHECK_PROG([TAR], [tar], [yes], [no])
+if test "x$TAR" = "xno" ; then
+	AC_MSG_ERROR([tar not found])
+fi
+
+AC_CHECK_PROG([DOXYGEN], [doxygen], [yes], [no])
+if test "x$DOXYGEN" = "xno" ; then
+	AC_MSG_ERROR([doxygen not found])
+fi
+
 
 # Checks for libraries.
+
 
 # Checks for C header files.
 
@@ -260,10 +212,10 @@ AC_MSG_NOTICE([checking for generic programs required by this application])
 
 # Checks for library functions.
 
-# Sub-project configure.ac locations
-AC_CONFIG_SUBDIRS([dev lib doc])
-
-# Project files to create.
-AC_CONFIG_FILES([Makefile])
+# Project Makefiles to create.
+AC_CONFIG_FILES([Makefile
+		source/docs/doxygen/Doxyfile
+		source/docs/doxygen/Makefile
+		])
 
 AC_OUTPUT
