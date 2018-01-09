@@ -45,10 +45,11 @@
 #				numbering on adoption of project /	#
 #				sub-project structure.			#
 # 02/01/2018	MG	1.0.14	Move to new source directory structure.	#
+# 09/01/2018	MG	1.0.15	Add checks for size_t and ssize_t.	#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.14 $])
+AC_REVISION([$Revision: 1.0.15 $])
 
 AC_PREREQ([2.65])
 
@@ -194,6 +195,9 @@ AC_CHECK_HEADERS([sys/types.h], [], [AC_MSG_ERROR([header not found])])
 # Checks for C++ header files.
 
 # Checks for typedefs, structures, and compiler characteristics.
+AC_MSG_NOTICE([checking for typedefs required by this application])
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
 
 # Checks for library functions.
 
