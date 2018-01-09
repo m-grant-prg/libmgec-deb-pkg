@@ -33,12 +33,13 @@
 # 09/06/2017	MG	1.0.9	Add support for temporary libraries.	#
 # 10/12/2017	MG	1.0.10	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.11	Move to new source directory structure.	#
+# 09/01/2018	MG	1.0.12	Correct generation of config.h		#
 #									#
 #########################################################################
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = source/progs/c/sysgen/inc source/progs/c/sysgen/lib
+SUBDIRS = source/progs/c/sysgen/lib
 SUBDIRS += source/progs/c/inc-tmp
 SUBDIRS += source/progs/c/lib-tmp
 SUBDIRS += source/progs/c/src/libmgec

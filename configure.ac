@@ -54,10 +54,11 @@
 #				numbering on adoption of project /	#
 #				sub-project structure.			#
 # 02/01/2018	MG	1.0.19	Move to new source directory structure.	#
+# 09/01/2018	MG	1.0.20	Correct generation of config.h		#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.19 $])
+AC_REVISION([$Revision: 1.0.20 $])
 
 AC_PREREQ([2.65])
 
@@ -491,7 +492,6 @@ AC_CHECK_FUNCS([memset strerror])
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
-		source/progs/c/sysgen/inc/Makefile
 		source/progs/c/sysgen/lib/Makefile
 		source/progs/c/inc-tmp/Makefile
 		source/progs/c/lib-tmp/Makefile
