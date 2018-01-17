@@ -41,12 +41,12 @@ docbasedir = $(datarootdir)/doc-base
 
 $(docpkg): doxygen.stamp
 	if [ -d $(top_srcdir)/../lib/source/ \
-		-a -d $(top_srcdir)/../dev/source/ ]; \
+		-a -d $(top_srcdir)/../dev/src/ ]; \
 		then tar chof - html | gzip -9 -c > $@; fi
 
 doxygen.stamp: Doxyfile
 	if [ -d $(top_srcdir)/../lib/source/ \
-		-a -d $(top_srcdir)/../dev/source/ ]; \
+		-a -d $(top_srcdir)/../dev/src/ ]; \
 		then doxygen $<; fi
 	echo Timestamp > $@
 
