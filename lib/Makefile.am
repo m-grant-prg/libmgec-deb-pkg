@@ -39,13 +39,13 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = source/progs/c/sysgen/lib
-SUBDIRS += source/progs/c/inc-tmp
-SUBDIRS += source/progs/c/lib-tmp
-SUBDIRS += source/progs/c/src/libmgec
-SUBDIRS += source/progs/c/src/test-bstree
-SUBDIRS += source/progs/c/src/test-dllist
-SUBDIRS += source/progs/c/src/test-errno
-SUBDIRS += source/progs/c/src/test-sllist
+SUBDIRS = src/prg/c/gen/lib
+SUBDIRS += src/prg/c/inc-tmp
+SUBDIRS += src/prg/c/lib-tmp
+SUBDIRS += src/prg/c/src/libmgec
+SUBDIRS += src/prg/c/src/test-bstree
+SUBDIRS += src/prg/c/src/test-dllist
+SUBDIRS += src/prg/c/src/test-errno
+SUBDIRS += src/prg/c/src/test-sllist
 
 EXTRA_DIST  = m4/gnulib-cache.m4

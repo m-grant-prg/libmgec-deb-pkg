@@ -93,7 +93,7 @@ AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 AC_SUBST([tmpheaders])
 
-for entry in `dirname $0`/source/progs/c/inc-tmp/*.h
+for entry in `dirname $0`/src/prg/c/inc-tmp/*.h
 do
 	if test -f "$entry" ;then
 		tmpheaders=$tmpheaders" "$(basename "$entry")
@@ -115,11 +115,11 @@ done
 
 AC_SUBST([tmplibraries])
 
-for direntry in `dirname $0`/source/progs/c/lib-tmp/*
+for direntry in `dirname $0`/src/prg/c/lib-tmp/*
 do
 	if test -d "$direntry" ;then
 		for entry in `dirname $0`\
-/source/progs/c/lib-tmp/$(basename "$direntry")/*.la
+/src/prg/c/lib-tmp/$(basename "$direntry")/*.la
 		do
 			if test -f "$entry" ;then
 				tmplibraries=$tmplibraries\
@@ -321,7 +321,7 @@ if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE([Running ac config srcdir.])
 fi
 
-AC_CONFIG_SRCDIR([source/progs/c/sysgen/lib/dummy.c])
+AC_CONFIG_SRCDIR([src/prg/c/gen/lib/dummy.c])
 
 if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE([Finished running ac config srcdir.])
@@ -399,7 +399,7 @@ if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE([Running ac config headers.])
 fi
 
-AC_CONFIG_HEADERS([source/progs/c/sysgen/inc/config.h])
+AC_CONFIG_HEADERS([src/prg/c/gen/inc/config.h])
 
 if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE([Finished running ac config headers.])
@@ -492,14 +492,14 @@ AC_CHECK_FUNCS([memset strerror])
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
-		source/progs/c/sysgen/lib/Makefile
-		source/progs/c/inc-tmp/Makefile
-		source/progs/c/lib-tmp/Makefile
-		source/progs/c/src/libmgec/Makefile
-		source/progs/c/src/test-bstree/Makefile
-		source/progs/c/src/test-dllist/Makefile
-		source/progs/c/src/test-errno/Makefile
-		source/progs/c/src/test-sllist/Makefile])
+		src/prg/c/gen/lib/Makefile
+		src/prg/c/inc-tmp/Makefile
+		src/prg/c/lib-tmp/Makefile
+		src/prg/c/src/libmgec/Makefile
+		src/prg/c/src/test-bstree/Makefile
+		src/prg/c/src/test-dllist/Makefile
+		src/prg/c/src/test-errno/Makefile
+		src/prg/c/src/test-sllist/Makefile])
 
 
 AC_OUTPUT
