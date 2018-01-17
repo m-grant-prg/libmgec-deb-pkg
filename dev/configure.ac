@@ -48,6 +48,7 @@
 # 09/01/2018	MG	1.0.15	Add checks for size_t and ssize_t.	#
 # 10/01/2018	MG	1.0.16	Remove unnecessary config.h generation.	#
 # 17/01/2018	MG	1.0.17	Update minimum AutoTools version.	#
+#				Update AC macros and comments.		#
 #									#
 #########################################################################
 
@@ -141,10 +142,9 @@ AC_SUBST([edit], ["sed \
 
 # Passes the options to all am files. Puts objects in the sub-directory
 # containing the source.
+# This also checks :-	BSD install	make variable set	mkdir -p
+#			gawk
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
-
-# Checks the compiler to use and stores it in the cc variable.
-AC_PROG_CC
 
 
 ########################
@@ -162,8 +162,18 @@ AC_CONFIG_MACRO_DIR([m4])
 ########################
 #
 # Checks for programs.
-# install, mkdir and gawk are checked by AM_INIT_AUTOMAKE.
-# grep, egrep and ranlib are also automatically checked.
+# If using am init automake, gl early or lt init the following programs are
+# automatically checked:-
+#
+# am init automake
+#	BSD install	mkdir -p	gawk
+#
+# gl early
+#	ar	grep	egrep	ranlib
+#
+# lt init
+#	fgrep	ranlib	sed
+#
 # Particular and generic program checks follow:
 #
 ########################
