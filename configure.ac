@@ -47,12 +47,13 @@
 # 02/01/2018	MG	1.0.14	Move to new source directory structure.	#
 # 09/01/2018	MG	1.0.15	Add checks for size_t and ssize_t.	#
 # 10/01/2018	MG	1.0.16	Remove unnecessary config.h generation.	#
+# 17/01/2018	MG	1.0.17	Update minimum AutoTools version.	#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.16 $])
+AC_REVISION([$Revision: 1.0.17 $])
 
-AC_PREREQ([2.65])
+AC_PREREQ([2.69])
 
 
 ########################
