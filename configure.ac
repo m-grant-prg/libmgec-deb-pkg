@@ -200,16 +200,16 @@ AC_TYPE_SSIZE_T
 
 # Project Makefiles to create.
 AC_CONFIG_FILES([Makefile
-		source/man/man3/bstree/Makefile
-		source/man/man3/dllist/Makefile
-		source/man/man3/sllist/Makefile
-		source/man/man3/buffer/Makefile
-		source/man/man3/errno/Makefile
-		source/man/man3/memory/Makefile
-		source/man/man3/message/Makefile
-		source/progs/c/inc/Makefile
-		source/progs/c/src/libmgec.pc
-		source/progs/c/src/Makefile
+		src/man/3/bstree/Makefile
+		src/man/3/dllist/Makefile
+		src/man/3/sllist/Makefile
+		src/man/3/buffer/Makefile
+		src/man/3/errno/Makefile
+		src/man/3/memory/Makefile
+		src/man/3/message/Makefile
+		src/prg/c/inc/Makefile
+		src/prg/c/src/libmgec.pc
+		src/prg/c/src/Makefile
 		])
 
 AC_OUTPUT
