@@ -204,7 +204,6 @@ fi
 
 # Checks for libraries.
 
-
 # Checks for C header files.
 
 # Checks for C++ header files.
