@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 #########################################################################
 #									#
-# Script ID: doc/source/docs/doxygen/Makefile.am			#
+# Script ID: doc/src/docs/doxygen/Makefile.am				#
 # Author: Copyright (C) 2017-2018  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#

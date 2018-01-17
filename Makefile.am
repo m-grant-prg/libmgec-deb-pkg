@@ -26,4 +26,4 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = source/docs/doxygen
+SUBDIRS = src/docs/doxygen
