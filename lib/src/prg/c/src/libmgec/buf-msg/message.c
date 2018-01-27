@@ -26,6 +26,7 @@
  * 27/01/2018	MG	1.0.5	mg_realloc syslogs error, sets		*
  *				mge_errno and saves errno, so if it	*
  *				returns NULL then just return NULL.	*
+ *				Preserve input parameters on error exit.*
  *									*
  ************************************************************************
  */
@@ -83,9 +84,9 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
 struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
 	char *t_msg;
+	size_t t_msg_size = DEF_MSG_SIZE;
 	int t_buf_offset = 0;
 	args = 1;
-	msg->size = DEF_MSG_SIZE;
 
 	t_msg = mg_realloc(msg->message, msg->size);
 	if (t_msg == NULL)
@@ -93,6 +94,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 
 	msg->message = t_msg;
 	*msg->message = '\0';
+	msg->size = t_msg_size;
 
 	while ((t_buf_offset < buf->index) && !msg->complete) {
 		if (*(buf->buffer + t_buf_offset) == msg->terminator)
@@ -101,11 +103,12 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 			args++;
 		/* -1 allows space for adding '\0' to end of message. */
 		if (msg->offset == msg->size - 1) {
-			msg->size += DEF_MSG_SIZE;
-			t_msg = mg_realloc(msg->message, msg->size);
+			t_msg_size = msg->size + DEF_MSG_SIZE;
+			t_msg = mg_realloc(msg->message, t_msg_size);
 			if (t_msg == NULL)
 				return NULL;
 			msg->message = t_msg;
+			msg->size = t_msg_size;
 		}
 		if ((*(buf->buffer + t_buf_offset) != '\n')
 			&& (*(buf->buffer + t_buf_offset) != '\r')) {
