@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 02/01/2018_
+ * @version _v1.0.6 ==== 27/01/2018_
  */
 
 /* **********************************************************************
@@ -25,6 +25,9 @@
  * 21/11/2017	MG	1.0.4	Remove unnecessary initialisation of	*
  *				mge_errno.				*
  * 02/01/2018	MG	1.0.5	Move to new source directory structure.	*
+ * 27/01/2018	MG	1.0.6	mg_realloc syslogs error, sets		*
+ *				mge_errno and saves errno, so if it	*
+ *				returns NULL then just return NULL.	*
  *									*
  ************************************************************************
  */
@@ -58,22 +61,17 @@ struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 
 	if (m_buf->buffer == NULL) {
 		m_buf->buffer = mg_realloc(m_buf->buffer, m_buf->size);
-		if (m_buf->buffer == NULL) {
-			mge_errno = MGE_ERRNO;
-			sav_errno = errno;
+		if (m_buf->buffer == NULL)
 			return NULL;
-		}
 	}
 
 	if ((m_buf->index + (int) s_buf_os) > (int) m_buf->size) {
 		t = m_buf->size + (size_t) ((int) s_buf_os
 			- ((int) m_buf->size - m_buf->index));
 		m_buf_tmp = mg_realloc(m_buf->buffer, t);
-		if (m_buf_tmp == NULL) {
-			mge_errno = MGE_ERRNO;
-			sav_errno = errno;
+		if (m_buf_tmp == NULL)
 			return NULL;
-		}
+
 		m_buf->buffer = m_buf_tmp;
 		m_buf->size = t;
 	}
@@ -93,11 +91,9 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 	char *t_buf = NULL;
 
 	t_buf = mg_realloc(t_buf, (m_buf->size - m_buf->offset));
-	if (t_buf == NULL) {
-		mge_errno = MGE_ERRNO;
-		sav_errno = errno;
+	if (t_buf == NULL)
 		return NULL;
-	}
+
 	m_buf->size -= m_buf->offset;
 	memcpy(t_buf, (m_buf->buffer + m_buf->offset), m_buf->size);
 	free(m_buf->buffer);
