@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 02/01/2018_
+ * @version _v1.0.5 ==== 27/01/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +23,9 @@
  * 04/11/2017	MG	1.0.2	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
+ * 27/01/2018	MG	1.0.5	mg_realloc syslogs error, sets		*
+ *				mge_errno and saves errno, so if it	*
+ *				returns NULL then just return NULL.	*
  *									*
  ************************************************************************
  */
@@ -85,11 +88,9 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	msg->size = DEF_MSG_SIZE;
 
 	t_msg = mg_realloc(msg->message, msg->size);
-	if (t_msg == NULL) {
-		mge_errno = MGE_ERRNO;
-		sav_errno = errno;
+	if (t_msg == NULL)
 		return NULL;
-	}
+
 	msg->message = t_msg;
 	*msg->message = '\0';
 
@@ -102,11 +103,8 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		if (msg->offset == msg->size - 1) {
 			msg->size += DEF_MSG_SIZE;
 			t_msg = mg_realloc(msg->message, msg->size);
-			if (t_msg == NULL) {
-				mge_errno = MGE_ERRNO;
-				sav_errno = errno;
+			if (t_msg == NULL)
 				return NULL;
-			}
 			msg->message = t_msg;
 		}
 		if ((*(buf->buffer + t_buf_offset) != '\n')
@@ -153,11 +151,9 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	while (nxt_tok) {
 		x = strlen(nxt_tok) + 1;
 		*(msg->argv + msg->argc) = mg_realloc(NULL, (size_t) (x));
-		if (*(msg->argv + msg->argc) == NULL) {
-			mge_errno = MGE_ERRNO;
-			sav_errno = errno;
+		if (*(msg->argv + msg->argc) == NULL)
 			return NULL;
-		}
+
 		memcpy(*(msg->argv + msg->argc), nxt_tok, x);
 		(msg->argc)++;
 		nxt_tok = strtok('\0', ",;");
