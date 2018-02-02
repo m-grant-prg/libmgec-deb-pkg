@@ -88,7 +88,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	int t_buf_offset = 0;
 	args = 1;
 
-	t_msg = mg_realloc(msg->message, msg->size);
+	t_msg = mg_realloc(msg->message, t_msg_size);
 	if (t_msg == NULL)
 		return NULL;
 
