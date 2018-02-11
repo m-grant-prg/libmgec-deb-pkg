@@ -56,10 +56,11 @@
 # 02/01/2018	MG	1.0.19	Move to new source directory structure.	#
 # 09/01/2018	MG	1.0.20	Correct generation of config.h		#
 # 17/01/2018	MG	1.0.21	Update minimum AutoTools version.	#
+# 11/02/2018	MG	1.0.22	Make AutoMake use posix format for tar.	#
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.21 $])
+AC_REVISION([$Revision: 1.0.22 $])
 
 AC_PREREQ([2.69])
 
@@ -228,14 +229,14 @@ AC_SUBST([edit], ["sed \
 
 
 # Passes the options to all am files. Puts objects in the sub-directory
-# containing the source.
+# containing the source. Forces tar to use --format=posix in make dist.
 # This also checks :-	BSD install	make variable set	mkdir -p
 #			gawk
 if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE([Running am init automake.])
 fi
 
-AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
+AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects tar-pax])
 
 if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE([Finished running am init automake.])
