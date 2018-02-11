@@ -22,6 +22,8 @@
 # 02/01/2018	MG	1.0.2	Move to new source directory structure.	#
 # 17/01/2018	MG	1.0.3	Update checks for source after source	#
 #				directory change.			#
+# 11/02/2018	MG	1.0.4	Make tar use the Posix format for	#
+#				longer filenames.			#
 #									#
 #########################################################################
 
@@ -44,7 +46,7 @@ docbasedir = $(datarootdir)/doc-base
 $(docpkg): doxygen.stamp
 	if [ -d $(top_srcdir)/../lib/src/ \
 		-a -d $(top_srcdir)/../dev/src/ ]; \
-		then tar chof - html | gzip -9 -c > $@; fi
+		then tar -chz --format=posix -f $@ html; fi
 
 doxygen.stamp: Doxyfile
 	if [ -d $(top_srcdir)/../lib/src/ \
