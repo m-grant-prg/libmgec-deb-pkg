@@ -73,7 +73,7 @@ AC_PREREQ([2.69])
 #
 ########################
 
-AC_INIT([[MGE General C library.]], [v1.1.1-rc4],
+AC_INIT([[MGE General C library.]], [v1.1.1-rc5],
 		[m.grant.prg@gmail.com], [libmgec])
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
