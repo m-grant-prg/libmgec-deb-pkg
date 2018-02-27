@@ -1,3 +1,7 @@
+Release 1.1.1 2018-02-27
+Add Doxygen comments.
+Overhaul of AutoTools project structure.
+
 Release 1.1.0 2017-05-03
 Add binary search tree object.
 Update all man pages with respect to the new bst object.

@@ -1,3 +1,7 @@
+2018-02-27 v 1.1.1 Mark Grant <m.grant.prg@gmail.com>
+	*  Add Doxygen comments.
+	Overhaul of AutoTools project structure.
+
 2017-05-03 v 1.1.0 Mark Grant <m.grant.prg@gmail.com>
 	*  Add binary search tree object.
 	Update all man pages with respect to the new bst object.
