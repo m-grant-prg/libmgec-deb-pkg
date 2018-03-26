@@ -42,6 +42,7 @@
 # 10/12/2017	MG	1.0.13	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.14	Move to new source directory structure.	#
 # 09/01/2018	MG	1.0.15	Correct usage of config.h		#
+# 26/03/2018	MG	1.0.16	Add support for sparse.			#
 #									#
 #########################################################################
 
@@ -57,6 +58,10 @@ if DEBUG
 AM_CFLAGS += -g -Og
 else
 AM_CFLAGS += -O2
+endif
+
+if SPARSE
+AM_CFLAGS += -Wsparse-all
 endif
 
 
