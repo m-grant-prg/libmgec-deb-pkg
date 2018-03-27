@@ -25,6 +25,8 @@
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
  * 27/03/2018	MG	1.0.5	Ensure variable declarations come	*
  *				before code, (fixes sparse warnings).	*
+ *				Add mgememory.h for prototypes, (fixes	*
+ *				sparse warning).			*
  *									*
  ************************************************************************
  */
@@ -37,6 +39,7 @@
 #include <syslog.h>
 
 #include <mge-errno.h>
+#include <mgememory.h>
 
 
 /**
