@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 27/01/2018_
+ * @version _v1.0.6 ==== 27/03/2018_
  */
 
 /* **********************************************************************
@@ -27,6 +27,8 @@
  *				mge_errno and saves errno, so if it	*
  *				returns NULL then just return NULL.	*
  *				Preserve input parameters on error exit.*
+ * 27/03/2018	MG	1.0.6	Use NULL not integer in strtok, (fixes	*
+ *				sparse warning).			*
  *									*
  ************************************************************************
  */
