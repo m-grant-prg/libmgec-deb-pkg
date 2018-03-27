@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.1.3 ==== 02/01/2018_
+ * @version _v1.1.4 ==== 27/03/2018_
  */
 
 /* **********************************************************************
@@ -73,6 +73,8 @@
  * 04/11/2017	MG	1.1.1	Add Doxygen comments.			*
  * 09/11/2017	MG	1.1.2	Add SPDX license tag.			*
  * 02/01/2018	MG	1.1.3	Move to new source directory structure.	*
+ * 27/03/2018	MG	1.1.4	Ensure variable declarations come	*
+ *				before code, (fixes sparse warnings).	*
  *									*
  ************************************************************************
  */
@@ -184,8 +186,9 @@ static struct bstreenode *add_node(struct bstreenode *currentnode,
 		const void *object, size_t objsize, int unique,
 		int (*comp)(const void *, const void *))
 {
-	mge_errno = 0;
 	struct bstreenode *tmp_node;
+
+	mge_errno = 0;
 
 	if (object == NULL || !objsize || comp == NULL) {
 		mge_errno = MGE_PARAM;
@@ -290,8 +293,9 @@ void *find_bst_node(const struct bstree *tree, const void *searchobj)
 static void *find_node(const struct bstreenode *currentnode,
 		const void *searchobj, int (*comp)(const void *, const void *))
 {
-	mge_errno = 0;
 	void *foundobj = NULL;
+
+	mge_errno = 0;
 
 	if (searchobj == NULL || comp == NULL) {
 		mge_errno = MGE_PARAM;
@@ -348,8 +352,9 @@ int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
 static int get_counter_node(const struct bstreenode *currentnode,
 		const void *searchobj, int (*comp)(const void *, const void *))
 {
-	mge_errno = 0;
 	int count = 0;
+
+	mge_errno = 0;
 
 	if (searchobj == NULL || comp == NULL) {
 		mge_errno = MGE_PARAM;
@@ -406,9 +411,10 @@ void *find_next_bst_node(const struct bstree *tree, const void *searchobj)
 static void *find_next_node(const struct bstreenode *currentnode,
 		const void *searchobj, int (*comp)(const void *, const void *))
 {
-	mge_errno = 0;
 	void *nextobj = NULL;
 	void *tmpobj = NULL;
+
+	mge_errno = 0;
 
 	if (searchobj == NULL || comp == NULL) {
 		mge_errno = MGE_PARAM;
@@ -467,9 +473,10 @@ void *find_prev_bst_node(const struct bstree *tree, const void *searchobj)
 static void *find_prev_node(const struct bstreenode *currentnode,
 		const void *searchobj, int (*comp)(const void *, const void *))
 {
-	mge_errno = 0;
 	void *prevobj = NULL;
 	void *tmpobj = NULL;
+
+	mge_errno = 0;
 
 	if (searchobj == NULL || comp == NULL) {
 		mge_errno = MGE_PARAM;
@@ -606,8 +613,9 @@ struct bstree *del_bst_node(struct bstree *tree, const void *searchobj)
 static struct bstreenode *del_node(struct bstreenode *currentnode,
 		const void *searchobj, int (*comp)(const void *, const void *))
 {
-	mge_errno = 0;
 	struct bstreenode *p1, *p2;
+
+	mge_errno = 0;
 
 	if (currentnode == NULL) {
 		mge_errno = MGE_NODE_NOT_FOUND;
