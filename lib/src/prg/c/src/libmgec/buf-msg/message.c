@@ -159,7 +159,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 
 		memcpy(*(msg->argv + msg->argc), nxt_tok, x);
 		(msg->argc)++;
-		nxt_tok = strtok('\0', ",;");
+		nxt_tok = strtok(NULL, ",;");
 		}
 	return msg;
 }
