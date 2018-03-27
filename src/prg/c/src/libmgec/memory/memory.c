@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 02/01/2018_
+ * @version _v1.0.5 ==== 27/03/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +23,8 @@
  * 04/11/2017	MG	1.0.2	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
+ * 27/03/2018	MG	1.0.5	Ensure variable declarations come	*
+ *				before code, (fixes sparse warnings).	*
  *									*
  ************************************************************************
  */
@@ -47,8 +49,9 @@
  */
 char *mg_realloc(char *mem_ptr, const size_t mem_sz)
 {
-	mge_errno = 0;
 	char *new_ptr = mem_ptr;
+
+	mge_errno = 0;
 
 	new_ptr = realloc(mem_ptr, mem_sz);
 	if (new_ptr == NULL) {
