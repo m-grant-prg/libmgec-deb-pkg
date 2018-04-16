@@ -1,3 +1,6 @@
+Release 1.1.5 2018-04-16
+Ensure required directories exist, even if empty.
+
 Release 1.1.4 2018-04-16
 Start git tracking of m4 and src/prg/c/gen/lib as downstream packaging using a
 source (AOT distribution) tarball requires these gnulib elements to be present.
