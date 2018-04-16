@@ -1,3 +1,8 @@
+Release 1.1.4 2018-04-16
+Start git tracking of m4 and src/prg/c/gen/lib as downstream packaging using a
+source (AOT distribution) tarball requires these gnulib elements to be present.
+Add information on utility scripts to the README file.
+
 Release 1.1.3 2018-04-15
 Update this project bootstrap.sh to latest version 1.3.4.
 Improve README file.
