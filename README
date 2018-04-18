@@ -35,24 +35,29 @@ https://github.com/m-grant-prg/libmgec-lib
 https://github.com/m-grant-prg/libmgec-dev
 https://github.com/m-grant-prg/libmgec-super
 
+**********
+** N.B. **
+**********
+This project scans the library and development files to produce the
+documentation, therefore it cannot be built in isolation. This also means that
+it cannot be installed from a source tarball, it can however be installed from a
+distibution tarball.
+
 
 -------------------------------------------------
 2 ... AutoTools (configure and make) Installation
 =================================================
 
-a) ... Download either the source or distribution tarball (the .tar.gz file)
-	from:-
+a) ... Download the distribution tarball (the .tar.gz file) from:-
 	https://github.com/m-grant-prg/libmgec-doc/releases
 
 b) ... Extract the tarball preserving the directory structure.
 
 c) ... cd to the directory created.
 
-d) ... If you downloaded the source tarball type 'autoreconf -if'
+d) ... Type './configure'
 
-e) ... Type './configure'
-
-f) ... As root or sudo, type 'make install clean'
+e) ... As root or sudo, type 'make install clean'
 
 (Quote marks are for textual clarity only).
 
