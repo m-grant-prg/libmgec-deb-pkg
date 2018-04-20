@@ -34,7 +34,7 @@
 # 10/12/2017	MG	1.0.10	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.11	Move to new source directory structure.	#
 # 09/01/2018	MG	1.0.12	Correct generation of config.h		#
-# 15/04/2018	MG	1.0.11	Add srctarball target to build a source	#
+# 15/04/2018	MG	1.0.13	Add srctarball target to build a source	#
 #				tarball in the build directory. Uses	#
 #				git archive to archive HEAD.		#
 #									#
