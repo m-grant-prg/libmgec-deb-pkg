@@ -87,10 +87,10 @@ To add this PPA to your system please type the following:-
 
 To install this script on your system for use please type the following:-
 	sudo apt-get update
-	sudo apt-get install libmgec-lib
+	sudo apt-get install libmgec
 
 To uninstall this package at any time please type:-
-	sudo apt-get remove libmgec-lib
+	sudo apt-get remove libmgec
 
 
 --------------------------------------
