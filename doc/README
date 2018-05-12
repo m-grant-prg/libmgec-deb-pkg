@@ -26,14 +26,7 @@ directory. If doc-base is installed on the system then the documents are
 registered and dochelp is updated.
 
 Related packages are the libmgec MGE General C Library itself and the
-libmgec-dev MGE C Library Development package. There is also a super project
-(git), libmgec-super, which has the above mentioned dev, lib and doc projects as
-git submodules.
-
-So please refer also to:-
-https://github.com/m-grant-prg/libmgec-lib
-https://github.com/m-grant-prg/libmgec-dev
-https://github.com/m-grant-prg/libmgec-super
+libmgec-dev MGE C Library Development package.
 
 **********
 ** N.B. **
@@ -49,7 +42,7 @@ distibution tarball.
 =================================================
 
 a) ... Download the distribution tarball (the .tar.gz file) from:-
-	https://github.com/m-grant-prg/libmgec-doc/releases
+	https://github.com/m-grant-prg/libmgec/releases
 
 b) ... Extract the tarball preserving the directory structure.
 
@@ -94,7 +87,7 @@ To uninstall this package at any time please type:-
 4 ... Debian and Raspbian Installation
 ======================================
 Debian and Raspbian '.deb' packages can be downloaded from:-
-	https://github.com/m-grant-prg/libmgec-doc/releases
+	https://github.com/m-grant-prg/libmgec/releases
 
 They can then be installed using a utility such as GDebi which is available in
 the standard repos.
