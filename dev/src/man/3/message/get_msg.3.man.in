@@ -20,17 +20,18 @@ buf - a pointer to the mgebuffer struct buffer to use as the source.
 msg - a pointer to the mgemessage struct to populate.
 
 RETURN VALUE
-Return value is a pointer to the not fully populated mgemessage struct.
+Return value is a pointer to the not fully populated mgemessage struct or NULL
+on error.
 
 ERRORS
-mge_errno is zero on success, non-zero on error.
+mge_errno is set as required.
 
 AUTHOR
 Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright 2015-2017 Mark Grant.
+Copyright 2015-2018 Mark Grant.
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
