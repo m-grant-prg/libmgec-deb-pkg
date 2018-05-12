@@ -33,6 +33,9 @@
 # 24/01/2017	MG	1.0.8	Add errno man pages.			#
 # 22/12/2017	MG	1.0.9	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.10	Move to new source directory structure.	#
+# 15/04/2018	MG	1.0.11	Add srctarball target to build a source	#
+#				tarball in the build directory. Uses	#
+#				git archive to archive HEAD.		#
 #									#
 #########################################################################
 
@@ -42,3 +45,13 @@ SUBDIRS = src/man/3/bstree src/man/3/sllist src/man/3/dllist
 SUBDIRS += src/man/3/buffer src/man/3/errno
 SUBDIRS += src/man/3/memory src/man/3/message
 SUBDIRS += src/prg/c/inc src/prg/c/src
+
+
+srctarball:
+	@cwd="$${PWD}" && \
+	cd @srcdir@ && \
+	git archive --format=tar.gz \
+		--prefix=@PACKAGE_TARNAME@-@PACKAGE_VERSION@/ \
+		--output=$${cwd}/@PACKAGE_TARNAME@-@PACKAGE_VERSION@.tar.gz \
+		HEAD && \
+	cd -
