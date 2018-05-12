@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.1.4 ==== 27/03/2018_
+ * @version _v1.1.5 ==== 12/05/2018_
  */
 
 /* **********************************************************************
@@ -75,6 +75,8 @@
  * 02/01/2018	MG	1.1.3	Move to new source directory structure.	*
  * 27/03/2018	MG	1.1.4	Ensure variable declarations come	*
  *				before code, (fixes sparse warnings).	*
+ * 12/05/2018	MG	1.1.5	Get_ functions now return -mge_errno	*
+ *				instead of -1.				*
  *									*
  ************************************************************************
  */
@@ -328,13 +330,13 @@ static void *find_node(const struct bstreenode *currentnode,
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
  * @return The number of times add_bst_node() was asked to create this node,
- * or, 0 if not found, or, -1 on error.
+ * or, 0 if not found, or, -mge_errno on error.
  */
 int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
-		return -1;
+		return -mge_errno;
 	}
 	return get_counter_node(tree->root, searchobj, tree->comp);
 }
@@ -346,7 +348,7 @@ int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
  * Returns - the number of times add_bst_node() was asked to create this node,
- * or, 0 if not found, or, -1 on error.
+ * or, 0 if not found, or, -mge_errno on error.
  * Errors - mge_errno will be set as required.
  */
 static int get_counter_node(const struct bstreenode *currentnode,
@@ -358,7 +360,7 @@ static int get_counter_node(const struct bstreenode *currentnode,
 
 	if (searchobj == NULL || comp == NULL) {
 		mge_errno = MGE_PARAM;
-		return -1;
+		return -mge_errno;
 	}
 
 	if (currentnode == NULL)

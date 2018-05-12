@@ -25,11 +25,12 @@ object. It only needs enough information to support the comparison function.
 E.g. a key.
 
 RETURN VALUE
-The node's counter or 0 if the object does not exist in the bstree, or, -1 on
-error. If the node was created with the unique flag set to BST_NODES_UNIQUE then
-the only possible value for a found node is 1. If the node was created with the
-unique flag set to BST_NODES_DUPLICATES then the node counter will represent the
-number of times add_bst_node() was asked to create this node.
+The node's counter or 0 if the object does not exist in the bstree, or,
+-mge_errno on error. If the node was created with the unique flag set to
+BST_NODES_UNIQUE then the only possible value for a found node is 1. If the node
+was created with the unique flag set to BST_NODES_DUPLICATES then the node
+counter will represent the number of times add_bst_node() was asked to create
+this node.
 
 ERRORS
 These values for mge_errno are defined in mge-errno.h:-
@@ -145,7 +146,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright 2015-2017 Mark Grant.
+Copyright 2015-2018 Mark Grant.
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
@@ -155,6 +156,6 @@ This is free software: you are free to change and redistribute it.
 .br
 There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
-add_bst_node(3) cre_bst(3) del_bst(3) del_bst_node(3)
-find_bst_node(3) find_next_bst_node(3) find_next_bst_node_trace(3) find_prev_bst_node(3)
+add_bst_node(3) cre_bst(3) del_bst(3) del_bst_node(3) find_bst_node(3)
+find_next_bst_node(3) find_next_bst_node_trace(3) find_prev_bst_node(3)
 mge_strerror(3) upd_bst_node(3)
