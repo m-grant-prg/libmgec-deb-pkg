@@ -656,7 +656,7 @@ int testget_counter_bst_node(void)
 	if (verbose)
 		printf("%s", presult);
 
-	if (count == -1) {
+	if (count < 0) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
@@ -672,7 +672,7 @@ int testget_counter_bst_node(void)
 	if (verbose)
 		printf("%s", presult);
 
-	if (count == -1) {
+	if (count < 0) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
@@ -688,7 +688,7 @@ int testget_counter_bst_node(void)
 	if (verbose)
 		printf("%s", presult);
 
-	if (count == -1) {
+	if (count < 0) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
@@ -704,7 +704,7 @@ int testget_counter_bst_node(void)
 	if (verbose)
 		printf("%s", presult);
 
-	if (count == -1) {
+	if (count < 0) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
@@ -1646,7 +1646,7 @@ int testdeldupnode(void)
 	if (verbose)
 		printf("%s", presult);
 
-	if (count == -1) {
+	if (count < 0) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
@@ -1689,7 +1689,7 @@ int testdeldupnode(void)
 	if (verbose)
 		printf("%s", presult);
 
-	if (count == -1) {
+	if (count < 0) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
