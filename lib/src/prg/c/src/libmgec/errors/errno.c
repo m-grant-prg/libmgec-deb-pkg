@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.6 ==== 27/03/2018_
+ * @version _v1.0.7 ==== 17/05/2018_
  */
 
 /* **********************************************************************
@@ -25,6 +25,7 @@
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
  * 31/01/2018	MG	1.0.5	Add No such lock message.		*
  * 27/03/2018	MG	1.0.6	Add mge-errno.h, (fixes sparse warning).*
+ * 17/05/2018	MG	1.0.7	Add Client blocked message.		*
  *									*
  ************************************************************************
  */
@@ -54,7 +55,8 @@ const char *errno_desc[] = {
 		"Cannot parse config file.",
 		"Invalid message received.",
 		"SSH error.",
-		"No such lock."
+		"No such lock.",
+		"Client is blocked."
 		};
 
 /**

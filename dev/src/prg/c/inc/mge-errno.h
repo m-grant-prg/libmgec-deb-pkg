@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 31/01/2018_
+ * @version _v1.0.10 ==== 17/05/2018_
  */
 
 /* **********************************************************************
@@ -29,6 +29,7 @@
  * 09/11/2017	MG	1.0.7	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.8	Move to new source directory structure.	*
  * 31/01/2018	MG	1.0.9	Add Lock not found.			*
+ * 17/05/2018	MG	1.0.10	Add Client blocked.			*
  *									*
  ************************************************************************
  */
@@ -60,6 +61,7 @@ extern int sav_errno;
 #define MGE_INVAL_MSG 9		/**< Invalid message received. */
 #define MGE_SSH 10		/**< SSH error. */
 #define MGE_LOCK_NOT_FOUND 11	/**< Lock does not exist. */
+#define MGE_CLIENT_BLOCKED 12	/**< Client is blocked on the server. */
 
 const char *mge_strerror(const int mge_err);
 
