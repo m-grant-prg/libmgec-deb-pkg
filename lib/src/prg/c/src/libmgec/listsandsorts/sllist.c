@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 02/01/2018_
+ * @version _v1.0.8 ==== 19/05/2018_
  */
 
 /* **********************************************************************
@@ -31,6 +31,7 @@
  * 05/11/2017	MG	1.0.5	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.6	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.7	Move to new source directory structure.	*
+ * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
  *									*
  ************************************************************************
  */
@@ -42,9 +43,7 @@
 
 #include <mge-errno.h>
 #include <sllist.h>
-
-/* Free memory allocated to the node. */
-static void free_sll_node(struct sllistnode *currentnode);
+#include "internal.h"
 
 
 /**

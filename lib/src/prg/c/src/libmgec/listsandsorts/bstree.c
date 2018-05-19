@@ -87,8 +87,8 @@
 #include <string.h>
 #include <errno.h>
 
-#include "internal.h"
 #include <bstree.h>
+#include "internal.h"
 #include <mge-errno.h>
 
 

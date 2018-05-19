@@ -1,17 +1,15 @@
 /**
  * @file lib/src/prg/c/src/libmgec/listsandsorts/internal.h
  *
- * Static prototypes for binary search trees.
- *
- * Header file for binary search trees in the libmgec shared library. No
- * distribution required.
+ * Non-public header file for lists and sorts in the libmgec shared library.
+ * No distribution required.
  *
  * @author Copyright (C) 2015-2018  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.3 ==== 02/01/2018_
+ * @version _v1.0.4 ==== 19/05/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +21,7 @@
  * 04/11/2017	MG	1.0.1	Started ChangeLog.			*
  * 09/11/2017	MG	1.0.2	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.3	Move to new source directory structure.	*
+ * 19/05/2018	MG	1.0.4	Include dllist and sllist prototypes.	*
  *									*
  ************************************************************************
  */
@@ -33,6 +32,8 @@
 
 BEGIN_C_DECLS
 
+
+#ifdef BSTREE_H
 
 static struct bstreenode *add_node(struct bstreenode *currentnode,
 		const void *object, size_t objsize, int unique,
@@ -64,6 +65,22 @@ static struct bstobjcoord *find_next_node_trace(
 		const struct bstreenode *currentnode,
 		struct bstobjcoord *searchobj,
 		int (*comp)(const void *, const void *));
+
+#endif /* ifdef BSTREE_H */
+
+
+#ifdef DLLIST_H
+
+static void free_dll_node(struct dllistnode *currentnode);
+
+#endif /* ifdef DLLIST_H */
+
+
+#ifdef SLLIST_H
+
+static void free_sll_node(struct sllistnode *currentnode);
+
+#endif /* ifdef SLLIST_H */
 
 
 END_C_DECLS
