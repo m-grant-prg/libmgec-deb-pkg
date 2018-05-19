@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.6 ==== 27/03/2018_
+ * @version _v1.0.7 ==== 19/05/2018_
  */
 
 /* **********************************************************************
@@ -29,6 +29,7 @@
  *				Preserve input parameters on error exit.*
  * 27/03/2018	MG	1.0.6	Use NULL not integer in strtok, (fixes	*
  *				sparse warning).			*
+ * 19/05/2018	MG	1.0.7	Add args comment.			*
  *									*
  ************************************************************************
  */
@@ -45,6 +46,9 @@
 #include <mgememory.h>
 #include <mgemessage.h>
 
+/**
+ * Number of arguments in the message.
+ */
 static int args;
 
 /**
