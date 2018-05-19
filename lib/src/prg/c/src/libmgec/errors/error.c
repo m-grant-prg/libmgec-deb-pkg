@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 02/01/2018_
+ * @version _v1.0.5 ==== 19/05/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +23,8 @@
  * 04/11/2017	MG	1.0.2	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
+ * 19/05/2018	MG	1.0.5	Remove external declarations to		*
+ *				non-public internal.h header file.	*
  *									*
  ************************************************************************
  */
@@ -34,11 +36,8 @@
 #include <netdb.h>
 
 #include <mge-errno.h>
+#include "internal.h"
 
-
-/* This semi-hides these global variables, (cf putting them in mge-error.h). */
-extern char *errno_desc[];
-extern size_t errno_desc_size;
 
 static char err_msg[80];	/**< Storage for 'unknown error' string. */
 

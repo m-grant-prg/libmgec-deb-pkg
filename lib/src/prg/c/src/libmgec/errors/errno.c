@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 17/05/2018_
+ * @version _v1.0.8 ==== 19/05/2018_
  */
 
 /* **********************************************************************
@@ -26,6 +26,8 @@
  * 31/01/2018	MG	1.0.5	Add No such lock message.		*
  * 27/03/2018	MG	1.0.6	Add mge-errno.h, (fixes sparse warning).*
  * 17/05/2018	MG	1.0.7	Add Client blocked message.		*
+ * 19/05/2018	MG	1.0.8	Add new internal.h for non-public	*
+ *				declarations.				*
  *									*
  ************************************************************************
  */
@@ -34,6 +36,7 @@
 #include <sys/types.h>
 
 #include <mge-errno.h>
+#include "internal.h"
 
 
 /* Error variables. */
