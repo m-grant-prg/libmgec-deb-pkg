@@ -9,7 +9,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 19/05/2018_
+ * @version _v1.0.5 ==== 20/05/2018_
  */
 
 /* **********************************************************************
@@ -22,6 +22,7 @@
  * 09/11/2017	MG	1.0.2	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.3	Move to new source directory structure.	*
  * 19/05/2018	MG	1.0.4	Include dllist and sllist prototypes.	*
+ * 20/05/2018	MG	1.0.5	Add re-inclusion prevention #defines.	*
  *									*
  ************************************************************************
  */
@@ -34,6 +35,9 @@ BEGIN_C_DECLS
 
 
 #ifdef BSTREE_H
+
+#ifndef INTERNAL_BSTREE_H
+#define INTERNAL_BSTREE_H
 
 static struct bstreenode *add_node(struct bstreenode *currentnode,
 		const void *object, size_t objsize, int unique,
@@ -66,20 +70,29 @@ static struct bstobjcoord *find_next_node_trace(
 		struct bstobjcoord *searchobj,
 		int (*comp)(const void *, const void *));
 
+#endif /* ifndef INTERNAL_BSTREE_H */
 #endif /* ifdef BSTREE_H */
 
 
 #ifdef DLLIST_H
 
+#ifndef INTERNAL_DLLIST_H
+#define INTERNAL_DLLIST_H
+
 static void free_dll_node(struct dllistnode *currentnode);
 
+#endif /* ifndef INTERNAL_DLLIST_H */
 #endif /* ifdef DLLIST_H */
 
 
 #ifdef SLLIST_H
 
+#ifndef INTERNAL_SLLIST_H
+#define INTERNAL_SLLIST_H
+
 static void free_sll_node(struct sllistnode *currentnode);
 
+#endif /* ifndef INTERNAL_SLLIST_H */
 #endif /* ifdef SLLIST_H */
 
 
