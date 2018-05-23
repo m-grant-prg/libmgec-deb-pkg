@@ -30,9 +30,9 @@
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.4 $])
+AC_REVISION($Revision: 1.0.4 $)
 
-AC_PREREQ([2.69])
+AC_PREREQ(2.69)
 
 
 ########################
@@ -46,16 +46,16 @@ AC_PREREQ([2.69])
 #
 ########################
 
-AC_INIT([[MGE General C library all projects.]], m4_esyscmd([ \
+AC_INIT(MGE General C library all projects, m4_esyscmd([ \
 		git describe --always 1>/dev/null 2>/dev/null \
 		&& git describe --always | tr -d '\n' \
 		|| echo 'Pre-Release' | tr -d '\n']),
-		[m.grant.prg@gmail.com], [libmgec-full])
+		m.grant.prg@gmail.com, libmgec-full)
 
-AC_SUBST([pkgversion], [m4_esyscmd([ \
+AC_SUBST(pkgversion, m4_esyscmd([ \
 		git describe --always 1>/dev/null 2>/dev/null \
 		&& git describe --always | tr -d '\n' \
-		|| echo 'Pre-Release' | tr -d '\n'])])
+		|| echo 'Pre-Release' | tr -d '\n']))
 
 
 ########################
@@ -65,17 +65,17 @@ AC_SUBST([pkgversion], [m4_esyscmd([ \
 #
 ########################
 
-AC_ARG_ENABLE([debug],
-	[  --enable-debug    Compile for debugging],
+AC_ARG_ENABLE(debug,
+	--enable-debug    Compile for debugging,
 	[case "${enableval}" in
 		yes) debug=true ;;
 		no)  debug=false ;;
-		*) AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
-	esac],[debug=false])
-AM_CONDITIONAL([DEBUG], [test x$debug = xtrue])
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+	esac],debug=false)
+AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Build in debug mode.])
+	AC_MSG_NOTICE(Build in debug mode.)
 fi
 
 
@@ -153,26 +153,26 @@ AC_SUBST([edit], ["sed \
 # This also checks :-	BSD install	make variable set	mkdir -p
 #			gawk
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running am init automake.])
+	AC_MSG_NOTICE(Running am init automake.)
 fi
 
-AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects tar-pax])
+AM_INIT_AUTOMAKE(-Wall -Werror subdir-objects tar-pax)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running am init automake.])
+	AC_MSG_NOTICE(Finished running am init automake.)
 fi
 
 
 # Checks the c++ compiler to use, stores it in the cxx variable and checks its
 # capabilities. (Required by ltmain.sh).
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog cxx. (Required by ltmain.sh).])
+	AC_MSG_NOTICE(Running ac prog cxx. (Required by ltmain.sh).)
 fi
 
 AC_PROG_CXX
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog cxx.])
+	AC_MSG_NOTICE(Finished running ac prog cxx.)
 fi
 
 
@@ -182,13 +182,13 @@ fi
 
 # Check for libtool minimum version.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt prereq.])
+	AC_MSG_NOTICE(Running lt prereq.)
 fi
 
-LT_PREREQ([2.4.6])
+LT_PREREQ(2.4.6)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt prereq.])
+	AC_MSG_NOTICE(Finished running lt prereq.)
 fi
 
 
@@ -199,13 +199,13 @@ fi
 #			strings.h	inttypes.h	stdint.h
 #			unistd.h	dlfcn.h
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt init.])
+	AC_MSG_NOTICE(Running lt init.)
 fi
 
 LT_INIT
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt init.])
+	AC_MSG_NOTICE(Finished running lt init.)
 fi
 
 
@@ -222,14 +222,14 @@ fi
 ########################
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac config macro dir.])
+	AC_MSG_NOTICE(Running ac config macro dir.)
 fi
 
 
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR(m4)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac config macro dir.])
+	AC_MSG_NOTICE(Finished running ac config macro dir.)
 fi
 
 
@@ -252,7 +252,7 @@ fi
 #
 ########################
 
-AC_MSG_NOTICE([checking for generic programs required by this application])
+AC_MSG_NOTICE(checking for generic programs required by this application)
 
 # Checks for libraries.
 
@@ -265,9 +265,9 @@ AC_MSG_NOTICE([checking for generic programs required by this application])
 # Checks for library functions.
 
 # Sub-project configure.ac locations
-AC_CONFIG_SUBDIRS([dev lib doc])
+AC_CONFIG_SUBDIRS(dev lib doc)
 
 # Project files to create.
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES(Makefile)
 
 AC_OUTPUT
