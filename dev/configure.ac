@@ -53,9 +53,9 @@
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.18 $])
+AC_REVISION($Revision: 1.0.18 $)
 
-AC_PREREQ([2.69])
+AC_PREREQ(2.69)
 
 
 ########################
@@ -145,7 +145,7 @@ AC_SUBST([edit], ["sed \
 # containing the source. Forces tar to use --format=posix in make dist.
 # This also checks :-	BSD install	make variable set	mkdir -p
 #			gawk
-AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects tar-pax])
+AM_INIT_AUTOMAKE(-Wall -Werror subdir-objects tar-pax)
 
 
 ########################
@@ -159,7 +159,7 @@ AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects tar-pax])
 #
 ########################
 
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR(m4)
 
 
 ########################
@@ -181,39 +181,39 @@ AC_CONFIG_MACRO_DIR([m4])
 #
 ########################
 
-AC_MSG_NOTICE([checking for generic programs required by this application])
-AC_CHECK_PROG([TAR], [tar], [yes], [no])
+AC_MSG_NOTICE(checking for generic programs required by this application)
+AC_CHECK_PROG(TAR, tar, yes, no)
 if test "x$TAR" = "xno" ; then
-	AC_MSG_ERROR([tar not found])
+	AC_MSG_ERROR(tar not found)
 fi
 
-AC_CHECK_PROG([TXT2MAN], [txt2man], [yes], [no])
+AC_CHECK_PROG(TXT2MAN, txt2man, yes, no)
 if test "x$TXT2MAN" = "xno" ; then
-	AC_MSG_ERROR([txt2man not found])
+	AC_MSG_ERROR(txt2man not found)
 fi
 
-AC_CHECK_PROG([TXT2MANWRAP], [txt2manwrap], [yes], [no])
+AC_CHECK_PROG(TXT2MANWRAP, txt2manwrap, yes, no)
 if test "x$TXT2MANWRAP" = "xno" ; then
-   	AC_MSG_ERROR([txt2manwrap not found])
+   	AC_MSG_ERROR(txt2manwrap not found)
 fi
 
 # Checks for libraries.
 
 
 # Checks for C header files.
-AC_CHECK_HEADERS([sys/types.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
 
 # Checks for C++ header files.
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_MSG_NOTICE([checking for typedefs required by this application])
+AC_MSG_NOTICE(checking for typedefs required by this application)
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
 # Checks for library functions.
 
 # Project Makefiles to create.
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES(Makefile
 		src/man/3/bstree/Makefile
 		src/man/3/dllist/Makefile
 		src/man/3/sllist/Makefile
@@ -223,7 +223,6 @@ AC_CONFIG_FILES([Makefile
 		src/man/3/message/Makefile
 		src/prg/c/inc/Makefile
 		src/prg/c/src/libmgec.pc
-		src/prg/c/src/Makefile
-		])
+		src/prg/c/src/Makefile)
 
 AC_OUTPUT
