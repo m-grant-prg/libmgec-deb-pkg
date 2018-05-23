@@ -64,9 +64,9 @@
 #									#
 #########################################################################
 
-AC_REVISION([$Revision: 1.0.23 $])
+AC_REVISION($Revision: 1.0.23 $)
 
-AC_PREREQ([2.69])
+AC_PREREQ(2.69)
 
 
 ########################
@@ -96,7 +96,7 @@ AC_SUBST(pkgversion, $PACKAGE_VERSION)
 #
 ########################
 
-AC_SUBST([tmpheaders])
+AC_SUBST(tmpheaders)
 
 for entry in `dirname $0`/src/prg/c/inc-tmp/*.h
 do
@@ -118,7 +118,7 @@ done
 #
 ########################
 
-AC_SUBST([tmplibraries])
+AC_SUBST(tmplibraries)
 
 for direntry in `dirname $0`/src/prg/c/lib-tmp/*
 do
@@ -142,14 +142,14 @@ done
 #
 ########################
 
-AC_ARG_ENABLE([debug],
-	[  --enable-debug    Compile for debugging],
+AC_ARG_ENABLE(debug,
+	--enable-debug    Compile for debugging,
 	[case "${enableval}" in
 		yes) debug=true ;;
 		no)  debug=false ;;
-		*) AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
-	esac],[debug=false])
-AM_CONDITIONAL([DEBUG], [test x$debug = xtrue])
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+	esac],debug=false)
+AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 
 # CFLAGS is usually set to -g -O2, but for debugging we will probably
 # want -g -Og and for production we will probably want -O2. So empty CFLAGS here
@@ -158,7 +158,7 @@ AM_CONDITIONAL([DEBUG], [test x$debug = xtrue])
 : ${CFLAGS=""}
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Build in debug mode.])
+	AC_MSG_NOTICE(Build in debug mode.)
 fi
 
 
@@ -169,17 +169,17 @@ fi
 #
 ########################
 
-AC_ARG_ENABLE([sparse],
-	[  --enable-sparse    Build with sparse],
+AC_ARG_ENABLE(sparse,
+	--enable-sparse    Build with sparse,
 	[case "${enableval}" in
 		yes) sparse=true ;;
 		no)  sparse=false ;;
-		*) AC_MSG_ERROR([bad value ${enableval} for --enable-sparse]);;
-	esac],[sparse=false])
-AM_CONDITIONAL([SPARSE], [test x$sparse = xtrue])
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-sparse);;
+	esac],sparse=false)
+AM_CONDITIONAL(SPARSE, test x$sparse = xtrue)
 
 if test "x${sparse}" = xtrue; then
-	AC_MSG_NOTICE([Building using sparse.])
+	AC_MSG_NOTICE(Building using sparse.)
 fi
 
 
@@ -257,32 +257,32 @@ AC_SUBST([edit], ["sed \
 # This also checks :-	BSD install	make variable set	mkdir -p
 #			gawk
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running am init automake.])
+	AC_MSG_NOTICE(Running am init automake.)
 fi
 
-AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects tar-pax])
+AM_INIT_AUTOMAKE(-Wall -Werror subdir-objects tar-pax)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running am init automake.])
+	AC_MSG_NOTICE(Finished running am init automake.)
 fi
 
 
 # Set language for compilation tests.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac lang.])
+	AC_MSG_NOTICE(Running ac lang.)
 fi
 
-AC_LANG([C])
+AC_LANG(C)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac lang.])
+	AC_MSG_NOTICE(Finished running ac lang.)
 fi
 
 
 # Checks the compiler to use from either a standard list or one to use for
 # sparse, stores it in the CC variable and checks its capabilities.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog cc.])
+	AC_MSG_NOTICE(Running ac prog cc.)
 fi
 
 if test "x$sparse" = "xtrue" ; then
@@ -294,117 +294,117 @@ fi
 AC_PROG_CC($compiler_list)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog cc.])
+	AC_MSG_NOTICE(Finished running ac prog cc.)
 fi
 
 
 # Checks the c pre-processor to use, stores it in the cpp variable and checks
 # its capabilities.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog cpp.])
+	AC_MSG_NOTICE(Running ac prog cpp.)
 fi
 
 AC_PROG_CPP
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog cpp.])
+	AC_MSG_NOTICE(Finished running ac prog cpp.)
 fi
 
 
 # Checks the c++ compiler to use, stores it in the cxx variable and checks its
 # capabilities. (Required by ltmain.sh).
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog cxx. (Required by ltmain.sh).])
+	AC_MSG_NOTICE(Running ac prog cxx. (Required by ltmain.sh).)
 fi
 
 AC_PROG_CXX
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog cxx.])
+	AC_MSG_NOTICE(Finished running ac prog cxx.)
 fi
 
 
 # Checks that there is an installation program or script.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac prog install.])
+	AC_MSG_NOTICE(Running ac prog install.)
 fi
 
 AC_PROG_INSTALL
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac prog install.])
+	AC_MSG_NOTICE(Finished running ac prog install.)
 fi
 
 
 # Check whether symbolic links are supported.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac ln -s.])
+	AC_MSG_NOTICE(Running ac ln -s.)
 fi
 
 AC_PROG_LN_S
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac ln -s.])
+	AC_MSG_NOTICE(Finished running ac ln -s.)
 fi
 
 
 # Check a source file to ensure no command line --srcdir typo.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac config srcdir.])
+	AC_MSG_NOTICE(Running ac config srcdir.)
 fi
 
-AC_CONFIG_SRCDIR([src/prg/c/gen/lib/dummy.c])
+AC_CONFIG_SRCDIR(src/prg/c/gen/lib/dummy.c)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac config srcdir.])
+	AC_MSG_NOTICE(Finished running ac config srcdir.)
 fi
 
 
 # GNULIB macros.
 # Also checks for ar, grep, egrep, ranlib and how to run the cpp.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running gl early macro.])
+	AC_MSG_NOTICE(Running gl early macro.)
 fi
 
 gl_EARLY
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running gl early macro.])
+	AC_MSG_NOTICE(Finished running gl early macro.)
 fi
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running gl init macro.])
+	AC_MSG_NOTICE(Running gl init macro.)
 fi
 
 gl_INIT
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running gl init macro.])
+	AC_MSG_NOTICE(Finished running gl init macro.)
 fi
 
 
 # Must use this macro if the ar archiver is used. ar is mostly now used for
 # static libraries.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running am prog ar.])
+	AC_MSG_NOTICE(Running am prog ar.)
 fi
 
 AM_PROG_AR
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running am prog ar.])
+	AC_MSG_NOTICE(Finished running am prog ar.)
 fi
 
 
 # Check for libtool minimum version.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt prereq.])
+	AC_MSG_NOTICE(Running lt prereq.)
 fi
 
-LT_PREREQ([2.4.6])
+LT_PREREQ(2.4.6)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt prereq.])
+	AC_MSG_NOTICE(Finished running lt prereq.)
 fi
 
 
@@ -415,26 +415,26 @@ fi
 #			strings.h	inttypes.h	stdint.h
 #			unistd.h	dlfcn.h
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running lt init.])
+	AC_MSG_NOTICE(Running lt init.)
 fi
 
 LT_INIT
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running lt init.])
+	AC_MSG_NOTICE(Finished running lt init.)
 fi
 
 
 # Causes AC_OUTPUT to create a c preprocessor file with #define statements about
 # the configuration.
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac config headers.])
+	AC_MSG_NOTICE(Running ac config headers.)
 fi
 
-AC_CONFIG_HEADERS([src/prg/c/gen/inc/config.h])
+AC_CONFIG_HEADERS(src/prg/c/gen/inc/config.h)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac config headers.])
+	AC_MSG_NOTICE(Finished running ac config headers.)
 fi
 
 
@@ -450,14 +450,14 @@ fi
 ########################
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Running ac config macro dir.])
+	AC_MSG_NOTICE(Running ac config macro dir.)
 fi
 
 
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR(m4)
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE([Finished running ac config macro dir.])
+	AC_MSG_NOTICE(Finished running ac config macro dir.)
 fi
 
 
@@ -480,10 +480,10 @@ fi
 #
 ########################
 
-AC_MSG_NOTICE([checking for generic programs required by this application])
-AC_CHECK_PROG([TAR], [tar], [yes], [no])
+AC_MSG_NOTICE(checking for generic programs required by this application)
+AC_CHECK_PROG(TAR, tar, yes, no)
 if test "x$TAR" = "xno" ; then
-	AC_MSG_ERROR([tar not found])
+	AC_MSG_ERROR(tar not found)
 fi
 
 
@@ -491,41 +491,41 @@ fi
 
 
 # Checks for C header files.
-AC_MSG_NOTICE([checking for header files required by this application])
-AC_CHECK_HEADERS([stdio.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([netdb.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([errno.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([syslog.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([portability.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([bstree.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([sllist.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([dllist.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([libmgec.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([mgebuffer.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([mgemessage.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([mgememory.h], [], [AC_MSG_ERROR([header not found])])
-AC_CHECK_HEADERS([mge-errno.h], [], [AC_MSG_ERROR([header not found])])
+AC_MSG_NOTICE(checking for header files required by this application)
+AC_CHECK_HEADERS(stdio.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(syslog.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(portability.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(bstree.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(sllist.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(dllist.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(libmgec.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(mgebuffer.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(mgemessage.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(mgememory.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(mge-errno.h, [], AC_MSG_ERROR(header not found))
 
 
 # Checks for C++ header files.
 
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_MSG_NOTICE([checking for typedefs required by this application])
+AC_MSG_NOTICE(checking for typedefs required by this application)
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
 
 # Checks for library functions.
-AC_MSG_NOTICE([checking for GNU compatible library functions required by this \
-application])
+AC_MSG_NOTICE(checking for GNU compatible library functions required by this \
+application)
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
-AC_CHECK_FUNCS([memset strerror])
+AC_CHECK_FUNCS(memset strerror)
 
 
 # Project Makefiles to create.
-AC_CONFIG_FILES([Makefile
+AC_CONFIG_FILES(Makefile
 		src/prg/c/gen/lib/Makefile
 		src/prg/c/inc-tmp/Makefile
 		src/prg/c/lib-tmp/Makefile
@@ -533,7 +533,7 @@ AC_CONFIG_FILES([Makefile
 		src/prg/c/src/test-bstree/Makefile
 		src/prg/c/src/test-dllist/Makefile
 		src/prg/c/src/test-errno/Makefile
-		src/prg/c/src/test-sllist/Makefile])
+		src/prg/c/src/test-sllist/Makefile)
 
 
 AC_OUTPUT
