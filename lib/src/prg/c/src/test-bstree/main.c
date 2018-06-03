@@ -332,6 +332,10 @@ char *printtree(struct bstree *tree, char *output)
 		pobjcoord = find_next_bst_node_trace(tree, pobjcoord);
 	}
 
+	sprintf(tmpoutput, "\nCount total is %i and node total is %i\n",
+		tree->count_total, tree->node_total);
+	strcat(output, tmpoutput);
+
 	if (verbose)
 		printf("Ordered:-\t%s\n", output);
 	return output;
@@ -1611,12 +1615,16 @@ int testdeldupnode(void)
 		return 1;
 	}
 
-
 	if ((fp = fopen("./Test09Result.txt", "w")) == NULL) {
 		printf("Cannot create result file.\n");
 		return 1;
 	}
 
+	sprintf(presult, "Count total is %i and node total is %i\n",
+		tree->count_total, tree->node_total);
+	fputs(result, fp);
+	if (verbose)
+		printf("%s", presult);
 
 	/* First add the word to give a count of 2. */
 	strcpy(node.key, "give");
@@ -1634,7 +1642,6 @@ int testdeldupnode(void)
 	sprintf(presult, "Node %s added with mge_errno %d\n",
 			node.key, mge_errno);
 	fputs(result, fp);
-
 	if (verbose)
 		printf("%s", presult);
 
@@ -1652,6 +1659,12 @@ int testdeldupnode(void)
 		if (verbose)
 			printf("%s", presult);
 	}
+
+	sprintf(presult, "Count total is %i and node total is %i\n",
+		tree->count_total, tree->node_total);
+	fputs(result, fp);
+	if (verbose)
+		printf("%s", presult);
 
 
 	/* Now delete that duplicate node. */
@@ -1695,6 +1708,12 @@ int testdeldupnode(void)
 		if (verbose)
 			printf("%s", presult);
 	}
+
+	sprintf(presult, "Count total is %i and node total is %i\n",
+		tree->count_total, tree->node_total);
+	fputs(result, fp);
+	if (verbose)
+		printf("%s", presult);
 
 
 	fclose(fp);

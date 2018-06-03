@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.1.5 ==== 12/05/2018_
+ * @version _v1.1.6 ==== 02/06/2018_
  */
 
 /* **********************************************************************
@@ -77,6 +77,7 @@
  *				before code, (fixes sparse warnings).	*
  * 12/05/2018	MG	1.1.5	Get_ functions now return -mge_errno	*
  *				instead of -1.				*
+ * 02/06/2018	MG	1.1.6	Add counter and node totals for a tree.	*
  *									*
  ************************************************************************
  */
@@ -133,6 +134,8 @@ struct bstree *cre_bst(int unique, int (*comp)(const void *, const void *))
 	}
 	newtree->root = NULL;
 	newtree->unique = unique;
+	newtree->count_total = 0;
+	newtree->node_total = 0;
 	newtree->comp = comp;
 	return newtree;
 }
@@ -163,8 +166,7 @@ struct bstree *add_bst_node(struct bstree *tree, const void *object,
 {
 	struct bstreenode *addnode;
 
-	addnode = add_node(tree->root, object, objsize, tree->unique,
-			tree->comp);
+	addnode = add_node(tree->root, object, objsize, tree);
 	if (addnode == NULL)
 		return NULL;
 	tree->root = addnode;
@@ -178,6 +180,9 @@ struct bstree *add_bst_node(struct bstree *tree, const void *object,
  * Param currentnode - On call from user code is a pointer to the root node or
  * NULL if tree not yet started. Within the function and in recursion it is the
  * node being processed.
+ * Param object The object to add.
+ * Param objsize The size of the object.
+ * Param tree The tree to add to.
  * Returns - On exit to user code a pointer to the root node. Within the
  * function it is a pointer to the node being processed.
  * Returns NULL on error. The bst will remain as before the failed add. Hence it
@@ -185,14 +190,13 @@ struct bstree *add_bst_node(struct bstree *tree, const void *object,
  * Errors - mge_errno will be set as required.
  */
 static struct bstreenode *add_node(struct bstreenode *currentnode,
-		const void *object, size_t objsize, int unique,
-		int (*comp)(const void *, const void *))
+		const void *object, size_t objsize, struct bstree *tree)
 {
 	struct bstreenode *tmp_node;
 
 	mge_errno = 0;
 
-	if (object == NULL || !objsize || comp == NULL) {
+	if (object == NULL || !objsize || tree->comp == NULL) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
@@ -209,6 +213,8 @@ static struct bstreenode *add_node(struct bstreenode *currentnode,
 				currentnode->count = 1;
 				currentnode->childless =
 					currentnode->childgreater = NULL;
+				tree->count_total++;
+				tree->node_total++;
 				return currentnode;
 			}
 			else { // Cannot malloc object.
@@ -225,20 +231,21 @@ static struct bstreenode *add_node(struct bstreenode *currentnode,
 		}
 	}
 
-	if ((*comp)(object, currentnode->object) == 0) { // Node exists.
-		if (unique) {
+	if ((*(tree->comp))(object, currentnode->object) == 0) { // Node exists.
+		if (tree->unique) {
 			mge_errno = MGE_DUPLICATE_NODE;
 			return NULL;
 		}
 		else {
 			(currentnode->count)++;
+			tree->count_total++;
 			return currentnode;
 		}
 	}
 
-	if ((*comp)(object, currentnode->object) < 0) { // Look lower
+	if ((*(tree->comp))(object, currentnode->object) < 0) { // Look lower
 		tmp_node = add_node(currentnode->childless, object, objsize,
-				unique, comp);
+				tree);
 		if (tmp_node != NULL) {
 			currentnode->childless = tmp_node;
 			return currentnode;
@@ -248,9 +255,9 @@ static struct bstreenode *add_node(struct bstreenode *currentnode,
 		}
 	}
 
-	if ((*comp)(object, currentnode->object) > 0) { // Look higher.
+	if ((*(tree->comp))(object, currentnode->object) > 0) { // Look higher.
 		tmp_node = add_node(currentnode->childgreater, object,
-				objsize, unique, comp);
+				objsize, tree);
 		if (tmp_node != NULL) {
 			currentnode->childgreater = tmp_node;
 			return currentnode;
@@ -592,7 +599,7 @@ struct bstree *del_bst_node(struct bstree *tree, const void *searchobj)
 		return NULL;
 	}
 
-	delnode = del_node(tree->root, searchobj, tree->comp);
+	delnode = del_node(tree->root, searchobj, tree);
 	if (mge_errno)
 		return NULL;
 	tree->root = delnode;
@@ -607,13 +614,14 @@ struct bstree *del_bst_node(struct bstree *tree, const void *searchobj)
  * Param searchobj - The object to find. It does not need to be a fully
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
+ * Param tree The bst to search.
  * Returns - to the calling function a pointer to the root node, or, NULL if it
  * was the last remaining node which was deleted. Also returns NULL on some
  * errors.
  * Errors - mge_errno will be 0 on sucess or set as required.
  */
 static struct bstreenode *del_node(struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *))
+		const void *searchobj, struct bstree *tree)
 {
 	struct bstreenode *p1, *p2;
 
@@ -623,7 +631,7 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 		mge_errno = MGE_NODE_NOT_FOUND;
 		return NULL;
 	}
-	if (searchobj == NULL || comp == NULL) {
+	if (searchobj == NULL || tree->comp == NULL) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
@@ -634,7 +642,7 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 	 * The returned value will be attached to the parent node child less or
 	 * greater depending on which branch we are descending.
 	 */
-	if ((*comp)(searchobj, currentnode->object) == 0) {
+	if ((*(tree->comp))(searchobj, currentnode->object) == 0) {
 		mge_errno = 0; // The node to delete exists.
 
 		/*
@@ -642,25 +650,32 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 		 * we need do is decrement the counter.
 		 */
 		if (currentnode->count > 1) {
-			(currentnode->count)--;
+			currentnode->count--;
+			tree->count_total--;
 			return currentnode;
 		}
 
 		/* A child-less node. */
 		if (currentnode->childless == currentnode->childgreater) {
 			free_bst_node(currentnode);
+			tree->count_total--;
+			tree->node_total--;
 			return NULL;
 		}
 		else if (currentnode->childless == NULL) {
 			/* Has only a greater child. */
 			p1 = currentnode->childgreater;
 			free_bst_node(currentnode);
+			tree->count_total--;
+			tree->node_total--;
 			return p1;
 		}
 		else if (currentnode->childgreater == NULL) {
 			/* Has only a lesser child. */
 			p1 = currentnode->childless;
 			free_bst_node(currentnode);
+			tree->count_total--;
+			tree->node_total--;
 			return p1;
 		}
 		else { // Has both children.
@@ -676,17 +691,19 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 			 */
 			p2->childgreater = currentnode->childgreater;
 			free_bst_node(currentnode);
+			tree->count_total--;
+			tree->node_total--;
 			return p1;
 		}
 	}
 	/* If not a match, descend the appropriate branch. */
-	if ((*comp)(searchobj, currentnode->object) < 0)
+	if ((*(tree->comp))(searchobj, currentnode->object) < 0)
 		currentnode->childless = del_node(currentnode->childless,
-							searchobj, comp);
+							searchobj, tree);
 	else
 		currentnode->childgreater =
 			del_node(currentnode->childgreater, searchobj,
-					comp);
+					tree);
 
 	return currentnode;
 }

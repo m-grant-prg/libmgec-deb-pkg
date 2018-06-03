@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 02/01/2018_
+ * @version _v1.0.11 ==== 02/06/2018_
  */
 
 /* **********************************************************************
@@ -32,6 +32,8 @@
  * 04/11/2017	MG	1.0.8	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.9	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.10	Move to new source directory structure.	*
+ * 02/06/2018	MG	1.0.11	Add node and counter totals to the tree	*
+ *				struct.					*
  *									*
  ************************************************************************
  */
@@ -71,6 +73,8 @@ struct bstreenode {
 struct bstree {
 	struct bstreenode *root;	/**< The root node of the tree. */
 	int unique;			/**< Uniqueness of nodes. */
+	int count_total;		/**< Sum of all node counters. */
+	int node_total;			/**< Number of nodes in the tree. */
 	int (*comp)(const void *, const void *); /**< Comparison function. */
 };
 

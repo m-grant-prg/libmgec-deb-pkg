@@ -9,7 +9,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.6 ==== 20/05/2018_
+ * @version _v1.0.7 ==== 02/06/2018_
  */
 
 /* **********************************************************************
@@ -24,6 +24,8 @@
  * 19/05/2018	MG	1.0.4	Include dllist and sllist prototypes.	*
  * 20/05/2018	MG	1.0.5	Add re-inclusion prevention #defines.	*
  * 20/05/2018	MG	1.0.6	Standardise on define name format.	*
+ * 02/06/2018	MG	1.0.7	Add support for counter and node totals	*
+ *				for a tree.				*
  *									*
  ************************************************************************
  */
@@ -41,8 +43,8 @@ BEGIN_C_DECLS
 #define BSTREE_INTERNAL_H
 
 static struct bstreenode *add_node(struct bstreenode *currentnode,
-		const void *object, size_t objsize, int unique,
-		int (*comp)(const void *, const void *));
+				   const void *object, size_t objsize,
+				   struct bstree *tree);
 
 static void *find_node(const struct bstreenode *currentnode,
 		const void *searchobj, int (*comp)(const void *, const void *));
@@ -60,7 +62,7 @@ static void *upd_node(struct bstreenode *currentnode, const void *updobj,
 		size_t objsize, int (*comp)(const void *, const void *));
 
 static struct bstreenode *del_node(struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *));
+				   const void *searchobj, struct bstree *tree);
 
 static struct bstreenode *free_bstree(struct bstreenode *currentnode);
 
