@@ -1,3 +1,9 @@
+Release 1.1.5 2018-06-03
+Improve README file.
+Make get_functions return -mge_errno AOT -1.
+Add 'Client blocked' error message.
+Add counter and node totals to the bstree struct.
+
 Release 1.1.4 2018-04-16
 Track m4 directory but keep gitignore to ensure directory exists, even if empty.
 Add Utility scripts section to README file.
