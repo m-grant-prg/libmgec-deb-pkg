@@ -1,3 +1,10 @@
+2018-06-03 v 1.1.6 Mark Grant <m.grant.prg@gmail.com>
+	*  Improve README file.
+	Make get_functions return -mge_errno AOT -1.
+	Add 'Client blocked' error message.
+	Introduce internal.h for non-public declarations.
+	Add counter and node totals to the bstree struct.
+
 2018-04-16 v 1.1.5 Mark Grant <m.grant.prg@gmail.com>
 	*  Ensure required directories exist, even if empty.
 

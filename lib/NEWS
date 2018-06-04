@@ -1,3 +1,10 @@
+Release 1.1.6 2018-06-03
+Improve README file.
+Make get_functions return -mge_errno AOT -1.
+Add 'Client blocked' error message.
+Introduce internal.h for non-public declarations.
+Add counter and node totals to the bstree struct.
+
 Release 1.1.5 2018-04-16
 Ensure required directories exist, even if empty.
 
