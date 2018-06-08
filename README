@@ -119,8 +119,12 @@ To add this PPA to your system please type the following:-
 All 3 sub-projects are available as packages with the proper dependencies set
 up, so each package can be addressed individually, however, most commonly only
 the library and documentation packages will be handled.
+The packages are:-
+libmgec		The library itself.
+libmgec-dev	The development files.
+libmgec-doc	The Doxygen documentation.
 
-To install this library on your system for use please type the following:-
+To install, for example, the library on your system please type the following:-
 	sudo apt-get update
 	sudo apt-get install libmgec
 
