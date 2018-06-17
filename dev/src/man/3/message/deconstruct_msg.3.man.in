@@ -11,7 +11,8 @@ populates the struct with the individual elements.
 
 mge_errno is set as required.
 PARAMETERS
-msg - a pointer to the mgemessage struct to populate.
+msg - a pointer to the mgemessage struct to populate. This must be a complete
+message.
 
 RETURN VALUE
 Return value is a pointer to the fully populated mgemessage struct or NULL on
@@ -20,6 +21,8 @@ error.
 ERRORS
 mge_errno is set as required.
 
+If an incomplete message is passed to this function, NULL is returned and
+mge_errno is set to MGE_INVAL_MSG.
 AUTHOR
 Written by Mark Grant.
 REPORTING BUGS

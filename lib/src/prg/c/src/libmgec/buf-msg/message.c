@@ -150,9 +150,10 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 }
 
 /**
- * Deconstruct a message to its individual elements.
- * @param msg A message object to process.
- * @return The resulting message object.
+ * Deconstruct a complete message to its individual elements.
+ * mge_errno is set on error.
+ * @param msg A message object to process. Must be a complete message.
+ * @return The resulting message object. NULL on error.
  */
 struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 {
@@ -161,6 +162,11 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	char toks[3];
 	char msg_tmp[strlen(msg->message) + 1];
 	int x;
+
+	if (!msg->complete) {
+		mge_errno = MGE_INVAL_MSG;
+		return NULL;
+	}
 
 	sprintf(toks,"%c%c", msg->separator, msg->terminator);
 	strcpy(msg_tmp, msg->message);
