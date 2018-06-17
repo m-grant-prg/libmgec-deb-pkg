@@ -41,6 +41,9 @@
  *				the partial message next time this	*
  *				function is invoked, repeating until a	*
  *				complete message is held in the struct.	*
+ *				In deconstruct_msg replace hardcoded	*
+ *				token string ",;" with message struct	*
+ *				separator and terminator fields.	*
  *									*
  ************************************************************************
  */
@@ -155,9 +158,11 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 {
 	char *start_tok;
 	char *nxt_tok;
-	int x;
+	char toks[3];
 	char msg_tmp[strlen(msg->message) + 1];
+	int x;
 
+	sprintf(toks,"%c%c", msg->separator, msg->terminator);
 	strcpy(msg_tmp, msg->message);
 	start_tok = msg_tmp;
 
@@ -169,7 +174,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	}
 
 	/* Get arguments. */
-	nxt_tok = strtok(start_tok, ",;");
+	nxt_tok = strtok(start_tok, toks);
 	while (nxt_tok) {
 		x = strlen(nxt_tok) + 1;
 		*(msg->argv + msg->argc) = mg_realloc(NULL, (size_t) (x));
@@ -178,7 +183,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 
 		memcpy(*(msg->argv + msg->argc), nxt_tok, x);
 		(msg->argc)++;
-		nxt_tok = strtok(NULL, ",;");
+		nxt_tok = strtok(NULL, toks);
 		}
 	return msg;
 }
