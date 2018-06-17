@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 19/05/2018_
+ * @version _v1.0.8 ==== 17/06/2018_
  */
 
 /* **********************************************************************
@@ -30,6 +30,17 @@
  * 27/03/2018	MG	1.0.6	Use NULL not integer in strtok, (fixes	*
  *				sparse warning).			*
  * 19/05/2018	MG	1.0.7	Add args comment.			*
+ * 17/06/2018	MG	1.0.8	get_msg now accommodates partial	*
+ *				messages without re-processing the	*
+ *				entire buffer. Data from the buffer	*
+ *				extracted to the message struct could	*
+ *				be a complete message, (terminated with	*
+ *				the mgemessage.terminator), or a	*
+ *				partial message. If it is an incomplete	*
+ *				message then data will be appended to	*
+ *				the partial message next time this	*
+ *				function is invoked, repeating until a	*
+ *				complete message is held in the struct.	*
  *									*
  ************************************************************************
  */
@@ -70,17 +81,16 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	if (!msg->complete)
 		return msg;
 
-	msg = deconstruct_msg(msg);
-	if (msg->message == NULL)
-		return msg;
-	buf = trim_buf(buf);
-	return msg;
+	return deconstruct_msg(msg);
 }
 
 /**
  * Get a message from a buffer object.
- * A message, (terminated with the mgemessage.terminator), is retrieved if a
- * complete message exists in the buffer object.
+ * Data from the buffer is extracted to the message struct. This could be a
+ * complete message, (terminated with the mgemessage.terminator), or a partial
+ * message. If it is an incomplete message then data will be appended to the
+ * partial message next time this function is invoked, repeating until a
+ * complete message is held in the struct.
  * (Ignore CR & LF which can be the result of testing with telnet.)
  * On failure function arguments are unchanged and mge_errno will be set.
  * @param buf A buffer object.
@@ -92,15 +102,20 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	char *t_msg;
 	size_t t_msg_size = DEF_MSG_SIZE;
 	int t_buf_offset = 0;
-	args = 1;
 
-	t_msg = mg_realloc(msg->message, t_msg_size);
-	if (t_msg == NULL)
-		return NULL;
-
-	msg->message = t_msg;
-	*msg->message = '\0';
-	msg->size = t_msg_size;
+	/*
+	 * Is this the first time processing this msg struct or is it a partial
+	 * message.
+	 */
+	if (msg->message == NULL) {
+		t_msg = mg_realloc(msg->message, t_msg_size);
+		if (t_msg == NULL)
+			return NULL;
+		msg->message = t_msg;
+		*msg->message = '\0';
+		msg->size = t_msg_size;
+		args = 1;
+	}
 
 	while ((t_buf_offset < buf->index) && !msg->complete) {
 		if (*(buf->buffer + t_buf_offset) == msg->terminator)
@@ -124,12 +139,10 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		}
 		t_buf_offset++;
 	}
-	*(msg->message + msg->offset++) = '\0';
-
-	if (!msg->complete)
-		return msg;
-
+	*(msg->message + msg->offset) = '\0';
 	buf->offset = t_buf_offset;
+	buf = trim_buf(buf);
+
 	return msg;
 }
 
