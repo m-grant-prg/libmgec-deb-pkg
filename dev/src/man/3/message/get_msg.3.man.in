@@ -7,11 +7,16 @@ struct mgemessage *get_msg(struct mgebuffer *buf,
 		struct mgemessage *msg);
 
 DESCRIPTION
-If a complete message exists in the buffer, get_msg() populates the mgemessage
-struct message field and sets the complete field. The mgemessage struct is not
-fully populated on exit, use deconstruct_msg() for that. The buffer offset is
-updated but the message is not actually removed from the buffer, use trim_buf()
-for that.
+Data from the buffer is extracted to the message struct. This could be a
+complete message, (terminated with the mgemessage.terminator), or a partial
+message. If it is an incomplete message then data will be appended to the
+partial message next time this function is invoked, repeating until a complete
+message is held in the struct.
+If a complete message exists in the buffer, get_msg() sets the complete field.
+get_msg() only updates the message and complete fields (and indexing fields), to
+fully populate the other fields in the message struct use deconstruct_msg().
+At the end of processing the processed part of the buffer is removed by
+invoking trim_buf().
 
 mge_errno is set as required.
 PARAMETERS
