@@ -1,3 +1,7 @@
+2018-06-19 v 1.1.6 Mark Grant <m.grant.prg@gmail.com>
+	*  Improve README file.
+	Update man page for partial message loading ability.
+
 2018-06-03 v 1.1.5 Mark Grant <m.grant.prg@gmail.com>
 	*  Improve README file.
 	Make get_functions return -mge_errno AOT -1.

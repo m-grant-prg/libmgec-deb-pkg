@@ -1,3 +1,7 @@
+Release 1.1.6 2018-06-19
+Improve README file.
+Update man page for partial message loading ability.
+
 Release 1.1.5 2018-06-03
 Improve README file.
 Make get_functions return -mge_errno AOT -1.
