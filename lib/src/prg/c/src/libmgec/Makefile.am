@@ -44,6 +44,8 @@
 # 09/01/2018	MG	1.0.15	Correct usage of config.h		#
 # 26/03/2018	MG	1.0.16	Add support for sparse.			#
 # 19/05/2018	MG	1.0.17	Add new errors/internal.h		#
+# 19/06/2018	MG	1.0.18	Disable sparse variable length array	#
+#				warnings.				#
 #									#
 #########################################################################
 
@@ -62,7 +64,7 @@ AM_CFLAGS += -O2
 endif
 
 if SPARSE
-AM_CFLAGS += -Wsparse-all
+AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
 
 
