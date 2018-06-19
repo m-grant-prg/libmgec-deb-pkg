@@ -1,3 +1,18 @@
+2018-06-19 v 1.1.7 Mark Grant <m.grant.prg@gmail.com>
+	*  Add informational messages to make srctarball output.
+	get_msg now accommodates partial messages without re-processing the
+	entire buffer. Data from the buffer extracted to the message struct
+	could be a complete message, (terminated with the
+	mgemessage.terminator), or a partial message. If it is an incomplete
+	message then data will be appended to the partial message next time this
+	function is invoked, repeating until a complete message is held in the
+	struct.
+	In deconstruct_msg replace hardcoded token string ",;" with message
+	struct separator and terminator fields.
+	In deconstruct_msg() add check that the message is complete.
+	Disable sparse Variable Length Array warnings.
+	Improve README file.
+
 2018-06-03 v 1.1.6 Mark Grant <m.grant.prg@gmail.com>
 	*  Improve README file.
 	Make get_functions return -mge_errno AOT -1.

@@ -81,7 +81,7 @@ libmgec_la_SOURCES += memory/memory.c
 libmgec_la_SOURCES += version.c
 
 
-AM_LDFLAGS = -version-info 0:0:0
+AM_LDFLAGS = -version-info 0:1:0
 
 
 libmgec_la_LIBADD = $(tmplibraries)
