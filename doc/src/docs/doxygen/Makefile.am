@@ -24,6 +24,9 @@
 #				directory change.			#
 # 11/02/2018	MG	1.0.4	Make tar use the Posix format for	#
 #				longer filenames.			#
+# 20/06/2018	MG	1.0.5	Remove make, (leave install), of	#
+#				libmgec doc-base file as it is now	#
+#				built using AC_CONFIG_FILES.		#
 #									#
 #########################################################################
 
@@ -53,14 +56,6 @@ doxygen.stamp: Doxyfile
 		-a -d $(top_srcdir)/../dev/src/ ]; \
 		then doxygen $<; fi
 	echo Timestamp > $@
-
-
-libmgec: Makefile
-	mkdir -p $(@D)
-	rm -f $@
-	$(edit) $(srcdir)/$(@F).in > $@
-
-libmgec: $(srcdir)/libmgec.in
 
 
 html_DATA = $(docpkg)

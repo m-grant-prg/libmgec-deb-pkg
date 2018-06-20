@@ -27,6 +27,8 @@
 # 20/06/2018	MG	1.0.5	Remove pkgversion AC_SUBST as it is	#
 #				available via AC_CONFIG_HEADERS and	#
 #				AC_CONFIG_FILES from AC_INIT info.	#
+#				Add libmgec doc-base file to		#
+#				AC_CONFIG_FILES build.			#
 #									#
 #########################################################################
 
@@ -217,6 +219,7 @@ fi
 # Project Makefiles to create.
 AC_CONFIG_FILES(Makefile
 		src/docs/doxygen/Doxyfile
+		src/docs/doxygen/libmgec
 		src/docs/doxygen/Makefile)
 
 AC_OUTPUT
