@@ -1,3 +1,9 @@
+Release 1.1.8 2018-06-20
+Use better source file for AC_CONFIG_SRCDIR check.
+Define SOURCE_VERSION in configure.ac
+Remove pkgversion AC_SUBST as it is available as standard.
+Add lib_version_info, all top level versioning now in configure.ac
+
 Release 1.1.7 2018-06-19
 Add informational messages to make srctarball output.
 get_msg now accommodates partial messages without re-processing the entire
