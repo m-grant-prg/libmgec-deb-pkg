@@ -1,2 +1,9 @@
+2018-06-20 v 1.1.5 Mark Grant <m.grant.prg@gmail.com>
+	*  Simplify project structure to reflect its purpose.
+	full v1.1.5
+	dev v1.1.7
+	doc v1.0.0-rc8
+	lib v1.1.8
+
 2017-12-22 v 1.0.1 Mark Grant <m.grant.prg@gmail.com>
 	*  Initial release.
