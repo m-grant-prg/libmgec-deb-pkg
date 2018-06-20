@@ -65,6 +65,9 @@
 #				directory in AC_CONFIG_SRCDIR.		#
 #				AC_DEFINE SOURCE_VERSION for use in	#
 #				version.c via config.h			#
+#				Remove pkgversion AC_SUBST as it is	#
+#				available via AC_CONFIG_HEADERS and	#
+#				AC_CONFIG_FILES from AC_INIT info.	#
 #									#
 #########################################################################
 
@@ -75,9 +78,8 @@ AC_PREREQ(2.69)
 
 ########################
 #
-# The package version in ac init will be used to create an output variable which
-# can be used by ac output and / or the sed setup below to substitute bookmarks
-# in source files.
+# The following macros set all top level versioning for this project. All
+# information can be propagated via AC_CONFIG_HEADERS and AC_CONFIG_FILES.
 #
 ########################
 
@@ -85,8 +87,6 @@ AC_INIT(MGE General C Library, v1.1.7, m.grant.prg@gmail.com, libmgec)
 
 AC_DEFINE(SOURCE_VERSION, "1.1.5", \
 	Define to the version of source code in this package.)
-
-AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 
 ########################
@@ -229,7 +229,6 @@ fi
 ########################
 
 AC_SUBST([edit], ["sed \
-		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
 		-e 's|@bindir[@]|\$(bindir)|g' \
