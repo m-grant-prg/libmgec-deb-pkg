@@ -1,3 +1,6 @@
+Release 1.1.7 2018-06-20
+Remove pkgversion AC_SUBST as it is available as standard.
+
 Release 1.1.6 2018-06-19
 Improve README file.
 Update man page for partial message loading ability.

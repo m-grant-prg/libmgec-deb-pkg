@@ -1,3 +1,6 @@
+2018-06-20 v 1.1.7 Mark Grant <m.grant.prg@gmail.com>
+	*  Remove pkgversion AC_SUBST as it is available as standard.
+
 2018-06-19 v 1.1.6 Mark Grant <m.grant.prg@gmail.com>
 	*  Improve README file.
 	Update man page for partial message loading ability.
