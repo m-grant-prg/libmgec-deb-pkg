@@ -61,10 +61,11 @@
 # 26/03/2018	MG	1.0.23	Add support for an enable-sparse CLA	#
 #				and passing a suitable variable to the	#
 #				Makefile.am's.				#
+# 20/06/2018	MG	1.0.24	Use better src file to check src dir.	#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.23 $)
+AC_REVISION($Revision: 1.0.24 $)
 
 AC_PREREQ(2.69)
 
@@ -353,7 +354,7 @@ if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE(Running ac config srcdir.)
 fi
 
-AC_CONFIG_SRCDIR(src/prg/c/gen/lib/dummy.c)
+AC_CONFIG_SRCDIR(src/prg/c/src/libmgec/version.c)
 
 if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE(Finished running ac config srcdir.)
