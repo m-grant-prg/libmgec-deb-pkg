@@ -50,26 +50,26 @@
 # 17/01/2018	MG	1.0.17	Update minimum AutoTools version.	#
 #				Update AC macros and comments.		#
 # 11/02/2018	MG	1.0.18	Make AutoMake use posix format for tar.	#
+# 20/06/2018	MG	1.0.19	Remove pkgversion AC_SUBST as it is	#
+#				available via AC_CONFIG_HEADERS and	#
+#				AC_CONFIG_FILES from AC_INIT info.	#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.18 $)
+AC_REVISION($Revision: 1.0.19 $)
 
 AC_PREREQ(2.69)
 
 
 ########################
 #
-# The package version in ac init will be used to create an output variable which
-# can be used by ac output and / or the sed setup below to substitute bookmarks
-# in source files.
+# The following macros set all top level versioning for this project. All
+# information can be propagated via AC_CONFIG_HEADERS and AC_CONFIG_FILES.
 #
 ########################
 
 AC_INIT(MGE general C library development package, v1.1.6,
 		m.grant.prg@gmail.com, libmgec-dev)
-
-AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 
 ########################
@@ -111,7 +111,6 @@ AC_SUBST(pkgversion, $PACKAGE_VERSION)
 ########################
 
 AC_SUBST([edit], ["sed \
-		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
 		-e 's|@bindir[@]|\$(bindir)|g' \
