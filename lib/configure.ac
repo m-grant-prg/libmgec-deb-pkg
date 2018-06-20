@@ -61,7 +61,10 @@
 # 26/03/2018	MG	1.0.23	Add support for an enable-sparse CLA	#
 #				and passing a suitable variable to the	#
 #				Makefile.am's.				#
-# 20/06/2018	MG	1.0.24	Use better src file to check src dir.	#
+# 20/06/2018	MG	1.0.24	Use better source file to check source	#
+#				directory in AC_CONFIG_SRCDIR.		#
+#				AC_DEFINE SOURCE_VERSION for use in	#
+#				version.c via config.h			#
 #									#
 #########################################################################
 
@@ -79,6 +82,9 @@ AC_PREREQ(2.69)
 ########################
 
 AC_INIT(MGE General C Library, v1.1.7, m.grant.prg@gmail.com, libmgec)
+
+AC_DEFINE(SOURCE_VERSION, "1.1.5", \
+	Define to the version of source code in this package.)
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
 

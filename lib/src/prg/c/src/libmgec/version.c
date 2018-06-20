@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 04/06/2018_
+ * @version _v1.0.5 ==== 20/06/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +23,8 @@
  * 09/11/2017	MG	1.0.2	Add SPDX license tags.			*
  * 02/01/2018	MG	1.0.3	Move to new source directory structure.	*
  * 04/06/2018	MG	1.0.4	Make this ChangeLog for this file only.	*
+ * 20/06/2018	MG	1.0.5	Remove SOURCE_CODE define, now uses the	*
+ *				AC_DEFINE'd value in config.h		*
  *									*
  ************************************************************************
  */
@@ -32,8 +34,6 @@
 #include <libmgec.h>
 #include <config.h>
 
-/** The source code version. */
-#define SOURCE_VERSION "1.1.5"
 
 /**
  * Get the git-describe based package version.
