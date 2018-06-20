@@ -68,6 +68,9 @@
 #				Remove pkgversion AC_SUBST as it is	#
 #				available via AC_CONFIG_HEADERS and	#
 #				AC_CONFIG_FILES from AC_INIT info.	#
+#				AC_SUBST the lib_version_info so that	#
+#				all top level versioning can be done	#
+#				from configure.ac			#
 #									#
 #########################################################################
 
@@ -87,6 +90,8 @@ AC_INIT(MGE General C Library, v1.1.7, m.grant.prg@gmail.com, libmgec)
 
 AC_DEFINE(SOURCE_VERSION, "1.1.5", \
 	Define to the version of source code in this package.)
+
+AC_SUBST(lib_version_info, "0:1:0")
 
 
 ########################

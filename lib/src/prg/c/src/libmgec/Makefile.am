@@ -46,6 +46,10 @@
 # 19/05/2018	MG	1.0.17	Add new errors/internal.h		#
 # 19/06/2018	MG	1.0.18	Disable sparse variable length array	#
 #				warnings.				#
+# 20/06/2018	MG	1.0.19	Use lib_version_info AC_SUBST variable	#
+#				passed via AC_CONFIG_FILES to enable	#
+#				all top level versioning to be done in	#
+#				configure.ac				#
 #									#
 #########################################################################
 
@@ -81,7 +85,7 @@ libmgec_la_SOURCES += memory/memory.c
 libmgec_la_SOURCES += version.c
 
 
-AM_LDFLAGS = -version-info 0:1:0
+AM_LDFLAGS = -version-info @lib_version_info@
 
 
 libmgec_la_LIBADD = $(tmplibraries)
