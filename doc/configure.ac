@@ -29,10 +29,14 @@
 #				AC_CONFIG_FILES from AC_INIT info.	#
 #				Add libmgec doc-base file to		#
 #				AC_CONFIG_FILES build.			#
+# 25/06/2018	MG	1.0.6	Separate non-Makefile files to generate	#
+#				with AC_CONFIG_FILES. Do not use	#
+#				AC_CONFIG_FILES for substitution of	#
+#				Installation Directory Variables.	#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.5 $)
+AC_REVISION($Revision: 1.0.6 $)
 
 AC_PREREQ(2.69)
 
@@ -216,10 +220,14 @@ fi
 
 # Checks for library functions.
 
+# Non-Makefile files to generate.
+# AC_CONFIG_FILES should not be used to substitute AutoConf Installation
+# Directory Variables, (bindir and friends), except im Makefiles and pkg-config
+# files. See GNU AutoConf manual section 4.8.2 Installation Directory Variables.
+AC_CONFIG_FILES(src/docs/doxygen/Doxyfile)
+
 # Project Makefiles to create.
 AC_CONFIG_FILES(Makefile
-		src/docs/doxygen/Doxyfile
-		src/docs/doxygen/libmgec
 		src/docs/doxygen/Makefile)
 
 AC_OUTPUT

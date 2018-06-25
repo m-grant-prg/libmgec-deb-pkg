@@ -27,6 +27,9 @@
 # 20/06/2018	MG	1.0.5	Remove make, (leave install), of	#
 #				libmgec doc-base file as it is now	#
 #				built using AC_CONFIG_FILES.		#
+# 25/06/2018	MG	1.0.6	Reverse 1.0.5 as AC_CONFIG_FILES cannot	#
+#				be used for the substitution of		#
+#				Installation Directory Variables.	#
 #									#
 #########################################################################
 
@@ -60,6 +63,11 @@ doxygen.stamp: Doxyfile
 
 html_DATA = $(docpkg)
 
+libmgec: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	$(edit) $(srcdir)/$(@F).in > $@
+libmgec: $(srcdir)/libmgec.in
 
 docbase_DATA = libmgec
 
