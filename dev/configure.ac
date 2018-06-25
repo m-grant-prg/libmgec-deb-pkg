@@ -53,10 +53,12 @@
 # 20/06/2018	MG	1.0.19	Remove pkgversion AC_SUBST as it is	#
 #				available via AC_CONFIG_HEADERS and	#
 #				AC_CONFIG_FILES from AC_INIT info.	#
+# 24/06/2018	MG	1.0.20	Separate non-Makefile files to generate	#
+#				with AC_CONFIG_FILES.			#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.19 $)
+AC_REVISION($Revision: 1.0.20 $)
 
 AC_PREREQ(2.69)
 
@@ -211,6 +213,12 @@ AC_TYPE_SSIZE_T
 
 # Checks for library functions.
 
+# Non-Makefile files to generate.
+# AC_CONFIG_FILES should not be used to substitute AutoConf Installation
+# Directory Variables, (bindir and friends), except im Makefiles and pkg-config
+# files. See GNU AutoConf manual section 4.8.2 Installation Directory Variables.
+AC_CONFIG_FILES(src/prg/c/src/libmgec.pc)
+
 # Project Makefiles to create.
 AC_CONFIG_FILES(Makefile
 		src/man/3/bstree/Makefile
@@ -221,7 +229,6 @@ AC_CONFIG_FILES(Makefile
 		src/man/3/memory/Makefile
 		src/man/3/message/Makefile
 		src/prg/c/inc/Makefile
-		src/prg/c/src/libmgec.pc
 		src/prg/c/src/Makefile)
 
 AC_OUTPUT
