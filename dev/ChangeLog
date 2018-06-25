@@ -1,3 +1,6 @@
+2018-06-25 v 1.1.8 Mark Grant <m.grant.prg@gmail.com>
+	*  Separate non-Makefile files to generate with AC_CONFIG_FILES.
+
 2018-06-20 v 1.1.7 Mark Grant <m.grant.prg@gmail.com>
 	*  Remove pkgversion AC_SUBST as it is available as standard.
 
