@@ -70,7 +70,7 @@ AC_PREREQ(2.69)
 #
 ########################
 
-AC_INIT(MGE general C library development package, v1.1.7,
+AC_INIT(MGE general C library development package, v1.1.8,
 		m.grant.prg@gmail.com, libmgec-dev)
 
 
