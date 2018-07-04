@@ -28,6 +28,9 @@
 # 10/12/2017	MG	1.0.4	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.5	Move to new source directory structure.	#
 # 09/01/2018	MG	1.0.6	Correct usage of config.h		#
+# 04/07/2018	MG	1.0.7	Improve debug flags used. Use gdb	#
+#				orientated level 3 (includes		#
+#				pre-processor macros).			#
 #									#
 #########################################################################
 
@@ -40,7 +43,7 @@ AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 AM_CFLAGS = -Wall
 
 if DEBUG
-AM_CFLAGS += -g -Og
+AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
 endif

@@ -50,6 +50,9 @@
 #				passed via AC_CONFIG_FILES to enable	#
 #				all top level versioning to be done in	#
 #				configure.ac				#
+# 04/07/2018	MG	1.0.20	Improve debug flags used. Use gdb	#
+#				orientated level 3 (includes		#
+#				pre-processor macros).			#
 #									#
 #########################################################################
 
@@ -62,7 +65,7 @@ AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 AM_CFLAGS = -Wall
 
 if DEBUG
-AM_CFLAGS += -g -Og
+AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
 endif
