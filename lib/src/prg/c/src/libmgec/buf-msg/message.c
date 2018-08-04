@@ -49,6 +49,8 @@
  *				Use new buffer.index field name of	*
  *				next_free.				*
  *				Convert mgebuffer.proc_next to size_t.	*
+ *				Convert mgemessage.offset to next_free	*
+ *				and make it size_t.			*
  *									*
  ************************************************************************
  */
@@ -131,7 +133,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		if (*(buf->buffer + t_buf_proc_next) == msg->separator)
 			args++;
 		/* -1 allows space for adding '\0' to end of message. */
-		if (msg->offset == msg->size - 1) {
+		if (msg->next_free == msg->size - 1) {
 			t_msg_size = msg->size + DEF_MSG_SIZE;
 			t_msg = mg_realloc(msg->message, t_msg_size);
 			if (t_msg == NULL)
@@ -141,13 +143,13 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		}
 		if ((*(buf->buffer + t_buf_proc_next) != '\n')
 			&& (*(buf->buffer + t_buf_proc_next) != '\r')) {
-			*(msg->message + msg->offset)
+			*(msg->message + msg->next_free)
 					= *(buf->buffer + t_buf_proc_next);
-			msg->offset++;
+			msg->next_free++;
 		}
 		t_buf_proc_next++;
 	}
-	*(msg->message + msg->offset) = '\0';
+	*(msg->message + msg->next_free) = '\0';
 	buf->proc_next = t_buf_proc_next;
 	buf = trim_buf(buf);
 
@@ -216,7 +218,7 @@ void clear_msg(struct mgemessage *msg, const char terminator,
 		free(*(msg->argv + i));
 	free(msg->argv);
 
-	*msg = (struct mgemessage) { .message = NULL, .size = 0, .offset = 0,
+	*msg = (struct mgemessage) { .message = NULL, .size = 0, .next_free = 0,
 		.complete = 0, .terminator = terminator, .separator = separator,
 		.argc = 0, .argv = NULL };
 }
@@ -233,7 +235,7 @@ void print_msg(struct mgemessage *msg)
 	printf("Print message struct:-\n");
 	printf("\tEntire message:\t%s\n", msg->message);
 	printf("\tSize:\t\t%i\n", (int) msg->size);
-	printf("\tOffset:\t\t%i\n", msg->offset);
+	printf("\tnext_free:\t\t%zu\n", msg->next_free);
 	printf("\tComplete:\t%i\n", msg->complete);
 	printf("\tTerminator:\t%c\n", msg->terminator);
 	printf("\tSeparator:\t%c\n", msg->separator);

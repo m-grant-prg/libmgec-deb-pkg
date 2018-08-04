@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 02/01/2018_
+ * @version _v1.0.5 ==== 04/08/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +23,8 @@
  * 04/11/2017	MG	1.0.2	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
+ * 04/08/2018	MG	1.0.5	Change mgemessage.offset to next_free	*
+ *				and make it size_t.			*
  *									*
  ************************************************************************
  */
@@ -51,7 +53,7 @@ BEGIN_C_DECLS
 struct mgemessage {
 	char *message;		/**< The message buffer. */
 	size_t size;		/**< Size of message buffer. */
-	int offset;		/**< Next free message location. */
+	size_t next_free;	/**< Next free message location. */
 	int complete;		/**< Is message a complete message. */
 	char terminator;	/**< Message delimmitter. */
 	char separator;		/**< Message element delimitter. */
