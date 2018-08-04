@@ -34,6 +34,8 @@
  *				next_free.				*
  *				If the buffer is NULL allocate the	*
  *				default size.				*
+ *				Convert mgebuffer.proc_next and 	*
+ *				next_free to size_t.			*
  *									*
  ************************************************************************
  */
@@ -71,9 +73,8 @@ struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 			return NULL;
 	}
 
-	if ((m_buf->next_free + (int) s_buf_os) > (int) m_buf->size) {
-		t = m_buf->size + (size_t) ((int) s_buf_os
-			- ((int) m_buf->size - m_buf->next_free));
+	if ((m_buf->next_free + s_buf_os) > m_buf->size) {
+		t = m_buf->size + (s_buf_os - (m_buf->size - m_buf->next_free));
 		m_buf_tmp = mg_realloc(m_buf->buffer, t);
 		if (m_buf_tmp == NULL)
 			return NULL;
@@ -116,8 +117,9 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 void print_buf(struct mgebuffer *m_buf)
 {
 	printf("Print buffer struct:-\n");
-	printf("\tEntire buffer:\t%.*s\n", m_buf->next_free, m_buf->buffer);
-	printf("\tSize:\t\t%i\n", (int) m_buf->size);
-	printf("\tproc_next:\t\t%i\n", m_buf->proc_next);
-	printf("\tnext_free:\t\t%i\n", m_buf->next_free);
+	printf("\tEntire buffer:\t%.*s\n", (int) m_buf->next_free,
+		m_buf->buffer);
+	printf("\tSize:\t\t%zu\n", m_buf->size);
+	printf("\tproc_next:\t\t%zu\n", m_buf->proc_next);
+	printf("\tnext_free:\t\t%zu\n", m_buf->next_free);
 }

@@ -48,6 +48,7 @@
  *				proc_next.				*
  *				Use new buffer.index field name of	*
  *				next_free.				*
+ *				Convert mgebuffer.proc_next to size_t.	*
  *									*
  ************************************************************************
  */
@@ -108,7 +109,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
 	char *t_msg;
 	size_t t_msg_size = DEF_MSG_SIZE;
-	int t_buf_proc_next = 0;
+	size_t t_buf_proc_next = 0;
 
 	/*
 	 * Is this the first time processing this msg struct or is it a partial
