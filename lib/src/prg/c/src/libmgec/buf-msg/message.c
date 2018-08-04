@@ -46,6 +46,8 @@
  *				separator and terminator fields.	*
  * 04/08/2018	MG	1.0.9	Use new buffer.offset field name of	*
  *				proc_next.				*
+ *				Use new buffer.index field name of	*
+ *				next_free.				*
  *									*
  ************************************************************************
  */
@@ -122,7 +124,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		args = 1;
 	}
 
-	while ((t_buf_proc_next < buf->index) && !msg->complete) {
+	while ((t_buf_proc_next < buf->next_free) && !msg->complete) {
 		if (*(buf->buffer + t_buf_proc_next) == msg->terminator)
 			msg->complete = 1;
 		if (*(buf->buffer + t_buf_proc_next) == msg->separator)

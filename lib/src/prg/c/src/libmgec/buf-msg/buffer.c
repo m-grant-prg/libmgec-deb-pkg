@@ -30,6 +30,8 @@
  *				returns NULL then just return NULL.	*
  * 04/08/2018	MG	1.0.7	Use new buffer.offset field name of	*
  *				proc_next.				*
+ *				Use new buffer.index field name of	*
+ *				next_free.				*
  *									*
  ************************************************************************
  */
@@ -67,9 +69,9 @@ struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 			return NULL;
 	}
 
-	if ((m_buf->index + (int) s_buf_os) > (int) m_buf->size) {
+	if ((m_buf->next_free + (int) s_buf_os) > (int) m_buf->size) {
 		t = m_buf->size + (size_t) ((int) s_buf_os
-			- ((int) m_buf->size - m_buf->index));
+			- ((int) m_buf->size - m_buf->next_free));
 		m_buf_tmp = mg_realloc(m_buf->buffer, t);
 		if (m_buf_tmp == NULL)
 			return NULL;
@@ -78,7 +80,7 @@ struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 		m_buf->size = t;
 	}
 	while (x < s_buf_os)
-		*(m_buf->buffer + (m_buf->index)++) = *(s_buf + x++);
+		*(m_buf->buffer + (m_buf->next_free)++) = *(s_buf + x++);
 	return m_buf;
 }
 
@@ -100,7 +102,7 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 	memcpy(t_buf, (m_buf->buffer + m_buf->proc_next), m_buf->size);
 	free(m_buf->buffer);
 	m_buf->buffer = t_buf;
-	m_buf->index -= m_buf->proc_next;
+	m_buf->next_free -= m_buf->proc_next;
 	m_buf->proc_next = 0;
 	return m_buf;
 }
@@ -112,8 +114,8 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 void print_buf(struct mgebuffer *m_buf)
 {
 	printf("Print buffer struct:-\n");
-	printf("\tEntire buffer:\t%.*s\n", m_buf->index, m_buf->buffer);
+	printf("\tEntire buffer:\t%.*s\n", m_buf->next_free, m_buf->buffer);
 	printf("\tSize:\t\t%i\n", (int) m_buf->size);
 	printf("\tproc_next:\t\t%i\n", m_buf->proc_next);
-	printf("\tIndex:\t\t%i\n", m_buf->index);
+	printf("\tnext_free:\t\t%i\n", m_buf->next_free);
 }
