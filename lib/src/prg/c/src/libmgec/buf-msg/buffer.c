@@ -62,7 +62,7 @@ struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 	struct mgebuffer *m_buf)
 {
 	size_t t;
-	int x = 0;
+	ssize_t x = 0;
 	char *m_buf_tmp;
 
 	if (m_buf->buffer == NULL) {
