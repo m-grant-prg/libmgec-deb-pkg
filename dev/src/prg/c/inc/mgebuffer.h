@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.4 ==== 02/01/2018_
+ * @version _v1.0.5 ==== 04/08/2018_
  */
 
 /* **********************************************************************
@@ -23,6 +23,7 @@
  * 04/11/2017	MG	1.0.2	Add Doxygen commenting.			*
  * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
+ * 04/08/2018	MG	1.0.5	Improve offset field name to proc_next.	*
  *									*
  ************************************************************************
  */
@@ -48,7 +49,7 @@ BEGIN_C_DECLS
 struct mgebuffer {
 	char *buffer;	/**< Buffer storage. */
 	size_t size;	/**< Size of the buffer storage area. */
-	int offset;	/**< Next buffer location for processing. */
+	int proc_next;	/**< Next buffer location for processing. */
 	int index;	/**< Next free buffer location. */
 };
 

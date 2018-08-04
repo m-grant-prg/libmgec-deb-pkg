@@ -27,10 +27,11 @@
 # 25/03/2017	MG	1.0.1	First release.				#
 # 10/12/2017	MG	1.0.2	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.3	Move to new source directory structure.	#
+# 04/08/2018	MG	1.0.4	Add mgebuffer.h as a possible.		#
 #									#
 #########################################################################
 
 
 noinst_HEADERS = $(tmpheaders)
 
-EXTRA_HEADERS = 
+EXTRA_HEADERS = mgebuffer.h

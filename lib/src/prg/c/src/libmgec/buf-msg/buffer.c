@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.6 ==== 27/01/2018_
+ * @version _v1.0.7 ==== 04/08/2018_
  */
 
 /* **********************************************************************
@@ -28,6 +28,8 @@
  * 27/01/2018	MG	1.0.6	mg_realloc syslogs error, sets		*
  *				mge_errno and saves errno, so if it	*
  *				returns NULL then just return NULL.	*
+ * 04/08/2018	MG	1.0.7	Use new buffer.offset field name of	*
+ *				proc_next.				*
  *									*
  ************************************************************************
  */
@@ -90,16 +92,16 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 {
 	char *t_buf = NULL;
 
-	t_buf = mg_realloc(t_buf, (m_buf->size - m_buf->offset));
+	t_buf = mg_realloc(t_buf, (m_buf->size - m_buf->proc_next));
 	if (t_buf == NULL)
 		return NULL;
 
-	m_buf->size -= m_buf->offset;
-	memcpy(t_buf, (m_buf->buffer + m_buf->offset), m_buf->size);
+	m_buf->size -= m_buf->proc_next;
+	memcpy(t_buf, (m_buf->buffer + m_buf->proc_next), m_buf->size);
 	free(m_buf->buffer);
 	m_buf->buffer = t_buf;
-	m_buf->index -= m_buf->offset;
-	m_buf->offset = 0;
+	m_buf->index -= m_buf->proc_next;
+	m_buf->proc_next = 0;
 	return m_buf;
 }
 
@@ -112,6 +114,6 @@ void print_buf(struct mgebuffer *m_buf)
 	printf("Print buffer struct:-\n");
 	printf("\tEntire buffer:\t%.*s\n", m_buf->index, m_buf->buffer);
 	printf("\tSize:\t\t%i\n", (int) m_buf->size);
-	printf("\tOffset:\t\t%i\n", m_buf->offset);
+	printf("\tproc_next:\t\t%i\n", m_buf->proc_next);
 	printf("\tIndex:\t\t%i\n", m_buf->index);
 }

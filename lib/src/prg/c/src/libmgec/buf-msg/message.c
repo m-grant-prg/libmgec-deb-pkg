@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 17/06/2018_
+ * @version _v1.0.9 ==== 04/08/2018_
  */
 
 /* **********************************************************************
@@ -44,6 +44,8 @@
  *				In deconstruct_msg replace hardcoded	*
  *				token string ",;" with message struct	*
  *				separator and terminator fields.	*
+ * 04/08/2018	MG	1.0.9	Use new buffer.offset field name of	*
+ *				proc_next.				*
  *									*
  ************************************************************************
  */
@@ -104,7 +106,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
 	char *t_msg;
 	size_t t_msg_size = DEF_MSG_SIZE;
-	int t_buf_offset = 0;
+	int t_buf_proc_next = 0;
 
 	/*
 	 * Is this the first time processing this msg struct or is it a partial
@@ -120,10 +122,10 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		args = 1;
 	}
 
-	while ((t_buf_offset < buf->index) && !msg->complete) {
-		if (*(buf->buffer + t_buf_offset) == msg->terminator)
+	while ((t_buf_proc_next < buf->index) && !msg->complete) {
+		if (*(buf->buffer + t_buf_proc_next) == msg->terminator)
 			msg->complete = 1;
-		if (*(buf->buffer + t_buf_offset) == msg->separator)
+		if (*(buf->buffer + t_buf_proc_next) == msg->separator)
 			args++;
 		/* -1 allows space for adding '\0' to end of message. */
 		if (msg->offset == msg->size - 1) {
@@ -134,16 +136,16 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 			msg->message = t_msg;
 			msg->size = t_msg_size;
 		}
-		if ((*(buf->buffer + t_buf_offset) != '\n')
-			&& (*(buf->buffer + t_buf_offset) != '\r')) {
+		if ((*(buf->buffer + t_buf_proc_next) != '\n')
+			&& (*(buf->buffer + t_buf_proc_next) != '\r')) {
 			*(msg->message + msg->offset)
-					= *(buf->buffer + t_buf_offset);
+					= *(buf->buffer + t_buf_proc_next);
 			msg->offset++;
 		}
-		t_buf_offset++;
+		t_buf_proc_next++;
 	}
 	*(msg->message + msg->offset) = '\0';
-	buf->offset = t_buf_offset;
+	buf->proc_next = t_buf_proc_next;
 	buf = trim_buf(buf);
 
 	return msg;
