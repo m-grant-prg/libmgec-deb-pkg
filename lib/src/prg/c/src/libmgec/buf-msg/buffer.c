@@ -32,6 +32,8 @@
  *				proc_next.				*
  *				Use new buffer.index field name of	*
  *				next_free.				*
+ *				If the buffer is NULL allocate the	*
+ *				default size.				*
  *									*
  ************************************************************************
  */
@@ -64,7 +66,7 @@ struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 	char *m_buf_tmp;
 
 	if (m_buf->buffer == NULL) {
-		m_buf->buffer = mg_realloc(m_buf->buffer, m_buf->size);
+		m_buf->buffer = mg_realloc(m_buf->buffer, DEF_BUF_SIZE);
 		if (m_buf->buffer == NULL)
 			return NULL;
 	}
