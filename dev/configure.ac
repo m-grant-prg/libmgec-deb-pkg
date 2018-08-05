@@ -55,10 +55,11 @@
 #				AC_CONFIG_FILES from AC_INIT info.	#
 # 24/06/2018	MG	1.0.20	Separate non-Makefile files to generate	#
 #				with AC_CONFIG_FILES.			#
+# 05/08/2018	MG	1.0.21	Add check for stdbool.h			#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.20 $)
+AC_REVISION($Revision: 1.0.21 $)
 
 AC_PREREQ(2.69)
 
@@ -203,6 +204,7 @@ fi
 
 # Checks for C header files.
 AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(stdbool.h, [], AC_MSG_ERROR(header not found))
 
 # Checks for C++ header files.
 
