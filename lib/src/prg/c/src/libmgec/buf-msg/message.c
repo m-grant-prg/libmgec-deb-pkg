@@ -51,6 +51,7 @@
  *				Convert mgebuffer.proc_next to size_t.	*
  *				Convert mgemessage.offset to next_free	*
  *				and make it size_t.			*
+ *				Change mgemessage.complete to bool.	*
  *									*
  ************************************************************************
  */
@@ -61,6 +62,7 @@
 #include <string.h>
 #include <errno.h>
 #include <syslog.h>
+#include <stdbool.h>
 
 #include <mge-errno.h>
 #include <mgebuffer.h>
@@ -129,7 +131,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 
 	while ((t_buf_proc_next < buf->next_free) && !msg->complete) {
 		if (*(buf->buffer + t_buf_proc_next) == msg->terminator)
-			msg->complete = 1;
+			msg->complete = true;
 		if (*(buf->buffer + t_buf_proc_next) == msg->separator)
 			args++;
 		/* -1 allows space for adding '\0' to end of message. */
@@ -219,8 +221,8 @@ void clear_msg(struct mgemessage *msg, const char terminator,
 	free(msg->argv);
 
 	*msg = (struct mgemessage) { .message = NULL, .size = 0, .next_free = 0,
-		.complete = 0, .terminator = terminator, .separator = separator,
-		.argc = 0, .argv = NULL };
+		.complete = false, .terminator = terminator,
+		.separator = separator, .argc = 0, .argv = NULL };
 }
 
 /**

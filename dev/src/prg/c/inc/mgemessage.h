@@ -25,6 +25,7 @@
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
  * 04/08/2018	MG	1.0.5	Change mgemessage.offset to next_free	*
  *				and make it size_t.			*
+ *				Change mgemessage.complete to bool.	*
  *									*
  ************************************************************************
  */
@@ -36,6 +37,7 @@
 
 #include <portability.h>
 #include <sys/types.h>
+#include <stdbool.h>
 
 #include <mgebuffer.h>
 
@@ -54,7 +56,7 @@ struct mgemessage {
 	char *message;		/**< The message buffer. */
 	size_t size;		/**< Size of message buffer. */
 	size_t next_free;	/**< Next free message location. */
-	int complete;		/**< Is message a complete message. */
+	bool complete;		/**< Is message a complete message. */
 	char terminator;	/**< Message delimmitter. */
 	char separator;		/**< Message element delimitter. */
 	int argc;		/**< Number of arguments to the message. */

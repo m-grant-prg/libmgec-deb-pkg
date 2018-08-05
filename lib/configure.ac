@@ -71,10 +71,11 @@
 #				AC_SUBST the lib_version_info so that	#
 #				all top level versioning can be done	#
 #				from configure.ac			#
+# 05/08/2018	MG	1.0.25	Add check for stdbool.h			#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.24 $)
+AC_REVISION($Revision: 1.0.25 $)
 
 AC_PREREQ(2.69)
 
@@ -507,6 +508,7 @@ AC_CHECK_HEADERS(stdio.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(syslog.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(stdbool.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(portability.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(bstree.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(sllist.h, [], AC_MSG_ERROR(header not found))
