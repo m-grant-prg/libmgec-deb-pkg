@@ -112,7 +112,7 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
 struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
 	char *t_msg;
-	size_t t_msg_size = DEF_MSG_SIZE;
+	size_t t_msg_size;
 	size_t t_buf_proc_next = 0;
 
 	/*
@@ -120,12 +120,12 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	 * message.
 	 */
 	if (msg->message == NULL) {
-		t_msg = mg_realloc(msg->message, t_msg_size);
+		t_msg = mg_realloc(msg->message, DEF_MSG_SIZE);
 		if (t_msg == NULL)
 			return NULL;
 		msg->message = t_msg;
 		*msg->message = '\0';
-		msg->size = t_msg_size;
+		msg->size = DEF_MSG_SIZE;
 		args = 1;
 	}
 
