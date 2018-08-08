@@ -53,9 +53,11 @@
 # 04/07/2018	MG	1.0.20	Improve debug flags used. Use gdb	#
 #				orientated level 3 (includes		#
 #				pre-processor macros).			#
-# 06/08/2018	MG	1.0.21	Support configure time otion to add -H	#
+# 08/08/2018	MG	1.0.21	Support configure time otion to add -H	#
 #				compiler flag to show included files	#
 #				and their depth in the include stack.	#
+#				Use compiler version dependent CFLAGS	#
+#				assembled in configure.			#
 #									#
 #########################################################################
 
@@ -65,7 +67,7 @@ AM_CPPFLAGS += -I$(top_srcdir)/../dev/src/prg/c/inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 
 
-AM_CFLAGS = -Wall
+AM_CFLAGS = @mg_cflags@
 
 if DEBUG
 AM_CFLAGS += -ggdb3 -Og

@@ -72,10 +72,12 @@
 #				AC_SUBST the lib_version_info so that	#
 #				all top level versioning can be done	#
 #				from configure.ac			#
-# 06/08/2018	MG	1.0.25	Add check for stdbool.h			#
+# 08/08/2018	MG	1.0.25	Add check for stdbool.h			#
 #				Add support for an enable-headercheck	#
 #				CLA and passing a suitable variable to	#
 #				the Makefile.am's.			#
+#				Build suitable CFLAGS based on compiler	#
+#				version.				#
 #									#
 #########################################################################
 
@@ -345,6 +347,22 @@ AC_PROG_CPP
 
 if test "x${debug}" = xtrue; then
 	AC_MSG_NOTICE(Finished running ac prog cpp.)
+fi
+
+
+# Build a suitable CFLAGS list depending on compiler version.
+# This has been checked up to gcc v8.2
+AC_SUBST(mg_cflags)
+AX_COMPILER_VENDOR
+AX_COMPILER_VERSION
+# The following 2 options seem fairly universal.
+mg_cflags="-Wall -Wextra"
+if test "$ax_cv_c_compiler_vendor" = "gnu"; then
+	mg_cflags+=" -Wmissing-include-dirs -Wshadow -Wstrict-prototypes"
+	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "7")
+	if test "x${ax_compare_version}" = xtrue; then
+		mg_cflags+=" -Wimplicit-fallthrough"
+	fi
 fi
 
 
