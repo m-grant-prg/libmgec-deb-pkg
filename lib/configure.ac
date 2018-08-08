@@ -295,35 +295,15 @@ AC_SUBST([edit], ["sed \
 # containing the source. Forces tar to use --format=posix in make dist.
 # This also checks :-	BSD install	make variable set	mkdir -p
 #			gawk
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running am init automake.)
-fi
-
 AM_INIT_AUTOMAKE(-Wall -Werror subdir-objects tar-pax)
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running am init automake.)
-fi
 
 
 # Set language for compilation tests.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac lang.)
-fi
-
 AC_LANG(C)
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac lang.)
-fi
 
 
 # Checks the compiler to use from either a standard list or one to use for
 # sparse, stores it in the CC variable and checks its capabilities.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac prog cc.)
-fi
-
 if test "x$sparse" = "xtrue" ; then
 	compiler_list="cgcc gcc cc"
 else
@@ -332,22 +312,10 @@ fi
 
 AC_PROG_CC($compiler_list)
 
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac prog cc.)
-fi
-
 
 # Checks the c pre-processor to use, stores it in the cpp variable and checks
 # its capabilities.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac prog cpp.)
-fi
-
 AC_PROG_CPP
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac prog cpp.)
-fi
 
 
 # Build a suitable CFLAGS list depending on compiler version.
@@ -368,99 +336,35 @@ fi
 
 # Checks the c++ compiler to use, stores it in the cxx variable and checks its
 # capabilities. (Required by ltmain.sh).
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac prog cxx. (Required by ltmain.sh).)
-fi
-
 AC_PROG_CXX
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac prog cxx.)
-fi
 
 
 # Checks that there is an installation program or script.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac prog install.)
-fi
-
 AC_PROG_INSTALL
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac prog install.)
-fi
 
 
 # Check whether symbolic links are supported.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac ln -s.)
-fi
-
 AC_PROG_LN_S
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac ln -s.)
-fi
 
 
 # Check a source file to ensure no command line --srcdir typo.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac config srcdir.)
-fi
-
 AC_CONFIG_SRCDIR(src/prg/c/src/libmgec/version.c)
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac config srcdir.)
-fi
 
 
 # GNULIB macros.
 # Also checks for ar, grep, egrep, ranlib and how to run the cpp.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running gl early macro.)
-fi
-
 gl_EARLY
 
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running gl early macro.)
-fi
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running gl init macro.)
-fi
-
 gl_INIT
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running gl init macro.)
-fi
 
 
 # Must use this macro if the ar archiver is used. ar is mostly now used for
 # static libraries.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running am prog ar.)
-fi
-
 AM_PROG_AR
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running am prog ar.)
-fi
 
 
 # Check for libtool minimum version.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running lt prereq.)
-fi
-
 LT_PREREQ(2.4.6)
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running lt prereq.)
-fi
 
 
 # Turn on shared libraries.
@@ -469,28 +373,12 @@ fi
 #			stdlib.h	string.h	memory.h
 #			strings.h	inttypes.h	stdint.h
 #			unistd.h	dlfcn.h
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running lt init.)
-fi
-
 LT_INIT
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running lt init.)
-fi
 
 
 # Causes AC_OUTPUT to create a c preprocessor file with #define statements about
 # the configuration.
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac config headers.)
-fi
-
 AC_CONFIG_HEADERS(src/prg/c/gen/inc/config.h)
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac config headers.)
-fi
 
 
 ########################
@@ -504,16 +392,7 @@ fi
 #
 ########################
 
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Running ac config macro dir.)
-fi
-
-
 AC_CONFIG_MACRO_DIR(m4)
-
-if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Finished running ac config macro dir.)
-fi
 
 
 ########################
