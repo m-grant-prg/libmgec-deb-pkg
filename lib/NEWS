@@ -1,3 +1,22 @@
+Release 1.1.9 2018-08-30
+Improve debug flags used. Use gdb orientated level 3 (includes pre-processor
+macros).
+Correct the expected answers in the bstree test suite.
+Rename mgebuffer.offset member to proc_next.
+Rename mgebuffer.index member to next_free.
+If the buffer in the mgebuffer struct passed to concat_buf is NULL,
+allocate the default buffer size.
+Correct the types of some local variables.
+Change mgebuffer index fields to type size_t.
+Rename mgemessage.offset member to next_free.
+Change mgemessage.complete member type to bool.
+Assign value to mgebuffer.size on allocation, not before.
+get_msg() - realloc using buffer size macro for readability.
+Add build support for using gcc -H for header file checks.
+Introduce compiler version dependent CFLAGS.
+Remove excessive configure debug messages.
+Update bootstrap.sh version to 1.3.7
+
 Release 1.1.8 2018-06-20
 Use better source file for AC_CONFIG_SRCDIR check.
 Define SOURCE_VERSION in configure.ac
