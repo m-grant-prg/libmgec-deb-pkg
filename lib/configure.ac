@@ -93,12 +93,12 @@ AC_PREREQ(2.69)
 #
 ########################
 
-AC_INIT(MGE General C Library, v1.1.8-rc1, m.grant.prg@gmail.com, libmgec)
+AC_INIT(MGE General C Library, v1.1.9, m.grant.prg@gmail.com, libmgec)
 
-AC_DEFINE(SOURCE_VERSION, "1.1.6", \
+AC_DEFINE(SOURCE_VERSION, "1.1.7", \
 	Define to the version of source code in this package.)
 
-AC_SUBST(lib_version_info, "0:2:0")
+AC_SUBST(lib_version_info, "1:0:0")
 
 
 ########################
