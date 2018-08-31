@@ -4,7 +4,9 @@ Errors
 
 \section errormsgs Messages
 
-Error message numbers are #defined in the [mge-errno.h](@ref mge-errno.h) header file. The error number is used as the array element in the [errno_desc](@ref errno_desc) array.
+Error message numbers are \#defined in the [mge-errno.h](@ref mge-errno.h)
+header file. The error number is used as the array element in the
+[errno_desc](@ref errno_desc) array.
 
 \section errorusage Usage
 
