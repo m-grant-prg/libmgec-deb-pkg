@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 04/08/2018_
+ * @version _v1.0.6 ==== 06/09/2018_
  */
 
 /* **********************************************************************
@@ -26,6 +26,7 @@
  * 04/08/2018	MG	1.0.5	Change mgemessage.offset to next_free	*
  *				and make it size_t.			*
  *				Change mgemessage.complete to bool.	*
+ * 06/09/2018	MG	1.0.6	Add mgemessage struct initialiser.	*
  *									*
  ************************************************************************
  */
@@ -62,6 +63,20 @@ struct mgemessage {
 	int argc;		/**< Number of arguments to the message. */
 	char **argv;		/**< Message arguments. */
 };
+
+/**
+ * mgemessage struct initialiser.
+ */
+#define MGEMESSAGE_INIT(a, b) {	\
+	.message = NULL,	\
+	.size = 0,		\
+	.next_free = 0,		\
+	.complete = false,	\
+	.terminator = a,	\
+	.separator = b,		\
+	.argc = 0,		\
+	.argv = NULL		\
+}
 
 struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg);
 
