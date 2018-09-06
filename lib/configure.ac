@@ -78,10 +78,11 @@
 #				the Makefile.am's.			#
 #				Build suitable CFLAGS based on compiler	#
 #				version.				#
+# 06/09/2018	MG	1.0.26	Add buffers and messages test program.	#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.25 $)
+AC_REVISION($Revision: 1.0.26 $)
 
 AC_PREREQ(2.69)
 
@@ -466,6 +467,7 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/lib-tmp/Makefile
 		src/prg/c/src/libmgec/Makefile
 		src/prg/c/src/test-bstree/Makefile
+		src/prg/c/src/test-buf-msg/Makefile
 		src/prg/c/src/test-dllist/Makefile
 		src/prg/c/src/test-errno/Makefile
 		src/prg/c/src/test-sllist/Makefile)

@@ -38,6 +38,7 @@
 #				tarball in the build directory. Uses	#
 #				git archive to archive HEAD.		#
 # 08/06/2018	MG	1.0.14	Add info messages to srctarball target.	#
+# 06/09/2018	MG	1.0.15	Add buffers and messages test program.	#
 #									#
 #########################################################################
 
@@ -48,6 +49,7 @@ SUBDIRS += src/prg/c/inc-tmp
 SUBDIRS += src/prg/c/lib-tmp
 SUBDIRS += src/prg/c/src/libmgec
 SUBDIRS += src/prg/c/src/test-bstree
+SUBDIRS += src/prg/c/src/test-buf-msg
 SUBDIRS += src/prg/c/src/test-dllist
 SUBDIRS += src/prg/c/src/test-errno
 SUBDIRS += src/prg/c/src/test-sllist
