@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 04/08/2018_
+ * @version _v1.0.6 ==== 06/09/2018_
  */
 
 /* **********************************************************************
@@ -27,6 +27,7 @@
  *				Improve index field name to next_free.	*
  *				Convert proc_next and next_free to	*
  *				size_t.					*
+ * 06/09/2018	MG	1.0.6	Add an mgebuffer initialisation macro.	*
  *									*
  ************************************************************************
  */
@@ -55,6 +56,16 @@ struct mgebuffer {
 	size_t proc_next;	/**< Next buffer location for processing. */
 	size_t next_free;	/**< Next free buffer location. */
 };
+
+/**
+ * A buffer object initialisation macro.
+ */
+#define MGEBUFFER_INIT {	\
+	.buffer = NULL,		\
+	.size = 0,		\
+	.proc_next = 0,		\
+	.next_free = 0		\
+}
 
 struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 	struct mgebuffer *m_buf);
