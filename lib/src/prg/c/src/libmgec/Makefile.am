@@ -58,6 +58,7 @@
 #				and their depth in the include stack.	#
 #				Use compiler version dependent CFLAGS	#
 #				assembled in configure.			#
+# 09/09/2018	MG	1.0.22	Add buf-msg/internal.h			#
 #									#
 #########################################################################
 
@@ -84,7 +85,7 @@ AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
 
 
-noinst_HEADERS = errors/internal.h listsandsorts/internal.h
+noinst_HEADERS = buf-msg/internal.h errors/internal.h listsandsorts/internal.h
 
 
 lib_LTLIBRARIES = libmgec.la

@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 04/08/2018_
+ * @version _v1.0.8 ==== 09/09/2018_
  */
 
 /* **********************************************************************
@@ -36,6 +36,7 @@
  *				default size.				*
  *				Convert mgebuffer.proc_next and 	*
  *				next_free to size_t.			*
+ * 09/09/2018	MG	1.0.8	Include new internal.h			*
  *									*
  ************************************************************************
  */
@@ -50,6 +51,7 @@
 #include <mge-errno.h>
 #include <mgebuffer.h>
 #include <mgememory.h>
+#include "internal.h"
 
 
 /**

@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.6 ==== 06/09/2018_
+ * @version _v1.0.7 ==== 09/09/2018_
  */
 
 /* **********************************************************************
@@ -28,6 +28,9 @@
  *				Convert proc_next and next_free to	*
  *				size_t.					*
  * 06/09/2018	MG	1.0.6	Add an mgebuffer initialisation macro.	*
+ * 09/09/2018	MG	1.0.7	Move default buffer size macro to	*
+ *				internal header file as it should not	*
+ *				be part of the API.			*
  *									*
  ************************************************************************
  */
@@ -41,11 +44,6 @@
 #include <sys/types.h>
 
 BEGIN_C_DECLS
-
-/**
- * Default buffer size.
- */
-#define DEF_BUF_SIZE 256
 
 /**
  * A buffer object.

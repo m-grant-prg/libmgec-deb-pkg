@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 04/08/2018_
+ * @version _v1.0.10 ==== 09/09/2018_
  */
 
 /* **********************************************************************
@@ -52,6 +52,7 @@
  *				Convert mgemessage.offset to next_free	*
  *				and make it size_t.			*
  *				Change mgemessage.complete to bool.	*
+ * 09/09/2018	MG	1.0.10	Include new internal.h			*
  *									*
  ************************************************************************
  */
@@ -68,6 +69,7 @@
 #include <mgebuffer.h>
 #include <mgememory.h>
 #include <mgemessage.h>
+#include "internal.h"
 
 /**
  * Number of arguments in the message.

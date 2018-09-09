@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.6 ==== 06/09/2018_
+ * @version _v1.0.7 ==== 09/09/2018_
  */
 
 /* **********************************************************************
@@ -27,6 +27,9 @@
  *				and make it size_t.			*
  *				Change mgemessage.complete to bool.	*
  * 06/09/2018	MG	1.0.6	Add mgemessage struct initialiser.	*
+ * 09/09/2018	MG	1.0.7	Move default message size macro to	*
+ *				internal header file as it should not	*
+ *				be part of the API.			*
  *									*
  ************************************************************************
  */
@@ -44,11 +47,6 @@
 
 
 BEGIN_C_DECLS
-
-/**
- * Default message size.
- */
-#define DEF_MSG_SIZE 256
 
 /**
  * Message object.
