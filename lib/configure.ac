@@ -79,10 +79,11 @@
 #				Build suitable CFLAGS based on compiler	#
 #				version.				#
 # 06/09/2018	MG	1.0.26	Add buffers and messages test program.	#
+# 09/09/2018	MG	1.0.27	Add build for inc directory.		#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.26 $)
+AC_REVISION($Revision: 1.0.27 $)
 
 AC_PREREQ(2.69)
 
@@ -463,6 +464,7 @@ AC_CHECK_FUNCS(memset strerror)
 # Project Makefiles to create.
 AC_CONFIG_FILES(Makefile
 		src/prg/c/gen/lib/Makefile
+		src/prg/c/inc/Makefile
 		src/prg/c/inc-tmp/Makefile
 		src/prg/c/lib-tmp/Makefile
 		src/prg/c/src/libmgec/Makefile
