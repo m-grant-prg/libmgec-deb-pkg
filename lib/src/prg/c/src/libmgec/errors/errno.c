@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 19/05/2018_
+ * @version _v1.0.9 ==== 09/09/2018_
  */
 
 /* **********************************************************************
@@ -28,6 +28,8 @@
  * 17/05/2018	MG	1.0.7	Add Client blocked message.		*
  * 19/05/2018	MG	1.0.8	Add new internal.h for non-public	*
  *				declarations.				*
+ * 09/09/2018	MG	1.0.9	Use ARRAY_SIZE macro from new		*
+ *				mge-general.h header file.		*
  *									*
  ************************************************************************
  */
@@ -36,6 +38,7 @@
 #include <sys/types.h>
 
 #include <mge-errno.h>
+#include <mge-general.h>
 #include "internal.h"
 
 
@@ -65,4 +68,4 @@ const char *errno_desc[] = {
 /**
  * Size of the error description array.
  */
-const size_t errno_desc_size = sizeof(errno_desc) / sizeof(errno_desc[0]);
+const size_t errno_desc_size = ARRAY_SIZE(errno_desc);
