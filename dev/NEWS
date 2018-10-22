@@ -1,3 +1,10 @@
+Release 1.1.10 2018-10-22
+Add an mgebuffer struct initialisation macro.
+Add mgemessage struct initialisation macro.
+Move non-API macros to internal.h
+srctarball to make filename with -src-.
+Update README to refer to new project wiki.
+
 Release 1.1.9 2018-08-29
 Change mgebuffer.offset member name to proc_next.
 Change mgebuffer.index member name to next_free.
