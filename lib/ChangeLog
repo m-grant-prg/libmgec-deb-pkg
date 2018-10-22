@@ -1,3 +1,10 @@
+2018-10-22 v 1.1.10 Mark Grant <m.grant.prg@gmail.com>
+	*  Add buffers and messages test program.
+	Add general project-wide header file.
+	Use new ARRAY_SIZE macro.
+	srctarball filename to include -src-.
+	Update README to refer to new project wiki.
+
 2018-08-30 v 1.1.9 Mark Grant <m.grant.prg@gmail.com>
 	*  Improve debug flags used. Use gdb orientated level 3 (includes
 	pre-processor macros).

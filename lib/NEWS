@@ -1,3 +1,10 @@
+Release 1.1.10 2018-10-22
+Add buffers and messages test program.
+Add general project-wide header file.
+Use new ARRAY_SIZE macro.
+srctarball filename to include -src-.
+Update README to refer to new project wiki.
+
 Release 1.1.9 2018-08-30
 Improve debug flags used. Use gdb orientated level 3 (includes pre-processor
 macros).
