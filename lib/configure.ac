@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: lib/configure.ac						#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -80,10 +80,12 @@
 #				version.				#
 # 06/09/2018	MG	1.0.26	Add buffers and messages test program.	#
 # 09/09/2018	MG	1.0.27	Add build for inc directory.		#
+# 10/02/2019	MG	1.0.28	Extract compiler-dependent CFLAGS build	#
+#				to m4extra macro.			#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.27 $)
+AC_REVISION($Revision: 1.0.28 $)
 
 AC_PREREQ(2.69)
 
@@ -321,19 +323,7 @@ AC_PROG_CPP
 
 
 # Build a suitable CFLAGS list depending on compiler version.
-# This has been checked up to gcc v8.2
-AC_SUBST(mg_cflags)
-AX_COMPILER_VENDOR
-AX_COMPILER_VERSION
-# The following 2 options seem fairly universal.
-mg_cflags="-Wall -Wextra"
-if test "$ax_cv_c_compiler_vendor" = "gnu"; then
-	mg_cflags+=" -Wmissing-include-dirs -Wshadow -Wstrict-prototypes"
-	AX_COMPARE_VERSION($ax_cv_c_compiler_version, ge, "7")
-	if test "x${ax_compare_version}" = xtrue; then
-		mg_cflags+=" -Wimplicit-fallthrough"
-	fi
-fi
+BUILD_COMPILER_VERSION_CFLAGS(mg_cflags)
 
 
 # Checks the c++ compiler to use, stores it in the cxx variable and checks its

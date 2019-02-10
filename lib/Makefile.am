@@ -2,7 +2,7 @@
 #########################################################################
 #									#
 # Script ID: lib/Makefile.am						#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -43,10 +43,12 @@
 # 21/10/2018	MG	1.0.17	Change srctarball target to build with	#
 #				src between package name and version in	#
 #				filename.				#
+# 10/02/2019	MG	1.0.18	Enable use of self-written m4 macros in	#
+#				m4extra.				#
 #									#
 #########################################################################
 
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 -I m4extra
 
 SUBDIRS = src/prg/c/gen/lib
 SUBDIRS += src/prg/c/inc
