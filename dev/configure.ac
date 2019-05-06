@@ -94,7 +94,7 @@ AC_PREREQ(2.69)
 # can be used by ac output and / or the sed setup below to substitute bookmarks
 # in source files.
 #
-AC_INIT(MGE general C library development package, 1.1.10,
+AC_INIT(MGE general C library development package, 1.1.10+rc1,
 		m.grant.prg@gmail.com, libmgec-dev)
 
 AC_MSG_NOTICE(initialisation and setup)
