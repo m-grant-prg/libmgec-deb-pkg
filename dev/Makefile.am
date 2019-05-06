@@ -1,4 +1,3 @@
-#! /usr/bin/env bash
 #########################################################################
 #									#
 # Script ID: dev/Makefile.am						#
@@ -42,6 +41,7 @@
 #				filename.				#
 # 06/05/2019	MG	1.0.14	Make source tarball name the same as	#
 #				GitHub.					#
+#				Remove shebang.				#
 #									#
 #########################################################################
 

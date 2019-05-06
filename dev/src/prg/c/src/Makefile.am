@@ -1,8 +1,7 @@
-#! /usr/bin/env bash
 #########################################################################
 #									#
 # Script ID: dev/src/prg/c/src/Makefile.am				#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -23,9 +22,11 @@
 #				AutoTools General Template v1.0.6.	#
 # 22/12/2017	MG	1.0.3	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.4	Move to new source directory structure.	#
+# 06/05/2019	MG	1.0.5	Remove shebang.				#
 #									#
 #########################################################################
 
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libmgec.pc
+

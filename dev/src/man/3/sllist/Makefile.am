@@ -1,8 +1,7 @@
-#! /usr/bin/env bash
 #########################################################################
 #									#
 # Script ID: dev/src/man/3/sllist/Makefile.am				#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -28,6 +27,7 @@
 #				(foo.) or if there is no suffix (foo)	#
 #				then error out.				#
 # 02/01/2018	MG	1.0.5	Move to new source directory structure.	#
+# 06/05/2019	MG	1.0.6	Remove shebang.				#
 #									#
 #########################################################################
 

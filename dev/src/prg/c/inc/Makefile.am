@@ -1,8 +1,7 @@
-#! /usr/bin/env bash
 #########################################################################
 #									#
 # Script ID: dev/src/prg/c/inc/Makefile.am				#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -31,6 +30,7 @@
 # 24/01/2017	MG	1.0.8	Changes for new mge-errno handling.	#
 # 22/12/2017	MG	1.0.9	Add SPDX license tags to source files.	#
 # 02/01/2018	MG	1.0.10	Move to new source directory structure.	#
+# 06/05/2019	MG	1.0.11	Remove shebang.				#
 #									#
 #########################################################################
 
