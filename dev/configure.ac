@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: dev/configure.ac						#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -56,10 +56,11 @@
 # 24/06/2018	MG	1.0.20	Separate non-Makefile files to generate	#
 #				with AC_CONFIG_FILES.			#
 # 05/08/2018	MG	1.0.21	Add check for stdbool.h			#
+# 06/05/2019	MG	1.0.22	Remove v from package version.		#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.21 $)
+AC_REVISION($Revision: 1.0.22 $)
 
 AC_PREREQ(2.69)
 
@@ -71,7 +72,7 @@ AC_PREREQ(2.69)
 #
 ########################
 
-AC_INIT(MGE general C library development package, v1.1.10,
+AC_INIT(MGE general C library development package, 1.1.10,
 		m.grant.prg@gmail.com, libmgec-dev)
 
 
