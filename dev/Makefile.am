@@ -42,6 +42,8 @@
 # 06/05/2019	MG	1.0.14	Make source tarball name the same as	#
 #				GitHub.					#
 #				Remove shebang.				#
+#				Add install of standard GNU files such	#
+#				as AUTHORS, etc.			#
 #									#
 #########################################################################
 
@@ -51,6 +53,13 @@ SUBDIRS = src/man/3/bstree src/man/3/sllist src/man/3/dllist
 SUBDIRS += src/man/3/buffer src/man/3/errno
 SUBDIRS += src/man/3/memory src/man/3/message
 SUBDIRS += src/prg/c/inc src/prg/c/src
+
+
+doc_DATA = AUTHORS ChangeLog COPYING NEWS README
+
+
+EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
+		$(srcdir)/NEWS $(srcdir)/README
 
 
 srctarball:
