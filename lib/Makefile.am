@@ -46,6 +46,8 @@
 #				m4extra.				#
 # 08/05/2019	MG	1.0.19	Remove shebang.				#
 #				Make source tarball name == GitHub.	#
+#				Add install of standard GNU files such	#
+#				as AUTHORS etc.				#
 #									#
 #########################################################################
 
@@ -62,7 +64,14 @@ SUBDIRS += src/prg/c/src/test-dllist
 SUBDIRS += src/prg/c/src/test-errno
 SUBDIRS += src/prg/c/src/test-sllist
 
-EXTRA_DIST  = m4/gnulib-cache.m4
+
+doc_DATA = AUTHORS ChangeLog COPYING NEWS README
+
+
+EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
+		$(srcdir)/NEWS $(srcdir)/README
+
+EXTRA_DIST += m4/gnulib-cache.m4
 
 
 srctarball:
