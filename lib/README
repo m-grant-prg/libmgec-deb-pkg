@@ -55,7 +55,8 @@ a git environment. This manifests itself in 2 places:-
 
 a) ... Download either the source or distribution tarball (the .tar.gz file)
 	from:-
-	https://github.com/m-grant-prg/libmgec/releases
+
+https://github.com/m-grant-prg/libmgec/releases
 
 b) ... Extract the tarball preserving the directory structure.
 
