@@ -1,8 +1,7 @@
-#! /usr/bin/env bash
 #########################################################################
 #									#
 # Script ID: lib/src/prg/c/src/libmgec/Makefile.am			#
-# Author: Copyright (C) 2015-2018  Mark Grant				#
+# Author: Copyright (C) 2015-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -59,6 +58,7 @@
 #				Use compiler version dependent CFLAGS	#
 #				assembled in configure.			#
 # 09/09/2018	MG	1.0.22	Add buf-msg/internal.h			#
+# 08/05/2019	MG	1.0.23	Remove shebang.				#
 #									#
 #########################################################################
 

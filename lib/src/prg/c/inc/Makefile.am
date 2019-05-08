@@ -1,8 +1,7 @@
-#! /usr/bin/env bash
 #########################################################################
 #									#
 # Script ID: lib/src/prg/c/inc/Makefile.am				#
-# Author: Copyright (C) 2018  Mark Grant				#
+# Author: Copyright (C) 2018-2019  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -19,6 +18,7 @@
 # Date		Author	Version	Description				#
 #									#
 # 09/09/2018	MG	1.0.1	First release.				#
+# 08/05/2019	MG	1.0.2	Remove shebang.				#
 #									#
 #########################################################################
 
