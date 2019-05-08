@@ -82,10 +82,11 @@
 # 09/09/2018	MG	1.0.27	Add build for inc directory.		#
 # 10/02/2019	MG	1.0.28	Extract compiler-dependent CFLAGS build	#
 #				to m4extra macro.			#
+# 08/05/2019	MG	1.1.1	Remove v from package vesrion.		#
 #									#
 #########################################################################
 
-AC_REVISION($Revision: 1.0.28 $)
+AC_REVISION($Revision: 1.1.1 $)
 
 AC_PREREQ(2.69)
 
@@ -97,7 +98,7 @@ AC_PREREQ(2.69)
 #
 ########################
 
-AC_INIT(MGE General C Library, v1.1.10, m.grant.prg@gmail.com, libmgec)
+AC_INIT(MGE General C Library, 1.1.10, m.grant.prg@gmail.com, libmgec)
 
 AC_DEFINE(SOURCE_VERSION, "1.1.7", \
 	Define to the version of source code in this package.)
