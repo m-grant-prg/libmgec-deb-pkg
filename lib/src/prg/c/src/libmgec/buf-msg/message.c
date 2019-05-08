@@ -5,12 +5,12 @@
  *
  * All message handling support functions.
  *
- * @author Copyright (C) 2017-2018  Mark Grant
+ * @author Copyright (C) 2017-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 09/09/2018_
+ * @version _v1.0.11 ==== 08/05/2019_
  */
 
 /* **********************************************************************
@@ -53,6 +53,8 @@
  *				and make it size_t.			*
  *				Change mgemessage.complete to bool.	*
  * 09/09/2018	MG	1.0.10	Include new internal.h			*
+ * 08/05/2019	MG	1.0.11	x in deconstruct_msg is assigned by and	*
+ *				used as a size_t so declare as such.	*
  *									*
  ************************************************************************
  */
@@ -172,7 +174,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	char *nxt_tok;
 	char toks[3];
 	char msg_tmp[strlen(msg->message) + 1];
-	int x;
+	size_t x;
 
 	if (!msg->complete) {
 		mge_errno = MGE_INVAL_MSG;
@@ -194,7 +196,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	nxt_tok = strtok(start_tok, toks);
 	while (nxt_tok) {
 		x = strlen(nxt_tok) + 1;
-		*(msg->argv + msg->argc) = mg_realloc(NULL, (size_t) (x));
+		*(msg->argv + msg->argc) = mg_realloc(NULL, x);
 		if (*(msg->argv + msg->argc) == NULL)
 			return NULL;
 
