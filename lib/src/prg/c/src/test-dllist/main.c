@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: main.c							*
- * Author: Mark Grant							*
+ * Author Copyright (C) 2017-2019  Mark Grant				*
  *									*
  * Purpose:								*
  *	Test program for doubly linked lists in libmgec shared library.	*

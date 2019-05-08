@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: main.c							*
- * Author: Mark Grant							*
+ * Author Copyright (C) 2018-2019  Mark Grant				*
  *									*
  * Purpose:								*
  *	Test program for buffers & messages in libmgec shared library.	*
