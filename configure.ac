@@ -350,15 +350,6 @@ AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(syslog.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(stdbool.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(portability.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(bstree.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(sllist.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(dllist.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(libmgec.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(mgebuffer.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(mgemessage.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(mgememory.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(mge-errno.h, [], AC_MSG_ERROR(header not found))
 
 
 #################################
