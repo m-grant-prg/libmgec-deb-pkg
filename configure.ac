@@ -345,6 +345,10 @@ if test "x$TXT2MANWRAP" = "xno" ; then
 	AC_MSG_ERROR([txt2manwrap not found])
 fi
 
+AC_MSG_NOTICE(checking for particular programs required at build and run time)
+
+AC_MSG_NOTICE(checking for particular programs required at run time)
+
 
 #########################################
 #					#
