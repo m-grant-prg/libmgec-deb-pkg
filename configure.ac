@@ -521,10 +521,11 @@ AC_MSG_NOTICE(processing output files)
 # Directory Variables, (bindir and friends), except in Makefiles and pkg-config
 # files. See GNU AutoConf manual section 4.8.2 Installation Directory Variables.
 #
-# Causes AC_OUTPUT to create a c preprocessor file with #define statements about
-# the configuration.
 AC_CONFIG_FILES(doc/doxygen/Doxyfile)
 AC_CONFIG_FILES(src/prg/c/pkg-config/libmgec.pc)
+
+# Causes AC_OUTPUT to create a c preprocessor file with #define statements about
+# the configuration.
 AC_CONFIG_HEADERS(src/prg/c/gen/inc/config.h)
 
 # Project Makefiles to create.
