@@ -100,7 +100,7 @@
 # 09/09/2018	MG	1.0.27	Add build for inc directory.		#
 # 10/02/2019	MG	1.0.28	Extract compiler-dependent CFLAGS build	#
 #				to m4extra macro.			#
-# 09/05/2019	MG	1.1.1	Remove v from package vesrion.		#
+# 18/05/2019	MG	1.1.1	Remove v from package vesrion.		#
 #				Revamp to new standard layout.		#
 #				Merge dev sub-project.			#
 #				Merge doc sub-project.			#
@@ -235,18 +235,20 @@ else
 fi
 AC_PROG_CC($compiler_list)
 
-AC_PROG_CPP
+# GNULIB gl_EARLY macro. Place just after AC_PROG_CC.
+# Also checks for ar, grep, egrep, ranlib and how to run the cpp.
+gl_EARLY
 
-# Build a suitable CFLAGS list depending on compiler version.
-BUILD_COMPILER_VERSION_CFLAGS(mg_cflags)
+# Checks the c pre-processor to use, stores it in the cpp variable and checks
+# its capabilities.
+AC_PROG_CPP
 
 # Checks the c++ compiler to use, stores it in the cxx variable and checks its
 # capabilities. (Required by ltmain.sh).
 AC_PROG_CXX
 
-# GNULIB macros.
-# Also checks for ar, grep, egrep, ranlib and how to run the cpp.
-gl_EARLY
+# GNULIB gl_INIT macro. Must appear after other checks which may affect the
+# compiler invocation.
 gl_INIT
 
 # Must use this macro if the ar archiver is used. ar is mostly now used for
@@ -375,6 +377,18 @@ AC_CHECK_HEADERS(stdbool.h, [], AC_MSG_ERROR(header not found))
 AC_MSG_NOTICE(checking for typedefs required by this application)
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
+
+
+#########################################################
+#							#
+# SECTION 10: Check for compiler characteristics	#
+#							#
+#########################################################
+
+AC_MSG_NOTICE(checking for compiler characteristics)
+
+# Build a suitable CFLAGS list depending on compiler version.
+BUILD_COMPILER_VERSION_CFLAGS(mg_cflags)
 
 
 #################################################
