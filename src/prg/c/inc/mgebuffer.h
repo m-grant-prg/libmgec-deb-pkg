@@ -5,12 +5,12 @@
  *
  * All buffer manipulation related information.
  *
- * @author Copyright (C) 2017-2018  Mark Grant
+ * @author Copyright (C) 2017-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 09/09/2018_
+ * @version _v1.0.8 ==== 25/05/2019_
  */
 
 /* **********************************************************************
@@ -31,6 +31,8 @@
  * 09/09/2018	MG	1.0.7	Move default buffer size macro to	*
  *				internal header file as it should not	*
  *				be part of the API.			*
+ * 25/05/2019	MG	1.0.8	Correct source buffer offset type to	*
+ *				unsigned.				*
  *									*
  ************************************************************************
  */
@@ -65,7 +67,7 @@ struct mgebuffer {
 	.next_free = 0		\
 }
 
-struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
+struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 	struct mgebuffer *m_buf);
 
 struct mgebuffer *trim_buf(struct mgebuffer *msg_buf);

@@ -5,12 +5,12 @@
  *
  * All buffer manipulation support functions.
  *
- * @author Copyright (C) 2017-2018  Mark Grant
+ * @author Copyright (C) 2017-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 09/09/2018_
+ * @version _v1.0.9 ==== 25/05/2019_
  */
 
 /* **********************************************************************
@@ -37,6 +37,8 @@
  *				Convert mgebuffer.proc_next and 	*
  *				next_free to size_t.			*
  * 09/09/2018	MG	1.0.8	Include new internal.h			*
+ * 25/05/2019	MG	1.0.9	Correct source buffer offset type to	*
+ *				unsigned.				*
  *									*
  ************************************************************************
  */
@@ -62,11 +64,11 @@
  * @param m_buf The buffer object to use.
  * @return The processed buffer object. NULL on error.
  */
-struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
+struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 	struct mgebuffer *m_buf)
 {
 	size_t t;
-	ssize_t x = 0;
+	size_t x = 0;
 	char *m_buf_tmp;
 
 	if (m_buf->buffer == NULL) {
