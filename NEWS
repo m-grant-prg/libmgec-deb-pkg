@@ -1,3 +1,24 @@
+Release 1.2.1 2019-05-29
+Correct src buffer offset type to unsigned
+Source v1.1.8
+Library v2:0:0
+Add checks for dia and dot programs
+Add srcdir to DIAFILE_DIR for Doxygen
+Do not check for own header files
+Collapse into one AutoTools project
+configure.ac: Revamp to latest standard
+Update Copyright statements where required
+Update bootstrap.sh to v1.4.3
+Make package install references generic
+Add README.md link to README
+README: Add Copyright statement and title
+Install standard GNU files such as AUTHORS
+Make source tarball name == GitHub
+Remove v from package version
+Remove shebangs from Makefile.ams
+Update c compiler flags macro to v1.0.3
+Update README to refer to new project wiki
+
 Release 1.1.10 2018-10-22
 Add buffers and messages test program.
 Add general project-wide header file.
