@@ -5,12 +5,12 @@
  *
  * All message manipulation related information.
  *
- * @author Copyright (C) 2017-2018  Mark Grant
+ * @author Copyright (C) 2017-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 09/09/2018_
+ * @version _v1.0.8 ==== 31/05/2019_
  */
 
 /* **********************************************************************
@@ -30,6 +30,8 @@
  * 09/09/2018	MG	1.0.7	Move default message size macro to	*
  *				internal header file as it should not	*
  *				be part of the API.			*
+ * 31/05/2019	MG	1.0.8	Use standard GNU ifdeffery around use	*
+ *				of AC_HEADER_STDBOOL.			*
  *									*
  ************************************************************************
  */
@@ -41,7 +43,23 @@
 
 #include <portability.h>
 #include <sys/types.h>
-#include <stdbool.h>
+
+/* Standard GNU AC_HEADER_STDBOOL ifdeffery. */
+#ifdef HAVE_STDBOOL_H
+	# include <stdbool.h>
+#else
+	# ifndef HAVE__BOOL
+		# ifdef __cplusplus
+			typedef bool _Bool;
+		# else
+			# define _Bool signed char
+		# endif
+	# endif
+	# define bool _Bool
+	# define false 0
+	# define true 1
+	# define __bool_true_false_are_defined 1
+#endif
 
 #include <mgebuffer.h>
 

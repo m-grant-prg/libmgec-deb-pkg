@@ -104,6 +104,8 @@
 #				Revamp to new standard layout.		#
 #				Merge dev sub-project.			#
 #				Merge doc sub-project.			#
+# 31/05/2019	MG	1.1.2	Use standard macro AC_HEADER_STDBOOL 	#
+#				in preference to AC_CHECK_HEADERS.	#
 #									#
 #########################################################################
 
@@ -365,7 +367,8 @@ AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(syslog.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(stdbool.h, [], AC_MSG_ERROR(header not found))
+
+AC_HEADER_STDBOOL
 
 
 #################################
