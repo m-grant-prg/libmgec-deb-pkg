@@ -104,8 +104,9 @@
 #				Revamp to new standard layout.		#
 #				Merge dev sub-project.			#
 #				Merge doc sub-project.			#
-# 31/05/2019	MG	1.1.2	Use standard macro AC_HEADER_STDBOOL 	#
+# 01/06/2019	MG	1.1.2	Use standard macro AC_HEADER_STDBOOL 	#
 #				in preference to AC_CHECK_HEADERS.	#
+#				Add missing header checks.		#
 #									#
 #########################################################################
 
@@ -363,6 +364,8 @@ AC_MSG_NOTICE(checking for particular programs required at run time)
 AC_MSG_NOTICE(checking for header files required by this application)
 
 AC_CHECK_HEADERS(stdio.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(stdlib.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(string.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
