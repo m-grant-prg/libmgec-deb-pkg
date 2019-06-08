@@ -5,12 +5,12 @@
  *
  * Functions supporting the use of the mge_errno system.
  *
- * @author Copyright (C) 2017-2018  Mark Grant
+ * @author Copyright (C) 2017-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 19/05/2018_
+ * @version _v1.0.6 ==== 08/06/2019_
  */
 
 /* **********************************************************************
@@ -25,22 +25,20 @@
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
  * 19/05/2018	MG	1.0.5	Remove external declarations to		*
  *				non-public internal.h header file.	*
+ * 08/06/2019	MG	1.0.6	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
-#include <stdio.h>
-#include <string.h>
 #include <errno.h>
 #include <netdb.h>
+#include <stdio.h>
+#include <string.h>
 
-#include <mge-errno.h>
 #include "internal.h"
+#include <mge-errno.h>
 
-
-static char err_msg[80];	/**< Storage for 'unknown error' string. */
-
+static char err_msg[80]; /**< Storage for 'unknown error' string. */
 
 /**
  * Return a string describing the error number.
@@ -50,7 +48,7 @@ static char err_msg[80];	/**< Storage for 'unknown error' string. */
  */
 const char *mge_strerror(const int mge_err)
 {
-	if ((mge_err > (int) errno_desc_size) || (mge_err < 0)) {
+	if ((mge_err > (int)errno_desc_size) || (mge_err < 0)) {
 		sprintf(err_msg, "Unknown error %i", mge_err);
 		return err_msg;
 	}
@@ -62,3 +60,4 @@ const char *mge_strerror(const int mge_err)
 	else
 		return errno_desc[mge_err];
 }
+
