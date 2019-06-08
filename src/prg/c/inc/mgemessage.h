@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 31/05/2019_
+ * @version _v1.0.9 ==== 08/06/2019_
  */
 
 /* **********************************************************************
@@ -32,37 +32,35 @@
  *				be part of the API.			*
  * 31/05/2019	MG	1.0.8	Use standard GNU ifdeffery around use	*
  *				of AC_HEADER_STDBOOL.			*
+ * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
 #ifndef MGEMESSAGE_H
 #define MGEMESSAGE_H
-
 
 #include <portability.h>
 #include <sys/types.h>
 
 /* Standard GNU AC_HEADER_STDBOOL ifdeffery. */
 #ifdef HAVE_STDBOOL_H
-	# include <stdbool.h>
+	#include <stdbool.h>
 #else
-	# ifndef HAVE__BOOL
-		# ifdef __cplusplus
-			typedef bool _Bool;
-		# else
-			# define _Bool signed char
-		# endif
-	# endif
-	# define bool _Bool
-	# define false 0
-	# define true 1
-	# define __bool_true_false_are_defined 1
+	#ifndef HAVE__BOOL
+		#ifdef __cplusplus /* clang-format off */
+			typedef bool _Bool; /* clang-format on */
+		#else
+			#define _Bool signed char
+		#endif
+	#endif
+	#define bool _Bool
+	#define false 0
+	#define true 1
+	#define __bool_true_false_are_defined 1
 #endif
 
 #include <mgebuffer.h>
-
 
 BEGIN_C_DECLS
 
@@ -70,29 +68,24 @@ BEGIN_C_DECLS
  * Message object.
  */
 struct mgemessage {
-	char *message;		/**< The message buffer. */
-	size_t size;		/**< Size of message buffer. */
-	size_t next_free;	/**< Next free message location. */
-	bool complete;		/**< Is message a complete message. */
-	char terminator;	/**< Message delimmitter. */
-	char separator;		/**< Message element delimitter. */
-	int argc;		/**< Number of arguments to the message. */
-	char **argv;		/**< Message arguments. */
+	char *message;	  /**< The message buffer. */
+	size_t size;	  /**< Size of message buffer. */
+	size_t next_free; /**< Next free message location. */
+	bool complete;	  /**< Is message a complete message. */
+	char terminator;  /**< Message delimmitter. */
+	char separator;	  /**< Message element delimitter. */
+	int argc;	  /**< Number of arguments to the message. */
+	char **argv;	  /**< Message arguments. */
 };
 
 /**
  * mgemessage struct initialiser.
  */
-#define MGEMESSAGE_INIT(a, b) {	\
-	.message = NULL,	\
-	.size = 0,		\
-	.next_free = 0,		\
-	.complete = false,	\
-	.terminator = a,	\
-	.separator = b,		\
-	.argc = 0,		\
-	.argv = NULL		\
-}
+#define MGEMESSAGE_INIT(a, b)                                                  \
+	{                                                                      \
+		.message = NULL, .size = 0, .next_free = 0, .complete = false, \
+		.terminator = a, .separator = b, .argc = 0, .argv = NULL       \
+	}
 
 struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg);
 
@@ -101,10 +94,11 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg);
 struct mgemessage *deconstruct_msg(struct mgemessage *msg);
 
 void clear_msg(struct mgemessage *msg, const char terminator,
-	const char separator);
+	       const char separator);
 
 void print_msg(struct mgemessage *msg);
 
 END_C_DECLS
 
 #endif /* ndef MGEMESSAGE_H */
+

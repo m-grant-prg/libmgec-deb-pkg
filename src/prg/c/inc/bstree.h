@@ -5,12 +5,12 @@
  *
  * Header file for binary search trees in the libmgec shared library.
  *
- * @author Copyright (C) 2015-2018  Mark Grant
+ * @author Copyright (C) 2015-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.11 ==== 02/06/2018_
+ * @version _v1.0.12 ==== 08/06/2019_
  */
 
 /* **********************************************************************
@@ -34,55 +34,50 @@
  * 02/01/2018	MG	1.0.10	Move to new source directory structure.	*
  * 02/06/2018	MG	1.0.11	Add node and counter totals to the tree	*
  *				struct.					*
+ * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
 #ifndef BSTREE_H
 #define BSTREE_H
 
-
 #include <portability.h>
-
 
 BEGIN_C_DECLS
 
-
-#define BST_NODES_UNIQUE 1	/**< BST allows unique nodes only. */
-#define BST_NODES_DUPLICATES 0	/**< BST allows duplicate nodes. */
-
+#define BST_NODES_UNIQUE 1     /**< BST allows unique nodes only. */
+#define BST_NODES_DUPLICATES 0 /**< BST allows duplicate nodes. */
 
 /** Node coordinates for test tracing. */
 struct bstobjcoord {
-	void * object;	/**< The object. */
-	int count;	/**< The node counter. */
-	int xdir;	/**< The x coordinate. */
-	int ydir;	/**< The y coordinate. */
+	void *object; /**< The object. */
+	int count;    /**< The node counter. */
+	int xdir;     /**< The x coordinate. */
+	int ydir;     /**< The y coordinate. */
 };
 
 /** Binary search tree node. */
 struct bstreenode {
-	void *object;			/**< The object attached to the node. */
-	int count;			/**< The node counter. */
-	struct bstreenode *childless;	/**< Child node less than this. */
-	struct bstreenode *childgreater;/**< Child node greater than this. */
+	void *object;		      /**< The object attached to the node. */
+	int count;		      /**< The node counter. */
+	struct bstreenode *childless; /**< Child node less than this. */
+	struct bstreenode *childgreater; /**< Child node greater than this. */
 };
 
 /** Binary search tree. */
 struct bstree {
-	struct bstreenode *root;	/**< The root node of the tree. */
-	int unique;			/**< Uniqueness of nodes. */
-	int count_total;		/**< Sum of all node counters. */
-	int node_total;			/**< Number of nodes in the tree. */
+	struct bstreenode *root; /**< The root node of the tree. */
+	int unique;		 /**< Uniqueness of nodes. */
+	int count_total;	 /**< Sum of all node counters. */
+	int node_total;		 /**< Number of nodes in the tree. */
 	int (*comp)(const void *, const void *); /**< Comparison function. */
 };
-
 
 struct bstree *cre_bst(int unique, int (*comp)(const void *, const void *));
 
 struct bstree *add_bst_node(struct bstree *tree, const void *object,
-		size_t objsize);
+			    size_t objsize);
 
 void *find_bst_node(const struct bstree *tree, const void *searchobj);
 
@@ -93,16 +88,16 @@ void *find_next_bst_node(const struct bstree *tree, const void *searchobj);
 void *find_prev_bst_node(const struct bstree *tree, const void *searchobj);
 
 void *upd_bst_node(const struct bstree *tree, const void *updobj,
-		size_t objsize);
+		   size_t objsize);
 
 struct bstree *del_bst_node(struct bstree *tree, const void *searchobj);
 
 struct bstree *del_bst(struct bstree *tree);
 
 struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
-		struct bstobjcoord *searchobj);
-
+					     struct bstobjcoord *searchobj);
 
 END_C_DECLS
 
 #endif /* ndef BSTREE_H */
+

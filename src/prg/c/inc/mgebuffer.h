@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 25/05/2019_
+ * @version _v1.0.9 ==== 08/06/2019_
  */
 
 /* **********************************************************************
@@ -33,14 +33,13 @@
  *				be part of the API.			*
  * 25/05/2019	MG	1.0.8	Correct source buffer offset type to	*
  *				unsigned.				*
+ * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
 #ifndef MGEBUFFER_H
 #define MGEBUFFER_H
-
 
 #include <portability.h>
 #include <sys/types.h>
@@ -51,24 +50,22 @@ BEGIN_C_DECLS
  * A buffer object.
  */
 struct mgebuffer {
-	char *buffer;		/**< Buffer storage. */
-	size_t size;		/**< Size of the buffer storage area. */
-	size_t proc_next;	/**< Next buffer location for processing. */
-	size_t next_free;	/**< Next free buffer location. */
+	char *buffer;	  /**< Buffer storage. */
+	size_t size;	  /**< Size of the buffer storage area. */
+	size_t proc_next; /**< Next buffer location for processing. */
+	size_t next_free; /**< Next free buffer location. */
 };
 
 /**
  * A buffer object initialisation macro.
  */
-#define MGEBUFFER_INIT {	\
-	.buffer = NULL,		\
-	.size = 0,		\
-	.proc_next = 0,		\
-	.next_free = 0		\
-}
+#define MGEBUFFER_INIT                                                    \
+	{                                                                 \
+		.buffer = NULL, .size = 0, .proc_next = 0, .next_free = 0 \
+	}
 
 struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
-	struct mgebuffer *m_buf);
+			     struct mgebuffer *m_buf);
 
 struct mgebuffer *trim_buf(struct mgebuffer *msg_buf);
 
@@ -77,3 +74,4 @@ void print_buf(struct mgebuffer *m_buf);
 END_C_DECLS
 
 #endif /* ndef MGEBUFFER_H */
+
