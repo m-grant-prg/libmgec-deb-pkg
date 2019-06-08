@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.11 ==== 08/05/2019_
+ * @version _v1.0.12 ==== 08/06/2019_
  */
 
 /* **********************************************************************
@@ -55,23 +55,23 @@
  * 09/09/2018	MG	1.0.10	Include new internal.h			*
  * 08/05/2019	MG	1.0.11	x in deconstruct_msg is assigned by and	*
  *				used as a size_t so declare as such.	*
+ * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
+#include <errno.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 #include <syslog.h>
-#include <stdbool.h>
 
+#include "internal.h"
 #include <mge-errno.h>
 #include <mgebuffer.h>
 #include <mgememory.h>
 #include <mgemessage.h>
-#include "internal.h"
 
 /**
  * Number of arguments in the message.
@@ -148,9 +148,9 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 			msg->size = t_msg_size;
 		}
 		if ((*(buf->buffer + t_buf_proc_next) != '\n')
-			&& (*(buf->buffer + t_buf_proc_next) != '\r')) {
+		    && (*(buf->buffer + t_buf_proc_next) != '\r')) {
 			*(msg->message + msg->next_free)
-					= *(buf->buffer + t_buf_proc_next);
+				= *(buf->buffer + t_buf_proc_next);
 			msg->next_free++;
 		}
 		t_buf_proc_next++;
@@ -181,11 +181,11 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 		return NULL;
 	}
 
-	sprintf(toks,"%c%c", msg->separator, msg->terminator);
+	sprintf(toks, "%c%c", msg->separator, msg->terminator);
 	strcpy(msg_tmp, msg->message);
 	start_tok = msg_tmp;
 
-	msg->argv = malloc((size_t) (args * (int) sizeof(char *)));
+	msg->argv = malloc((size_t)(args * (int)sizeof(char *)));
 	if (msg->argv == NULL) {
 		mge_errno = MGE_ERRNO;
 		sav_errno = errno;
@@ -203,7 +203,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 		memcpy(*(msg->argv + msg->argc), nxt_tok, x);
 		(msg->argc)++;
 		nxt_tok = strtok(NULL, toks);
-		}
+	}
 	return msg;
 }
 
@@ -215,7 +215,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
  * @param separator The message element delimitter to use.
  */
 void clear_msg(struct mgemessage *msg, const char terminator,
-	const char separator)
+	       const char separator)
 {
 	int i;
 
@@ -224,9 +224,14 @@ void clear_msg(struct mgemessage *msg, const char terminator,
 		free(*(msg->argv + i));
 	free(msg->argv);
 
-	*msg = (struct mgemessage) { .message = NULL, .size = 0, .next_free = 0,
-		.complete = false, .terminator = terminator,
-		.separator = separator, .argc = 0, .argv = NULL };
+	*msg = (struct mgemessage){ .message = NULL,
+				    .size = 0,
+				    .next_free = 0,
+				    .complete = false,
+				    .terminator = terminator,
+				    .separator = separator,
+				    .argc = 0,
+				    .argv = NULL };
 }
 
 /**
@@ -240,7 +245,7 @@ void print_msg(struct mgemessage *msg)
 
 	printf("Print message struct:-\n");
 	printf("\tEntire message:\t%s\n", msg->message);
-	printf("\tSize:\t\t%i\n", (int) msg->size);
+	printf("\tSize:\t\t%i\n", (int)msg->size);
 	printf("\tnext_free:\t\t%zu\n", msg->next_free);
 	printf("\tComplete:\t%i\n", msg->complete);
 	printf("\tTerminator:\t%c\n", msg->terminator);
@@ -249,3 +254,4 @@ void print_msg(struct mgemessage *msg)
 	for (i = 0; i < msg->argc; i++)
 		printf("\tArgument %i is %s\n", i, *(msg->argv + i));
 }
+

@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 25/05/2019_
+ * @version _v1.0.10 ==== 08/06/2019_
  */
 
 /* **********************************************************************
@@ -39,22 +39,21 @@
  * 09/09/2018	MG	1.0.8	Include new internal.h			*
  * 25/05/2019	MG	1.0.9	Correct source buffer offset type to	*
  *				unsigned.				*
+ * 08/06/2019	MG	1.0.10	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-#include <errno.h>
 
+#include "internal.h"
 #include <mge-errno.h>
 #include <mgebuffer.h>
 #include <mgememory.h>
-#include "internal.h"
-
 
 /**
  * Concatenate the used portion of a flat buffer into a buffer object.
@@ -65,7 +64,7 @@
  * @return The processed buffer object. NULL on error.
  */
 struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
-	struct mgebuffer *m_buf)
+			     struct mgebuffer *m_buf)
 {
 	size_t t;
 	size_t x = 0;
@@ -122,9 +121,10 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 void print_buf(struct mgebuffer *m_buf)
 {
 	printf("Print buffer struct:-\n");
-	printf("\tEntire buffer:\t%.*s\n", (int) m_buf->next_free,
-		m_buf->buffer);
+	printf("\tEntire buffer:\t%.*s\n", (int)m_buf->next_free,
+	       m_buf->buffer);
 	printf("\tSize:\t\t%zu\n", m_buf->size);
 	printf("\tproc_next:\t\t%zu\n", m_buf->proc_next);
 	printf("\tnext_free:\t\t%zu\n", m_buf->next_free);
 }
+
