@@ -73,9 +73,7 @@ struct dllistnode *add_dll_node(struct dllistnode *currentnode,
 
 	if (currentnode == NULL) {
 		/* A new object */
-		if ((currentnode
-		     = (struct dllistnode *)malloc(sizeof(struct dllistnode)))
-		    != NULL) {
+		if ((currentnode = malloc(sizeof(struct dllistnode))) != NULL) {
 			if ((currentnode->object = malloc(objsize)) != NULL) {
 				/* Copy object and initialise node. */
 				currentnode->object = memcpy(

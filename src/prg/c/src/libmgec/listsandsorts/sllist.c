@@ -69,9 +69,7 @@ struct sllistnode *add_sll_node(struct sllistnode *currentnode,
 
 	if (currentnode == NULL) {
 		/* A new object */
-		if ((currentnode
-		     = (struct sllistnode *)malloc(sizeof(struct sllistnode)))
-		    != NULL) {
+		if ((currentnode = malloc(sizeof(struct sllistnode))) != NULL) {
 			if ((currentnode->object = malloc(objsize)) != NULL) {
 				/* Copy object and initialise node. */
 				currentnode->object = memcpy(
