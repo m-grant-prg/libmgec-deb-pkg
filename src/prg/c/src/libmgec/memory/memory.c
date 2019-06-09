@@ -5,12 +5,12 @@
  *
  * All memory related support functions.
  *
- * @author Copyright (C) 2017-2018  Mark Grant
+ * @author Copyright (C) 2017-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 27/03/2018_
+ * @version _v1.0.6 ==== 09/06/2019_
  */
 
 /* **********************************************************************
@@ -27,20 +27,19 @@
  *				before code, (fixes sparse warnings).	*
  *				Add mgememory.h for prototypes, (fixes	*
  *				sparse warning).			*
+ * 09/06/2019	MG	1.0.6	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 #include <syslog.h>
 
 #include <mge-errno.h>
 #include <mgememory.h>
-
 
 /**
  * Wrap realloc to include error handling.
@@ -60,8 +59,9 @@ char *mg_realloc(char *mem_ptr, const size_t mem_sz)
 	if (new_ptr == NULL) {
 		mge_errno = MGE_ERRNO;
 		sav_errno = errno;
-		syslog((int) (LOG_USER | LOG_NOTICE), "ERROR on realloc - %s",
-			strerror(sav_errno));
+		syslog((int)(LOG_USER | LOG_NOTICE), "ERROR on realloc - %s",
+		       strerror(sav_errno));
 	}
 	return new_ptr;
 }
+
