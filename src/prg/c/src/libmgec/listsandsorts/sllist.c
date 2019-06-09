@@ -5,12 +5,12 @@
  *
  * Build, manipulate and traverse functionality for singly linked lists.
  *
- * @author Copyright (C) 2016-2018  Mark Grant
+ * @author Copyright (C) 2016-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 19/05/2018_
+ * @version _v1.0.9 ==== 09/06/2019_
  */
 
 /* **********************************************************************
@@ -32,19 +32,21 @@
  * 09/11/2017	MG	1.0.6	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.7	Move to new source directory structure.	*
  * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
+ * 09/06/2019	MG	1.0.9	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
-#include <mge-errno.h>
+/* This must be included before internal.h */
 #include <sllist.h>
-#include "internal.h"
 
+#include "internal.h"
+#include <mge-errno.h>
 
 /**
  * Add a singly linked list node.
@@ -65,31 +67,31 @@ struct sllistnode *add_sll_node(struct sllistnode *currentnode,
 		return NULL;
 	}
 
-	if (currentnode == NULL) { // A new object.
-		if ((currentnode =
-			(struct sllistnode *) malloc(sizeof(struct sllistnode)))
-			!= NULL) {
+	if (currentnode == NULL) {
+		/* A new object */
+		if ((currentnode
+		     = (struct sllistnode *)malloc(sizeof(struct sllistnode)))
+		    != NULL) {
 			if ((currentnode->object = malloc(objsize)) != NULL) {
 				/* Copy object and initialise node. */
-				currentnode->object =
-					memcpy(currentnode->object, object,
-						objsize);
+				currentnode->object = memcpy(
+					currentnode->object, object, objsize);
 				currentnode->nextnode = NULL;
-			}
-			else { // Cannot malloc object.
+			} else {
+				/* Cannot malloc object */
 				mge_errno = MGE_ERRNO;
 				sav_errno = errno;
 				free(currentnode);
 				currentnode = NULL;
 			}
-		}
-		else { // Cannot malloc node.
+		} else {
+			/* Cannot malloc node */
 			mge_errno = MGE_ERRNO;
 			sav_errno = errno;
 		}
-	}
-	else currentnode->nextnode = add_sll_node(currentnode->nextnode,
-							object, objsize);
+	} else
+		currentnode->nextnode
+			= add_sll_node(currentnode->nextnode, object, objsize);
 	return currentnode;
 }
 
@@ -133,3 +135,4 @@ static void free_sll_node(struct sllistnode *currentnode)
 	free(currentnode->object);
 	free(currentnode);
 }
+

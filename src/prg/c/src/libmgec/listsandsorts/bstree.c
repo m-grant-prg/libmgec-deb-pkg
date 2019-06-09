@@ -15,12 +15,12 @@
  *
  * _In fact, the same as strcmp()._
  *
- * @author Copyright (C) 2015-2018  Mark Grant
+ * @author Copyright (C) 2015-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.1.6 ==== 02/06/2018_
+ * @version _v1.1.7 ==== 09/06/2019_
  */
 
 /* **********************************************************************
@@ -78,20 +78,21 @@
  * 12/05/2018	MG	1.1.5	Get_ functions now return -mge_errno	*
  *				instead of -1.				*
  * 02/06/2018	MG	1.1.6	Add counter and node totals for a tree.	*
+ * 09/06/2019	MG	1.1.7	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
+/* This must be included before internal.h */
 #include <bstree.h>
+
 #include "internal.h"
 #include <mge-errno.h>
-
 
 /**
  * Create a binary search tree.
@@ -162,7 +163,7 @@ struct bstree *cre_bst(int unique, int (*comp)(const void *, const void *))
  * @return A pointer to the binary tree 'tree' or NULL on error.
  */
 struct bstree *add_bst_node(struct bstree *tree, const void *object,
-		size_t objsize)
+			    size_t objsize)
 {
 	struct bstreenode *addnode;
 
@@ -190,7 +191,8 @@ struct bstree *add_bst_node(struct bstree *tree, const void *object,
  * Errors - mge_errno will be set as required.
  */
 static struct bstreenode *add_node(struct bstreenode *currentnode,
-		const void *object, size_t objsize, struct bstree *tree)
+				   const void *object, size_t objsize,
+				   struct bstree *tree)
 {
 	struct bstreenode *tmp_node;
 
@@ -201,68 +203,68 @@ static struct bstreenode *add_node(struct bstreenode *currentnode,
 		return NULL;
 	}
 
-	if (currentnode == NULL) { // A new object.
+	if (currentnode == NULL) {
+		/* A new object */
 		currentnode = malloc(sizeof(struct bstreenode));
 		if (currentnode != NULL) {
 			currentnode->object = malloc(objsize);
 			if (currentnode->object != NULL) {
 				/* Copy object and initialise node. */
-				currentnode->object =
-					memcpy(currentnode->object, object,
-						objsize);
+				currentnode->object = memcpy(
+					currentnode->object, object, objsize);
 				currentnode->count = 1;
-				currentnode->childless =
-					currentnode->childgreater = NULL;
+				currentnode->childless
+					= currentnode->childgreater = NULL;
 				tree->count_total++;
 				tree->node_total++;
 				return currentnode;
-			}
-			else { // Cannot malloc object.
+			} else {
+				/* Cannot malloc object */
 				mge_errno = MGE_ERRNO;
 				sav_errno = errno;
 				free(currentnode);
 				return NULL;
 			}
-		}
-		else { // Cannot malloc node.
+		} else {
+			/* Cannot malloc node */
 			mge_errno = MGE_ERRNO;
 			sav_errno = errno;
 			return NULL;
 		}
 	}
 
-	if ((*(tree->comp))(object, currentnode->object) == 0) { // Node exists.
+	if ((*(tree->comp))(object, currentnode->object) == 0) {
+		/* Node exists */
 		if (tree->unique) {
 			mge_errno = MGE_DUPLICATE_NODE;
 			return NULL;
-		}
-		else {
+		} else {
 			(currentnode->count)++;
 			tree->count_total++;
 			return currentnode;
 		}
 	}
 
-	if ((*(tree->comp))(object, currentnode->object) < 0) { // Look lower
+	if ((*(tree->comp))(object, currentnode->object) < 0) {
+		/* Look lower */
 		tmp_node = add_node(currentnode->childless, object, objsize,
-				tree);
+				    tree);
 		if (tmp_node != NULL) {
 			currentnode->childless = tmp_node;
 			return currentnode;
-		}
-		else {
+		} else {
 			return NULL;
 		}
 	}
 
-	if ((*(tree->comp))(object, currentnode->object) > 0) { // Look higher.
-		tmp_node = add_node(currentnode->childgreater, object,
-				objsize, tree);
+	if ((*(tree->comp))(object, currentnode->object) > 0) {
+		/* Look higher */
+		tmp_node = add_node(currentnode->childgreater, object, objsize,
+				    tree);
 		if (tmp_node != NULL) {
 			currentnode->childgreater = tmp_node;
 			return currentnode;
-		}
-		else {
+		} else {
 			return NULL;
 		}
 	}
@@ -300,7 +302,8 @@ void *find_bst_node(const struct bstree *tree, const void *searchobj)
  * Errors - mge_errno will be set as required.
  */
 static void *find_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *))
+		       const void *searchobj,
+		       int (*comp)(const void *, const void *))
 {
 	void *foundobj = NULL;
 
@@ -316,14 +319,11 @@ static void *find_node(const struct bstreenode *currentnode,
 
 	if ((*comp)(searchobj, currentnode->object) == 0) {
 		foundobj = currentnode->object;
-	}
-	else if ((*comp)(searchobj, currentnode->object) < 0) {
-		foundobj = find_node(currentnode->childless,
-			searchobj, comp);
-	}
-	else if ((*comp)(searchobj, currentnode->object) > 0) {
-		foundobj = find_node(currentnode->childgreater,
-			searchobj, comp);
+	} else if ((*comp)(searchobj, currentnode->object) < 0) {
+		foundobj = find_node(currentnode->childless, searchobj, comp);
+	} else if ((*comp)(searchobj, currentnode->object) > 0) {
+		foundobj
+			= find_node(currentnode->childgreater, searchobj, comp);
 	}
 	return foundobj;
 }
@@ -359,7 +359,8 @@ int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
  * Errors - mge_errno will be set as required.
  */
 static int get_counter_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *))
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *))
 {
 	int count = 0;
 
@@ -375,14 +376,12 @@ static int get_counter_node(const struct bstreenode *currentnode,
 
 	if ((*comp)(searchobj, currentnode->object) == 0) {
 		count = currentnode->count;
-	}
-	else if ((*comp)(searchobj, currentnode->object) < 0) {
-		count = get_counter_node(currentnode->childless,
-			searchobj, comp);
-	}
-	else if ((*comp)(searchobj, currentnode->object) > 0) {
-		count = get_counter_node(currentnode->childgreater,
-			searchobj, comp);
+	} else if ((*comp)(searchobj, currentnode->object) < 0) {
+		count = get_counter_node(currentnode->childless, searchobj,
+					 comp);
+	} else if ((*comp)(searchobj, currentnode->object) > 0) {
+		count = get_counter_node(currentnode->childgreater, searchobj,
+					 comp);
 	}
 	return count;
 }
@@ -418,7 +417,8 @@ void *find_next_bst_node(const struct bstree *tree, const void *searchobj)
  * Errors - mge_errno will be set as required.
  */
 static void *find_next_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *))
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *))
 {
 	void *nextobj = NULL;
 	void *tmpobj = NULL;
@@ -435,14 +435,13 @@ static void *find_next_node(const struct bstreenode *currentnode,
 
 	if ((*comp)(searchobj, currentnode->object) < 0) {
 		nextobj = currentnode->object;
-		tmpobj = find_next_node(currentnode->childless,
-						searchobj, comp);
+		tmpobj = find_next_node(currentnode->childless, searchobj,
+					comp);
 		if (tmpobj != NULL)
 			nextobj = tmpobj;
-	}
-	else if ((*comp)(searchobj, currentnode->object) >= 0) {
-		tmpobj = find_next_node(currentnode->childgreater,
-						searchobj, comp);
+	} else if ((*comp)(searchobj, currentnode->object) >= 0) {
+		tmpobj = find_next_node(currentnode->childgreater, searchobj,
+					comp);
 		if (tmpobj != NULL)
 			nextobj = tmpobj;
 	}
@@ -480,7 +479,8 @@ void *find_prev_bst_node(const struct bstree *tree, const void *searchobj)
  * Errors - mge_errno will be set as required.
  */
 static void *find_prev_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *))
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *))
 {
 	void *prevobj = NULL;
 	void *tmpobj = NULL;
@@ -497,14 +497,13 @@ static void *find_prev_node(const struct bstreenode *currentnode,
 
 	if ((*comp)(searchobj, currentnode->object) > 0) {
 		prevobj = currentnode->object;
-		tmpobj = find_prev_node(currentnode->childgreater,
-						searchobj, comp);
+		tmpobj = find_prev_node(currentnode->childgreater, searchobj,
+					comp);
 		if (tmpobj != NULL)
 			prevobj = tmpobj;
-	}
-	else if ((*comp)(searchobj, currentnode->object) <= 0) {
+	} else if ((*comp)(searchobj, currentnode->object) <= 0) {
 		tmpobj = find_prev_node(currentnode->childless, searchobj,
-						comp);
+					comp);
 		if (tmpobj != NULL)
 			prevobj = tmpobj;
 	}
@@ -523,7 +522,7 @@ static void *find_prev_node(const struct bstreenode *currentnode,
  * @return A pointer to the new object, or, NULL if not found or error.
  */
 void *upd_bst_node(const struct bstree *tree, const void *updobj,
-		size_t objsize)
+		   size_t objsize)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
@@ -542,7 +541,7 @@ void *upd_bst_node(const struct bstree *tree, const void *updobj,
  * Errors - mge_errno will be set as required.
  */
 static void *upd_node(struct bstreenode *currentnode, const void *updobj,
-		size_t objsize, int (*comp)(const void *, const void *))
+		      size_t objsize, int (*comp)(const void *, const void *))
 {
 	void *newobj = NULL;
 
@@ -561,19 +560,16 @@ static void *upd_node(struct bstreenode *currentnode, const void *updobj,
 		free(currentnode->object);
 		if ((currentnode->object = malloc(objsize)) != NULL) {
 			newobj = memcpy(currentnode->object, updobj, objsize);
-			}
-			else {
-				mge_errno = MGE_ERRNO;
-				sav_errno = errno;
-			}
-	}
-	else if ((*comp)(updobj, currentnode->object) < 0) {
-		newobj = upd_node(currentnode->childless,
-			updobj, objsize, comp);
-	}
-	else if ((*comp)(updobj, currentnode->object) > 0) {
-		newobj = upd_node(currentnode->childgreater,
-			updobj, objsize, comp);
+		} else {
+			mge_errno = MGE_ERRNO;
+			sav_errno = errno;
+		}
+	} else if ((*comp)(updobj, currentnode->object) < 0) {
+		newobj = upd_node(currentnode->childless, updobj, objsize,
+				  comp);
+	} else if ((*comp)(updobj, currentnode->object) > 0) {
+		newobj = upd_node(currentnode->childgreater, updobj, objsize,
+				  comp);
 	}
 	return newobj;
 }
@@ -621,7 +617,7 @@ struct bstree *del_bst_node(struct bstree *tree, const void *searchobj)
  * Errors - mge_errno will be 0 on sucess or set as required.
  */
 static struct bstreenode *del_node(struct bstreenode *currentnode,
-		const void *searchobj, struct bstree *tree)
+				   const void *searchobj, struct bstree *tree)
 {
 	struct bstreenode *p1, *p2;
 
@@ -636,14 +632,13 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 		return NULL;
 	}
 
-
 	/*
 	 * This is the node to delete.
 	 * The returned value will be attached to the parent node child less or
 	 * greater depending on which branch we are descending.
 	 */
 	if ((*(tree->comp))(searchobj, currentnode->object) == 0) {
-		mge_errno = 0; // The node to delete exists.
+		mge_errno = 0; /* The node to delete exists */
 
 		/*
 		 * If the counter is > 1 then duplicates are allowed and all
@@ -661,31 +656,30 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 			tree->count_total--;
 			tree->node_total--;
 			return NULL;
-		}
-		else if (currentnode->childless == NULL) {
+		} else if (currentnode->childless == NULL) {
 			/* Has only a greater child. */
 			p1 = currentnode->childgreater;
 			free_bst_node(currentnode);
 			tree->count_total--;
 			tree->node_total--;
 			return p1;
-		}
-		else if (currentnode->childgreater == NULL) {
+		} else if (currentnode->childgreater == NULL) {
 			/* Has only a lesser child. */
 			p1 = currentnode->childless;
 			free_bst_node(currentnode);
 			tree->count_total--;
 			tree->node_total--;
 			return p1;
-		}
-		else { // Has both children.
+		} else {
+			/* Has both children */
 			p1 = currentnode->childless;
 			p2 = currentnode->childless;
 			/*
 			 * From lesser child descend the greater branch until an
 			 * empty child greater.
 			 */
-			while (p2->childgreater) p2 = p2->childgreater;
+			while (p2->childgreater)
+				p2 = p2->childgreater;
 			/*
 			 * Attach the orphan child greater into the empty slot.
 			 */
@@ -698,12 +692,11 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 	}
 	/* If not a match, descend the appropriate branch. */
 	if ((*(tree->comp))(searchobj, currentnode->object) < 0)
-		currentnode->childless = del_node(currentnode->childless,
-							searchobj, tree);
+		currentnode->childless
+			= del_node(currentnode->childless, searchobj, tree);
 	else
-		currentnode->childgreater =
-			del_node(currentnode->childgreater, searchobj,
-					tree);
+		currentnode->childgreater
+			= del_node(currentnode->childgreater, searchobj, tree);
 
 	return currentnode;
 }
@@ -735,7 +728,7 @@ static struct bstreenode *free_bstree(struct bstreenode *currentnode)
 	if (currentnode->childless != NULL)
 		free_bstree(currentnode->childless);
 
-	if (currentnode->childgreater !=NULL)
+	if (currentnode->childgreater != NULL)
 		free_bstree(currentnode->childgreater);
 
 	return free_bst_node(currentnode);
@@ -767,7 +760,7 @@ static struct bstreenode *free_bst_node(struct bstreenode *currentnode)
  * found. Returns NULL on error.
  */
 struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
-		struct bstobjcoord *searchobj)
+					     struct bstobjcoord *searchobj)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
@@ -789,10 +782,10 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
  * found. Returns NULL on error.
  * Errors - NULL will be returned and mge_errno will be set as required.
  */
-static struct bstobjcoord *find_next_node_trace(
-		const struct bstreenode *currentnode,
-		struct bstobjcoord *searchobj,
-		int (*comp)(const void *, const void *))
+static struct bstobjcoord *
+find_next_node_trace(const struct bstreenode *currentnode,
+		     struct bstobjcoord *searchobj,
+		     int (*comp)(const void *, const void *))
 {
 	static int x = 0, y = 0;
 	struct bstobjcoord *nextcoord = searchobj;
@@ -816,7 +809,7 @@ static struct bstobjcoord *find_next_node_trace(
 		tmpcoord.xdir = x--;
 		tmpcoord.ydir = y++;
 		nextcoord = find_next_node_trace(currentnode->childless,
-						searchobj, comp);
+						 searchobj, comp);
 
 		if (nextcoord->object == NULL) {
 			nextcoord->object = tmpcoord.object;
@@ -824,12 +817,11 @@ static struct bstobjcoord *find_next_node_trace(
 			nextcoord->xdir = tmpcoord.xdir;
 			nextcoord->ydir = tmpcoord.ydir;
 		}
-	}
-	else if ((*comp)(searchobj->object, currentnode->object) >= 0) {
+	} else if ((*comp)(searchobj->object, currentnode->object) >= 0) {
 		tmpcoord.xdir = x++;
 		tmpcoord.ydir = y++;
 		nextcoord = find_next_node_trace(currentnode->childgreater,
-						searchobj, comp);
+						 searchobj, comp);
 		if (nextcoord->object == NULL) {
 			nextcoord->object = tmpcoord.object;
 			nextcoord->count = tmpcoord.count;
@@ -840,3 +832,4 @@ static struct bstobjcoord *find_next_node_trace(
 	x = y = 0;
 	return nextcoord;
 }
+

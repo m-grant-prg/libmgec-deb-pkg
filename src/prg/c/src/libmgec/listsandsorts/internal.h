@@ -4,12 +4,12 @@
  * Non-public header file for lists and sorts in the libmgec shared library.
  * No distribution required.
  *
- * @author Copyright (C) 2015-2018  Mark Grant
+ * @author Copyright (C) 2015-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 02/06/2018_
+ * @version _v1.0.8 ==== 09/06/2019_
  */
 
 /* **********************************************************************
@@ -26,40 +26,41 @@
  * 20/05/2018	MG	1.0.6	Standardise on define name format.	*
  * 02/06/2018	MG	1.0.7	Add support for counter and node totals	*
  *				for a tree.				*
+ * 09/06/2019	MG	1.0.8	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
-
 #include <portability.h>
-
 
 BEGIN_C_DECLS
 
-
 #ifdef BSTREE_H
-
-#ifndef BSTREE_INTERNAL_H
-#define BSTREE_INTERNAL_H
+	#ifndef BSTREE_INTERNAL_H
+		#define BSTREE_INTERNAL_H
 
 static struct bstreenode *add_node(struct bstreenode *currentnode,
 				   const void *object, size_t objsize,
 				   struct bstree *tree);
 
 static void *find_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *));
+		       const void *searchobj,
+		       int (*comp)(const void *, const void *));
 
 static int get_counter_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *));
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
 
 static void *find_next_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *));
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
 
 static void *find_prev_node(const struct bstreenode *currentnode,
-		const void *searchobj, int (*comp)(const void *, const void *));
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
 
 static void *upd_node(struct bstreenode *currentnode, const void *updobj,
-		size_t objsize, int (*comp)(const void *, const void *));
+		      size_t objsize, int (*comp)(const void *, const void *));
 
 static struct bstreenode *del_node(struct bstreenode *currentnode,
 				   const void *searchobj, struct bstree *tree);
@@ -68,35 +69,31 @@ static struct bstreenode *free_bstree(struct bstreenode *currentnode);
 
 static struct bstreenode *free_bst_node(struct bstreenode *currentnode);
 
-static struct bstobjcoord *find_next_node_trace(
-		const struct bstreenode *currentnode,
-		struct bstobjcoord *searchobj,
-		int (*comp)(const void *, const void *));
+static struct bstobjcoord *
+find_next_node_trace(const struct bstreenode *currentnode,
+		     struct bstobjcoord *searchobj,
+		     int (*comp)(const void *, const void *));
 
-#endif /* ndef BSTREE_INTERNAL_H */
-#endif /* def BSTREE_H */
-
+	#endif /* ndef BSTREE_INTERNAL_H */
+#endif	       /* def BSTREE_H */
 
 #ifdef DLLIST_H
-
-#ifndef DLLIST_INTERNAL_H
-#define DLLIST_INTERNAL_H
+	#ifndef DLLIST_INTERNAL_H
+		#define DLLIST_INTERNAL_H
 
 static void free_dll_node(struct dllistnode *currentnode);
 
-#endif /* ndef DLLIST_INTERNAL_H */
-#endif /* def DLLIST_H */
-
+	#endif /* ndef DLLIST_INTERNAL_H */
+#endif	       /* def DLLIST_H */
 
 #ifdef SLLIST_H
-
-#ifndef SLLIST_INTERNAL_H
-#define SLLIST_INTERNAL_H
+	#ifndef SLLIST_INTERNAL_H
+		#define SLLIST_INTERNAL_H
 
 static void free_sll_node(struct sllistnode *currentnode);
 
-#endif /* ndef SLLIST_INTERNAL_H */
-#endif /* def SLLIST_H */
-
+	#endif /* ndef SLLIST_INTERNAL_H */
+#endif	       /* def SLLIST_H */
 
 END_C_DECLS
+
