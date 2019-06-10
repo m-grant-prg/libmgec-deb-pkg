@@ -34,6 +34,8 @@
  * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
  * 10/06/2019	MG	1.0.9	clang-format coding style changes.	*
  *				Improve code legibility.		*
+ *				Extract find_next_sll_node to header 	*
+ *				file to make static inline.		*
  *									*
  ************************************************************************
  */
@@ -96,17 +98,6 @@ node_fail:
 	mge_errno = MGE_ERRNO;
 	sav_errno = errno;
 	return NULL;
-}
-
-/**
- * Find the next node in the list.
- * @param currentnode The current node.
- * @return A pointer to the next node found in the list, or NULL if no
- * subsequent node exists.
- */
-struct sllistnode *find_next_sll_node(struct sllistnode *currentnode)
-{
-	return currentnode->nextnode;
 }
 
 /**
