@@ -3,7 +3,7 @@ find_next_sll_node - Find the next node in a single linked list.
 SYNOPSIS
 	#include <sllist.h>
 
-	struct sllistnode *find_next_sll_node(
+	static inline struct sllistnode *find_next_sll_node(
 					struct sllistnode *currentnode);
 
 DESCRIPTION
@@ -63,7 +63,7 @@ in sllist.h, is shown below:-
 
 	struct sllistnode {
 		void *object;
-		struct sllistnode *nextnode;
+		struct sllistnode *next;
 	};
 
 Each node in the linked list has an object as payload. It can be any form of
@@ -74,6 +74,8 @@ This single linked list implementation is supported by the following functions:-
 add_sll_node() - add a node to the end of a single linked list.
 
 find_next_sll_node() - find the next node after the supplied node.
+
+for_each_sll_node() - macro iterating over the list.
 
 free_sllist() - Delete the entire single linked list.
 AUTHOR
@@ -91,4 +93,5 @@ This is free software: you are free to change and redistribute it.
 .br
 There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
-add_sll_node(3) free_sllist(3) mge_strerror(3)
+add_sll_node(3) for_each_sll_node(3) free_sllist(3) mge_strerror(3)
+

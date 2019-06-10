@@ -29,11 +29,12 @@
 # 02/01/2018	MG	1.0.5	Move to new source directory structure.	#
 # 10/05/2019	MG	1.0.6	Remove shebang.				#
 #				Merge into one project.			#
+# 10/06/2019	MG	1.0.7	Add for_each_sll_node.3 man page.	#
 #									#
 #########################################################################
 
 
-add_sll_node.3 find_next_sll_node.3 free_sllist.3: Makefile
+add_sll_node.3 find_next_sll_node.3 for_each_sll_node.3 free_sllist.3: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -54,12 +55,15 @@ add_sll_node.3 find_next_sll_node.3 free_sllist.3: Makefile
 
 add_sll_node.3: $(srcdir)/add_sll_node.3.man.in
 find_next_sll_node.3: $(srcdir)/find_next_sll_node.3.man.in
+for_each_sll_node.3: $(srcdir)/for_each_sll_node.3.man.in
 free_sllist.3: $(srcdir)/free_sllist.3.man.in
 
-man_MANS = add_sll_node.3 find_next_sll_node.3 free_sllist.3
+man_MANS = add_sll_node.3 find_next_sll_node.3 for_each_sll_node.3 free_sllist.3
 
 EXTRA_DIST = $(srcdir)/add_sll_node.3.man.in \
-	$(srcdir)/find_next_sll_node.3.man.in $(srcdir)/free_sllist.3.man.in
+	$(srcdir)/find_next_sll_node.3.man.in \
+	$(srcdir)/for_each_sll_node.3.man.in $(srcdir)/free_sllist.3.man.in
 
-CLEANFILES = *.tmp add_sll_node.3 find_next_sll_node.3 free_sllist.3
+CLEANFILES = *.tmp add_sll_node.3 find_next_sll_node.3 for_each_sll_node.3 \
+		free_sllist.3
 

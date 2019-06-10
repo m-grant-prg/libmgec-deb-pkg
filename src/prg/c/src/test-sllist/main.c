@@ -98,10 +98,9 @@ void printlist(struct sllistnode *root)
 
 	printf("Linked List:-\t");
 
-	while (currentnode != NULL) {
+	for_each_sll_node(currentnode, root) {
 		pnode = currentnode->object;
 		printf("%s ", pnode->key);
-		currentnode = find_next_sll_node(currentnode);
 	}
 	printf("\n");
 }

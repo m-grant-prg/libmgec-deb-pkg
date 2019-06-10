@@ -78,12 +78,12 @@ DisableFormat: false
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: false
 
-# Taken from:
-#   git grep -h '^#define [^[:space:]]*for_each[^[:space:]]*(' include/ \
+# Taken from parent directory of inc by:
+#   git grep -h '^#define [^[:space:]]*for_each[^[:space:]]*(' inc/ \
 #   | sed "s,^#define \([^[:space:]]*for_each[^[:space:]]*\)(.*$,  - '\1'," \
 #   | sort | uniq
 ForEachMacros:
-  - 'list_for_each_entry'
+  - 'for_each_sll_node'
 
 IncludeBlocks: Preserve
 IncludeCategories:

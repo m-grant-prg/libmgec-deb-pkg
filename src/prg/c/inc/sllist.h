@@ -28,6 +28,7 @@
  * 10/06/2019	MG	1.0.7	clang-format coding style changes.	*
  *				Extract find_next_sll_node from c file	*
  *				and make static inline.			*
+ *				Add for_each_sll_node macro.		*
  *									*
  ************************************************************************
  */
@@ -59,6 +60,14 @@ find_next_sll_node(struct sllistnode *currentnode)
 {
 	return currentnode->nextnode;
 }
+
+/**
+ * Iterate over the list.
+ * @param focus The current node in focus.
+ * @param head The head of the list.
+ */
+#define for_each_sll_node(focus, head) \
+	for (focus = head; focus != NULL; focus = focus->nextnode)
 
 struct sllistnode *free_sllist(struct sllistnode *currentnode);
 

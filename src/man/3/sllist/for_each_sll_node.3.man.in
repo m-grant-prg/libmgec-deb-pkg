@@ -1,39 +1,21 @@
 NAME
-add_sll_node - Add a node to a single linked list.
+for_each_sll_node - Macro to iterate through a singly linked list.
 SYNOPSIS
 	#include <sllist.h>
 
-	struct sllistnode *add_sll_node(struct sllistnode *currentnode,
-				const void *object, size_t objsize);
+	for_each_sll_node(struct sllistnode *focus,
+			struct sllistnode *head)
 
 DESCRIPTION
 See the Overview section of this manual page for a broad description of this
 MGE General C Library implementation of a single linked list.
 
-add_sll_node adds a node with data of 'object' to the end of a linked list.
-If currentnode is NULL then add_sll_node creates the root node of a new linked
-list.
-.br
-mge_errno will be set as required. If memory cannot be allocated for the node
-then mge_errno is set to MGE_ERRNO and sav_errno will be a copy of errno as
-set by malloc. mge_strerror(mge_errno) will produce the correct error string.
+This macro will iterate over a singly linked list, head, with the current node
+being focus.
 PARAMETERS
-currentnode - Is a pointer to the root node or NULL if the linked list is not
-yet started.
+focus - Is a pointer to the node being processed.
 
-object - A void pointer to any type or struct.
-
-objsize - The size of the object.
-
-RETURN VALUE
-A pointer to the root node.
-ERRORS
-These values for mge_errno are defined in mge-errno.h:-
-
-MGE_PARAM - One or more supplied parameters are invalid.
-
-MGE_ERRNO - Memory allocation for node or object via malloc produced an
-error. See the copy of errno in sav_errno and / or use mge_strerror(mge_errno).
+head - The root node of the list.
 
 EXAMPLE
 A simple example using a character string:-
@@ -73,23 +55,21 @@ A simple example using a character string:-
 
 	struct testnode *pnode;
 	struct sllistnode *currentnode;
-	currentnode = root;
 
 	printf("Linked List:-\\t");
 
 	// This should print - "consistency is all i ask give us this
 	// day our daily mask"
-	while (currentnode != NULL) {
+	for_each_sll_node(currentnode, root) {
 		pnode = currentnode->object;
 		printf("%s ", pnode->key);
-		currentnode = find_next_sll_node(currentnode);
 	}
 	printf("\\n");
 
 OVERVIEW
-This is one of a series of functions implementing a single linked list. A single
-linked list has only a forward link to the next node. The node, which is defined
-in sllist.h, is shown below:-
+This is one of a series of functions and macros implementing a single linked
+list. A single linked list has only a forward link to the next node. The node,
+which is defined in sllist.h, is shown below:-
 
 	struct sllistnode {
 		void *object;
@@ -113,7 +93,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019 Mark Grant
+Copyright (C) 2019 Mark Grant
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
@@ -123,5 +103,5 @@ This is free software: you are free to change and redistribute it.
 .br
 There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
-find_next_sll_node(3) for_each_sll_node(3) free_sllist(3) mge_strerror(3)
+add_sll_node(3) find_next_sll_node(3) free_sllist(3) mge_strerror(3)
 
