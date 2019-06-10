@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 09/06/2019_
+ * @version _v1.0.9 ==== 10/06/2019_
  */
 
 /* **********************************************************************
@@ -32,7 +32,8 @@
  * 09/11/2017	MG	1.0.6	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.7	Move to new source directory structure.	*
  * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
- * 09/06/2019	MG	1.0.9	clang-format coding style changes.	*
+ * 10/06/2019	MG	1.0.9	clang-format coding style changes.	*
+ *				Improve code legibility.		*
  *									*
  ************************************************************************
  */
@@ -60,37 +61,41 @@
 struct sllistnode *add_sll_node(struct sllistnode *currentnode,
 				const void *object, size_t objsize)
 {
-	mge_errno = 0;
-
 	if (object == NULL || !objsize) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
 
 	if (currentnode == NULL) {
-		/* A new object */
-		if ((currentnode = malloc(sizeof(struct sllistnode))) != NULL) {
-			if ((currentnode->object = malloc(objsize)) != NULL) {
-				/* Copy object and initialise node. */
-				currentnode->object = memcpy(
-					currentnode->object, object, objsize);
-				currentnode->nextnode = NULL;
-			} else {
-				/* Cannot malloc object */
-				mge_errno = MGE_ERRNO;
-				sav_errno = errno;
-				free(currentnode);
-				currentnode = NULL;
-			}
-		} else {
-			/* Cannot malloc node */
-			mge_errno = MGE_ERRNO;
-			sav_errno = errno;
-		}
-	} else
+		/* At the tail, add the node */
+		currentnode = malloc(sizeof(struct sllistnode));
+		if (currentnode == NULL)
+			goto node_fail;
+
+		currentnode->object = malloc(objsize);
+		if (currentnode->object == NULL)
+			goto obj_fail;
+
+		/* Copy object and initialise node. */
+		currentnode->object
+			= memcpy(currentnode->object, object, objsize);
+		currentnode->nextnode = NULL;
+	} else {
+		/*
+		 * Not yet at the tail, recurse onwards re-linking backwards on
+		 * return
+		 */
 		currentnode->nextnode
 			= add_sll_node(currentnode->nextnode, object, objsize);
+	}
 	return currentnode;
+
+obj_fail:
+	free(currentnode);
+node_fail:
+	mge_errno = MGE_ERRNO;
+	sav_errno = errno;
+	return NULL;
 }
 
 /**
@@ -101,7 +106,6 @@ struct sllistnode *add_sll_node(struct sllistnode *currentnode,
  */
 struct sllistnode *find_next_sll_node(struct sllistnode *currentnode)
 {
-	mge_errno = 0;
 	return currentnode->nextnode;
 }
 
@@ -113,11 +117,10 @@ struct sllistnode *find_next_sll_node(struct sllistnode *currentnode)
  */
 struct sllistnode *free_sllist(struct sllistnode *currentnode)
 {
-	mge_errno = 0;
-
 	if (currentnode == NULL)
 		return NULL;
 
+	/* Recurse to tail and delete backwards */
 	if (currentnode->nextnode != NULL)
 		free_sllist(currentnode->nextnode);
 
