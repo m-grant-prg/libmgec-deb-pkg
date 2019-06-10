@@ -36,6 +36,7 @@
  *				Improve code legibility.		*
  *				Extract find_next_sll_node to header 	*
  *				file to make static inline.		*
+ *				Improve parameter naming.		*
  *									*
  ************************************************************************
  */
@@ -52,48 +53,46 @@
 #include <mge-errno.h>
 
 /**
- * Add a singly linked list node.
+ * Add a node to the tail of the singly linked list.
  * On error mge_errno will be set.
- * @param currentnode A pointer to the root node or NULL if the list is not yet
+ * @param head A pointer to the root node or NULL if the list is not yet
  * started.
  * @param object The object to attach to the node.
  * @param objsize The size of the attached object.
- * @return A pointer to the root node or NULL on error
+ * @return head, a pointer to the root node or NULL on error
  */
-struct sllistnode *add_sll_node(struct sllistnode *currentnode,
-				const void *object, size_t objsize)
+struct sllistnode *add_sll_node(struct sllistnode *head, const void *object,
+				size_t objsize)
 {
 	if (object == NULL || !objsize) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
 
-	if (currentnode == NULL) {
+	if (head == NULL) {
 		/* At the tail, add the node */
-		currentnode = malloc(sizeof(struct sllistnode));
-		if (currentnode == NULL)
+		head = malloc(sizeof(struct sllistnode));
+		if (head == NULL)
 			goto node_fail;
 
-		currentnode->object = malloc(objsize);
-		if (currentnode->object == NULL)
+		head->object = malloc(objsize);
+		if (head->object == NULL)
 			goto obj_fail;
 
 		/* Copy object and initialise node. */
-		currentnode->object
-			= memcpy(currentnode->object, object, objsize);
-		currentnode->nextnode = NULL;
+		head->object = memcpy(head->object, object, objsize);
+		head->next = NULL;
 	} else {
 		/*
 		 * Not yet at the tail, recurse onwards re-linking backwards on
 		 * return
 		 */
-		currentnode->nextnode
-			= add_sll_node(currentnode->nextnode, object, objsize);
+		head->next = add_sll_node(head->next, object, objsize);
 	}
-	return currentnode;
+	return head;
 
 obj_fail:
-	free(currentnode);
+	free(head);
 node_fail:
 	mge_errno = MGE_ERRNO;
 	sav_errno = errno;
@@ -103,28 +102,28 @@ node_fail:
 /**
  * Free the entire list.
  * Walks the list deleting nodes.
- * @param currentnode The root node.
+ * @param head The root node.
  * @return NULL
  */
-struct sllistnode *free_sllist(struct sllistnode *currentnode)
+struct sllistnode *free_sllist(struct sllistnode *head)
 {
-	if (currentnode == NULL)
+	if (head == NULL)
 		return NULL;
 
 	/* Recurse to tail and delete backwards */
-	if (currentnode->nextnode != NULL)
-		free_sllist(currentnode->nextnode);
+	if (head->next != NULL)
+		free_sllist(head->next);
 
-	free_sll_node(currentnode);
+	free_sll_node(head);
 	return NULL;
 }
 
 /*
  * Free memory allocated to the node. (Both node and object).
  */
-static void free_sll_node(struct sllistnode *currentnode)
+static void free_sll_node(struct sllistnode *focus)
 {
-	free(currentnode->object);
-	free(currentnode);
+	free(focus->object);
+	free(focus);
 }
 

@@ -29,6 +29,7 @@
  *				Extract find_next_sll_node from c file	*
  *				and make static inline.			*
  *				Add for_each_sll_node macro.		*
+ *				Improve parameter naming.		*
  *									*
  ************************************************************************
  */
@@ -42,23 +43,22 @@ BEGIN_C_DECLS
 
 /** Singly linked list node. */
 struct sllistnode {
-	void *object;		     /**< Attached object. */
-	struct sllistnode *nextnode; /**< The subsequent node. */
+	void *object;		 /**< Attached object. */
+	struct sllistnode *next; /**< The subsequent node. */
 };
 
-struct sllistnode *add_sll_node(struct sllistnode *currentnode,
-				const void *object, size_t objsize);
+struct sllistnode *add_sll_node(struct sllistnode *head, const void *object,
+				size_t objsize);
 
 /**
  * Find the next node in the list.
- * @param currentnode The current node.
+ * @param focus The current node.
  * @return A pointer to the next node found in the list, or NULL if no
  * subsequent node exists.
  */
-static inline struct sllistnode *
-find_next_sll_node(struct sllistnode *currentnode)
+static inline struct sllistnode *find_next_sll_node(struct sllistnode *focus)
 {
-	return currentnode->nextnode;
+	return focus->next;
 }
 
 /**
@@ -67,9 +67,9 @@ find_next_sll_node(struct sllistnode *currentnode)
  * @param head The head of the list.
  */
 #define for_each_sll_node(focus, head) \
-	for (focus = head; focus != NULL; focus = focus->nextnode)
+	for (focus = head; focus != NULL; focus = focus->next)
 
-struct sllistnode *free_sllist(struct sllistnode *currentnode);
+struct sllistnode *free_sllist(struct sllistnode *head);
 
 END_C_DECLS
 

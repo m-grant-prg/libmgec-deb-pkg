@@ -3,7 +3,7 @@ add_sll_node - Add a node to a single linked list.
 SYNOPSIS
 	#include <sllist.h>
 
-	struct sllistnode *add_sll_node(struct sllistnode *currentnode,
+	struct sllistnode *add_sll_node(struct sllistnode *head,
 				const void *object, size_t objsize);
 
 DESCRIPTION
@@ -18,7 +18,7 @@ mge_errno will be set as required. If memory cannot be allocated for the node
 then mge_errno is set to MGE_ERRNO and sav_errno will be a copy of errno as
 set by malloc. mge_strerror(mge_errno) will produce the correct error string.
 PARAMETERS
-currentnode - Is a pointer to the root node or NULL if the linked list is not
+head - Is a pointer to the root node or NULL if the linked list is not
 yet started.
 
 object - A void pointer to any type or struct.

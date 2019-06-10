@@ -4,7 +4,7 @@ SYNOPSIS
 	#include <sllist.h>
 
 	static inline struct sllistnode *find_next_sll_node(
-					struct sllistnode *currentnode);
+					struct sllistnode *focus);
 
 DESCRIPTION
 See the Overview section of this manual page for a broad description of this
@@ -14,7 +14,7 @@ find_next_sll_node looks for the next node in the linked list after currentnode.
 .br
 mge_errno will always be zero.
 PARAMETERS
-currentnode - Is a pointer to the current node.
+focus - Is a pointer to the current node.
 RETURN VALUE
 A pointer to the found node, or, NULL if no subsequent node exists in the linked
 list.

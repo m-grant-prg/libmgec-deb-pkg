@@ -3,7 +3,7 @@ free_sllist - Deletes a single linked list.
 SYNOPSIS
 	#include <sllist.h>
 
-	struct sllistnode *free_sllist(struct sllistnode *root);
+	struct sllistnode *free_sllist(struct sllistnode *head);
 
 DESCRIPTION
 See the Overview section of this manual page for a broad description of this
@@ -13,7 +13,7 @@ free_sllist deletes a single linked list.
 .br
 mge_errno will be set to 0 on return from this function.
 PARAMETERS
-root - Is a pointer to the root node.
+head - Is a pointer to the root node.
 Care must be taken to pass the pointer to the ROOT node as free_sllist deletes
 from the node passed to the end of the list. If an intermediate node address is
 passed, then the preceding node will have an invalid pointer.
