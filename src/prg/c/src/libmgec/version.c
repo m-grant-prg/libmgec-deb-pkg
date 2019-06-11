@@ -5,12 +5,12 @@
  *
  * Standard library-wide software versioning functions and information.
  *
- * @author Copyright (C) 2015-2018  Mark Grant
+ * @author Copyright (C) 2015-2019  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.5 ==== 20/06/2018_
+ * @version _v1.0.6 ==== 11/06/2019_
  */
 
 /* **********************************************************************
@@ -25,15 +25,16 @@
  * 04/06/2018	MG	1.0.4	Make this ChangeLog for this file only.	*
  * 20/06/2018	MG	1.0.5	Remove SOURCE_CODE define, now uses the	*
  *				AC_DEFINE'd value in config.h		*
+ * 11/06/2019	MG	1.0.6	clang-format coding style changes.	*
  *									*
  ************************************************************************
  */
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <libmgec.h>
-#include <config.h>
 
+#include <libmgec.h>
 
 /**
  * Get the git-describe based package version.
@@ -68,3 +69,4 @@ void libmgec_print_src_version(void)
 {
 	printf("%s %s %s", "libmgec Source version -", SOURCE_VERSION, "\n");
 }
+
