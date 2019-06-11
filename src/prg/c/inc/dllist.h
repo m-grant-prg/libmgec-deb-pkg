@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 08/06/2019_
+ * @version _v1.0.7 ==== 11/06/2019_
  */
 
 /* **********************************************************************
@@ -25,7 +25,9 @@
  * 05/11/2017	MG	1.0.4	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.5	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.6	Move to new source directory structure.	*
- * 08/06/2019	MG	1.0.7	clang-format coding style changes.	*
+ * 11/06/2019	MG	1.0.7	clang-format coding style changes.	*
+ *				Extract find_prev and find_next from .c	*
+ *				file and make static inline.		*
  *									*
  ************************************************************************
  */
@@ -47,9 +49,29 @@ struct dllistnode {
 struct dllistnode *add_dll_node(struct dllistnode *currentnode,
 				const void *object, size_t objsize);
 
-struct dllistnode *find_prev_dll_node(struct dllistnode *currentnode);
+/**
+ * Find and return the previous node.
+ * @param currentnode The current node.
+ * @return A pointer to the previous node in the list or NULL if no previous
+ * node exists.
+ */
+static inline struct dllistnode *
+find_prev_dll_node(struct dllistnode *currentnode)
+{
+	return currentnode->prevnode;
+}
 
-struct dllistnode *find_next_dll_node(struct dllistnode *currentnode);
+/**
+ * Find and return the next node.
+ * @param currentnode The current node.
+ * @return A pointer to the next node in the list or NULL if no subsequent
+ * node exists.
+ */
+static inline struct dllistnode *
+find_next_dll_node(struct dllistnode *currentnode)
+{
+	return currentnode->nextnode;
+}
 
 struct dllistnode *free_dllist(struct dllistnode *currentnode);
 

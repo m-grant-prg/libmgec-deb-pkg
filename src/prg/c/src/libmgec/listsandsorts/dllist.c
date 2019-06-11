@@ -35,6 +35,8 @@
  * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
  * 11/06/2019	MG	1.0.9	clang-format coding style changes.	*
  *				Improve code legibility.		*
+ *				Extract find_prev and find_next to the	*
+ *				header file and make inline.		*
  *									*
  ************************************************************************
  */
@@ -81,8 +83,8 @@ struct dllistnode *add_dll_node(struct dllistnode *currentnode,
 			goto obj_fail;
 
 		/* Copy object and initialise node. */
-		currentnode->object = memcpy(
-					currentnode->object, object, objsize);
+		currentnode->object
+			= memcpy(currentnode->object, object, objsize);
 		currentnode->prevnode = priornode;
 		currentnode->nextnode = NULL;
 	} else {
@@ -102,28 +104,6 @@ node_fail:
 	mge_errno = MGE_ERRNO;
 	sav_errno = errno;
 	return NULL;
-}
-
-/**
- * Find and return the previous node.
- * @param currentnode The current node.
- * @return A pointer to the previous node in the list or NULL if no previous
- * node exists.
- */
-struct dllistnode *find_prev_dll_node(struct dllistnode *currentnode)
-{
-	return currentnode->prevnode;
-}
-
-/**
- * Find and return the next node.
- * @param currentnode The current node.
- * @return A pointer to the next node in the list or NULL if no subsequent
- * node exists.
- */
-struct dllistnode *find_next_dll_node(struct dllistnode *currentnode)
-{
-	return currentnode->nextnode;
 }
 
 /**
