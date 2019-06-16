@@ -32,5 +32,10 @@ before_install:
     - sudo apt-get install -y autoconf-archive
     - sudo apt-get install -y dia doxygen graphviz txt2man txt2manwrap
 
-script: ./bootstrap.sh -cb
+script:
+    - autoreconf -if .
+    - ./configure --enable-silent-rules=yes
+    - make --quiet
+    - make --quiet check
+    - make --quiet distcheck
 
