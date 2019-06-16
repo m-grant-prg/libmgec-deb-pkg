@@ -24,6 +24,8 @@
 # Date		Author	Version	Description				#
 #									#
 # 07/06/2019	MG	1.0.1	First ChangeLog introduced.		#
+# 16/06/2019	MG	1.0.2	Add test-driver which is auto-generated	#
+#				when make check is setup and TESTS run.	#
 #									#
 #########################################################################
 
@@ -51,6 +53,7 @@
 **/missing
 **/INSTALL
 **/install-sh
+**/test-driver
 
 # Backup Files
 **/*~
