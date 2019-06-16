@@ -39,6 +39,7 @@
 #				pre-processor macros).			#
 # 10/05/2019	MG	1.0.12	Remove shebang.				#
 #				Merge into one project.			#
+# 16/06/2019	MG	1.0.13	Change to use the check target.		#
 #									#
 #########################################################################
 
@@ -56,7 +57,7 @@ AM_CFLAGS += -O2
 endif
 
 
-noinst_PROGRAMS = bstreetest
+check_PROGRAMS = bstreetest
 bstreetest_SOURCES = main.c
 
 
@@ -90,11 +91,13 @@ Test08Answer.txt: $(srcdir)/Test08Answer.txt.in
 Test09Answer.txt: $(srcdir)/Test09Answer.txt.in
 Test10Answer.txt: $(srcdir)/Test10Answer.txt.in
 
-noinst_DATA = Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt \
+check_DATA = Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt \
 	Test03aAnswer.txt Test03bAnswer.txt Test03ResultBSTree.txt \
 	Test04Answer.txt Test05Answer.txt Test06Answer.txt Test07aAnswer.txt \
 	Test07bAnswer.txt Test07ResultBSTree.txt Test08Answer.txt \
 	Test09Answer.txt Test10Answer.txt
+
+TESTS = bstreetest
 
 EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
 	$(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \

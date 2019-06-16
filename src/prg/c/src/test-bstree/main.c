@@ -87,11 +87,22 @@ int main(int argc, char** argv)
 	printf("v) Run all Tests - verbose.\n");
 	printf("\n[Choice]: ");
 
-	i = scanf("%1s", choice);
-
-	if (i != 1) {
-		printf("Input error.");
+	/* If no args then run as option v */
+	if (argc == 1) {
+		choice[0] = 'v';
+	} else if (argc > 2) {
+		printf("Input error.\n");
 		exit(1);
+	} else if (strcmp(argv[1], "-i")) {
+		/* Only option allowed is -i (for interactive). */
+		printf("Input error.\n");
+		exit(1);
+	} else {
+		i = scanf("%1s", choice);
+		if (i != 1) {
+			printf("Input error.\n");
+			exit(1);
+		}
 	}
 
 	switch (*pchoice) {
