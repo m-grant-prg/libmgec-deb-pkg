@@ -50,6 +50,7 @@
 #				as AUTHORS etc.				#
 #				Merge dev sub-project.			#
 #				Merge doc sub-project.			#
+# 17/06/2019	MG	1.1.2	Add directory to run make check tests.	#
 #									#
 #########################################################################
 
@@ -69,6 +70,7 @@ SUBDIRS += src/prg/c/src/test-buf-msg
 SUBDIRS += src/prg/c/src/test-dllist
 SUBDIRS += src/prg/c/src/test-errno
 SUBDIRS += src/prg/c/src/test-sllist
+SUBDIRS += src/prg/c/src/run-tests
 SUBDIRS += doc/doxygen
 
 

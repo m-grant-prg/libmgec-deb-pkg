@@ -57,6 +57,3 @@ errnotest_SOURCES = main.c
 LDADD = ../libmgec/libmgec.la
 LDADD += $(tmplibraries)
 
-
-TESTS = errnotest
-

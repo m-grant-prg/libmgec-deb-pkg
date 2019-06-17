@@ -97,31 +97,29 @@ check_DATA = Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt \
 	Test09Answer.txt Test10Answer.txt
 
 
-test01b.sh test02d.sh test03f.sh test04h.sh test05j.sh test06l.sh test07n.sh \
-	test08p.sh test09r.sh test10t.sh: Makefile
+bstreetest01b.sh bstreetest02d.sh bstreetest03f.sh bstreetest04h.sh \
+	bstreetest05j.sh bstreetest06l.sh bstreetest07n.sh bstreetest08p.sh \
+	bstreetest09r.sh bstreetest10t.sh: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.in || srcdir=$(srcdir)/; \
 	$(edit) $${srcdir}$(@F).in > $@.tmp
 	mv $@.tmp $@
 	chmod a+x $@
-test01b.sh: $(srcdir)/test01b.sh.in
-test02d.sh: $(srcdir)/test02d.sh.in
-test03f.sh: $(srcdir)/test03f.sh.in
-test04h.sh: $(srcdir)/test04h.sh.in
-test05j.sh: $(srcdir)/test05j.sh.in
-test06l.sh: $(srcdir)/test06l.sh.in
-test07n.sh: $(srcdir)/test07n.sh.in
-test08p.sh: $(srcdir)/test08p.sh.in
-test09r.sh: $(srcdir)/test09r.sh.in
-test10t.sh: $(srcdir)/test10t.sh.in
+bstreetest01b.sh: $(srcdir)/bstreetest01b.sh.in
+bstreetest02d.sh: $(srcdir)/bstreetest02d.sh.in
+bstreetest03f.sh: $(srcdir)/bstreetest03f.sh.in
+bstreetest04h.sh: $(srcdir)/bstreetest04h.sh.in
+bstreetest05j.sh: $(srcdir)/bstreetest05j.sh.in
+bstreetest06l.sh: $(srcdir)/bstreetest06l.sh.in
+bstreetest07n.sh: $(srcdir)/bstreetest07n.sh.in
+bstreetest08p.sh: $(srcdir)/bstreetest08p.sh.in
+bstreetest09r.sh: $(srcdir)/bstreetest09r.sh.in
+bstreetest10t.sh: $(srcdir)/bstreetest10t.sh.in
 
-check_SCRIPTS = test01b.sh test02d.sh test03f.sh test04h.sh test05j.sh \
-	test06l.sh test07n.sh test08p.sh test09r.sh test10t.sh
-
-
-TESTS = test01b.sh test02d.sh test03f.sh test04h.sh test05j.sh test06l.sh \
-	test07n.sh test08p.sh test09r.sh test10t.sh
+check_SCRIPTS = bstreetest01b.sh bstreetest02d.sh bstreetest03f.sh \
+	bstreetest04h.sh bstreetest05j.sh bstreetest06l.sh bstreetest07n.sh \
+	bstreetest08p.sh bstreetest09r.sh bstreetest10t.sh
 
 
 EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
@@ -132,11 +130,11 @@ EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
 	$(srcdir)/Test07aAnswer.txt.in $(srcdir)/Test07bAnswer.txt.in \
 	$(srcdir)/Test07ResultBSTree.txt.in $(srcdir)/Test08Answer.txt.in \
 	$(srcdir)/Test09Answer.txt.in $(srcdir)/Test10Answer.txt.in \
-	$(srcdir)/test01b.sh.in $(srcdir)/test02d.sh.in \
-	$(srcdir)/test03f.sh.in $(srcdir)/test04h.sh.in \
-	$(srcdir)/test05j.sh.in $(srcdir)/test06l.sh.in \
-	$(srcdir)/test07n.sh.in $(srcdir)/test08p.sh.in \
-	$(srcdir)/test09r.sh.in $(srcdir)/test10t.sh.in
+	$(srcdir)/bstreetest01b.sh.in $(srcdir)/bstreetest02d.sh.in \
+	$(srcdir)/bstreetest03f.sh.in $(srcdir)/bstreetest04h.sh.in \
+	$(srcdir)/bstreetest05j.sh.in $(srcdir)/bstreetest06l.sh.in \
+	$(srcdir)/bstreetest07n.sh.in $(srcdir)/bstreetest08p.sh.in \
+	$(srcdir)/bstreetest09r.sh.in $(srcdir)/bstreetest10t.sh.in
 
 
 CLEANFILES = *.tmp *.sh *.txt

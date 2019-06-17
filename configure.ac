@@ -107,6 +107,7 @@
 # 01/06/2019	MG	1.1.2	Use standard macro AC_HEADER_STDBOOL 	#
 #				in preference to AC_CHECK_HEADERS.	#
 #				Add missing header checks.		#
+# 17/06/2019	MG	1.1.3	Add directory to run make check tests.	#
 #									#
 #########################################################################
 
@@ -117,7 +118,7 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.2 $)
+AC_REVISION($Revision: 1.1.3 $)
 
 AC_PREREQ(2.69)
 
@@ -572,7 +573,8 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/src/test-buf-msg/Makefile
 		src/prg/c/src/test-dllist/Makefile
 		src/prg/c/src/test-errno/Makefile
-		src/prg/c/src/test-sllist/Makefile)
+		src/prg/c/src/test-sllist/Makefile
+		src/prg/c/src/run-tests/Makefile)
 
 AC_OUTPUT
 
