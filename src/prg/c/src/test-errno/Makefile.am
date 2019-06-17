@@ -32,6 +32,7 @@
 #				pre-processor macros).			#
 # 10/05/2019	MG	1.0.8	Remove shebang.				#
 #				Merge into one project.			#
+# 17/06/2019	MG	1.0.9	Move under check target.		#
 #									#
 #########################################################################
 
@@ -49,10 +50,13 @@ AM_CFLAGS += -O2
 endif
 
 
-noinst_PROGRAMS = errnotest
+check_PROGRAMS = errnotest
 errnotest_SOURCES = main.c
 
 
 LDADD = ../libmgec/libmgec.la
 LDADD += $(tmplibraries)
+
+
+TESTS = errnotest
 
