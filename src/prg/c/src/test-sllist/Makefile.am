@@ -33,6 +33,7 @@
 #				pre-processor macros).			#
 # 08/05/2019	MG	1.0.9	Remove shebang.				#
 #				Merge into one project.			#
+# 17/06/2019	MG	1.0.10	Move to check target.			#
 #									#
 #########################################################################
 
@@ -50,10 +51,13 @@ AM_CFLAGS += -O2
 endif
 
 
-noinst_PROGRAMS = sllisttest
+check_PROGRAMS = sllisttest
 sllisttest_SOURCES = main.c
 
 
 LDADD = ../libmgec/libmgec.la
 LDADD += $(tmplibraries)
+
+
+TESTS = sllisttest
 
