@@ -39,7 +39,7 @@
 #				pre-processor macros).			#
 # 10/05/2019	MG	1.0.12	Remove shebang.				#
 #				Merge into one project.			#
-# 16/06/2019	MG	1.0.13	Change to use the check target.		#
+# 17/06/2019	MG	1.0.13	Change to use the check target.		#
 #									#
 #########################################################################
 
@@ -69,12 +69,11 @@ Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt Test03aAnswer.txt \
 	Test03bAnswer.txt Test03ResultBSTree.txt Test04Answer.txt \
 	Test05Answer.txt Test06Answer.txt Test07aAnswer.txt Test07bAnswer.txt \
 	Test07ResultBSTree.txt Test08Answer.txt Test09Answer.txt \
-	Test10Answer.txt:Makefile
+	Test10Answer.txt: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.in || srcdir=$(srcdir)/; \
 	cp $${srcdir}$(@F).in  $@
-
 Test00StartingBSTree.txt: $(srcdir)/Test00StartingBSTree.txt.in
 Test01Answer.txt: $(srcdir)/Test01Answer.txt.in
 Test02Answer.txt: $(srcdir)/Test02Answer.txt.in
@@ -97,7 +96,33 @@ check_DATA = Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt \
 	Test07bAnswer.txt Test07ResultBSTree.txt Test08Answer.txt \
 	Test09Answer.txt Test10Answer.txt
 
-TESTS = bstreetest
+
+test01b.sh test02d.sh test03f.sh test04h.sh test05j.sh test06l.sh test07n.sh \
+	test08p.sh test09r.sh test10t.sh: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	test -f ./$@.in || srcdir=$(srcdir)/; \
+	$(edit) $${srcdir}$(@F).in > $@.tmp
+	mv $@.tmp $@
+	chmod a+x $@
+test01b.sh: $(srcdir)/test01b.sh.in
+test02d.sh: $(srcdir)/test02d.sh.in
+test03f.sh: $(srcdir)/test03f.sh.in
+test04h.sh: $(srcdir)/test04h.sh.in
+test05j.sh: $(srcdir)/test05j.sh.in
+test06l.sh: $(srcdir)/test06l.sh.in
+test07n.sh: $(srcdir)/test07n.sh.in
+test08p.sh: $(srcdir)/test08p.sh.in
+test09r.sh: $(srcdir)/test09r.sh.in
+test10t.sh: $(srcdir)/test10t.sh.in
+
+check_SCRIPTS = test01b.sh test02d.sh test03f.sh test04h.sh test05j.sh \
+	test06l.sh test07n.sh test08p.sh test09r.sh test10t.sh
+
+
+TESTS = test01b.sh test02d.sh test03f.sh test04h.sh test05j.sh test06l.sh \
+	test07n.sh test08p.sh test09r.sh test10t.sh
+
 
 EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
 	$(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \
@@ -106,7 +131,13 @@ EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
 	$(srcdir)/Test05Answer.txt.in $(srcdir)/Test06Answer.txt.in \
 	$(srcdir)/Test07aAnswer.txt.in $(srcdir)/Test07bAnswer.txt.in \
 	$(srcdir)/Test07ResultBSTree.txt.in $(srcdir)/Test08Answer.txt.in \
-	$(srcdir)/Test09Answer.txt.in $(srcdir)/Test10Answer.txt.in
+	$(srcdir)/Test09Answer.txt.in $(srcdir)/Test10Answer.txt.in \
+	$(srcdir)/test01b.sh.in $(srcdir)/test02d.sh.in \
+	$(srcdir)/test03f.sh.in $(srcdir)/test04h.sh.in \
+	$(srcdir)/test05j.sh.in $(srcdir)/test06l.sh.in \
+	$(srcdir)/test07n.sh.in $(srcdir)/test08p.sh.in \
+	$(srcdir)/test09r.sh.in $(srcdir)/test10t.sh.in
 
-CLEANFILES = *.tmp *.txt
+
+CLEANFILES = *.tmp *.sh *.txt
 
