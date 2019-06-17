@@ -21,6 +21,7 @@
 # 06/09/2018	MG	1.0.1	First release.				#
 # 10/05/2019	MG	1.0.2	Remove shebang.				#
 #				Merge into one project.			#
+# 17/06/2019	MG	1.0.3	Move under check target.		#
 #									#
 #########################################################################
 
@@ -38,10 +39,13 @@ AM_CFLAGS += -O2
 endif
 
 
-noinst_PROGRAMS = bufmsgtest
+check_PROGRAMS = bufmsgtest
 bufmsgtest_SOURCES = main.c
 
 
 LDADD = ../libmgec/libmgec.la
 LDADD += $(tmplibraries)
+
+
+TESTS = bufmsgtest
 
