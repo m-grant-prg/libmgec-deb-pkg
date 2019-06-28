@@ -11,8 +11,25 @@
 #									#
 # cmd line syntax:							#
 # ./configure	[--enable-debug=<yes|no> [default: no]]			#
+#		[--enable-distcheckfake=<yes|no> [default: no]]		#
 #		[--enable-headercheck=<yes|no> [default: no]]		#
 #		[--enable-sparse=<yes|no> [default: no]]		#
+#									#
+# Parameters generic description. For specifics to this configure.ac	#
+# please see inline comments at the point of definition:-		#
+# --enable-debug							#
+#	Used to set things like compiler debug flags.			#
+# --enable-distcheckfake						#
+#	Enables the replacement of an absolute directory path specified	#
+#	in a variable, with a value based on AutoTools standard		#
+#	directories. This enables the Makefile.am to use the AT		#
+#	variable based value when running distcheck and the absolute	#
+#	path for all else. Hence distcheck can now succeed when it	#
+#	would normally fail.						#
+# --enable-headercheck							#
+#	Used to set a flag to output the header file nesting.		#
+# --enable-sparse							#
+#	Used to compile with the sparse static analyser.		#
 #									#
 # Layout: (Only relevant sections will exist).				#
 # ChangeLog : High level ChangeLog					#
@@ -110,6 +127,8 @@
 # 28/06/2019	MG	1.1.3	Add directory to run make check tests.	#
 #				Correct ARG_ENABLE help text.		#
 #				Add enable-distcheckfake option.	#
+#				Add enable option descriptions in this	#
+#				file's header.				#
 #									#
 #########################################################################
 
