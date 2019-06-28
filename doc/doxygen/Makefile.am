@@ -30,6 +30,8 @@
 #				be used for the substitution of		#
 #				Installation Directory Variables.	#
 # 10/05/2019	MG	1.1.1	Merge into one project.			#
+# 28/06/2019	MG	1.1.2	Do not register with doc-base or	#
+#				dochelp when running make distcheck.	#
 #									#
 #########################################################################
 
@@ -66,6 +68,7 @@ docbase_DATA = libmgec
 # If doc-base is installed register the documents then update dochelp if it is
 # installed.
 install-data-hook:
+if !DISTCHECKFAKE
 	cd $(DESTDIR)$(htmldir) && tar xf $(docpkg)
 	if command -v install-docs >/dev/null 2>&1; then \
 		install-docs -vi $(docbasedir)/libmgec; \
@@ -73,8 +76,10 @@ install-data-hook:
 	if command -v dochelp >/dev/null 2>&1; then \
 		dochelp update; \
 	fi
+endif
 
 uninstall-hook:
+if !DISTCHECKFAKE
 	cd $(DESTDIR)$(htmldir) && rm -rf html
 	if command -v install-docs >/dev/null 2>&1; then \
 		install-docs -vr libmgec; \
@@ -82,6 +87,7 @@ uninstall-hook:
 	if command -v dochelp >/dev/null 2>&1; then \
 		dochelp update; \
 	fi
+endif
 
 
 EXTRA_DIST = $(docpkg) libmgec.in

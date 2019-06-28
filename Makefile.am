@@ -51,10 +51,20 @@
 #				Merge dev sub-project.			#
 #				Merge doc sub-project.			#
 # 17/06/2019	MG	1.1.2	Add directory to run make check tests.	#
+# 28/06/2019	MG	1.1.3	To enable make distcheck to work, any	#
+#				hard-coded paths requiring permissions	#
+#				such as /etc or fixed locations such as	#
+#				/usr/share/java must be accommodated,	#
+#				so set the configure flags to be used	#
+#				by make distcheck.			#
 #									#
 #########################################################################
 
 ACLOCAL_AMFLAGS = -I m4 -I m4extra
+
+
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-distcheckfake=yes
+
 
 SUBDIRS = src/man/3/bstree src/man/3/sllist src/man/3/dllist
 SUBDIRS += src/man/3/buffer src/man/3/errno

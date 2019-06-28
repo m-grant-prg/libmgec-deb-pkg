@@ -109,6 +109,7 @@
 #				Add missing header checks.		#
 # 28/06/2019	MG	1.1.3	Add directory to run make check tests.	#
 #				Correct ARG_ENABLE help text.		#
+#				Add enable-distcheckfake option.	#
 #									#
 #########################################################################
 
@@ -182,7 +183,31 @@ AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 : ${CFLAGS=""}
 
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(Build in debug mode.)
+	AC_MSG_NOTICE(build in debug mode)
+fi
+
+#
+# If a file location has to be fixed, e.g. /etc/foo.conf and never
+# /usr/local/etc/foo.conf, then make distcheck will fail. Setting this flag
+# allows make distcheck to locate the file in an AT standard directory-based
+# location.
+# eg /usr/local/etc/foo.conf.
+# and hence succeed.
+#
+AC_ARG_ENABLE([distcheckfake],
+	AS_HELP_STRING([--enable-distcheckfake], [enable running of distcheck]),
+	[case "${enableval}" in
+		yes) distcheckfake=true ;;
+		no)  distcheckfake=false ;;
+		*) AC_MSG_ERROR([bad value ${enableval} for \
+			--enable-distcheckfake]) ;;
+	esac],[distcheckfake=false])
+AM_CONDITIONAL([DISTCHECKFAKE], [test x$distcheckfake = xtrue])
+
+if test "x${distcheckfake}" = xtrue; then
+	AC_MSG_NOTICE([using workarounds to facilitate distcheck])
+else
+	AC_MSG_NOTICE([using distcheck incompatible setup])
 fi
 
 #
@@ -199,7 +224,7 @@ AC_ARG_ENABLE(headercheck,
 AM_CONDITIONAL(HEADERCHECK, test x$headercheck = xtrue)
 
 if test "x${headercheck}" = xtrue; then
-	AC_MSG_NOTICE(Building to display include stack depth.)
+	AC_MSG_NOTICE(building to display include stack depth)
 fi
 
 #
@@ -216,7 +241,7 @@ AC_ARG_ENABLE(sparse,
 AM_CONDITIONAL(SPARSE, test x$sparse = xtrue)
 
 if test "x${sparse}" = xtrue; then
-	AC_MSG_NOTICE(Building using sparse.)
+	AC_MSG_NOTICE(building using sparse)
 fi
 
 
