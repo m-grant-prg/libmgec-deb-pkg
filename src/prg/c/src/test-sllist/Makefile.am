@@ -8,6 +8,8 @@
 #									#
 # Purpose:								#
 #	AutoMake script file to generate sllist test program.		#
+#	(The use of a libtool convenience library is OTT but done as an	#
+#	exercise).							#
 #									#
 #########################################################################
 
@@ -34,6 +36,8 @@
 # 08/05/2019	MG	1.0.9	Remove shebang.				#
 #				Merge into one project.			#
 # 17/06/2019	MG	1.0.10	Move to check target.			#
+# 01/07/2019	MG	1.0.11	Rewrite of the tests.			#
+#				Add valgrind tests.			#
 #									#
 #########################################################################
 
@@ -51,10 +55,50 @@ AM_CFLAGS += -O2
 endif
 
 
+check_HEADERS = sllisttest.h
+
+
+check_LTLIBRARIES = libsllisttest.la
+libsllisttest_la_SOURCES = common.c sllisttest01.c sllisttest02.c
+libsllisttest_la_LIBADD = ../libmgec/libmgec.la $(tmplibraries)
+
+
 check_PROGRAMS = sllisttest
 sllisttest_SOURCES = main.c
+sllisttest_LDADD = ./libsllisttest.la
 
 
-LDADD = ../libmgec/libmgec.la
-LDADD += $(tmplibraries)
+Test01Answer.txt Test02Answer.txt: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	test -f ./$@.in || srcdir=$(srcdir)/; \
+	cp $${srcdir}$(@F).in  $@
+Test01Answer.txt: $(srcdir)/Test01Answer.txt.in
+Test02Answer.txt: $(srcdir)/Test02Answer.txt.in
+
+check_DATA = Test01Answer.txt Test02Answer.txt
+
+
+sllisttest01.sh sllisttest01vg.sh sllisttest02.sh sllisttest02vg.sh: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	test -f ./$@.in || srcdir=$(srcdir)/; \
+	$(edit) $${srcdir}$(@F).in > $@.tmp
+	mv $@.tmp $@
+	chmod a+x $@
+sllisttest01.sh: $(srcdir)/sllisttest01.sh.in
+sllisttest01vg.sh: $(srcdir)/sllisttest01vg.sh.in
+sllisttest02.sh: $(srcdir)/sllisttest02.sh.in
+sllisttest02vg.sh: $(srcdir)/sllisttest02vg.sh.in
+
+check_SCRIPTS = sllisttest01.sh sllisttest01vg.sh \
+		sllisttest02.sh sllisttest02vg.sh
+
+
+EXTRA_DIST = $(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \
+	$(srcdir)/sllisttest01.sh.in $(srcdir)/sllisttest01vg.sh.in \
+	$(srcdir)/sllisttest02.sh.in $(srcdir)/sllisttest02vg.sh.in
+
+
+CLEANFILES = *.tmp *.sh *.txt
 

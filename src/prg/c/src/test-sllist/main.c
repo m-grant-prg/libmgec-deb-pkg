@@ -17,113 +17,87 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <mge-errno.h>
-#include <sllist.h>
+#include "sllisttest.h"
 #include <libmgec.h>
 
-struct testnode {
-	char key[20];
-	int payload;
-};
-
-void printlist(struct sllistnode *root);
-void testparamerr(struct sllistnode *root);
+int verbose;
 
 /*
  * sllist test program.
  */
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-	int prog_error = 0;
 	int i;
+	int status = 0, status1 = 0;
+	char choice[10] = { '\0' };
+	char *pchoice = choice;
 
-	struct testnode {
-		char key[20];
-		int payload;
-	};
+	printf("Choose one of :-\n");
+	printf("0) Test 01 - Load and free sllist.\n");
+	printf("1) Test 01 - Load and free sllist - verbose.\n");
+	printf("2) Test 02 - Test parameter errors.\n");
+	printf("3) Test 02 - Test parameter errors - verbose.\n");
+	printf("y) Run all Tests.\n");
+	printf("z) Run all Tests - verbose.\n");
+	printf("\n[Choice]: ");
 
-	struct sllistnode *root = NULL;
-
-	printf("Words entered:-\t");
-	char *str[] = {"give", "consistency", "is", "all", "i", "ask", "give",
-			"us", "this", "day", "our", "daily", "mask", "\0"};
-	for (i = 0; *str[i] && !mge_errno; i++) {
-		printf("%s ", str[i]);
-		struct testnode test;
-		strcpy(test.key, str[i]);
-		test.payload = i;
-		root = add_sll_node(root, &test, sizeof test);
+	/* If no args then run interactively, otherwise argv[1] is the choice */
+	if (argc == 1) {
+		i = scanf("%1s", choice);
+		if (i != 1) {
+			printf("Input error.\n");
+			exit(1);
+		}
+	} else if (argc > 2) {
+		printf("Input error.\n");
+		exit(1);
+	} else {
+		choice[0] = *argv[1];
 	}
-	printf("\n");
-	printf("mge_errno after single linked list population is %d\n",
-		mge_errno);
-	if (mge_errno)
-		printf("%s\n", mge_strerror(mge_errno));
-	printf("\n");
 
-	printf("Print single linked list.\n");
-	printlist(root);
-	printf("\n");
-
-	printf("Print 2nd time to ensure root node not corrupted.\n");
-	printlist(root);
-	printf("\n");
-
-	/* Test param error. */
-	testparamerr(root);
-	printf("\n");
-
-	printf("Print list just before freeing list.\n");
-	printlist(root);
-
-	/* Test free_sllist */
-	printf("Freeing tree.\n");
-	root = free_sllist(root);
-	printlist(root);
-
-	printf("Root address after freeing is: %p\n", root);
-	printf("\n");
+	switch (*pchoice) {
+	case '0':
+		verbose = 0;
+		status = test01();
+		break;
+	case '1':
+		verbose = 1;
+		status = test01();
+		break;
+	case '2':
+		verbose = 0;
+		status = test02();
+		break;
+	case '3':
+		verbose = 1;
+		status = test02();
+		break;
+	case 'y':
+		verbose = 0;
+		status1 = test01();
+		if (status1)
+			status = 1;
+		status1 = test02();
+		if (status1)
+			status = 1;
+		break;
+	case 'z':
+		verbose = 1;
+		status1 = test01();
+		if (status1)
+			status = 1;
+		status1 = test02();
+		if (status1)
+			status = 1;
+		break;
+	default:
+		printf("Invalid selection.\n");
+		break;
+	}
 
 	libmgec_print_src_version();
 	libmgec_print_pkg_version();
 
-	exit(prog_error);
+	exit(status);
 }
 
-void printlist(struct sllistnode *root)
-{
-	struct testnode *pnode;
-	struct sllistnode *currentnode;
-	currentnode = root;
-
-	printf("Linked List:-\t");
-
-	for_each_sll_node(currentnode, root) {
-		pnode = currentnode->object;
-		printf("%s ", pnode->key);
-	}
-	printf("\n");
-}
-
-void testparamerr(struct sllistnode *root)
-{
-	struct testnode *node;
-	node = NULL;
-	printf("Adding object whose pointer value is  %p\n", node);
-	root = add_sll_node(root, node, 10);
-	printf("mge_errno value after add_sll_node is %d\n", mge_errno);
-	if (mge_errno)
-		printf("%s\n", mge_strerror(mge_errno));
-	printf("Root is %p\n", root);
-	printf("\n");
-	struct testnode test;
-	strcpy(test.key, "James");
-	test.payload = 100;
-	printf("Adding object whose size is  0\n");
-	root = add_sll_node(root, &test, 0);
-	printf("mge_errno value after add_sll_node is %d\n", mge_errno);
-	if (mge_errno)
-		printf("%s\n", mge_strerror(mge_errno));
-	printf("Root is %p\n", root);
-
-}

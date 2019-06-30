@@ -17,7 +17,7 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 17/06/2019	MG	1.0.1	First release.				#
+# 01/07/2019	MG	1.0.1	First release.				#
 #									#
 #########################################################################
 
@@ -29,5 +29,6 @@ TESTS += ../test-bstree/bstreetest09r.sh ../test-bstree/bstreetest10t.sh
 TESTS += ../test-buf-msg/bufmsgtest
 TESTS += ../test-dllist/dllisttest
 TESTS += ../test-errno/errnotest
-TESTS += ../test-sllist/sllisttest
+TESTS += ../test-sllist/sllisttest01.sh ../test-sllist/sllisttest01vg.sh
+TESTS += ../test-sllist/sllisttest02.sh ../test-sllist/sllisttest02vg.sh
 

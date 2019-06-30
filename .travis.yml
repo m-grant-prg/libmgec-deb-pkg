@@ -16,7 +16,7 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 16/06/2019	MG	1.0.1	Initial release.                        #
+# 01/07/2019	MG	1.0.1	Initial release.                        #
 #									#
 #########################################################################
 
@@ -29,7 +29,7 @@ dist:
 before_install:
     - sudo add-apt-repository ppa:m-grant-prg/utils -y
     - sudo apt-get update
-    - sudo apt-get install -y autoconf-archive
+    - sudo apt-get install -y autoconf-archive libtool-bin valgrind
     - sudo apt-get install -y dia doxygen graphviz txt2man txt2manwrap
 
 script:
@@ -38,4 +38,7 @@ script:
     - make --quiet
     - make --quiet check
     - make --quiet distcheck
+
+after_failure:
+    - cat */_build/sub/src/prg/c/src/*/*.log
 
