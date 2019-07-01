@@ -42,7 +42,7 @@ int test02(void)
 	presult = emit_outputs(presult, fp);
 
 	if (mge_errno) {
-		sprintf(presult, "Test 01 failed with error - %s\n",
+		sprintf(presult, "Test 02 failed with error - %s\n",
 			mge_strerror(mge_errno));
 		printf("%s\n", presult);
 		fputs(result, fp);
