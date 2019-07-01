@@ -38,6 +38,7 @@
 # 17/06/2019	MG	1.0.10	Move to check target.			#
 # 01/07/2019	MG	1.0.11	Rewrite of the tests.			#
 #				Add valgrind tests.			#
+#				Add find next node test.		#
 #									#
 #########################################################################
 
@@ -59,7 +60,8 @@ check_HEADERS = sllisttest.h
 
 
 check_LTLIBRARIES = libsllisttest.la
-libsllisttest_la_SOURCES = common.c sllisttest01.c sllisttest02.c
+libsllisttest_la_SOURCES = common.c
+libsllisttest_la_SOURCES += sllisttest01.c sllisttest02.c sllisttest03.c
 libsllisttest_la_LIBADD = ../libmgec/libmgec.la $(tmplibraries)
 
 
@@ -68,18 +70,20 @@ sllisttest_SOURCES = main.c
 sllisttest_LDADD = ./libsllisttest.la
 
 
-Test01Answer.txt Test02Answer.txt: Makefile
+Test01Answer.txt Test02Answer.txt Test03Answer.txt: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.in || srcdir=$(srcdir)/; \
 	cp $${srcdir}$(@F).in  $@
 Test01Answer.txt: $(srcdir)/Test01Answer.txt.in
 Test02Answer.txt: $(srcdir)/Test02Answer.txt.in
+Test03Answer.txt: $(srcdir)/Test03Answer.txt.in
 
-check_DATA = Test01Answer.txt Test02Answer.txt
+check_DATA = Test01Answer.txt Test02Answer.txt Test03Answer.txt
 
 
-sllisttest01.sh sllisttest01vg.sh sllisttest02.sh sllisttest02vg.sh: Makefile
+sllisttest01.sh sllisttest01vg.sh sllisttest02.sh sllisttest02vg.sh \
+	sllisttest03.sh sllisttest03vg.sh: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	test -f ./$@.in || srcdir=$(srcdir)/; \
@@ -90,14 +94,18 @@ sllisttest01.sh: $(srcdir)/sllisttest01.sh.in
 sllisttest01vg.sh: $(srcdir)/sllisttest01vg.sh.in
 sllisttest02.sh: $(srcdir)/sllisttest02.sh.in
 sllisttest02vg.sh: $(srcdir)/sllisttest02vg.sh.in
+sllisttest03.sh: $(srcdir)/sllisttest03.sh.in
+sllisttest03vg.sh: $(srcdir)/sllisttest03vg.sh.in
 
 check_SCRIPTS = sllisttest01.sh sllisttest01vg.sh \
-		sllisttest02.sh sllisttest02vg.sh
-
+		sllisttest02.sh sllisttest02vg.sh \
+		sllisttest03.sh sllisttest03vg.sh
 
 EXTRA_DIST = $(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \
+	$(srcdir)/Test03Answer.txt.in \
 	$(srcdir)/sllisttest01.sh.in $(srcdir)/sllisttest01vg.sh.in \
-	$(srcdir)/sllisttest02.sh.in $(srcdir)/sllisttest02vg.sh.in
+	$(srcdir)/sllisttest02.sh.in $(srcdir)/sllisttest02vg.sh.in \
+	$(srcdir)/sllisttest03.sh.in $(srcdir)/sllisttest03vg.sh.in
 
 
 CLEANFILES = *.tmp *.sh *.txt

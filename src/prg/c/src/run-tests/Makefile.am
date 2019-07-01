@@ -31,4 +31,5 @@ TESTS += ../test-dllist/dllisttest
 TESTS += ../test-errno/errnotest
 TESTS += ../test-sllist/sllisttest01.sh ../test-sllist/sllisttest01vg.sh
 TESTS += ../test-sllist/sllisttest02.sh ../test-sllist/sllisttest02vg.sh
+TESTS += ../test-sllist/sllisttest03.sh ../test-sllist/sllisttest03vg.sh
 
