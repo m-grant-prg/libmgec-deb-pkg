@@ -31,6 +31,7 @@
  *				Add for_each_sll_node macro.		*
  *				Improve parameter naming.		*
  *				%s/add_sll_node/add_tail_sll_node/g	*
+ *				Add add_head_sll_node			*
  *									*
  ************************************************************************
  */
@@ -47,6 +48,9 @@ struct sllistnode {
 	void *object;		 /**< Attached object. */
 	struct sllistnode *next; /**< The subsequent node. */
 };
+
+struct sllistnode *add_head_sll_node(struct sllistnode *head,
+				     const void *object, size_t objsize);
 
 struct sllistnode *add_tail_sll_node(struct sllistnode *head,
 				     const void *object, size_t objsize);

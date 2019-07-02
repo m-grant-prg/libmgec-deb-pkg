@@ -31,12 +31,13 @@
 #				Merge into one project.			#
 # 02/07/2019	MG	1.0.7	Add for_each_sll_node.3 man page.	#
 #				%s/add_sll_node/add_tail_sll_node/g	#
+#				Add add_head_sll_node.			#
 #									#
 #########################################################################
 
 
-add_tail_sll_node.3 find_next_sll_node.3 for_each_sll_node.3 \
-	free_sllist.3: Makefile
+add_head_sll_node.3 add_tail_sll_node.3 find_next_sll_node.3 \
+	for_each_sll_node.3 free_sllist.3: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -55,18 +56,20 @@ add_tail_sll_node.3 find_next_sll_node.3 for_each_sll_node.3 \
 	txt2manwrap $(@F) $$section "MGE General C Library Manual" $@.tmp $@
 	rm -f $@.tmp
 
+add_head_sll_node.3: $(srcdir)/add_head_sll_node.3.man.in
 add_tail_sll_node.3: $(srcdir)/add_tail_sll_node.3.man.in
 find_next_sll_node.3: $(srcdir)/find_next_sll_node.3.man.in
 for_each_sll_node.3: $(srcdir)/for_each_sll_node.3.man.in
 free_sllist.3: $(srcdir)/free_sllist.3.man.in
 
-man_MANS = add_tail_sll_node.3 find_next_sll_node.3 for_each_sll_node.3 \
-	free_sllist.3
+man_MANS = add_head_sll_node.3 add_tail_sll_node.3 find_next_sll_node.3 \
+	for_each_sll_node.3 free_sllist.3
 
-EXTRA_DIST = $(srcdir)/add_tail_sll_node.3.man.in \
+EXTRA_DIST = $(srcdir)/add_head_sll_node.3.man.in \
+	$(srcdir)/add_tail_sll_node.3.man.in \
 	$(srcdir)/find_next_sll_node.3.man.in \
 	$(srcdir)/for_each_sll_node.3.man.in $(srcdir)/free_sllist.3.man.in
 
-CLEANFILES = *.tmp add_tail_sll_node.3 find_next_sll_node.3 \
-	for_each_sll_node.3 free_sllist.3
+CLEANFILES = *.tmp add_head_sll_node.3 add_tail_sll_node.3 \
+	find_next_sll_node.3 for_each_sll_node.3 free_sllist.3
 

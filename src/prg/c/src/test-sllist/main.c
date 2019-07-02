@@ -39,6 +39,8 @@ int main(int argc, char **argv)
 	printf("3) Test 02 - Test parameter errors - verbose.\n");
 	printf("4) Test 03 - Test find next node.\n");
 	printf("5) Test 03 - Test find next node - verbose.\n");
+	printf("6) Test 04 - Load with add_head and free sllist.\n");
+	printf("7) Test 04 - Load with add_head and free sllist - verbose.\n");
 	printf("y) Run all Tests.\n");
 	printf("z) Run all Tests - verbose.\n");
 	printf("\n[Choice]: ");
@@ -82,6 +84,14 @@ int main(int argc, char **argv)
 		verbose = 1;
 		status = test03();
 		break;
+	case '6':
+		verbose = 0;
+		status = test04();
+		break;
+	case '7':
+		verbose = 1;
+		status = test04();
+		break;
 	case 'y':
 		verbose = 0;
 		status1 = test01();
@@ -91,6 +101,9 @@ int main(int argc, char **argv)
 		if (status1)
 			status = 1;
 		status1 = test03();
+		if (status1)
+			status = 1;
+		status1 = test04();
 		if (status1)
 			status = 1;
 		break;
@@ -103,6 +116,9 @@ int main(int argc, char **argv)
 		if (status1)
 			status = 1;
 		status1 = test03();
+		if (status1)
+			status = 1;
+		status1 = test04();
 		if (status1)
 			status = 1;
 		break;

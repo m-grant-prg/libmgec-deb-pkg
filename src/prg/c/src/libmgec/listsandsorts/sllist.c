@@ -38,6 +38,7 @@
  *				file to make static inline.		*
  *				Improve parameter naming.		*
  *				%s/add_sll_node/add_tail_sll_node/g	*
+ *				Add add_head_sll_node			*
  *									*
  ************************************************************************
  */
@@ -52,6 +53,46 @@
 
 #include "internal.h"
 #include <mge-errno.h>
+
+/**
+ * Add a node to the start of the singly linked list.
+ * On error mge_errno will be set.
+ * @param head A pointer to the current root node or NULL if the list is not yet
+ * started.
+ * @param object The object to attach to the node.
+ * @param objsize The size of the attached object.
+ * @return head, a pointer to the new root node or NULL on error
+ */
+struct sllistnode *add_head_sll_node(struct sllistnode *head,
+				     const void *object, size_t objsize)
+{
+	struct sllistnode *newhead;
+
+	if (object == NULL || !objsize) {
+		mge_errno = MGE_PARAM;
+		return NULL;
+	}
+
+	newhead = malloc(sizeof(struct sllistnode));
+	if (newhead == NULL)
+		goto node_fail;
+
+	newhead->object = malloc(objsize);
+	if (newhead->object == NULL)
+		goto obj_fail;
+
+	/* Copy object and initialise node. */
+	newhead->object = memcpy(newhead->object, object, objsize);
+	newhead->next = head;
+	return newhead;
+
+obj_fail:
+	free(newhead);
+node_fail:
+	mge_errno = MGE_ERRNO;
+	sav_errno = errno;
+	return NULL;
+}
 
 /**
  * Add a node to the tail of the singly linked list.

@@ -1,0 +1,7 @@
+set -e
+cd $(dirname "$0")
+libtool --mode=execute valgrind --leak-check=full --track-origins=yes \
+	--errors-for-leak-kinds=all --show-reachable=yes --error-exitcode=99 \
+	./sllisttest 7
+cd -
+

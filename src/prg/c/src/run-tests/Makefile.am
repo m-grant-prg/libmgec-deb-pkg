@@ -17,7 +17,7 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 01/07/2019	MG	1.0.1	First release.				#
+# 02/07/2019	MG	1.0.1	First release.				#
 #									#
 #########################################################################
 
@@ -32,4 +32,5 @@ TESTS += ../test-errno/errnotest
 TESTS += ../test-sllist/sllisttest01.sh ../test-sllist/sllisttest01vg.sh
 TESTS += ../test-sllist/sllisttest02.sh ../test-sllist/sllisttest02vg.sh
 TESTS += ../test-sllist/sllisttest03.sh ../test-sllist/sllisttest03vg.sh
+TESTS += ../test-sllist/sllisttest04.sh ../test-sllist/sllisttest04vg.sh
 

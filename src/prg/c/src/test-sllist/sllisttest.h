@@ -40,6 +40,8 @@ int test02(void);
 
 int test03(void);
 
+int test04(void);
+
 END_C_DECLS
 
 #endif /* ndef SLLISTTEST_H */
