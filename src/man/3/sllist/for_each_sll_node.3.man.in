@@ -44,7 +44,7 @@ A simple example using a character string:-
 		struct testnode test;
 		strcpy(test.key, str[i]);
 		test.payload = i;
-		root = add_sll_node(root, &test, sizeof test);
+		root = add_tail_sll_node(root, &test, sizeof test);
 	}
 
 	printf("\\n");
@@ -81,7 +81,7 @@ data element, memory permitting.
 
 This single linked list implementation is supported by the following functions:-
 
-add_sll_node() - add a node to the end of a single linked list.
+add_tail_sll_node() - add a node to the end of a single linked list.
 
 find_next_sll_node() - find the next node after the supplied node.
 
@@ -103,5 +103,5 @@ This is free software: you are free to change and redistribute it.
 .br
 There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
-add_sll_node(3) find_next_sll_node(3) free_sllist(3) mge_strerror(3)
+add_tail_sll_node(3) find_next_sll_node(3) free_sllist(3) mge_strerror(3)
 

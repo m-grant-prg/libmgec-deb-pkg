@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 10/06/2019_
+ * @version _v1.0.9 ==== 02/07/2019_
  */
 
 /* **********************************************************************
@@ -32,11 +32,12 @@
  * 09/11/2017	MG	1.0.6	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.7	Move to new source directory structure.	*
  * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
- * 10/06/2019	MG	1.0.9	clang-format coding style changes.	*
+ * 02/07/2019	MG	1.0.9	clang-format coding style changes.	*
  *				Improve code legibility.		*
  *				Extract find_next_sll_node to header 	*
  *				file to make static inline.		*
  *				Improve parameter naming.		*
+ *				%s/add_sll_node/add_tail_sll_node/g	*
  *									*
  ************************************************************************
  */
@@ -61,8 +62,8 @@
  * @param objsize The size of the attached object.
  * @return head, a pointer to the root node or NULL on error
  */
-struct sllistnode *add_sll_node(struct sllistnode *head, const void *object,
-				size_t objsize)
+struct sllistnode *add_tail_sll_node(struct sllistnode *head,
+				     const void *object, size_t objsize)
 {
 	if (object == NULL || !objsize) {
 		mge_errno = MGE_PARAM;
@@ -87,7 +88,7 @@ struct sllistnode *add_sll_node(struct sllistnode *head, const void *object,
 		 * Not yet at the tail, recurse onwards re-linking backwards on
 		 * return
 		 */
-		head->next = add_sll_node(head->next, object, objsize);
+		head->next = add_tail_sll_node(head->next, object, objsize);
 	}
 	return head;
 

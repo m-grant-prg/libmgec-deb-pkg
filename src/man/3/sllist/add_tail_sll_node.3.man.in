@@ -1,17 +1,18 @@
 NAME
-add_sll_node - Add a node to a single linked list.
+add_tail_sll_node - Add a node to the tail of a single linked list.
 SYNOPSIS
 	#include <sllist.h>
 
-	struct sllistnode *add_sll_node(struct sllistnode *head,
-				const void *object, size_t objsize);
+	struct sllistnode *add_tail_sll_node(struct sllistnode *head,
+					const void *object,
+					size_t objsize);
 
 DESCRIPTION
 See the Overview section of this manual page for a broad description of this
 MGE General C Library implementation of a single linked list.
 
-add_sll_node adds a node with data of 'object' to the end of a linked list.
-If currentnode is NULL then add_sll_node creates the root node of a new linked
+add_tail_sll_node adds a node with data of 'object' to the end of a linked list.
+If head is NULL then add_tail_sll_node creates the root node of a new linked
 list.
 .br
 mge_errno will be set as required. If memory cannot be allocated for the node
@@ -62,7 +63,7 @@ A simple example using a character string:-
 		struct testnode test;
 		strcpy(test.key, str[i]);
 		test.payload = i;
-		root = add_sll_node(root, &test, sizeof test);
+		root = add_tail_sll_node(root, &test, sizeof test);
 	}
 
 	printf("\\n");
@@ -101,7 +102,7 @@ data element, memory permitting.
 
 This single linked list implementation is supported by the following functions:-
 
-add_sll_node() - add a node to the end of a single linked list.
+add_tail_sll_node() - add a node to the end of a single linked list.
 
 find_next_sll_node() - find the next node after the supplied node.
 

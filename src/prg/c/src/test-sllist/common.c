@@ -37,7 +37,7 @@ struct sllistnode *create_list(struct sllistnode *root)
 		struct testnode test;
 		strcpy(test.key, str[i]);
 		test.payload = i;
-		root = add_sll_node(root, &test, sizeof test);
+		root = add_tail_sll_node(root, &test, sizeof test);
 		if (root == NULL)
 			return NULL;
 	}

@@ -33,8 +33,8 @@ int main(int argc, char **argv)
 	char *pchoice = choice;
 
 	printf("Choose one of :-\n");
-	printf("0) Test 01 - Load and free sllist.\n");
-	printf("1) Test 01 - Load and free sllist - verbose.\n");
+	printf("0) Test 01 - Load with add_tail and free sllist.\n");
+	printf("1) Test 01 - Load with add_tail and free sllist - verbose.\n");
 	printf("2) Test 02 - Test parameter errors.\n");
 	printf("3) Test 02 - Test parameter errors - verbose.\n");
 	printf("4) Test 03 - Test find next node.\n");

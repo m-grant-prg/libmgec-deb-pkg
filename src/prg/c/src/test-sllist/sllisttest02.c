@@ -61,8 +61,9 @@ int test02(void)
 	node = NULL;
 	sprintf(presult, "Adding object whose pointer value is  %p\n", node);
 	presult = emit_outputs(presult, fp);
-	add_sll_node(root, node, 10);
-	sprintf(presult, "mge_errno after add_sll_node is %d\n", mge_errno);
+	add_tail_sll_node(root, node, 10);
+	sprintf(presult, "mge_errno after add_tail_sll_node is %d\n",
+		mge_errno);
 	presult = emit_outputs(presult, fp);
 	if (mge_errno) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
@@ -75,8 +76,9 @@ int test02(void)
 	test.payload = 100;
 	sprintf(presult, "Adding object whose size is  0\n");
 	presult = emit_outputs(presult, fp);
-	add_sll_node(root, &test, 0);
-	sprintf(presult, "mge_errno after add_sll_node is %d\n", mge_errno);
+	add_tail_sll_node(root, &test, 0);
+	sprintf(presult, "mge_errno after add_tail_sll_node is %d\n",
+		mge_errno);
 	presult = emit_outputs(presult, fp);
 	if (mge_errno) {
 		sprintf(presult, "%s\n", mge_strerror(mge_errno));
