@@ -34,6 +34,8 @@ int cmpresfile(char *result, char *answer);
 
 char *emit_outputs(char *pr, FILE *fp);
 
+int nodecmp(const void *node1, const void *node2);
+
 int test01(void);
 
 int test02(void);
@@ -41,6 +43,8 @@ int test02(void);
 int test03(void);
 
 int test04(void);
+
+int test05(void);
 
 END_C_DECLS
 

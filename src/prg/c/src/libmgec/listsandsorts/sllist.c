@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 02/07/2019_
+ * @version _v1.0.9 ==== 05/07/2019_
  */
 
 /* **********************************************************************
@@ -32,13 +32,14 @@
  * 09/11/2017	MG	1.0.6	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.7	Move to new source directory structure.	*
  * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
- * 02/07/2019	MG	1.0.9	clang-format coding style changes.	*
+ * 05/07/2019	MG	1.0.9	clang-format coding style changes.	*
  *				Improve code legibility.		*
  *				Extract find_next_sll_node to header 	*
  *				file to make static inline.		*
  *				Improve parameter naming.		*
  *				%s/add_sll_node/add_tail_sll_node/g	*
  *				Add add_head_sll_node			*
+ *				Add find_sll_node.			*
  *									*
  ************************************************************************
  */
@@ -139,6 +140,37 @@ node_fail:
 	mge_errno = MGE_ERRNO;
 	sav_errno = errno;
 	return NULL;
+}
+
+/**
+ * Find a node.
+ * On error mge_errno will be set, otherwise it will be 0.
+ * @param head A pointer to the current root node.
+ * @param searchobj The object to find. It does not need to be a fully populated
+ * object. It only needs enough inforamtion to support the comparison function,
+ * eg a key.
+ * @param comp A pointer to the comparison function to be used. This must have
+ * the same shape as strcmp.
+ * @return A pointer to the object found, (the fully populated object), or NULL
+ * if not found or an error was encountered.
+ */
+void *find_sll_node(struct sllistnode *head, const void *searchobj,
+		    int (*comp)(const void *, const void *))
+{
+	mge_errno = 0;
+
+	if (searchobj == NULL || comp == NULL) {
+		mge_errno = MGE_PARAM;
+		return NULL;
+	}
+
+	if (head == NULL)
+		return NULL;
+
+	if ((*comp)(searchobj, head->object) == 0)
+		return head->object;
+
+	return find_sll_node(head->next, searchobj, comp);
 }
 
 /**

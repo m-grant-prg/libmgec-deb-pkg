@@ -1,0 +1,17 @@
+mge_errno after single linked list population:- 0
+Print single linked list.
+Linked List:-	give consistency is all i ask give us this day our daily mask 
+Trying to find node with key Jim
+mge_errno after find_sll_node is 0
+Node address returned is: (nil)
+Looking for root node
+mge_errno after find_sll_node is 0
+Node found with key give
+Looking for non-root node
+mge_errno after find_sll_node is 0
+Node found with key this
+Print list just before freeing list.
+Linked List:-	give consistency is all i ask give us this day our daily mask 
+Freeing tree.
+Linked List:-	
+Root address after freeing is: (nil)

@@ -129,3 +129,12 @@ char *emit_outputs(char *pr, FILE *fp)
 	return pr;
 }
 
+/*
+ * node comparison function.
+ */
+int nodecmp(const void *node1, const void *node2)
+{
+	return (strcmp(((struct testnode *)node1)->key,
+		       ((struct testnode *)node2)->key));
+}
+

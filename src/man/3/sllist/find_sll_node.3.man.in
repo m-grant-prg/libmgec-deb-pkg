@@ -1,48 +1,77 @@
 NAME
-free_sllist - Deletes a single linked list.
+find_sll_node - Find a node in a single linked list.
 SYNOPSIS
 	#include <sllist.h>
 
-	struct sllistnode *free_sllist(struct sllistnode *head);
+	void *find_sll_node(struct sllistnode *head, const void *searchobj,
+		    int (*comp)(const void *, const void *));
 
 DESCRIPTION
 See the Overview section of this manual page for a broad description of this
 MGE General C Library implementation of a single linked list.
 
-free_sllist deletes a single linked list.
+find_sll_node looks for a node whose payload matches searchobj.
 .br
-mge_errno will be set to 0 on return from this function.
+mge_errno will be set as required.
 PARAMETERS
 head - Is a pointer to the root node.
-Care must be taken to pass the pointer to the ROOT node as free_sllist deletes
-from the node passed to the end of the list. If an intermediate node address is
-passed, then the preceding node will have an invalid pointer.
 
+searchobj - Is a pointer to a payload type object which contains the data (key)
+to be matched.
+
+comp - Is a pointer to a function which will compare the node payload and the
+searchobj. It should return an int in a completely comparable way to strcmp.
 RETURN VALUE
-Return value is always NULL.
+A pointer to the found node, NULL if no matching node exists in the linked
+list or if an error occurs.
 ERRORS
-mge_errno is always set to 0 on return from this function.
+MGE_PARAM if an argument contains an error.
 EXAMPLE
 A simple example using a character string:-
 
 	#include <sllist.h>
 	#include <mge-errno.h>
 
+	int nodecmp(const void *node1, const void *node2);
+
 	//...
 
 	struct sllistnode *root;
 	char *key = "John";
 	root = NULL;
+	char result[100];
+	char *presult = result;
 
 	root = add_tail_sll_node(root, key, strlen(key) + 1);
 
 	if (mge_errno)
 		printf("%s\\n", mge_strerror(mge_errno));
 
-	root = free_sllist(root);
+	char *key1 = "Henry";
 
-	// This will print Root node pointer: NULL, i.e. List deleted.
-	printf("Root node pointer: %p\\n", root);
+	root = add_tail_sll_node(root, key1, strlen(key1) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	presult = find_sll_node(root, key1, nodecmp);
+
+	// This will print Searching for node Henry,
+	// found node with object Henry.
+
+	printf("Searching for node Henry, found object %s\\n",
+		presult);
+
+	//...
+
+	/*
+	 * node comparison function.
+	 */
+	int nodecmp(const void *node1, const void *node2)
+	{
+		return (strcmp((char *)node1, (char *)node2));
+	}
+
 
 OVERVIEW
 This is one of a series of functions implementing a single linked list. A single
@@ -75,7 +104,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019 Mark Grant
+Copyright (C) 2019 Mark Grant
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
@@ -85,6 +114,6 @@ This is free software: you are free to change and redistribute it.
 .br
 There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
-add_head_sll_node(3) add_tail_sll_node(3) find_next_sll_node(3) find_sll_node(3)
-for_each_sll_node(3) mge_strerror(3)
+add_head_sll_node(3) add_tail_sll_node(3) find_next_sll_node(3)
+for_each_sll_node(3) free_sllist(3) mge_strerror(3)
 

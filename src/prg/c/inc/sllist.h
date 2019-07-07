@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.7 ==== 02/07/2019_
+ * @version _v1.0.7 ==== 05/07/2019_
  */
 
 /* **********************************************************************
@@ -25,13 +25,14 @@
  * 05/11/2017	MG	1.0.4	Add Doxygen comments.			*
  * 09/11/2017	MG	1.0.5	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.6	Move to new source directory structure.	*
- * 02/07/2019	MG	1.0.7	clang-format coding style changes.	*
+ * 05/07/2019	MG	1.0.7	clang-format coding style changes.	*
  *				Extract find_next_sll_node from c file	*
  *				and make static inline.			*
  *				Add for_each_sll_node macro.		*
  *				Improve parameter naming.		*
  *				%s/add_sll_node/add_tail_sll_node/g	*
  *				Add add_head_sll_node			*
+ *				Add find_sll_node.			*
  *									*
  ************************************************************************
  */
@@ -54,6 +55,9 @@ struct sllistnode *add_head_sll_node(struct sllistnode *head,
 
 struct sllistnode *add_tail_sll_node(struct sllistnode *head,
 				     const void *object, size_t objsize);
+
+void *find_sll_node(struct sllistnode *head, const void *searchobj,
+		    int (*comp)(const void *, const void *));
 
 /**
  * Find the next node in the list.
