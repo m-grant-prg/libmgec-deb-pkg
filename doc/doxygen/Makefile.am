@@ -30,8 +30,10 @@
 #				be used for the substitution of		#
 #				Installation Directory Variables.	#
 # 10/05/2019	MG	1.1.1	Merge into one project.			#
-# 28/06/2019	MG	1.1.2	Do not register with doc-base or	#
+# 08/07/2019	MG	1.1.2	Do not register with doc-base or	#
 #				dochelp when running make distcheck.	#
+#				Reduce Doxygen out put when silent	#
+#				rules are enabled.			#
 #									#
 #########################################################################
 
@@ -50,7 +52,11 @@ $(docpkg): doxygen.stamp
 	tar -chz --format=posix -f $@ html
 
 doxygen.stamp: Doxyfile
-	doxygen $<
+	if $(AM_V_P); then \
+		DOXYGEN_QUIET=NO doxygen $< ; \
+	else \
+		DOXYGEN_QUIET=YES doxygen $< ; \
+	fi
 	echo Timestamp > $@
 
 
