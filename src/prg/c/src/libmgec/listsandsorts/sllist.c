@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 05/07/2019_
+ * @version _v1.0.10 ==== 12/07/2019_
  */
 
 /* **********************************************************************
@@ -40,6 +40,7 @@
  *				%s/add_sll_node/add_tail_sll_node/g	*
  *				Add add_head_sll_node			*
  *				Add find_sll_node.			*
+ * 12/07/2019	MG	1.0.10	Change to specific internal header file.*
  *									*
  ************************************************************************
  */
@@ -49,11 +50,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* This must be included before internal.h */
-#include <sllist.h>
-
-#include "internal.h"
+#include "sllist-internal.h"
 #include <mge-errno.h>
+#include <sllist.h>
 
 /**
  * Add a node to the start of the singly linked list.

@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.1.7 ==== 09/06/2019_
+ * @version _v1.1.8 ==== 12/07/2019_
  */
 
 /* **********************************************************************
@@ -79,6 +79,7 @@
  *				instead of -1.				*
  * 02/06/2018	MG	1.1.6	Add counter and node totals for a tree.	*
  * 09/06/2019	MG	1.1.7	clang-format coding style changes.	*
+ * 12/07/2019	MG	1.1.8	Change to specific internal header file.*
  *									*
  ************************************************************************
  */
@@ -88,10 +89,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* This must be included before internal.h */
+#include "bstree-internal.h"
 #include <bstree.h>
-
-#include "internal.h"
 #include <mge-errno.h>
 
 /**

@@ -11,7 +11,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 11/06/2019_
+ * @version _v1.0.10 ==== 12/07/2019_
  */
 
 /* **********************************************************************
@@ -37,6 +37,7 @@
  *				Improve code legibility.		*
  *				Extract find_prev and find_next to the	*
  *				header file and make inline.		*
+ * 12/07/2019	MG	1.0.10	Change to specific internal header file.*
  *									*
  ************************************************************************
  */
@@ -46,10 +47,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* This must be included before internal.h */
+#include "dllist-internal.h"
 #include <dllist.h>
-
-#include "internal.h"
 #include <mge-errno.h>
 
 /* Holds the address of the preceding node when adding nodes. */

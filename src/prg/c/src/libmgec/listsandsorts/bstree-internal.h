@@ -1,7 +1,7 @@
 /**
- * @file src/prg/c/src/libmgec/listsandsorts/internal.h
+ * @file src/prg/c/src/libmgec/listsandsorts/bstree-internal.h
  *
- * Non-public header file for lists and sorts in the libmgec shared library.
+ * Non-public header file for binary search trees in the libmgec shared library.
  * No distribution required.
  *
  * @author Copyright (C) 2015-2019  Mark Grant
@@ -9,7 +9,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.8 ==== 09/06/2019_
+ * @version _v1.0.9 ==== 12/07/2019_
  */
 
 /* **********************************************************************
@@ -27,17 +27,20 @@
  * 02/06/2018	MG	1.0.7	Add support for counter and node totals	*
  *				for a tree.				*
  * 09/06/2019	MG	1.0.8	clang-format coding style changes.	*
+ * 12/07/2019	MG	1.0.9	Separate combined header file into	*
+ *				specific individual files.		*
  *									*
  ************************************************************************
  */
 
+#ifndef BSTREE_INTERNAL_H
+#define BSTREE_INTERNAL_H
+
 #include <portability.h>
 
-BEGIN_C_DECLS
+#include <bstree.h>
 
-#ifdef BSTREE_H
-	#ifndef BSTREE_INTERNAL_H
-		#define BSTREE_INTERNAL_H
+BEGIN_C_DECLS
 
 static struct bstreenode *add_node(struct bstreenode *currentnode,
 				   const void *object, size_t objsize,
@@ -74,26 +77,7 @@ find_next_node_trace(const struct bstreenode *currentnode,
 		     struct bstobjcoord *searchobj,
 		     int (*comp)(const void *, const void *));
 
-	#endif /* ndef BSTREE_INTERNAL_H */
-#endif	       /* def BSTREE_H */
-
-#ifdef DLLIST_H
-	#ifndef DLLIST_INTERNAL_H
-		#define DLLIST_INTERNAL_H
-
-static void free_dll_node(struct dllistnode *currentnode);
-
-	#endif /* ndef DLLIST_INTERNAL_H */
-#endif	       /* def DLLIST_H */
-
-#ifdef SLLIST_H
-	#ifndef SLLIST_INTERNAL_H
-		#define SLLIST_INTERNAL_H
-
-static void free_sll_node(struct sllistnode *currentnode);
-
-	#endif /* ndef SLLIST_INTERNAL_H */
-#endif	       /* def SLLIST_H */
-
 END_C_DECLS
+
+#endif /* ndef BSTREE_INTERNAL_H */
 

@@ -60,6 +60,8 @@
 # 09/09/2018	MG	1.0.22	Add buf-msg/internal.h			#
 # 10/05/2019	MG	1.0.23	Remove shebang.				#
 #				Merge into one project.			#
+# 12/07/2019	MG	1.0.24	Change for individual internal header	#
+#				files in listsandsorts.			#
 #									#
 #########################################################################
 
@@ -85,7 +87,10 @@ AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
 
 
-noinst_HEADERS = buf-msg/internal.h errors/internal.h listsandsorts/internal.h
+noinst_HEADERS = buf-msg/internal.h errors/internal.h
+noinst_HEADERS += listsandsorts/bstree-internal.h
+noinst_HEADERS += listsandsorts/dllist-internal.h
+noinst_HEADERS += listsandsorts/sllist-internal.h
 
 
 lib_LTLIBRARIES = libmgec.la
