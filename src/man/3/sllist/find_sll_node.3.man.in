@@ -11,6 +11,13 @@ See the Overview section of this manual page for a broad description of this
 MGE General C Library implementation of a single linked list.
 
 find_sll_node looks for a node whose payload matches searchobj.
+
+.br
+N.B.
+.br
+There is no contsraint that the node key be unique nor that the list be ordered.
+Therefore this function will only ever find the first match.
+
 .br
 mge_errno will be set as required.
 PARAMETERS
