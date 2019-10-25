@@ -18,6 +18,9 @@
 # Date		Author	Version	Description				#
 #									#
 # 06/07/2019	MG	1.0.1	First release.				#
+# 25/10/2019	MG	1.0.2	Do not automatically run the valgrind	#
+#				tests as the package may be getting	#
+#				built under user mode qemu.		#
 #									#
 #########################################################################
 
@@ -29,9 +32,9 @@ TESTS += ../test-bstree/bstreetest09r.sh ../test-bstree/bstreetest10t.sh
 TESTS += ../test-buf-msg/bufmsgtest
 TESTS += ../test-dllist/dllisttest
 TESTS += ../test-errno/errnotest
-TESTS += ../test-sllist/sllisttest01.sh ../test-sllist/sllisttest01vg.sh
-TESTS += ../test-sllist/sllisttest02.sh ../test-sllist/sllisttest02vg.sh
-TESTS += ../test-sllist/sllisttest03.sh ../test-sllist/sllisttest03vg.sh
-TESTS += ../test-sllist/sllisttest04.sh ../test-sllist/sllisttest04vg.sh
-TESTS += ../test-sllist/sllisttest05.sh ../test-sllist/sllisttest05vg.sh
+TESTS += ../test-sllist/sllisttest01.sh
+TESTS += ../test-sllist/sllisttest02.sh
+TESTS += ../test-sllist/sllisttest03.sh
+TESTS += ../test-sllist/sllisttest04.sh
+TESTS += ../test-sllist/sllisttest05.sh
 
