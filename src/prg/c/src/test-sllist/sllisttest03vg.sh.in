@@ -1,7 +1,16 @@
 set -e
 cd $(dirname "$0")
-libtool --mode=execute valgrind --leak-check=full --track-origins=yes \
-	--errors-for-leak-kinds=all --show-reachable=yes --error-exitcode=99 \
-	./sllisttest 5
+
+# To use errors-for-leak-kind verison must be at least 3.9.0
+minvalver=3.9.0
+valver=$(valgrind --version | grep -Go '[[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+')
+lowvalver=$(printf "%s\n%s\n" $minvalver $valver | sort -V | head -n 1)
+cmd="libtool --mode=execute valgrind --leak-check=full --track-origins=yes "
+if [[ $lowvalver == $minvalver ]]; then
+	cmd+="--errors-for-leak-kinds=all "
+fi
+cmd+="--show-reachable=yes --error-exitcode=99 "
+cmd+="./sllisttest 5"
+eval "$cmd"
 cd -
 
