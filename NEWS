@@ -1,3 +1,16 @@
+Release 1.3.0 2019-10-27
+Source v1.2.0
+Library v3:0:1
+man: Stress find_sll_node only finds first match
+docs: Respect verbosity under enable-silent-rules
+sllist: Add find_sll_node(), man page and test
+sllist: Add add_head_sll_node()
+sllist: Rename add_sll_node to add_tail_sll_node
+listsandsorts: sllist: Improve parameter naming
+listsandsorts: Add for_each_sll_node macro
+A myriad of technical changes have been made which make no functional change
+details of which may be found in the ChangeLog.
+
 Release 1.2.1 2019-05-29
 Correct src buffer offset type to unsigned
 Source v1.1.8

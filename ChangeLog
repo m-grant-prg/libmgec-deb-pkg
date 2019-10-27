@@ -1,3 +1,54 @@
+2019-10-27 v1.3.0 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.0
+	Library v3:0:1
+	tests: Do not automatically run the valgrind tests
+	tests: Build valgrind cmd dependent on version
+	travis: Reinstate default build environment
+	m4: Update to tooling packages
+	man: Stress find_sll_node only finds first match
+	listsandsorts: Use individual internal header files
+	docs: Respect verbosity under enable-silent-rules
+	sllist: Add find_sll_node(), man page and test
+	sllist: Add add_head_sll_node()
+	sllist: Rename add_sll_node to add_tail_sll_node
+	test-sllist: Add find next node test
+	test-sllist: Correct cut and paste error
+	test-sllist: Re-write all the tests
+	at: configure.ac: Add header comments on --enable-
+	at: Fix make distcheck
+	at: configure.ac: Correct ARG_ENABLE help
+	at: Update bootstrap.sh to v1.4.5
+	at: README: Point bootstrap.sh part at acmbuild wiki
+	at: Run all make check tests in one block
+	test-sllist: Move to check target
+	test-errno: Move to check target
+	test-dllist: Move under check target
+	test-buf-msg: Move under check target
+	test-bstree: Run tests individually in make check
+	travis: Add make check and distcheck to the tests
+	test-bstree: Move to check target
+	git: Ignore test-driver auto-created for make check
+	travis: Initial Travis CI build test setup
+	at: Update compiler m4 to version 1.0.4
+	clang-format: version.c: Initial style cleanup
+	listsandsorts: Inline dll find_prev & find_next
+	listsandsorts: dllist.c: Improve code legibility
+	listsandsorts: sllist: Improve parameter naming
+	listsandsorts: Add for_each_sll_node macro
+	listsandsorts: Inline find_next_sll_node
+	listsandsorts: sllist.c: Improve code legibility
+	listsandsorts: Remove 2 unneeded void ptr casts
+	clang-format: memory: Initial coding style changes
+	clang-format: listsandsorts: Initial style cleanup
+	clang-format: errors: Initial coding style changes
+	clang-format: buf-msg: Initial coding style changes
+	clang-format: inc: Initial coding style changes
+	clang-format: Initial setup
+	git: Add file header comments plus SPDX identifier
+	at: Add missing header checks
+	configure: Update overlooked revision number
+	Use AC_HEADER_STDBOOL and standard GNU ifdeffery
+
 2019-05-29 v 1.2.1 Mark Grant <m.grant.prg@gmail.com>
 	* Correct src buffer offset type to unsigned
 	Source v1.1.8
