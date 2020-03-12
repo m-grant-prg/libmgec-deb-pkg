@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Author: Copyright (C) 2015-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -147,7 +147,7 @@ AC_PREREQ(2.69)
 # The following macros set all top level versioning for this project. All
 # information can be propagated via AC_CONFIG_HEADERS and AC_CONFIG_FILES.
 #
-AC_INIT(MGE General C Library, 1.3.0, m.grant.prg@gmail.com, libmgec)
+AC_INIT(MGE General C Library, 1.3.0+rc1, m.grant.prg@gmail.com, libmgec)
 
 AC_MSG_NOTICE(initialisation and setup)
 
