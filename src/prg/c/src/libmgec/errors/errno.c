@@ -5,12 +5,12 @@
  *
  * Definition of mge_errno error descriptions and global error variables.
  *
- * @author Copyright (C) 2017-2019  Mark Grant
+ * @author Copyright (C) 2017-2020  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 08/06/2019_
+ * @version _v1.0.11 ==== 12/03/2020_
  */
 
 /* **********************************************************************
@@ -31,6 +31,7 @@
  * 09/09/2018	MG	1.0.9	Use ARRAY_SIZE macro from new		*
  *				mge-general.h header file.		*
  * 08/06/2019	MG	1.0.10	clang-format coding style changes.	*
+ * 12/03/2020	MG	1.0.11	Add identification error.		*
  *									*
  ************************************************************************
  */
@@ -60,7 +61,8 @@ const char *errno_desc[] = { "Success.",
 			     "Invalid message received.",
 			     "SSH error.",
 			     "No such lock.",
-			     "Client is blocked." };
+			     "Client is blocked.",
+			     "Identification error." };
 
 /**
  * Size of the error description array.
