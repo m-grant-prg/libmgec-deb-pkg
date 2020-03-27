@@ -55,7 +55,6 @@
 #include "internal.h"
 #include <mge-errno.h>
 #include <mgebuffer.h>
-#include <mgememory.h>
 
 /**
  * Concatenate the used portion of a flat buffer into a buffer object.
@@ -77,10 +76,12 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 		t = m_buf->size + (s_buf_os - (m_buf->size - m_buf->next_free));
 		if (t < DEF_BUF_SIZE)
 			t = DEF_BUF_SIZE;
-		m_buf_tmp = mg_realloc(m_buf->buffer, t);
-		if (m_buf_tmp == NULL)
+		m_buf_tmp = realloc(m_buf->buffer, t);
+		if (m_buf_tmp == NULL) {
+			sav_errno = errno;
+			mge_errno = MGE_ERRNO;
 			return NULL;
-
+		}
 		m_buf->buffer = m_buf_tmp;
 		m_buf->size = t;
 	}
@@ -99,9 +100,12 @@ struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 {
 	char *t_buf = NULL;
 
-	t_buf = mg_realloc(t_buf, (m_buf->size - m_buf->proc_next));
-	if (t_buf == NULL)
+	t_buf = realloc(t_buf, (m_buf->size - m_buf->proc_next));
+	if (t_buf == NULL) {
+		sav_errno = errno;
+		mge_errno = MGE_ERRNO;
 		return NULL;
+	}
 
 	m_buf->size -= m_buf->proc_next;
 	memcpy(t_buf, (m_buf->buffer + m_buf->proc_next), m_buf->size);
