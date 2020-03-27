@@ -5,12 +5,12 @@
  *
  * All buffer manipulation support functions.
  *
- * @author Copyright (C) 2017-2019  Mark Grant
+ * @author Copyright (C) 2017-2020  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 08/06/2019_
+ * @version _v1.0.11 ==== 27/03/2020_
  */
 
 /* **********************************************************************
@@ -40,6 +40,8 @@
  * 25/05/2019	MG	1.0.9	Correct source buffer offset type to	*
  *				unsigned.				*
  * 08/06/2019	MG	1.0.10	clang-format coding style changes.	*
+ * 27/03/2020	MG	1.0.11	Correct concat_buf() to guarantee	*
+ *				arguments are unchanged if it fails.	*
  *									*
  ************************************************************************
  */
@@ -69,13 +71,6 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 	size_t t;
 	size_t x = 0;
 	char *m_buf_tmp;
-
-	if (m_buf->buffer == NULL) {
-		m_buf->buffer = mg_realloc(m_buf->buffer, DEF_BUF_SIZE);
-		if (m_buf->buffer == NULL)
-			return NULL;
-		m_buf->size = DEF_BUF_SIZE;
-	}
 
 	if ((m_buf->next_free + s_buf_os) > m_buf->size) {
 		t = m_buf->size + (s_buf_os - (m_buf->size - m_buf->next_free));
