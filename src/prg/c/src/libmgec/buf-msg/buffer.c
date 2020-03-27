@@ -59,7 +59,8 @@
 
 /**
  * Concatenate the used portion of a flat buffer into a buffer object.
- * On failure function arguments are unchanged and mge_errno will be set.
+ * On failure NULL is returned, the function arguments are unchanged and
+ * mge_errno will be set.
  * @param s_buf Source buffer.
  * @param s_buf_os Offset into source buffer ie extent of used portion.
  * @param m_buf The buffer object to use.
