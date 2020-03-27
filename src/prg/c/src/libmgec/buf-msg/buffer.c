@@ -75,6 +75,8 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 
 	if ((m_buf->next_free + s_buf_os) > m_buf->size) {
 		t = m_buf->size + (s_buf_os - (m_buf->size - m_buf->next_free));
+		if (t < DEF_BUF_SIZE)
+			t = DEF_BUF_SIZE;
 		m_buf_tmp = mg_realloc(m_buf->buffer, t);
 		if (m_buf_tmp == NULL)
 			return NULL;
