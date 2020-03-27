@@ -92,7 +92,8 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 
 /**
  * Remove processed data from a buffer object.
- * On failure function arguments are unchanged and mge_errno will be set.
+ * On failure NULL is returned, the function argument is unchanged and
+ * mge_errno will be set.
  * @param m_buf Pointer to the buffer object to process.
  * @return Pointer to the processed buffer object or NULL on error.
  */
