@@ -57,6 +57,13 @@
  *				used as a size_t so declare as such.	*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  * 28/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
+ *				Remove support for ignoring '\r' and	*
+ *				'\n' in case debugging is in progress.	*
+ *				Instead when using telnet for debugging	*
+ *				- connect to host, go to telnet command	*
+ *				prompt and enter mode character to	*
+ *				communicate character by character with	*
+ *				the server.				*
  *									*
  ************************************************************************
  */
@@ -108,7 +115,6 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
  * message. If it is an incomplete message then data will be appended to the
  * partial message next time this function is invoked, repeating until a
  * complete message is held in the struct.
- * (Ignore CR & LF which can be the result of testing with telnet.)
  * On failure function arguments are unchanged and mge_errno will be set.
  * @param buf A buffer object.
  * @param msg A message object.
@@ -148,12 +154,9 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 			msg->message = t_msg;
 			msg->size = t_msg_size;
 		}
-		if ((*(buf->buffer + t_buf_proc_next) != '\n')
-		    && (*(buf->buffer + t_buf_proc_next) != '\r')) {
-			*(msg->message + msg->next_free)
-				= *(buf->buffer + t_buf_proc_next);
-			msg->next_free++;
-		}
+		*(msg->message + msg->next_free)
+			= *(buf->buffer + t_buf_proc_next);
+		msg->next_free++;
 		t_buf_proc_next++;
 	}
 	*(msg->message + msg->next_free) = '\0';
