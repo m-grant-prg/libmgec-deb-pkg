@@ -5,12 +5,12 @@
  *
  * All message handling support functions.
  *
- * @author Copyright (C) 2017-2019  Mark Grant
+ * @author Copyright (C) 2017-2020  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.12 ==== 08/06/2019_
+ * @version _v1.0.13 ==== 28/03/2020_
  */
 
 /* **********************************************************************
@@ -56,6 +56,7 @@
  * 08/05/2019	MG	1.0.11	x in deconstruct_msg is assigned by and	*
  *				used as a size_t so declare as such.	*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
+ * 28/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
  *									*
  ************************************************************************
  */
@@ -138,8 +139,8 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 			msg->complete = true;
 		if (*(buf->buffer + t_buf_proc_next) == msg->separator)
 			args++;
-		/* -1 allows space for adding '\0' to end of message. */
-		if (msg->next_free == msg->size - 1) {
+		/* +1 allow for EOM trailing NUL. */
+		if (msg->next_free + 1 >= msg->size) {
 			t_msg_size = msg->size + DEF_MSG_SIZE;
 			t_msg = mg_realloc(msg->message, t_msg_size);
 			if (t_msg == NULL)
