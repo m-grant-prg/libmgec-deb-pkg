@@ -130,15 +130,8 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	 * Is this the first time processing this msg struct or is it a partial
 	 * message.
 	 */
-	if (msg->message == NULL) {
-		t_msg = mg_realloc(msg->message, DEF_MSG_SIZE);
-		if (t_msg == NULL)
-			return NULL;
-		msg->message = t_msg;
-		*msg->message = '\0';
-		msg->size = DEF_MSG_SIZE;
+	if (msg->message == NULL)
 		args = 1;
-	}
 
 	while ((t_buf_proc_next < buf->next_free) && !msg->complete) {
 		if (*(buf->buffer + t_buf_proc_next) == msg->terminator)
@@ -159,7 +152,8 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 		msg->next_free++;
 		t_buf_proc_next++;
 	}
-	*(msg->message + msg->next_free) = '\0';
+	if (msg->complete)
+		*(msg->message + msg->next_free) = '\0';
 	buf->proc_next = t_buf_proc_next;
 	buf = trim_buf(buf);
 
