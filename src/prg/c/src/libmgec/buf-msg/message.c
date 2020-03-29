@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.13 ==== 28/03/2020_
+ * @version _v1.0.13 ==== 29/03/2020_
  */
 
 /* **********************************************************************
@@ -56,7 +56,7 @@
  * 08/05/2019	MG	1.0.11	x in deconstruct_msg is assigned by and	*
  *				used as a size_t so declare as such.	*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
- * 28/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
+ * 29/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
  *				Remove support for ignoring '\r' and	*
  *				'\n' in case debugging is in progress.	*
  *				Instead when using telnet for debugging	*
@@ -114,7 +114,8 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
  * complete message, (terminated with the mgemessage.terminator), or a partial
  * message. If it is an incomplete message then data will be appended to the
  * partial message next time this function is invoked, repeating until a
- * complete message is held in the struct.
+ * complete message is held in the struct. A complete message will have a NUL
+ * appended to make future string processing easier.
  * On failure function arguments are unchanged and mge_errno will be set.
  * @param buf A buffer object.
  * @param msg A message object.
