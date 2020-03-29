@@ -125,7 +125,7 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
 	char *t_msg;
 	size_t t_msg_size;
-	size_t t_buf_proc_next = 0;
+	size_t t_buf_proc_next = buf->proc_next;
 
 	/*
 	 * Is this the first time processing this msg struct or is it a partial
