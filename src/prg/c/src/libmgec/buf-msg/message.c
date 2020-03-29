@@ -64,6 +64,8 @@
  *				prompt and enter mode character to	*
  *				communicate character by character with	*
  *				the server.				*
+ *				Correctly ensure get_msg() returns	*
+ *				unchanged arguments on error.		*
  *									*
  ************************************************************************
  */
@@ -123,42 +125,67 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
  */
 struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
-	char *t_msg;
-	size_t t_msg_size;
 	size_t t_buf_proc_next = buf->proc_next;
+	char *t_msg, *t1_msg;
+	size_t t_msg_size, t_msg_next_free;
+	bool t_msg_complete;
+
+	/* Work on copies so args unchanged on error. */
+	t_msg_size = msg->size;
+	t_msg_next_free = msg->next_free;
+	t_msg_complete = msg->complete;
+	if (msg->message != NULL) {
+		t_msg = malloc(t_msg_size);
+		if (t_msg == NULL) {
+			sav_errno = errno;
+			mge_errno = MGE_ERRNO;
+			return NULL;
+		}
+		t_msg = memcpy(t_msg, msg->message, t_msg_size);
+	} else {
+		t_msg = NULL;
+	}
 
 	/*
 	 * Is this the first time processing this msg struct or is it a partial
 	 * message.
 	 */
-	if (msg->message == NULL)
+	if (t_msg == NULL)
 		args = 1;
 
-	while ((t_buf_proc_next < buf->next_free) && !msg->complete) {
+	while ((t_buf_proc_next < buf->next_free) && !t_msg_complete) {
 		if (*(buf->buffer + t_buf_proc_next) == msg->terminator)
-			msg->complete = true;
+			t_msg_complete = true;
 		if (*(buf->buffer + t_buf_proc_next) == msg->separator)
 			args++;
 		/* +1 allow for EOM trailing NUL. */
-		if (msg->next_free + 1 >= msg->size) {
-			t_msg_size = msg->size + DEF_MSG_SIZE;
-			t_msg = mg_realloc(msg->message, t_msg_size);
-			if (t_msg == NULL)
-				return NULL;
-			msg->message = t_msg;
-			msg->size = t_msg_size;
+		if (t_msg_next_free + 1 >= t_msg_size) {
+			t_msg_size = t_msg_size + DEF_MSG_SIZE;
+			t1_msg = mg_realloc(t_msg, t_msg_size);
+			if (t1_msg == NULL)
+				goto t_err_free;
+			t_msg = t1_msg;
 		}
-		*(msg->message + msg->next_free)
-			= *(buf->buffer + t_buf_proc_next);
-		msg->next_free++;
+		*(t_msg + t_msg_next_free) = *(buf->buffer + t_buf_proc_next);
+		t_msg_next_free++;
 		t_buf_proc_next++;
 	}
-	if (msg->complete)
-		*(msg->message + msg->next_free) = '\0';
-	buf->proc_next = t_buf_proc_next;
-	buf = trim_buf(buf);
+	if (t_msg_complete)
+		*(t_msg + t_msg_next_free) = '\0';
 
+	buf->proc_next = t_buf_proc_next;
+	msg->size = t_msg_size;
+	msg->next_free = t_msg_next_free;
+	msg->complete = t_msg_complete;
+	free(msg->message);
+	msg->message = t_msg;
+
+	buf = trim_buf(buf);
 	return msg;
+
+t_err_free:
+	free(t_msg);
+	return NULL;
 }
 
 /**
