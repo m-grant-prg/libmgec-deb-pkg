@@ -250,14 +250,7 @@ void clear_msg(struct mgemessage *msg, const char terminator,
 		free(*(msg->argv + i));
 	free(msg->argv);
 
-	*msg = (struct mgemessage){ .message = NULL,
-				    .size = 0,
-				    .next_free = 0,
-				    .complete = false,
-				    .terminator = terminator,
-				    .separator = separator,
-				    .argc = 0,
-				    .argv = NULL };
+	*msg = (struct mgemessage)MGEMESSAGE_INIT(terminator, separator);
 }
 
 /**
