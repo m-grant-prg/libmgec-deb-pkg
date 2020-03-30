@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.13 ==== 29/03/2020_
+ * @version _v1.0.13 ==== 30/03/2020_
  */
 
 /* **********************************************************************
@@ -56,7 +56,7 @@
  * 08/05/2019	MG	1.0.11	x in deconstruct_msg is assigned by and	*
  *				used as a size_t so declare as such.	*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
- * 29/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
+ * 30/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
  *				Remove support for ignoring '\r' and	*
  *				'\n' in case debugging is in progress.	*
  *				Instead when using telnet for debugging	*
@@ -90,19 +90,25 @@ static int args;
 
 /**
  * Pull a message from a buffer object.
- * Pull = Get, deconstruct and remove.
+ * Pull = Get, trim buffer and deconstruct.
+ * On error NULL is returned and mge_errno is set.
  * @param buf A buffer object.
  * @param msg A message object.
- * @return The resulting message object.
+ * @return The resulting message object, partial or complete, or NULL on error.
  */
 struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
+	struct mgebuffer *t_buf;
 	struct mgemessage *t_msg;
 
 	t_msg = get_msg(buf, msg);
 	if (t_msg == NULL)
 		return NULL;
 	msg = t_msg;
+
+	t_buf = trim_buf(buf);
+	if (t_buf == NULL)
+		return NULL;
 
 	if (!msg->complete)
 		return msg;
@@ -179,8 +185,6 @@ struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 	msg->complete = t_msg_complete;
 	free(msg->message);
 	msg->message = t_msg;
-
-	buf = trim_buf(buf);
 	return msg;
 
 t_err_free:
