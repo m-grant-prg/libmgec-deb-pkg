@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.11 ==== 27/03/2020_
+ * @version _v1.0.11 ==== 29/04/2020_
  */
 
 /* **********************************************************************
@@ -40,8 +40,10 @@
  * 25/05/2019	MG	1.0.9	Correct source buffer offset type to	*
  *				unsigned.				*
  * 08/06/2019	MG	1.0.10	clang-format coding style changes.	*
- * 27/03/2020	MG	1.0.11	Correct concat_buf() to guarantee	*
+ * 29/04/2020	MG	1.0.11	Correct concat_buf() to guarantee	*
  *				arguments are unchanged if it fails.	*
+ *				trim_buf() improve buffer shrinking and	*
+ *				compaction algorithms.			*
  *									*
  ************************************************************************
  */
@@ -91,7 +93,14 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 }
 
 /**
- * Remove processed data from a buffer object.
+ * Remove processed data from a buffer object if deemed necessary.
+ * Re-sizing the buffer every time this function is called would not be
+ * efficient. So, the function first tests whether the buffer has a defined
+ * multiple of the default buffer size free, and if so shrinks the buffer and
+ * relocates valid data to the start of the buffer. If that test does not result
+ * in action, the second test determines if the percentage of unreachable
+ * portion of the buffer to the size of the buffer exceeds a defined value, and
+ * if so, it relocates data to the start of the buffer.
  * On failure NULL is returned, the function argument is unchanged and
  * mge_errno will be set.
  * @param m_buf Pointer to the buffer object to process.
@@ -100,20 +109,37 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 struct mgebuffer *trim_buf(struct mgebuffer *m_buf)
 {
 	char *t_buf = NULL;
+	size_t unreachable, used, unused;
 
-	t_buf = realloc(t_buf, (m_buf->size - m_buf->proc_next));
-	if (t_buf == NULL) {
-		sav_errno = errno;
-		mge_errno = MGE_ERRNO;
-		return NULL;
+	used = m_buf->next_free - m_buf->proc_next;
+	unused = m_buf->size - m_buf->next_free;
+
+	/* Shrink buffer by a default buffer size and compact. */
+	if (unused > (BUF_UNUSED_DEF_SIZE_MULT * DEF_BUF_SIZE)) {
+		t_buf = realloc(m_buf->buffer, (m_buf->size - DEF_BUF_SIZE));
+		if (t_buf == NULL) {
+			sav_errno = errno;
+			mge_errno = MGE_ERRNO;
+			return NULL;
+		}
+		t_buf = memcpy(t_buf, (m_buf->buffer + m_buf->proc_next), used);
+		m_buf->buffer = t_buf;
+		m_buf->size -= DEF_BUF_SIZE;
+		m_buf->next_free -= m_buf->proc_next;
+		m_buf->proc_next = 0;
+		return m_buf;
 	}
 
-	m_buf->size -= m_buf->proc_next;
-	memcpy(t_buf, (m_buf->buffer + m_buf->proc_next), m_buf->size);
-	free(m_buf->buffer);
-	m_buf->buffer = t_buf;
-	m_buf->next_free -= m_buf->proc_next;
-	m_buf->proc_next = 0;
+	/* Compact buffer area. */
+	unreachable = (size_t)((m_buf->proc_next * 100) / m_buf->size);
+	if (unreachable >= BUF_MAX_UNREACH_PERCENT) {
+		m_buf->buffer = memmove(m_buf->buffer,
+					(m_buf->buffer + m_buf->proc_next),
+					used);
+		m_buf->next_free -= m_buf->proc_next;
+		m_buf->proc_next = 0;
+	}
+
 	return m_buf;
 }
 
