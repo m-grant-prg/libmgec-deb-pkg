@@ -7,9 +7,9 @@ struct mgemessage *pull_msg(struct mgebuffer *buf,
 		struct mgemessage *msg);
 
 DESCRIPTION
-A pull_msg() involves getting a message from the buffer, deconstructing the
-message into an mgemessage struct and then removing the message from the buffer;
-ie a get_msg(), a deconstruct_msg() and a trim_buf().
+A pull_msg() involves getting a message from the buffer, trimming the buffer and
+deconstructing the message into an mgemessage struct. ie a get_msg(), a
+trim_buf() and a deconstruct_msg().
 
 mge_errno is set as required.
 PARAMETERS
@@ -28,7 +28,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2019 Mark Grant
+Copyright (C) 2015-2020 Mark Grant
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
