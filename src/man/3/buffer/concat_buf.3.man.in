@@ -21,15 +21,21 @@ RETURN VALUE
 Return value is a pointer to the updated mgebuffer struct or NULL on error.
 
 ERRORS
-mge_errno is set as required.
-On error the functions arguments are unchanged.
+NULL is returned.
+
+mge_errno is set as required. Possible values are:-
+.RS
+		MGE_ERRNO caused by realloc error.
+.RE
+
+Functions arguments are unchanged.
 
 AUTHOR
 Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019 Mark Grant
+Copyright (C) 2015-2017, 2019, 2020 Mark Grant
 .br
 License GPLv3+: GNU GPL version 3 or later
 .br
@@ -41,3 +47,4 @@ There is NO WARRANTY, to the extent permitted by law.
 SEE ALSO
 clear_msg(3) deconstruct_msg(3) get_msg(3) print_buf(3) print_msg(3) pull_msg(3)
 trim_buf(3)
+
