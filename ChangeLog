@@ -1,3 +1,27 @@
+2020-05-18 v1.3.1 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.1
+	Library v4:0:2
+	man3: Move trim_buf() from get_msg() to pull_msg()
+	man3: Update functionality of trim_buf()
+	man3: Improve ERROR section for concat_buf()
+	buf-msg: trim_buf() improve algorithm
+	buf-msg: Move trim_buf() from get_msg to pull_msg
+	buf-msg: Simplify code by using macro
+	buf-msg: Correct get_msg unchanged args on error
+	buf-msg: Ensure partially-processed buffer support
+	buf-msg: Add if complete msg append NUL comment
+	buf-msg: Remove duplicate msg buffer malloc code
+	buf-msg: Remove \n \r debug support
+	buf-msg: Clarify message buffer capacity calc
+	buf-msg: Improve function header comment
+	buf-msg: Use realloc as no logging required
+	buf-msg: Ensure minimum buffer size is DEF_BUF_SIZE
+	buf-msg: Improve function header comment
+	buf-msg: concat_buf() guarantee unchanged arguments on error
+	errors: Add identification error
+	at: Update bootstrap.sh to v1.4.7
+	travis: Make the build use Bionic
+
 2019-10-27 v1.3.0 Mark Grant <m.grant.prg@gmail.com>
 	* Source v1.2.0
 	Library v3:0:1
