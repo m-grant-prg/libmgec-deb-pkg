@@ -1,9 +1,9 @@
 Document: libmgec
-Title: MGE General C library documentation.
+Title: MGE General C library API documentation.
 Author: Mark Grant
 Abstract: This document describes the API for the MGE General C library.
 Section: Programming/C
 
 Format: HTML
-Index: @htmldir@/html/index.html
-Files: @htmldir@/html/*.html
+Index: @htmldir@/api/html/index.html
+Files: @htmldir@/api/html/*.html

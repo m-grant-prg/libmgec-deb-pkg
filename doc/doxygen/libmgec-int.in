@@ -1,0 +1,9 @@
+Document: libmgec-int
+Title: MGE General C library internal documentation.
+Author: Mark Grant
+Abstract: This document describes the source for the MGE General C library.
+Section: Programming/C
+
+Format: HTML
+Index: @htmldir@/int/html-int/index.html
+Files: @htmldir@/int/html-int/*.html
