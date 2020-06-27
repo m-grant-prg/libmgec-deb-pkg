@@ -146,7 +146,8 @@ if !DISTCHECKFAKE
 endif
 
 
-EXTRA_DIST = $(docpkg) $(intdocpkg) libmgec.in libmgec-int.in
+EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/libmgec.in \
+	$(srcdir)/libmgec-int.in
 
 
 CLEANFILES = doxywarn.txt doxygen.stamp doxygen1.stamp $(docpkg) $(intdocpkg) \
