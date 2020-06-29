@@ -5,12 +5,12 @@
  *
  * Build, manipulate and traverse functionality for singly linked lists.
  *
- * @author Copyright (C) 2016-2019  Mark Grant
+ * @author Copyright (C) 2016-2020  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 12/07/2019_
+ * @version _v1.0.11 ==== 29/06/2020_
  */
 
 /* **********************************************************************
@@ -41,6 +41,8 @@
  *				Add add_head_sll_node			*
  *				Add find_sll_node.			*
  * 12/07/2019	MG	1.0.10	Change to specific internal header file.*
+ * 29/06/2020	MG	1.0.11	Add internal-only documentation of	*
+ *				static (non-API) function.		*
  *									*
  ************************************************************************
  */
@@ -191,12 +193,15 @@ struct sllistnode *free_sllist(struct sllistnode *head)
 	return NULL;
 }
 
-/*
+/**
+ * @cond INTERNAL
  * Free memory allocated to the node. (Both node and object).
+ * @param focus The node to free.
  */
 static void free_sll_node(struct sllistnode *focus)
 {
 	free(focus->object);
 	free(focus);
 }
+/* @endcond */
 
