@@ -33,6 +33,10 @@
 
 BEGIN_C_DECLS
 
+/**
+ * A simple macro to standardise on the preferred method of determining the size
+ * of an array.
+ */
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
 END_C_DECLS
