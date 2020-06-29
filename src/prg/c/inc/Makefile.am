@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/inc/Makefile.am					#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Author: Copyright (C) 2015-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -32,6 +32,7 @@
 # 02/01/2018	MG	1.0.10	Move to new source directory structure.	#
 # 09/05/2019	MG	1.0.11	Remove shebang.				#
 #				Merge dev sub-project.			#
+# 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	#
 #									#
 #########################################################################
 
@@ -40,5 +41,5 @@ include_HEADERS += bstree.h sllist.h dllist.h
 include_HEADERS += mgebuffer.h mge-errno.h mgememory.h mgemessage.h
 include_HEADERS += libmgec.h
 
-noinst_HEADERS = mge-general.h
+noinst_HEADERS = mge-internal.h
 

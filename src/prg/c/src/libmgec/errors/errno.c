@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.11 ==== 12/03/2020_
+ * @version _v1.0.12 ==== 29/06/2020_
  */
 
 /* **********************************************************************
@@ -32,6 +32,7 @@
  *				mge-general.h header file.		*
  * 08/06/2019	MG	1.0.10	clang-format coding style changes.	*
  * 12/03/2020	MG	1.0.11	Add identification error.		*
+ * 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	*
  *									*
  ************************************************************************
  */
@@ -40,7 +41,7 @@
 
 #include "internal.h"
 #include <mge-errno.h>
-#include <mge-general.h>
+#include <mge-internal.h>
 
 /* Error variables. */
 int mge_errno; /**< Error number. */
