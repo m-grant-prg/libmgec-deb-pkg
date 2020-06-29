@@ -6,12 +6,12 @@
  * Build, manipulate and bi-directional traverse functionality for doubly
  * linked lists.
  *
- * @author Copyright (C) 2016-2019  Mark Grant
+ * @author Copyright (C) 2016-2020  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 12/07/2019_
+ * @version _v1.0.11 ==== 29/06/2020_
  */
 
 /* **********************************************************************
@@ -38,6 +38,8 @@
  *				Extract find_prev and find_next to the	*
  *				header file and make inline.		*
  * 12/07/2019	MG	1.0.10	Change to specific internal header file.*
+ * 29/06/2020	MG	1.0.11	Add internal-only documentation of	*
+ *				static (non-API) function.		*
  *									*
  ************************************************************************
  */
@@ -51,8 +53,12 @@
 #include <dllist.h>
 #include <mge-errno.h>
 
-/* Holds the address of the preceding node when adding nodes. */
+/**
+ * @cond INTERNAL
+ * Holds the address of the preceding node when adding nodes.
+ */
 static struct dllistnode *priornode = NULL;
+/* @endcond */
 
 /**
  * Add a node to the tail of the doubly linked list.
@@ -124,12 +130,15 @@ struct dllistnode *free_dllist(struct dllistnode *currentnode)
 	return NULL;
 }
 
-/*
+/**
+ * @cond INTERNAL
  * Free memory allocated to the node. (Both node and object).
+ * @param currentnode The node to free.
  */
 static void free_dll_node(struct dllistnode *currentnode)
 {
 	free(currentnode->object);
 	free(currentnode);
 }
+/* @endcond */
 
