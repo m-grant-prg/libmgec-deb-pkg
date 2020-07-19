@@ -35,6 +35,8 @@
  * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
  * 19/07/2020	MG	1.0.10	Remove get_msg() declaration, remove it	*
  *				from API.				*
+ *				Remove deconstruct_msg() declaration,	*
+ *				remove it from API.			*
  *									*
  ************************************************************************
  */
@@ -90,8 +92,6 @@ struct mgemessage {
 	}
 
 struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg);
-
-struct mgemessage *deconstruct_msg(struct mgemessage *msg);
 
 void clear_msg(struct mgemessage *msg, const char terminator,
 	       const char separator);

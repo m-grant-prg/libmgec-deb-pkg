@@ -67,6 +67,7 @@
  *				Correctly ensure get_msg() returns	*
  *				unchanged arguments on error.		*
  * 19/07/2020	MG	1.0.14	Remove get_msg() from the API.		*
+ *				Remove deconstruct_msg() from the API.	*
  *									*
  ************************************************************************
  */
@@ -87,6 +88,8 @@
 /* @cond INTERNAL */
 static struct mgemessage *get_msg(struct mgebuffer *buf,
 				  struct mgemessage *msg);
+
+static struct mgemessage *deconstruct_msg(struct mgemessage *msg);
 /* @endcond */
 
 /**
@@ -203,12 +206,13 @@ t_err_free:
 /* @endcond */
 
 /**
+ * @cond INTERNAL
  * Deconstruct a complete message to its individual elements.
  * mge_errno is set on error.
  * @param msg A message object to process. Must be a complete message.
  * @return The resulting message object. NULL on error.
  */
-struct mgemessage *deconstruct_msg(struct mgemessage *msg)
+static struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 {
 	char *start_tok;
 	char *nxt_tok;
@@ -246,6 +250,7 @@ struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	}
 	return msg;
 }
+/* @endcond */
 
 /**
  * Clear message struct.
