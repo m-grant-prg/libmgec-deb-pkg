@@ -5,12 +5,12 @@
  *
  * All message manipulation related information.
  *
- * @author Copyright (C) 2017-2019  Mark Grant
+ * @author Copyright (C) 2017-2020  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 08/06/2019_
+ * @version _v1.0.10 ==== 19/07/2020_
  */
 
 /* **********************************************************************
@@ -33,6 +33,8 @@
  * 31/05/2019	MG	1.0.8	Use standard GNU ifdeffery around use	*
  *				of AC_HEADER_STDBOOL.			*
  * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
+ * 19/07/2020	MG	1.0.10	Remove get_msg() declaration, remove it	*
+ *				from API.				*
  *									*
  ************************************************************************
  */
@@ -88,8 +90,6 @@ struct mgemessage {
 	}
 
 struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg);
-
-struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg);
 
 struct mgemessage *deconstruct_msg(struct mgemessage *msg);
 

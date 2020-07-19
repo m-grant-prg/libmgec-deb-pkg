@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.13 ==== 30/03/2020_
+ * @version _v1.0.14 ==== 19/07/2020_
  */
 
 /* **********************************************************************
@@ -66,6 +66,7 @@
  *				the server.				*
  *				Correctly ensure get_msg() returns	*
  *				unchanged arguments on error.		*
+ * 19/07/2020	MG	1.0.14	Remove get_msg() from the API.		*
  *									*
  ************************************************************************
  */
@@ -83,6 +84,11 @@
 #include <mgememory.h>
 #include <mgemessage.h>
 
+/* @cond INTERNAL */
+static struct mgemessage *get_msg(struct mgebuffer *buf,
+				  struct mgemessage *msg);
+/* @endcond */
+
 /**
  * Number of arguments in the message.
  */
@@ -90,7 +96,9 @@ static int args;
 
 /**
  * Pull a message from a buffer object.
+ * @cond INTERNAL
  * Pull = Get, trim buffer and deconstruct.
+ * @endcond
  * On error NULL is returned and mge_errno is set.
  * @param buf A buffer object.
  * @param msg A message object.
@@ -117,6 +125,7 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
 }
 
 /**
+ * @cond INTERNAL
  * Get a message from a buffer object.
  * Data from the buffer is extracted to the message struct. This could be a
  * complete message, (terminated with the mgemessage.terminator), or a partial
@@ -129,7 +138,7 @@ struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
  * @param msg A message object.
  * @return The resulting message object or NULL on error.
  */
-struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
+static struct mgemessage *get_msg(struct mgebuffer *buf, struct mgemessage *msg)
 {
 	size_t t_buf_proc_next = buf->proc_next;
 	char *t_msg, *t1_msg;
@@ -191,6 +200,7 @@ t_err_free:
 	free(t_msg);
 	return NULL;
 }
+/* @endcond */
 
 /**
  * Deconstruct a complete message to its individual elements.
