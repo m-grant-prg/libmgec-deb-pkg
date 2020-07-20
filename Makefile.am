@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./Makefile.am						#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Author: Copyright (C) 2015-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -57,6 +57,7 @@
 #				/usr/share/java must be accommodated,	#
 #				so set the configure flags to be used	#
 #				by make distcheck.			#
+# 20/07/2020	MG	1.1.4	Merge buffer and message man pages.	#
 #									#
 #########################################################################
 
@@ -67,8 +68,7 @@ AM_DISTCHECK_CONFIGURE_FLAGS = --enable-distcheckfake=yes
 
 
 SUBDIRS = src/man/3/bstree src/man/3/sllist src/man/3/dllist
-SUBDIRS += src/man/3/buffer src/man/3/errno
-SUBDIRS += src/man/3/memory src/man/3/message
+SUBDIRS += src/man/3/buf-msg src/man/3/errno src/man/3/memory
 SUBDIRS += src/prg/c/gen/lib
 SUBDIRS += src/prg/c/inc
 SUBDIRS += src/prg/c/inc-tmp

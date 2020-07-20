@@ -129,6 +129,7 @@
 #				Add enable-distcheckfake option.	#
 #				Add enable option descriptions in this	#
 #				file's header.				#
+# 20/07/2020	MG	1.1.4	Merge buffer and message man pages.	#
 #									#
 #########################################################################
 
@@ -139,7 +140,7 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.3 $)
+AC_REVISION($Revision: 1.1.4 $)
 
 AC_PREREQ(2.69)
 
@@ -602,11 +603,10 @@ AC_CONFIG_HEADERS(src/prg/c/gen/inc/config.h)
 AC_CONFIG_FILES(Makefile
 		doc/doxygen/Makefile
 		src/man/3/bstree/Makefile
-		src/man/3/buffer/Makefile
+		src/man/3/buf-msg/Makefile
 		src/man/3/dllist/Makefile
 		src/man/3/errno/Makefile
 		src/man/3/memory/Makefile
-		src/man/3/message/Makefile
 		src/man/3/sllist/Makefile
 		src/prg/c/gen/lib/Makefile
 		src/prg/c/inc/Makefile
