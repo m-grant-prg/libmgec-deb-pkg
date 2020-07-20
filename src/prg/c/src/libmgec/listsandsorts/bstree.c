@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.1.9 ==== 29/06/2020_
+ * @version _v1.1.9 ==== 20/07/2020_
  */
 
 /* **********************************************************************
@@ -80,7 +80,7 @@
  * 02/06/2018	MG	1.1.6	Add counter and node totals for a tree.	*
  * 09/06/2019	MG	1.1.7	clang-format coding style changes.	*
  * 12/07/2019	MG	1.1.8	Change to specific internal header file.*
- * 29/06/2020	MG	1.1.9	Add internal-only documentation of	*
+ * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
  *				static (non-API) function.		*
  *									*
  ************************************************************************
@@ -302,6 +302,7 @@ void *find_bst_node(const struct bstree *tree, const void *searchobj)
  * @param searchobj - The object to find. It does not need to be a fully
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
+ * @param comp A pointer to the comparison function to be used.
  * @return Returns a pointer to the object found in the node, (i.e. the fully
  * populated object), or, NULL if not found or an error was encountered.
  */
@@ -361,6 +362,7 @@ int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
  * @param searchobj - The object to find. It does not need to be a fully
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
+ * @param comp A pointer to the comparison function to be used.
  * @return Returns the number of times add_bst_node() was asked to create this
  * node, or, 0 if not found, or, -mge_errno on error.
  */
@@ -421,6 +423,7 @@ void *find_next_bst_node(const struct bstree *tree, const void *searchobj)
  * @param searchobj - The object to start from. It does not need to be a fully
  * populated object nor does the object need to exist. It only needs enough
  * information to support the comparison function. E.g. a key.
+ * @param comp A pointer to the comparison function to be used.
  * @return Returns a pointer to the next object found in the tree, (i.e. a fully
  * populated object), or, NULL if not found or an error was encountered.
  */
@@ -485,6 +488,7 @@ void *find_prev_bst_node(const struct bstree *tree, const void *searchobj)
  * @param searchobj - The object to start from. It does not need to be a fully
  * populated object nor does the object need to exist. It only needs enough
  * information to support the comparison function. E.g. a key.
+ * @param comp A pointer to the comparison function to be used.
  * @return Returns a pointer to the preceding object in the tree, (i.e. a fully
  * populated object), or, NULL if not found or an error was encountered.
  */
@@ -550,6 +554,8 @@ void *upd_bst_node(const struct bstree *tree, const void *updobj,
  * @param currentnode - On invocation from user code this is the root node.
  * @param updobj - The object to update. The node is found and the existing
  * object is replaced with the new object.
+ * @param objsize The size of the new object.
+ * @param comp A pointer to the comparison function to be used.
  * @return Returns a pointer to the new object, or, NULL if not found or error.
  */
 static void *upd_node(struct bstreenode *currentnode, const void *updobj,
@@ -800,6 +806,7 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
  * @param searchobj - The trace object to start from. It does not need to be a
  * fully populated object nor does the object need to exist. It only needs
  * enough information to support the comparison function. E.g. a key.
+ * @param comp A pointer to the comparison function to be used.
  * @return Returns a pointer to the next coordinate object found in the tree,
  * (i.e. a fully populated object), or, the actual node object will be NULL if
  * not found. Returns NULL on error.
