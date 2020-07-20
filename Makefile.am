@@ -58,6 +58,8 @@
 #				so set the configure flags to be used	#
 #				by make distcheck.			#
 # 20/07/2020	MG	1.1.4	Merge buffer and message man pages.	#
+#				Move lists and sorts man pages under	#
+#				that directory.				#
 #									#
 #########################################################################
 
@@ -67,7 +69,8 @@ ACLOCAL_AMFLAGS = -I m4 -I m4extra
 AM_DISTCHECK_CONFIGURE_FLAGS = --enable-distcheckfake=yes
 
 
-SUBDIRS = src/man/3/bstree src/man/3/sllist src/man/3/dllist
+SUBDIRS = src/man/3/listsandsorts/bstree src/man/3/listsandsorts/sllist
+SUBDIRS += src/man/3/listsandsorts/dllist
 SUBDIRS += src/man/3/buf-msg src/man/3/errno src/man/3/memory
 SUBDIRS += src/prg/c/gen/lib
 SUBDIRS += src/prg/c/inc

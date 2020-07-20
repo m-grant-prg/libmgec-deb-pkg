@@ -1,13 +1,13 @@
 #########################################################################
 #									#
-# Script ID: src/man/3/sllist/Makefile.am				#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Script ID: src/man/3/listsandsorts/dllist/Makefile.am			#
+# Author: Copyright (C) 2015-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
 #									#
 # Purpose:								#
-#	AutoMake script file to generate libmgec Section 3 sllist	#
+#	AutoMake script file to generate libmgec Section 3 dllist	#
 # manual pages from source.						#
 #									#
 #########################################################################
@@ -18,7 +18,7 @@
 #									#
 # Date		Author	Version	Description				#
 #									#
-# 03/05/2016	MG	1.0.1	First release.				#
+# 06/05/2016	MG	1.0.1	First release.				#
 # 23/04/2017	MG	1.0.2	Correct ignoring of $(edit) result.	#
 #				Change source extensions to .man.in	#
 # 22/12/2017	MG	1.0.3	Add SPDX license tags to source files.	#
@@ -29,16 +29,12 @@
 # 02/01/2018	MG	1.0.5	Move to new source directory structure.	#
 # 10/05/2019	MG	1.0.6	Remove shebang.				#
 #				Merge into one project.			#
-# 06/07/2019	MG	1.0.7	Add for_each_sll_node.3 man page.	#
-#				%s/add_sll_node/add_tail_sll_node/g	#
-#				Add add_head_sll_node.			#
-#				Add find_sll_node.			#
+# 20/07/2020	MG	1.0.7	Move under listsandsorts directory.	#
 #									#
 #########################################################################
 
 
-add_head_sll_node.3 add_tail_sll_node.3 find_next_sll_node.3 find_sll_node.3 \
-	for_each_sll_node.3 free_sllist.3: Makefile
+add_dll_node.3 find_prev_dll_node.3 find_next_dll_node.3 free_dllist.3: Makefile
 	mkdir -p $(@D)
 	rm -f $@ $@.tmp
 	$(edit) $(srcdir)/$(@F).man.in > $@.tmp
@@ -57,21 +53,18 @@ add_head_sll_node.3 add_tail_sll_node.3 find_next_sll_node.3 find_sll_node.3 \
 	txt2manwrap $(@F) $$section "MGE General C Library Manual" $@.tmp $@
 	rm -f $@.tmp
 
-add_head_sll_node.3: $(srcdir)/add_head_sll_node.3.man.in
-add_tail_sll_node.3: $(srcdir)/add_tail_sll_node.3.man.in
-find_next_sll_node.3: $(srcdir)/find_next_sll_node.3.man.in
-find_sll_node.3: $(srcdir)/find_sll_node.3.man.in
-for_each_sll_node.3: $(srcdir)/for_each_sll_node.3.man.in
-free_sllist.3: $(srcdir)/free_sllist.3.man.in
+add_dll_node.3: $(srcdir)/add_dll_node.3.man.in
+find_prev_dll_node.3: $(srcdir)/find_prev_dll_node.3.man.in
+find_next_dll_node.3: $(srcdir)/find_next_dll_node.3.man.in
+free_dllist.3: $(srcdir)/free_dllist.3.man.in
 
-man_MANS = add_head_sll_node.3 add_tail_sll_node.3 find_next_sll_node.3 \
-	find_sll_node.3 for_each_sll_node.3 free_sllist.3
+man_MANS = add_dll_node.3 find_prev_dll_node.3 find_next_dll_node.3 \
+	free_dllist.3
 
-EXTRA_DIST = $(srcdir)/add_head_sll_node.3.man.in \
-	$(srcdir)/add_tail_sll_node.3.man.in \
-	$(srcdir)/find_next_sll_node.3.man.in $(srcdir)/find_sll_node.3.man.in \
-	$(srcdir)/for_each_sll_node.3.man.in $(srcdir)/free_sllist.3.man.in
+EXTRA_DIST = $(srcdir)/add_dll_node.3.man.in \
+	$(srcdir)/find_prev_dll_node.3.man.in \
+	$(srcdir)/find_next_dll_node.3.man.in $(srcdir)/free_dllist.3.man.in
 
-CLEANFILES = *.tmp add_head_sll_node.3 add_tail_sll_node.3 \
-	find_next_sll_node.3 find_sll_node.3 for_each_sll_node.3 free_sllist.3
+CLEANFILES = *.tmp add_dll_node.3 find_prev_dll_node.3 find_next_dll_node.3 \
+	free_dllist.3
 

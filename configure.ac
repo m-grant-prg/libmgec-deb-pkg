@@ -130,6 +130,8 @@
 #				Add enable option descriptions in this	#
 #				file's header.				#
 # 20/07/2020	MG	1.1.4	Merge buffer and message man pages.	#
+#				Move lists and sorts man pages under	#
+#				that directory.				#
 #									#
 #########################################################################
 
@@ -602,12 +604,12 @@ AC_CONFIG_HEADERS(src/prg/c/gen/inc/config.h)
 # Project Makefiles to create.
 AC_CONFIG_FILES(Makefile
 		doc/doxygen/Makefile
-		src/man/3/bstree/Makefile
+		src/man/3/listsandsorts/bstree/Makefile
 		src/man/3/buf-msg/Makefile
-		src/man/3/dllist/Makefile
+		src/man/3/listsandsorts/dllist/Makefile
 		src/man/3/errno/Makefile
 		src/man/3/memory/Makefile
-		src/man/3/sllist/Makefile
+		src/man/3/listsandsorts/sllist/Makefile
 		src/prg/c/gen/lib/Makefile
 		src/prg/c/inc/Makefile
 		src/prg/c/inc-tmp/Makefile

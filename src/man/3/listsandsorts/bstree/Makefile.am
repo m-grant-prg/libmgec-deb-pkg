@@ -1,7 +1,7 @@
 #########################################################################
 #									#
-# Script ID: src/man/3/bstree/Makefile.am				#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Script ID: src/man/3/listsandsorts/bstree/Makefile.am			#
+# Author: Copyright (C) 2015-2020  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -38,6 +38,7 @@
 # 02/01/2018	MG	1.0.9	Move to new source directory structure.	#
 # 10/05/2019	MG	1.0.10	Remove shebang.				#
 #				Merge into one project.			#
+# 20/07/2020	MG	1.0.11	Move under listsandsorts directory.	#
 #									#
 #########################################################################
 
