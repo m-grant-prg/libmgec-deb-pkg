@@ -36,15 +36,18 @@ supplied [mgebuffer struct](@ref mgebuffer) updating the relevant pointers.
 
 \subsection trimbuf trim_buf()
 The trim_buf() function removes processed data from the
-[mgebuffer struct](@ref mgebuffer) buffer. It is typically called after
-get_msg() has extracted data to a [mgemessage struct](@ref mgemessage).
+[mgebuffer struct](@ref mgebuffer) buffer. It is typically called after some or
+all of the data in the [mgebuffer struct](@ref mgebuffer) has been
+processed@cond INTERNAL, often after get_msg() has extracted data to a [mgemessage struct](@ref mgemessage)@endcond.
 
 
 \section messages Messages
 
-The message area consists of 4 functions; pull_msg(), get_msg(),
-deconstruct_msg() and clear_msg(). Typically, in an application consuming this
-library, only pull_msg() and clear_msg() would be used.
+The message area API consists of 2 functions; pull_msg() and clear_msg(). @cond INTERNAL
+Behind the scenes get_msg() and deconstruct_msg() are called from pull_msg().
+@endcond
+
+The following diagram shows a typical message workflow.
 
 @diafile msg-flow.dia
 
@@ -53,20 +56,24 @@ library, only pull_msg() and clear_msg() would be used.
 \subsubsection pullmsg pull_msg()
 The pull_msg() function extracts data from the
 [mgebuffer struct](@ref mgebuffer) buffer and loads it into a
-[mgemessage struct](@ref mgemessage). If the
-[mgemessage struct](@ref mgemessage) buffer then holds a complete message it is
-deconstructed thereby fully populating the [mgemessage struct](@ref mgemessage).
+[mgemessage struct](@ref mgemessage). The processed part of the
+[mgebuffer struct](@ref mgebuffer) buffer is then removed by invoking
+trim_buf(). If the [mgemessage struct](@ref mgemessage) buffer then holds a
+complete message it @cond INTERNAL
+is deconstructed and@endcond fully populates the [mgemessage struct](@ref mgemessage).
 
 @diafile pull-msg-flow.dia
+
+@cond INTERNAL
+The same diagram with function names.
+
+@diafile pull-msg-flow-int.dia
 
 
 \subsubsection getmsg get_msg()
 The get_msg() function extracts data, (partial or complete messages), from the
 [mgebuffer struct](@ref mgebuffer) buffer and loads them into a
-[mgemessage struct](@ref mgemessage). The processed part of the
-[mgebuffer struct](@ref mgebuffer) buffer is then removed by invoking
-trim_buf().
-
+[mgemessage struct](@ref mgemessage).
 @diafile get-msg-flow.dia
 
 
@@ -77,6 +84,7 @@ function then parses the message into it's individual fields and places them in
 argv updating argc. (argc and argv have the same function and format as in the
 standard C main function).
 
+@endcond
 
 \subsubsection clearmsg clear_msg()
 The clear_msg() function frees the message buffer and argument storage and
