@@ -1,3 +1,25 @@
+2020-07-23 v1.3.2 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.2
+	Library v4:0:2
+	TODO: Add lists and sorts Doxygen
+	doc: listsandsorts: Add bare bones header
+	doc: buf-msg: Update API and Internal
+	listsandsorts: Add missing Doxygen param comments
+	man: listsandsorts: Move pages under l and s dir
+	man: buf-msg: Merge buffer and message man pages
+	man: buf-msg: Remove non-API man pages
+	buf-msg: Remove deconstruct_msg() from the API
+	buf-msg: Remove get_msg() from API
+	bstree: Mark non-API documentation with cond
+	dllist: Mark non-API documentation with cond
+	sllist: Mark non-API documentation with cond
+	doc: Enable documentation of static functions
+	inc: Document the array size macro
+	inc: Rename mge-general.h to mge-internal.h
+	doc: Explicitly state source directory
+	README: Correct git command
+	doc: Separate internal and API docs
+
 2020-05-18 v1.3.1 Mark Grant <m.grant.prg@gmail.com>
 	* Source v1.2.1
 	Library v4:0:2

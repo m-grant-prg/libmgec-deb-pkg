@@ -1,3 +1,9 @@
+Release 1.3.2 2020-07-23
+Update TODO file.
+Add bare bones Doxygen overview documentation for lists and sorts.
+Separate Doxygen internal and API documentation.
+Technical changes which are not user-visible can be found in the ChangeLog.
+
 Release 1.3.1 2020-05-18
 Source v1.2.1
 Library v4:0:2
