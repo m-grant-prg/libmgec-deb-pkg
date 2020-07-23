@@ -20,4 +20,8 @@
 #########################################################################
 
 
-Currently no Notes.
+1 ... Produce Doxygen documentation for lists and sorts
+	- Binary search trees
+	- Singly linked lists
+	- Doubly linked lists
+
