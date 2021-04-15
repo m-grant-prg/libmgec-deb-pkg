@@ -443,7 +443,7 @@ AC_TYPE_SSIZE_T
 AC_MSG_NOTICE(checking for compiler characteristics)
 
 # Build a suitable CFLAGS list depending on compiler version.
-BUILD_COMPILER_VERSION_CFLAGS(mg_cflags)
+BUILD_COMPILER_VERSION_CFLAGS(MG_CFLAGS)
 
 
 #################################################
