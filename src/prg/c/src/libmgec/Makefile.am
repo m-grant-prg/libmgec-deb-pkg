@@ -62,12 +62,25 @@
 #				Merge into one project.			#
 # 12/07/2019	MG	1.0.24	Change for individual internal header	#
 #				files in listsandsorts.			#
+# 15/04/2021	MG	1.0.25	Add target CPPFLAGS to amend some	#
+#				default values passed on the configure	#
+#				CL.					#
 #									#
 #########################################################################
 
 
 AM_CPPFLAGS = -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
+libmgec_la_CPPFLAGS = $(DEF_CPP_VALUES) $(AM_CPPFLAGS)
+
+# If after an initial build another build either overrides default values from
+# the make / bootstrap CL, or, ceases to do so, or uses different values, then
+# make, which works on timestamps of files, will see no change and so it will
+# not -re-compile. Re-compiling is a must, so touch the source file(s) which
+# define the values to force a re-compile.
+.PHONY: all-local
+all-local:
+	touch $(srcdir)/buf-msg/internal.h
 
 
 AM_CFLAGS = $(MG_CFLAGS)
@@ -94,6 +107,7 @@ noinst_HEADERS += listsandsorts/sllist-internal.h
 
 
 lib_LTLIBRARIES = libmgec.la
+
 
 libmgec_la_SOURCES = buf-msg/buffer.c buf-msg/message.c
 libmgec_la_SOURCES += errors/errno.c errors/error.c

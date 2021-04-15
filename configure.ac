@@ -132,6 +132,8 @@
 # 20/07/2020	MG	1.1.4	Merge buffer and message man pages.	#
 #				Move lists and sorts man pages under	#
 #				that directory.				#
+# 15/04/2021	MG	1.1.5	Add support for passing some default	#
+#				values to Makefiles.am.			#
 #									#
 #########################################################################
 
@@ -142,7 +144,7 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.4 $)
+AC_REVISION($Revision: 1.1.5 $)
 
 AC_PREREQ(2.69)
 
@@ -265,6 +267,9 @@ AM_CONDITIONAL(SPARSE, test x$sparse = xtrue)
 if test "x${sparse}" = xtrue; then
 	AC_MSG_NOTICE(building using sparse)
 fi
+
+# Pass on some CLA default values to Makefile.am
+AC_SUBST(DEF_CPP_VALUES, $CLA_DEF_CPP_VALUES)
 
 
 #################################
