@@ -5,12 +5,12 @@
  *
  * All buffer manipulation related information.
  *
- * @author Copyright (C) 2017-2019  Mark Grant
+ * @author Copyright (C) 2017-2019, 2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.9 ==== 08/06/2019_
+ * @version _v1.0.10 ==== 15/04/2021_
  */
 
 /* **********************************************************************
@@ -34,6 +34,7 @@
  * 25/05/2019	MG	1.0.8	Correct source buffer offset type to	*
  *				unsigned.				*
  * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
+ * 15/04/2021	MG	1.0.10	Add print_def_buf_values() prototype.	*
  *									*
  ************************************************************************
  */
@@ -70,6 +71,8 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
 struct mgebuffer *trim_buf(struct mgebuffer *msg_buf);
 
 void print_buf(struct mgebuffer *m_buf);
+
+void print_def_buf_values(void);
 
 END_C_DECLS
 

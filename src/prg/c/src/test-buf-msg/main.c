@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: main.c							*
- * Author Copyright (C) 2018-2019  Mark Grant				*
+ * Author Copyright (C) 2018-2019, 2021  Mark Grant			*
  *									*
  * Purpose:								*
  *	Test program for buffers & messages in libmgec shared library.	*
@@ -26,8 +26,11 @@
 int main(int argc, char** argv)
 {
 	struct mgebuffer buf = MGEBUFFER_INIT;
+	struct mgemessage msg = MGEMESSAGE_INIT(';', ',');
+
+	print_def_buf_values();
+
 	print_buf(&buf);
 
-	struct mgemessage msg = MGEMESSAGE_INIT(';', ',');
 	print_msg(&msg);
 }

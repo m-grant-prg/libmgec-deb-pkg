@@ -5,12 +5,12 @@
  *
  * All buffer manipulation support functions.
  *
- * @author Copyright (C) 2017-2020  Mark Grant
+ * @author Copyright (C) 2017-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.11 ==== 29/04/2020_
+ * @version _v1.0.12 ==== 15/04/2021_
  */
 
 /* **********************************************************************
@@ -44,6 +44,7 @@
  *				arguments are unchanged if it fails.	*
  *				trim_buf() improve buffer shrinking and	*
  *				compaction algorithms.			*
+ * 15/04/2021	MG	1.0.12	Add function to print default values.	*
  *									*
  ************************************************************************
  */
@@ -155,5 +156,15 @@ void print_buf(struct mgebuffer *m_buf)
 	printf("\tSize:\t\t%zu\n", m_buf->size);
 	printf("\tproc_next:\t\t%zu\n", m_buf->proc_next);
 	printf("\tnext_free:\t\t%zu\n", m_buf->next_free);
+}
+
+/**
+ * Print the key default values to stdout, (for debugging).
+ */
+void print_def_buf_values(void)
+{
+	printf("DEF_BUF_SIZE - %i\n", DEF_BUF_SIZE);
+	printf("BUF_UNUSED_DEF_SIZE_MULT - %i\n", BUF_UNUSED_DEF_SIZE_MULT);
+	printf("BUF_MAX_UNREACH_PERCENT - %i\n", BUF_MAX_UNREACH_PERCENT);
 }
 
