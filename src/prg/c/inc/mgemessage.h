@@ -5,12 +5,12 @@
  *
  * All message manipulation related information.
  *
- * @author Copyright (C) 2017-2020  Mark Grant
+ * @author Copyright (C) 2017-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.10 ==== 19/07/2020_
+ * @version _v1.0.11 ==== 16/04/2021_
  */
 
 /* **********************************************************************
@@ -37,6 +37,7 @@
  *				from API.				*
  *				Remove deconstruct_msg() declaration,	*
  *				remove it from API.			*
+ * 16/04/2021	MG	1.0.11	Add print_def_msg_values() prototype.	*
  *									*
  ************************************************************************
  */
@@ -97,6 +98,8 @@ void clear_msg(struct mgemessage *msg, const char terminator,
 	       const char separator);
 
 void print_msg(struct mgemessage *msg);
+
+void print_def_msg_values(void);
 
 END_C_DECLS
 

@@ -29,8 +29,9 @@ int main(int argc, char** argv)
 	struct mgemessage msg = MGEMESSAGE_INIT(';', ',');
 
 	print_def_buf_values();
-
 	print_buf(&buf);
 
+	print_def_msg_values();
 	print_msg(&msg);
 }
+

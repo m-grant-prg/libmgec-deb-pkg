@@ -5,12 +5,12 @@
  *
  * All message handling support functions.
  *
- * @author Copyright (C) 2017-2020  Mark Grant
+ * @author Copyright (C) 2017-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0
  *
- * @version _v1.0.14 ==== 19/07/2020_
+ * @version _v1.0.15 ==== 16/04/2021_
  */
 
 /* **********************************************************************
@@ -68,6 +68,7 @@
  *				unchanged arguments on error.		*
  * 19/07/2020	MG	1.0.14	Remove get_msg() from the API.		*
  *				Remove deconstruct_msg() from the API.	*
+ * 16/04/2021	MG	1.0.15	Add print default values function.	*
  *									*
  ************************************************************************
  */
@@ -291,5 +292,13 @@ void print_msg(struct mgemessage *msg)
 
 	for (i = 0; i < msg->argc; i++)
 		printf("\tArgument %i is %s\n", i, *(msg->argv + i));
+}
+
+/**
+ * Print default values to stdout, for debugging.
+ */
+void print_def_msg_values(void)
+{
+	printf("DEF_MSG_SIZE - %i\n", DEF_MSG_SIZE);
 }
 
