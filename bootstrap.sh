@@ -157,7 +157,7 @@
 ##################
 
 readonly version=1.4.8			# set version variable
-readonly packageversion=1.3.10+rc3	# Version of the complete package
+readonly packageversion=1.3.11	# Version of the complete package
 
 # Set defaults
 atonly=""
