@@ -134,6 +134,8 @@
 #				that directory.				#
 # 15/04/2021	MG	1.1.5	Add support for passing some default	#
 #				values to Makefiles.am.			#
+# 25/05/2021	MG	1.1.6	Add check for dialog and emit warning.	#
+#				dialog can be used by bootstrap.sh -m.	#
 #									#
 #########################################################################
 
@@ -144,7 +146,7 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.5 $)
+AC_REVISION($Revision: 1.1.6 $)
 
 AC_PREREQ(2.69)
 
@@ -377,6 +379,11 @@ AC_MSG_NOTICE(checking for particular programs required by this build)
 AC_CHECK_PROG(DIA, dia, yes, no)
 if test "x$DIA" = "xno" ; then
 	AC_MSG_ERROR(dia not found)
+fi
+
+AC_CHECK_PROG(DIALOG, dialog, yes, no)
+if test "x$DIALOG" = "xno" ; then
+	AC_MSG_WARN(dialog  not found - could be needed at build time)
 fi
 
 AC_CHECK_PROG(DOT, dot, yes, no)
