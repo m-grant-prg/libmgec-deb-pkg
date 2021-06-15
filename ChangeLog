@@ -1,3 +1,19 @@
+2021-06-15 v1.3.4 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.3
+	Library v5:0:3
+	git: Add gitattributes file
+	git: Add mailmap file
+	doc: Place package version in Doxygen project number
+	at: Upgrade bootstrap.sh to v1.4.9 final
+	at: Re-write config script using dialog
+	buf-msg: Add message defaults print function
+	buf-msg: Add buffer defaults print function
+	at: Add whiptail configurable options menu
+	at: Allow CPP overrides from bootstrap.sh and CL
+	at: Capitalise var names in configure and Makefiles
+	travis: Stop using Travis
+	actions: Initial build action setup
+
 2020-11-02 v1.3.3 Mark Grant <m.grant.prg@gmail.com>
 	* at: lxcu: Add lxc test build setup
 
