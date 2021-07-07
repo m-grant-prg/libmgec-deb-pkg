@@ -2,7 +2,7 @@
 MGE General C Library
 =====================
 
-Author - Copyright (C) 2017-2020 Mark Grant
+Author - Copyright (C) 2017-2021 Mark Grant
 
 --------
 Contents
@@ -37,8 +37,9 @@ Buffers and Messages
 If you are going to build, or build against, this libmgec MGE General C Library
 then you must install the development files from libmgec-dev.
 
-Related packages are the libmgec-dev MGE General C Library Development Files and
-a documentation project libmgec-doc.
+Related packages are the libmgec-dev MGE General C Library Development Files,
+an API documentation package libmgec-doc and a full documentation package
+libmgec-int-doc.
 
 N.B.
 ----
