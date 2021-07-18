@@ -26,35 +26,36 @@
 # 07/06/2019	MG	1.0.1	Initial release.			#
 # 16/06/2019	MG	1.0.2	Add test-driver which is auto-generated	#
 #				when make check is setup and TESTS run.	#
-# 16/07/2021	MG	1.0.3	Add ctags.				#
+# 18/07/2021	MG	1.0.3	Add ctags.				#
+#				Refine AutoTools section.		#
 #									#
 #########################################################################
 
 # AutoTools
+compile
+config.guess
+config.sub
+configure
+configure.scan
+depcomp
+INSTALL
+install-sh
+ltmain.sh
+missing
+test-driver
 **/*.la
 **/*.lo
 **/*.o
-**/*.scan
 **/.deps/
 **/.dirstamp
 **/.libs/
 **/aclocal.*
 **/ar-lib
 **/autom4te.cache/
-**/depcomp
-**/compile
-**/config.guess
 **/config.h.in
-**/config.sub
-**/configure
 **/libtool
-**/ltmain.sh
 **/Makefile
 **/Makefile.in
-**/missing
-**/INSTALL
-**/install-sh
-**/test-driver
 
 # Backup Files
 **/*~
