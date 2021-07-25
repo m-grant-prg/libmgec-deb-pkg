@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/src/test-bstree/Makefile.am			#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -40,6 +40,7 @@
 # 10/05/2019	MG	1.0.12	Remove shebang.				#
 #				Merge into one project.			#
 # 17/06/2019	MG	1.0.13	Change to use the check target.		#
+# 25/07/2021	MG	1.0.14	Use CFLAGS prepared vi configure.	#
 #									#
 #########################################################################
 
@@ -48,7 +49,7 @@ AM_CPPFLAGS = -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 
 
-AM_CFLAGS = -Wall
+AM_CFLAGS = $(MG_CFLAGS)
 
 if DEBUG
 AM_CFLAGS += -ggdb3 -Og
