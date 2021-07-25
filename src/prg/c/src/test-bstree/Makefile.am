@@ -40,7 +40,8 @@
 # 10/05/2019	MG	1.0.12	Remove shebang.				#
 #				Merge into one project.			#
 # 17/06/2019	MG	1.0.13	Change to use the check target.		#
-# 25/07/2021	MG	1.0.14	Use CFLAGS prepared vi configure.	#
+# 25/07/2021	MG	1.0.14	Use CFLAGS prepared by configure.	#
+#				Add conditional use Sparse CFLAGS.	#
 #									#
 #########################################################################
 
@@ -55,6 +56,10 @@ if DEBUG
 AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
+endif
+
+if SPARSE
+AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
 
 
