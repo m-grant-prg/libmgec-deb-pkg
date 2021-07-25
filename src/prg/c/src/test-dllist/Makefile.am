@@ -35,6 +35,7 @@
 #				Merge into one project.			#
 # 17/06/2019	MG	1.0.10	Move under check target.		#
 # 25/07/2021	MG	1.0.11	Use CFLAGS prepared in configure.	#
+#				Add conditional use Sparse CFLAGS.	#
 #									#
 #########################################################################
 
@@ -49,6 +50,10 @@ if DEBUG
 AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
+endif
+
+if SPARSE
+AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
 
 
