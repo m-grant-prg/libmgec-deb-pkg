@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/src/test-sllist/Makefile.am			#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0					#
@@ -41,6 +41,7 @@
 #				Add find next node test.		#
 #				Add add_head test.			#
 #				Add find_sll_node test.			#
+# 25/07/2021	MG	1.0.12	Use CFLAGS prepared in configure.	#
 #									#
 #########################################################################
 
@@ -49,7 +50,7 @@ AM_CPPFLAGS = -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 
 
-AM_CFLAGS = -Wall
+AM_CFLAGS = $(MG_CFLAGS)
 
 if DEBUG
 AM_CFLAGS += -ggdb3 -Og
