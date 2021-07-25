@@ -42,6 +42,7 @@
 #				Add add_head test.			#
 #				Add find_sll_node test.			#
 # 25/07/2021	MG	1.0.12	Use CFLAGS prepared in configure.	#
+#				Add conditional use Sparse CFLAGS.	#
 #									#
 #########################################################################
 
@@ -56,6 +57,10 @@ if DEBUG
 AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
+endif
+
+if SPARSE
+AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
 
 
