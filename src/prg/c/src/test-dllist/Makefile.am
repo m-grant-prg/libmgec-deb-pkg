@@ -37,6 +37,7 @@
 # 25/07/2021	MG	1.0.11	Use CFLAGS prepared in configure.	#
 #				Add conditional use Sparse CFLAGS.	#
 # 26/07/2021	MG	1.0.12	Use CPPFLAGS prepared by configure.	#
+#				Use LDFLAGS prepared by configure.	#
 #									#
 #########################################################################
 
@@ -59,6 +60,9 @@ endif
 
 check_PROGRAMS = dllisttest
 dllisttest_SOURCES = main.c
+
+
+AM_LDFLAGS = $(MG_LDFLAGS)
 
 
 LDADD = ../libmgec/libmgec.la

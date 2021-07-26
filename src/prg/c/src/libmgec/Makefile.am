@@ -66,6 +66,7 @@
 #				default values passed on the configure	#
 #				CL.					#
 # 26/07/2021	MG	1.0.26	Use CPPFLAGS prepared by configure.	#
+#				Use LDFLAGS prepared by configure.	#
 #									#
 #########################################################################
 
@@ -117,7 +118,8 @@ libmgec_la_SOURCES += memory/memory.c
 libmgec_la_SOURCES += version.c
 
 
-AM_LDFLAGS = -version-info @lib_version_info@
+AM_LDFLAGS = $(MG_LDFLAGS)
+AM_LDFLAGS += -version-info @lib_version_info@
 
 
 libmgec_la_LIBADD = $(tmplibraries)

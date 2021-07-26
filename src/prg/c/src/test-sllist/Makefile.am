@@ -44,6 +44,7 @@
 # 25/07/2021	MG	1.0.12	Use CFLAGS prepared in configure.	#
 #				Add conditional use Sparse CFLAGS.	#
 # 26/07/2021	MG	1.0.13	Use CPPFLAGS prepared by configure.	#
+#				Use LDFLAGS prepared by configure.	#
 #									#
 #########################################################################
 
@@ -62,6 +63,9 @@ endif
 if SPARSE
 AM_CFLAGS += -Wsparse-all -Wno-vla
 endif
+
+
+AM_LDFLAGS = $(MG_LDFLAGS)
 
 
 check_HEADERS = sllisttest.h
