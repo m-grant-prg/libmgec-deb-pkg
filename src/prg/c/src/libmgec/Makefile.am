@@ -65,13 +65,16 @@
 # 15/04/2021	MG	1.0.25	Add target CPPFLAGS to amend some	#
 #				default values passed on the configure	#
 #				CL.					#
+# 26/07/2021	MG	1.0.26	Use CPPFLAGS prepared by configure.	#
 #									#
 #########################################################################
 
 
-AM_CPPFLAGS = -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
+AM_CPPFLAGS = $(MG_CPPFLAGS)
+AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 libmgec_la_CPPFLAGS = $(DEF_CPP_VALUES) $(AM_CPPFLAGS)
+
 
 # If after an initial build another build either overrides default values from
 # the make / bootstrap CL, or, ceases to do so, or uses different values, then
@@ -84,17 +87,14 @@ all-local:
 
 
 AM_CFLAGS = $(MG_CFLAGS)
-
 if DEBUG
 AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
 endif
-
 if HEADERCHECK
 AM_CFLAGS += -H
 endif
-
 if SPARSE
 AM_CFLAGS += -Wsparse-all -Wno-vla
 endif

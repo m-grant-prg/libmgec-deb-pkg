@@ -24,22 +24,22 @@
 # 17/06/2019	MG	1.0.3	Move under check target.		#
 # 25/07/2021	MG	1.0.4	Use CFLAGS prepared in configure.	#
 #				Add conditional use Sparse CFLAGS.	#
+# 26/07/2021	MG	1.0.5	Use CPPFLAGS prepared by configure.	#
 #									#
 #########################################################################
 
 
-AM_CPPFLAGS = -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
+AM_CPPFLAGS = $(MG_CPPFLAGS)
+AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 
 
 AM_CFLAGS = $(MG_CFLAGS)
-
 if DEBUG
 AM_CFLAGS += -ggdb3 -Og
 else
 AM_CFLAGS += -O2
 endif
-
 if SPARSE
 AM_CFLAGS += -Wsparse-all -Wno-vla
 endif

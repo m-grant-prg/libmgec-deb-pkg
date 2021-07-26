@@ -136,6 +136,7 @@
 #				values to Makefiles.am.			#
 # 25/05/2021	MG	1.1.6	Add check for dialog and emit warning.	#
 #				dialog can be used by bootstrap.sh -m.	#
+# 26/07/2021	MG	1.1.7	Make use of new CPPFLAGS macro.		#
 #									#
 #########################################################################
 
@@ -146,7 +147,7 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.6 $)
+AC_REVISION($Revision: 1.1.7 $)
 
 AC_PREREQ(2.69)
 
@@ -454,7 +455,8 @@ AC_TYPE_SSIZE_T
 
 AC_MSG_NOTICE(checking for compiler characteristics)
 
-# Build a suitable CFLAGS list depending on compiler version.
+# Build compiler flags depending on compiler version.
+BUILD_COMPILER_VERSION_CPPFLAGS(MG_CPPFLAGS)
 BUILD_COMPILER_VERSION_CFLAGS(MG_CFLAGS)
 
 
