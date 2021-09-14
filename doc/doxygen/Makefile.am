@@ -38,6 +38,8 @@
 #				documentation.				#
 # 14/09/2021	MG	1.1.4	Only register documents if building	#
 #				with ATONLY.				#
+#				Move main source documents into src to	#
+#				enable use of EXTRA_DIST on subdir src.	#
 #									#
 #########################################################################
 
@@ -152,8 +154,8 @@ endif
 endif
 
 
-EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/libmgec.in \
-	$(srcdir)/libmgec-int.in
+EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/src $(srcdir)/libmgec.in \
+	     $(srcdir)/libmgec-int.in
 
 
 CLEANFILES = doxywarn.txt doxygen.stamp doxygen1.stamp $(docpkg) $(intdocpkg) \
