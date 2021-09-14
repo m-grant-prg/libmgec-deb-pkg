@@ -10,13 +10,20 @@
 #	AutoConf script file to configure libmgec project.		#
 #									#
 # cmd line syntax:							#
-# ./configure	[--enable-debug=<yes|no> [default: no]]			#
+# ./configure	[--enable-atonly=<yes|no> [default: no]]		#
+#		[--enable-debug=<yes|no> [default: no]]			#
 #		[--enable-distcheckfake=<yes|no> [default: no]]		#
 #		[--enable-headercheck=<yes|no> [default: no]]		#
 #		[--enable-sparse=<yes|no> [default: no]]		#
 #									#
 # Parameters generic description. For specifics to this configure.ac	#
 # please see inline comments at the point of definition:-		#
+# --enable-atonly							#
+#	Used to produce a fully working package just from the AT build	#
+#	when the build references a (distro / external) static location	#
+#	eg another package's config file in /etc (AOT AT's		#
+#	/usr/local/etc), or an externally installed jar file in		#
+#	/usr/share/jave (AOT AT's /usr/local/share/java).		#
 # --enable-debug							#
 #	Used to set things like compiler debug flags.			#
 # --enable-distcheckfake						#
@@ -138,6 +145,8 @@
 #				dialog can be used by bootstrap.sh -m.	#
 # 26/07/2021	MG	1.1.7	Make use of new CPPFLAGS macro.		#
 #				Make use of new LDFLAGS macro.		#
+# 14/09/2021	MG	1.1.8	Add enable-atonly CLA and add support	#
+#				for doc-base.				#
 #									#
 #########################################################################
 
@@ -148,7 +157,7 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.7 $)
+AC_REVISION($Revision: 1.1.8 $)
 
 AC_PREREQ(2.69)
 
@@ -191,6 +200,29 @@ AC_CONFIG_MACRO_DIR([m4])
 #########################################
 
 AC_MSG_NOTICE(checking command line arguments)
+
+#
+# The following allows for an enable-atonly=yes/no command line option. The
+# conditional ATONLY is made available to the makefiles.
+# This allows for a workaround where AutoTools normally has a prefix of
+# /usr/local but anything pre-installed would normally be in /usr.
+#
+AC_ARG_ENABLE(atonly,
+	AS_HELP_STRING([--enable-atonly], \
+			[build for AT only testing or installation]),
+	[case "${enableval}" in
+		yes) atonly=true ;;
+		no)  atonly=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-atonly) ;;
+	esac],atonly=false)
+AM_CONDITIONAL(ATONLY, test x$atonly = xtrue)
+
+if test "x${atonly}" = xtrue; then
+	AC_MSG_NOTICE(building for AT only testing or installing)
+	AC_SUBST(docbaseloc,"/usr/share/doc-base")
+else
+	AC_SUBST(docbaseloc,"$datarootdir/doc-base")
+fi
 
 #
 # The following allows for an enable-debug=yes/no command line option. The
@@ -519,6 +551,7 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #	pkglibexecdir	${libexecdir}/${PACKAGE}
 #
 AC_SUBST([edit], ["sed \
+		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
 		-e 's|@bindir[@]|\$(bindir)|g' \
