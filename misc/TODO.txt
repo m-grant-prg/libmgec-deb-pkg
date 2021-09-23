@@ -25,3 +25,7 @@
 	- Singly linked lists
 	- Doubly linked lists
 
+2 ... Error with new gawk version on Fedora 33 & 34
+gawk: cmd. line:116: warning: regexp escape sequence `\,' is not a known regexp operator
+https://github.com/soimort/translate-shell/commit/eba74aa15e11592de8d5b42c430b1e3fd81c9b9b
+
