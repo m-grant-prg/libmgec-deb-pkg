@@ -1,3 +1,35 @@
+2021-09-27 v1.4.1 Mark Grant <m.grant.prg@gmail.com>
+	* doc: Add gnulib notes
+	at: Automatic libtool macro update
+	at: gnulib update
+	at: Automatic libtool upgrade
+	misc: Update TODO list
+	lxcu: Add support for Fedora and openSUSE
+	at: Add doc/misc and misc to Dist
+	doc: Add AT installation notes
+	at: README: Add ldconfig instruction
+	at: docs: Move source files to src
+	at: Update AT install section for enable-atonly
+	at: Register docs with scrollkeeper only if ATONLY
+	at: Use LDFLAGS prepared by configure
+	at: Add linker macro v1.0.1
+	at: Use CPPFLAGS prepared in configure
+	at: Upggrade c-compiler macros to v1.0.7
+	test-sllist: Add conditional use Sparse CFLAGS
+	test-sllist: Use CFLAGS prepared in configure
+	test-errno: Add conditional use Sparse CFLAGS
+	test-errno: Use CFLAGS prepared in configure
+	test-dllist: Add conditional use Sparse CFLAGS
+	test-dllist: Use CFLAGS prepared in configure
+	test-buf-msg: Add conditional use Sparse CFLAGS
+	test-buf-msg: Use CFLAGS prepared in configure
+	test-bstree: Add conditional use Sparse CFLAGS
+	test-bstree: Use CFLAGS prepared by configure
+	git: Refine AutoTools section
+	git: Add ctags files exclusion
+	git: Correct file ChangeLog cut and paste
+	at: Differentiate full and API documentation
+
 2021-06-15 v1.3.4 Mark Grant <m.grant.prg@gmail.com>
 	* Source v1.2.3
 	Library v5:0:3
