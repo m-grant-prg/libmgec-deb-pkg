@@ -1,3 +1,9 @@
+Release 1.5.1 2021-09-30
+ doc: Add AT installation notes
+ at: README: Add ldconfig instruction
+ at: Differentiate full and API documentation
+Technical changes can be found in the ChangeLog.
+
 Release 1.3.4 2021-06-15
 Place package version in Doxygen project number so that it is visible in the
 heading.
