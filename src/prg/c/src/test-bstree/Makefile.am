@@ -44,6 +44,7 @@
 #				Add conditional use Sparse CFLAGS.	#
 # 26/07/2021	MG	1.0.15	Use CPPFLAGS prepared by configure.	#
 #				Use LDFLAGS prepared by configure.	#
+# 15/10/2021	MG	1.0.16	Change debug optimisation to -O0	#
 #									#
 #########################################################################
 
@@ -55,7 +56,7 @@ AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 
 AM_CFLAGS = $(MG_CFLAGS)
 if DEBUG
-AM_CFLAGS += -ggdb3 -Og
+AM_CFLAGS += -ggdb3 -O0
 else
 AM_CFLAGS += -O2
 endif
