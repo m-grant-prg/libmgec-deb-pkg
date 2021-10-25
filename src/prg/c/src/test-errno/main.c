@@ -27,7 +27,7 @@ extern const size_t errno_desc_size;	/* Need this for testing */
 /*
  * mge_errno test program.
  */
-int main(int argc, char** argv)
+int main(void)
 {
 	int i;
 
