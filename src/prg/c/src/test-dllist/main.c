@@ -33,7 +33,7 @@ void testparamerr(struct dllistnode *root);
 /*
  * dllist test program.
  */
-int main(int argc, char** argv)
+int main(void)
 {
 	char *str[] = {"give", "consistency", "is", "all", "i", "ask", "give",
 			"us", "this", "day", "our", "daily", "mask", "\0"};
