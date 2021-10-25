@@ -35,6 +35,8 @@ void testparamerr(struct dllistnode *root);
  */
 int main(int argc, char** argv)
 {
+	char *str[] = {"give", "consistency", "is", "all", "i", "ask", "give",
+			"us", "this", "day", "our", "daily", "mask", "\0"};
 	int prog_error = 0;
 	int i;
 
@@ -42,15 +44,13 @@ int main(int argc, char** argv)
 		char key[20];
 		int payload;
 	};
+	struct testnode test;
 
 	struct dllistnode *root = NULL;
 
 	printf("Words entered:-\t");
-	char *str[] = {"give", "consistency", "is", "all", "i", "ask", "give",
-			"us", "this", "day", "our", "daily", "mask", "\0"};
 	for (i = 0; *str[i] && !mge_errno; i++) {
 		printf("%s ", str[i]);
-		struct testnode test;
 		strcpy(test.key, str[i]);
 		test.payload = i;
 		root = add_dll_node(root, &test, sizeof test);
@@ -114,8 +114,8 @@ void printrevlist(struct dllistnode *root)
 {
 	struct testnode *pnode;
 	struct dllistnode *currentnode;
-	currentnode = root;
 	struct dllistnode *beforenode = NULL;
+	currentnode = root;
 
 	printf("Linked List in reverse:-\t");
 
@@ -136,6 +136,8 @@ void printrevlist(struct dllistnode *root)
 void testparamerr(struct dllistnode *root)
 {
 	struct testnode *node;
+	struct testnode test;
+
 	node = NULL;
 	printf("Adding object whose pointer value is  %p\n", node);
 	root = add_dll_node(root, node, 10);
@@ -144,7 +146,6 @@ void testparamerr(struct dllistnode *root)
 		printf("%s\n", mge_strerror(mge_errno));
 	printf("Root is %p\n", root);
 	printf("\n");
-	struct testnode test;
 	strcpy(test.key, "James");
 	test.payload = 100;
 	printf("Adding object whose size is  0\n");
