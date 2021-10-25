@@ -23,6 +23,9 @@
 
 int test04(void)
 {
+	char *str[] = { "consistency", "is",   "all",  "i",   "ask",
+			"give",	       "us",   "this", "day", "our",
+			"daily",       "mask", "\0" };
 	int prog_error = 0;
 	char result[500] = { '\0' };
 	char *presult = result;
@@ -36,9 +39,6 @@ int test04(void)
 		return 1;
 	}
 
-	char *str[] = { "consistency", "is",   "all",  "i",   "ask",
-			"give",	       "us",   "this", "day", "our",
-			"daily",       "mask", "\0" };
 
 	for (i = 0; *str[i] && !mge_errno; i++) {
 		struct testnode test;

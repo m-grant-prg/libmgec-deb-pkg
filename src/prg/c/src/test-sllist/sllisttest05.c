@@ -28,6 +28,10 @@ int test05(void)
 	char *presult = result;
 	FILE *fp;
 	struct sllistnode *root = NULL;
+	struct testnode name = { "Jim", 0 };
+	struct testnode *node;
+	struct testnode test;
+	struct testnode test1;
 
 	if ((fp = fopen("./Test05Result.txt", "w")) == NULL) {
 		printf("Cannot create result file.\n");
@@ -57,8 +61,6 @@ int test05(void)
 	presult = emit_outputs(presult, fp);
 
 	/* Try finding non-existent object */
-	struct testnode name = { "Jim", 0 };
-	struct testnode *node;
 
 	sprintf(presult, "Trying to find node with key %s\n", name.key);
 	presult = emit_outputs(presult, fp);
@@ -70,7 +72,6 @@ int test05(void)
 	presult = emit_outputs(presult, fp);
 
 	/* Try finding root node */
-	struct testnode test;
 	strcpy(test.key, "give");
 	test.payload = 0;
 	sprintf(presult, "Looking for root node\n");
@@ -86,7 +87,6 @@ int test05(void)
 	presult = emit_outputs(presult, fp);
 
 	/* Try finding non-root node */
-	struct testnode test1;
 	strcpy(test1.key, "this");
 	test1.payload = 0;
 	sprintf(presult, "Looking for non-root node\n");

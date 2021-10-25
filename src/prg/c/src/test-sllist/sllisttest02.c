@@ -28,6 +28,8 @@ int test02(void)
 	char *presult = result;
 	FILE *fp;
 	struct sllistnode *root = NULL;
+	struct testnode *node;
+	struct testnode test;
 
 	if ((fp = fopen("./Test02Result.txt", "w")) == NULL) {
 		printf("Cannot create result file.\n");
@@ -57,7 +59,6 @@ int test02(void)
 	presult = emit_outputs(presult, fp);
 
 	/* Try adding a NULL node */
-	struct testnode *node;
 	node = NULL;
 	sprintf(presult, "Adding object whose pointer value is  %p\n", node);
 	presult = emit_outputs(presult, fp);
@@ -71,7 +72,6 @@ int test02(void)
 	}
 
 	/* Try adding node with object size 0 */
-	struct testnode test;
 	strcpy(test.key, "James");
 	test.payload = 100;
 	sprintf(presult, "Adding object whose size is  0\n");
