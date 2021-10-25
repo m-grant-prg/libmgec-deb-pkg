@@ -274,6 +274,9 @@ int nodecmp(const struct testnode *node1, const struct testnode *node2)
 struct bstree *pop_tree(struct bstree *tree, int duplicates)
 {
 
+	char *str[] = {"consistency", "is", "all", "i", "ask", "give",
+			"us", "this", "day", "our", "daily", "mask", "\0"};
+	struct testnode test;
 	struct bstree *res;
 	int i;
 
@@ -288,12 +291,9 @@ struct bstree *pop_tree(struct bstree *tree, int duplicates)
 
 	if (verbose)
 		printf("Words entered:-\t");
-	char *str[] = {"consistency", "is", "all", "i", "ask", "give",
-			"us", "this", "day", "our", "daily", "mask", "\0"};
 	for (i = 0; *str[i] && !mge_errno; i++) {
 		if (verbose)
 			printf("%s ", str[i]);
-		struct testnode test;
 		strcpy(test.key, str[i]);
 		test.payload = i;
 		res = add_bst_node(tree, &test, sizeof test);
@@ -450,6 +450,11 @@ int testfind_bst_node(void)
 	struct bstree *tree = NULL;
 	struct testnode *pnode;
 	struct testnode node2;
+	struct testnode node3;
+	struct testnode node4;
+	struct testnode node5;
+	struct testnode node6;
+	struct testnode node7;
 	int status = 0;
 	FILE *fp;
 
@@ -488,7 +493,6 @@ int testfind_bst_node(void)
 	}
 
 
-	struct testnode node3;
 	strcpy(node3.key, "all");
 	pnode = find_bst_node(tree, &node3);
 	if (pnode)
@@ -511,7 +515,6 @@ int testfind_bst_node(void)
 	}
 
 
-	struct testnode node4;
 	strcpy(node4.key, "ask");
 	pnode = find_bst_node(tree, &node4);
 	if (pnode)
@@ -534,7 +537,6 @@ int testfind_bst_node(void)
 	}
 
 
-	struct testnode node5;
 	strcpy(node5.key, "this");
 	pnode = find_bst_node(tree, &node5);
 	if (pnode)
@@ -557,7 +559,6 @@ int testfind_bst_node(void)
 	}
 
 
-	struct testnode node6;
 	strcpy(node6.key, "thiss");
 	pnode = find_bst_node(tree, &node6);
 	if (pnode)
@@ -580,7 +581,6 @@ int testfind_bst_node(void)
 	}
 
 
-	struct testnode node7;
 	strcpy(node7.key, "zzz");
 	pnode = find_bst_node(tree, &node7);
 	if (pnode)
@@ -764,6 +764,11 @@ int testfind_next_bst_node(void)
 	struct bstree *tree = NULL;
 	struct testnode *pnode;
 	struct testnode node2;
+	struct testnode node3;
+	struct testnode node4;
+	struct testnode node5;
+	struct testnode node6;
+	struct testnode node7;
 	int status = 0;
 	FILE *fp;
 
@@ -802,7 +807,6 @@ int testfind_next_bst_node(void)
 	}
 
 
-	struct testnode node3;
 	strcpy(node3.key, "all");
 	pnode = find_next_bst_node(tree, &node3);
 	if (pnode)
@@ -825,7 +829,6 @@ int testfind_next_bst_node(void)
 	}
 
 
-	struct testnode node4;
 	strcpy(node4.key, "give");
 	pnode = find_next_bst_node(tree, &node4);
 	if (pnode)
@@ -848,7 +851,6 @@ int testfind_next_bst_node(void)
 	}
 
 
-	struct testnode node5;
 	strcpy(node5.key, "this");
 	pnode = find_next_bst_node(tree, &node5);
 	if (pnode)
@@ -871,7 +873,6 @@ int testfind_next_bst_node(void)
 	}
 
 
-	struct testnode node6;
 	strcpy(node6.key, "us");
 	pnode = find_next_bst_node(tree, &node6);
 	if (pnode)
@@ -894,7 +895,6 @@ int testfind_next_bst_node(void)
 	}
 
 
-	struct testnode node7;
 	strcpy(node7.key, "zzz");
 	pnode = find_next_bst_node(tree, &node7);
 	if (pnode)
@@ -941,6 +941,12 @@ int testfind_prev_bst_node(void)
 	struct bstree *tree = NULL;
 	struct testnode *pnode;
 	struct testnode node2;
+	struct testnode node3;
+	struct testnode node4;
+	struct testnode node5;
+	struct testnode node6;
+	struct testnode node7;
+	struct testnode node8;
 	int status = 0;
 	FILE *fp;
 
@@ -979,7 +985,6 @@ int testfind_prev_bst_node(void)
 	}
 
 
-	struct testnode node3;
 	strcpy(node3.key, "all");
 	pnode = find_prev_bst_node(tree, &node3);
 	if (pnode)
@@ -1002,7 +1007,6 @@ int testfind_prev_bst_node(void)
 	}
 
 
-	struct testnode node4;
 	strcpy(node4.key, "ask");
 	pnode = find_prev_bst_node(tree, &node4);
 	if (pnode)
@@ -1025,7 +1029,6 @@ int testfind_prev_bst_node(void)
 	}
 
 
-	struct testnode node5;
 	strcpy(node5.key, "give");
 	pnode = find_prev_bst_node(tree, &node5);
 	if (pnode)
@@ -1048,7 +1051,6 @@ int testfind_prev_bst_node(void)
 	}
 
 
-	struct testnode node6;
 	strcpy(node6.key, "i");
 	pnode = find_prev_bst_node(tree, &node6);
 	if (pnode)
@@ -1071,7 +1073,6 @@ int testfind_prev_bst_node(void)
 	}
 
 
-	struct testnode node7;
 	strcpy(node7.key, "us");
 	pnode = find_prev_bst_node(tree, &node7);
 	if (pnode)
@@ -1094,7 +1095,6 @@ int testfind_prev_bst_node(void)
 	}
 
 
-	struct testnode node8;
 	strcpy(node8.key, "zzz");
 	pnode = find_prev_bst_node(tree, &node8);
 	if (pnode)
