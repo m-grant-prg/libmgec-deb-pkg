@@ -23,7 +23,7 @@
 /*
  * buffers and messages test program.
  */
-int main(int argc, char** argv)
+int main(void)
 {
 	struct mgebuffer buf = MGEBUFFER_INIT;
 	struct mgemessage msg = MGEMESSAGE_INIT(';', ',');
