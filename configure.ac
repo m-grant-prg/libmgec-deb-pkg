@@ -165,11 +165,11 @@ AC_PREREQ(2.69)
 # The following macros set all top level versioning for this project. All
 # information can be propagated via AC_CONFIG_HEADERS and AC_CONFIG_FILES.
 #
-AC_INIT(MGE General C Library, 1.5.1+rc1, m.grant.prg@gmail.com, libmgec)
+AC_INIT(MGE General C Library, 1.5.2, m.grant.prg@gmail.com, libmgec)
 
 AC_MSG_NOTICE(initialisation and setup)
 
-AC_DEFINE(SOURCE_VERSION, "1.2.3", \
+AC_DEFINE(SOURCE_VERSION, "1.2.4", \
 	Define to the version of source code in this package.)
 
 AC_SUBST(lib_version_info, "5:0:3")
