@@ -1,3 +1,16 @@
+2021-10-28 v1.5.2 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Minimum version now Focal
+	test-sllist: Fix mix declarations and code warnings
+	test-errno: Fix unused parameter warnings
+	test-dllist: Fix unused parameter warning
+	test-dllist: Fix mixed declarations and code warning
+	test-buf-msg: Fix Wunused-parameter warning
+	test-bstree: Eliminate -Wdeclaration-after-statement warnings
+	doc: Explain branches, releases and EOL
+	at: Upgrade gen-gnulib.sh to v1.0.2
+	at: Update c-compiler macros to v1.0.9
+	at: Change debug optimisation to -O0
+
 2021-09-30 v1.5.1 Mark Grant <m.grant.prg@gmail.com>
 	* doc: Keep singular words in file name
 	doc: Add branch relationship to distro rel notes

@@ -1,3 +1,7 @@
+Release 1.5.2 2021-10-28
+ No user visible changes.
+Technical changes can be found in the ChangeLog.
+
 Release 1.5.1 2021-09-30
  doc: Add AT installation notes
  at: README: Add ldconfig instruction
