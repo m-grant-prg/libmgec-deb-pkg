@@ -68,11 +68,17 @@
 # 26/07/2021	MG	1.0.26	Use CPPFLAGS prepared by configure.	#
 #				Use LDFLAGS prepared by configure.	#
 # 15/10/2021	MG	1.0.27	Change debug optimisation to -O0	#
+# 05/11/2021	MG	1.0.28	Use (non-)debug CPPFLAGS from configure	#
+#				Use (non-)debug CFLAGS from configure	#
 #									#
 #########################################################################
 
 
+if DEBUG
+AM_CPPFLAGS = $(MG_DEBUG_CPPFLAGS)
+else
 AM_CPPFLAGS = $(MG_CPPFLAGS)
+endif
 AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 libmgec_la_CPPFLAGS = $(DEF_CPP_VALUES) $(AM_CPPFLAGS)
@@ -88,11 +94,10 @@ all-local:
 	touch $(srcdir)/buf-msg/internal.h
 
 
-AM_CFLAGS = $(MG_CFLAGS)
 if DEBUG
-AM_CFLAGS += -ggdb3 -O0
+AM_CFLAGS = $(MG_DEBUG_CFLAGS)
 else
-AM_CFLAGS += -O2
+AM_CFLAGS = $(MG_CFLAGS)
 endif
 if HEADERCHECK
 AM_CFLAGS += -H

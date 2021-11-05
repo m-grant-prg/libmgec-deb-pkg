@@ -46,20 +46,25 @@
 # 26/07/2021	MG	1.0.13	Use CPPFLAGS prepared by configure.	#
 #				Use LDFLAGS prepared by configure.	#
 # 15/10/2021	MG	1.0.14	Change debug optimisation to -O0	#
+# 05/11/2021	MG	1.0.15	Use (non-)debug CPPFLAGS from configure	#
+#				Use (non-)debug CFLAGS from configure	#
 #									#
 #########################################################################
 
 
+if DEBUG
+AM_CPPFLAGS = $(MG_DEBUG_CPPFLAGS)
+else
 AM_CPPFLAGS = $(MG_CPPFLAGS)
+endif
 AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
 AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
 
 
-AM_CFLAGS = $(MG_CFLAGS)
 if DEBUG
-AM_CFLAGS += -ggdb3 -O0
+AM_CFLAGS = $(MG_DEBUG_CFLAGS)
 else
-AM_CFLAGS += -O2
+AM_CFLAGS = $(MG_CFLAGS)
 endif
 if SPARSE
 AM_CFLAGS += -Wsparse-all -Wno-vla
