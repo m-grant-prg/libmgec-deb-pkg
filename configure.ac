@@ -148,6 +148,9 @@
 # 14/09/2021	MG	1.1.8	Add enable-atonly CLA and add support	#
 #				for doc-base.				#
 # 05/11/2021	MG	1.1.9	Create debug version of flags where	#
+# 03/12/2021	MG	1.1.10	If git is available and we are inside a	#
+#				git tree then use git describe to add	#
+#				further package version information.	#
 #									#
 #########################################################################
 
@@ -158,15 +161,32 @@
 #					#
 #########################################
 
-AC_REVISION($Revision: 1.1.9 $)
+AC_REVISION($Revision: 1.1.10 $)
 
 AC_PREREQ(2.69)
 
 #
-# The following macros set all top level versioning for this project. All
-# information can be propagated via AC_CONFIG_HEADERS and AC_CONFIG_FILES.
+# The following macro uses git, if available, to provide versioning information.
+# The logic is as follows:-
+# If git is not available, is not initialised or no commit has been made, then
+# the local variable pkg_version will be used.
+# If git is available but no Tag has been created then just a commit identifier
+# will be used.
+# If git is available and a tag has been created then the most recent tag, plus
+# number of commits since the tag, plus a commit identifier will be used.
+# The package version in ac init will be used to create an output variable which
+# can be used by ac output and / or the sed setup below to substitute bookmarks
+# in source files.
 #
-AC_INIT(MGE General C Library, 1.5.2, m.grant.prg@gmail.com, libmgec)
+# Set pkg_version for a default hard-coded version number.
+m4_define(pkg_version, 1.5.2)
+
+AC_INIT([MGE General C Library], m4_esyscmd([ \
+	git describe --always 1>/dev/null 2>/dev/null \
+	&& sed --help 1>/dev/null 2>/dev/null \
+	&& git describe --always | sed 's/v//' | tr -d '\n' \
+	|| echo pkg_version | tr -d '\n']),
+	[m.grant.prg@gmail.com], [libmgec])
 
 AC_MSG_NOTICE(initialisation and setup)
 
