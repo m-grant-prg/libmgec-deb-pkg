@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/inc/Makefile.am					#
-# Author: Copyright (C) 2015-2020  Mark Grant				#
+# Author: Copyright (C) 2015-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate libmgec-dev headers from	#
@@ -33,6 +33,7 @@
 # 09/05/2019	MG	1.0.11	Remove shebang.				#
 #				Merge dev sub-project.			#
 # 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	#
+# 03/12/2021	MG	1.0.13	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

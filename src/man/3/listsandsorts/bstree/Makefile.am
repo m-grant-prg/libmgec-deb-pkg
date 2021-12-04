@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/man/3/listsandsorts/bstree/Makefile.am			#
-# Author: Copyright (C) 2015-2020  Mark Grant				#
+# Author: Copyright (C) 2015-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate libmgec Section 3 bstree	#
@@ -39,6 +39,7 @@
 # 10/05/2019	MG	1.0.10	Remove shebang.				#
 #				Merge into one project.			#
 # 20/07/2020	MG	1.0.11	Move under listsandsorts directory.	#
+# 03/12/2021	MG	1.0.12	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

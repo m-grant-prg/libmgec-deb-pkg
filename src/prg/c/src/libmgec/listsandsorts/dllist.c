@@ -6,12 +6,12 @@
  * Build, manipulate and bi-directional traverse functionality for doubly
  * linked lists.
  *
- * @author Copyright (C) 2016-2020  Mark Grant
+ * @author Copyright (C) 2016-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.11 ==== 29/06/2020_
+ * @version _v1.0.12 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -40,6 +40,7 @@
  * 12/07/2019	MG	1.0.10	Change to specific internal header file.*
  * 29/06/2020	MG	1.0.11	Add internal-only documentation of	*
  *				static (non-API) function.		*
+ * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

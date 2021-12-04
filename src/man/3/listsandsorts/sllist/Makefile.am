@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/man/3/listsandsorts/sllist/Makefile.am			#
-# Author: Copyright (C) 2015-2020  Mark Grant				#
+# Author: Copyright (C) 2015-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate libmgec Section 3 sllist	#
@@ -34,6 +34,7 @@
 #				Add add_head_sll_node.			#
 #				Add find_sll_node.			#
 # 20/07/2020	MG	1.0.8	Move under listsandsorts directory.	#
+# 03/12/2021	MG	1.0.9	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

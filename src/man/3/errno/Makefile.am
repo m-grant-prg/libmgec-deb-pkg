@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/man/3/errno/Makefile.am				#
-# Author: Copyright (C) 2015-2019  Mark Grant				#
+# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate libmgec Section 3 errno	#
@@ -29,6 +29,7 @@
 # 02/01/2018	MG	1.0.5	Move to new source directory structure.	#
 # 10/05/2019	MG	1.0.6	Remove shebang.				#
 #				Merge into one project.			#
+# 03/12/2021	MG	1.0.7	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

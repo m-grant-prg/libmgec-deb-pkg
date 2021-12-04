@@ -5,12 +5,12 @@
  *
  * Includes suggestions from the GNU Libtools documentation.
  *
- * @author Copyright (C) 2015-2019  Mark Grant
+ * @author Copyright (C) 2015-2019, 2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.6 ==== 08/06/2019_
+ * @version _v1.0.7 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -25,6 +25,7 @@
  * 09/11/2017	MG	1.0.4	Add SPDX license tag.			*
  * 02/01/2018	MG	1.0.5	Move to new source directory structure.	*
  * 08/06/2019	MG	1.0.6	clang-format coding style changes.	*
+ * 03/12/2021	MG	1.0.7	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

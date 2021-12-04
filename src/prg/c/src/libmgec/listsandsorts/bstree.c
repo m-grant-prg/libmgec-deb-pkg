@@ -15,12 +15,12 @@
  *
  * _In fact, the same as strcmp()._
  *
- * @author Copyright (C) 2015-2020  Mark Grant
+ * @author Copyright (C) 2015-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.9 ==== 20/07/2020_
+ * @version _v1.1.10 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -82,6 +82,7 @@
  * 12/07/2019	MG	1.1.8	Change to specific internal header file.*
  * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
  *				static (non-API) function.		*
+ * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

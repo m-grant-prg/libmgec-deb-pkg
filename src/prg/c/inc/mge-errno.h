@@ -5,12 +5,12 @@
  *
  * Specification of mge_errno values and all mge_errno related information.
  *
- * @author Copyright (C) 2017-2020  Mark Grant
+ * @author Copyright (C) 2017-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.12 ==== 12/03/2020_
+ * @version _v1.0.13 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -32,6 +32,7 @@
  * 17/05/2018	MG	1.0.10	Add Client blocked.			*
  * 08/06/2019	MG	1.0.11	clang-format coding style changes.	*
  * 12/03/2020	MG	1.0.12	Add identification error.		*
+ * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

@@ -4,7 +4,7 @@
 # Author: Copyright (C) 2015-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoConf script file to configure libmgec project.		#
@@ -152,6 +152,7 @@
 #				git tree then use git describe to add	#
 #				further package version information.	#
 #				Add AC_COPYRIGHT macro.			#
+#				Tighten SPDX tag.			#
 #									#
 #########################################################################
 

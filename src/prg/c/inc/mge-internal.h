@@ -3,12 +3,12 @@
  *
  * Non-public general header file. No distribution required.
  *
- * @author Copyright (C) 2018-2020  Mark Grant
+ * @author Copyright (C) 2018-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.3 ==== 29/06/2020_
+ * @version _v1.0.4 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -22,6 +22,7 @@
  * 29/06/2020	MG	1.0.3	Rename file to mge-internal.h so that	*
  *				it will be automatically excluded from	*
  *				API documentation.			*
+ * 03/12/2021	MG	1.0.4	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

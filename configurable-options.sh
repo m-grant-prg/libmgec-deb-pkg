@@ -6,7 +6,7 @@
 # Author: Copyright (C) 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 # It make sense in many code-bases to allow the override of some	#
@@ -54,6 +54,7 @@
 #									#
 # 15/04/2021	MG	1.0.1	Created.				#
 # 31/05/2021	MG	1.0.2	Re-write to improve and to use Dialog.	#
+# 03/12/2021	MG	1.0.3	Tighten SPDX tag.			#
 #									#
 #########################################################################
 
@@ -62,7 +63,7 @@
 # Init variables #
 ##################
 
-readonly version=1.0.2			# set version variable
+readonly version=1.0.3			# set version variable
 
 output_target=$1			# Filename for the results
 

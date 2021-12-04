@@ -5,12 +5,12 @@
  *
  * Header file for singly linked lists in the libmgec shared library.
  *
- * @author Copyright (C) 2016-2019  Mark Grant
+ * @author Copyright (C) 2016-2019, 2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.7 ==== 05/07/2019_
+ * @version _v1.0.8 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -33,6 +33,7 @@
  *				%s/add_sll_node/add_tail_sll_node/g	*
  *				Add add_head_sll_node			*
  *				Add find_sll_node.			*
+ * 03/12/2021	MG	1.0.8	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

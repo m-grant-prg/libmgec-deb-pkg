@@ -8,9 +8,9 @@
  * @author Copyright (C) 2017-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.11 ==== 16/04/2021_
+ * @version _v1.0.12 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -38,6 +38,7 @@
  *				Remove deconstruct_msg() declaration,	*
  *				remove it from API.			*
  * 16/04/2021	MG	1.0.11	Add print_def_msg_values() prototype.	*
+ * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

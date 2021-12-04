@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: common.c							*
- * Author Copyright (C) 2019  Mark Grant				*
+ * Author Copyright (C) 2019, 2021  Mark Grant				*
  *									*
  * Purpose:								*
  *	Common test functions for use in tests on singly linked lists	*
@@ -9,7 +9,7 @@
  * 									*
  * 									*
  * Released under the GPLv3 only.					*
- * SPDX-License-Identifier: GPL-3.0					*
+ * SPDX-License-Identifier: GPL-3.0-only				*
  *									*
  ************************************************************************
  */

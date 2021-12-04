@@ -8,9 +8,9 @@
  * @author Copyright (C) 2017-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.12 ==== 15/04/2021_
+ * @version _v1.0.13 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -45,6 +45,7 @@
  *				trim_buf() improve buffer shrinking and	*
  *				compaction algorithms.			*
  * 15/04/2021	MG	1.0.12	Add function to print default values.	*
+ * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

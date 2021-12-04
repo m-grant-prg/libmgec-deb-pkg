@@ -5,10 +5,10 @@
  *
  * Header file for testing singly linked lists in the libmgec shared library.
  *
- * Author Copyright (C) 2019  Mark Grant
+ * Author Copyright (C) 2019, 2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
  */
 

@@ -4,7 +4,7 @@
 # Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate bstree test program.		#
@@ -47,6 +47,7 @@
 # 15/10/2021	MG	1.0.16	Change debug optimisation to -O0	#
 # 05/11/2021	MG	1.0.17	Use (non-)debug CPPFLAGS from configure	#
 #				Use (non-)debug CFLAGS from configure	#
+# 03/12/2021	MG	1.0.18	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

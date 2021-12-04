@@ -4,7 +4,7 @@
 # Author: Copyright (C) 2018-2019, 2021  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate buffers and messages test	#
@@ -29,6 +29,7 @@
 # 15/10/2021	MG	1.0.6	Change debug optimisation to -O0	#
 # 05/11/2021	MG	1.0.7	Use (non-)debug CPPFLAGS from configure	#
 #				Use (non-)debug CFLAGS from configure	#
+# 03/12/2021	MG	1.0.8	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

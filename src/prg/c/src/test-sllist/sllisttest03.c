@@ -1,14 +1,14 @@
 /* **********************************************************************
  *									*
  * Source: sllisttest03.c						*
- * Author Copyright (C) 2019  Mark Grant				*
+ * Author Copyright (C) 2019, 2021  Mark Grant				*
  *									*
  * Purpose:								*
  *	SLL test find next node.					*
  * 									*
  * 									*
  * Released under the GPLv3 only.					*
- * SPDX-License-Identifier: GPL-3.0					*
+ * SPDX-License-Identifier: GPL-3.0-only				*
  *									*
  ************************************************************************
  */

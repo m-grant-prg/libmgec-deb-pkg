@@ -5,12 +5,12 @@
  *
  * Functions supporting the use of the mge_errno system.
  *
- * @author Copyright (C) 2017-2019  Mark Grant
+ * @author Copyright (C) 2017-2019, 2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.6 ==== 08/06/2019_
+ * @version _v1.0.7 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -26,6 +26,7 @@
  * 19/05/2018	MG	1.0.5	Remove external declarations to		*
  *				non-public internal.h header file.	*
  * 08/06/2019	MG	1.0.6	clang-format coding style changes.	*
+ * 03/12/2021	MG	1.0.7	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

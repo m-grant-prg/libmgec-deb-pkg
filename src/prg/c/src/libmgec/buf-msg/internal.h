@@ -6,9 +6,9 @@
  * @author Copyright (C) 2018-2021  Mark Grant
  *
  * Released under the GPLv3 only.\n
- * SPDX-License-Identifier: GPL-3.0
+ * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.4 ==== 14/04/2021_
+ * @version _v1.0.5 ==== 03/12/2021_
  */
 
 /* **********************************************************************
@@ -23,6 +23,7 @@
  *				BUF_MAX_UNREACH_PERCENT.		*
  * 14/04/2021	MG	1.0.4	Allow some default values to be 	*
  *				overridden on the gcc CL.		*
+ * 03/12/2021	MG	1.0.5	Tighten SPDX tag.			*
  *									*
  ************************************************************************
  */

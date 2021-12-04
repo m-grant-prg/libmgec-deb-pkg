@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/src/run-tests/Makefile.am			#
-# Author: Copyright (C) 2019  Mark Grant				#
+# Author: Copyright (C) 2019, 2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to run tests under make check.		#
@@ -21,6 +21,7 @@
 # 25/10/2019	MG	1.0.2	Do not automatically run the valgrind	#
 #				tests as the package may be getting	#
 #				built under user mode qemu.		#
+# 03/12/2021	MG	1.0.3	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

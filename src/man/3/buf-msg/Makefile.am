@@ -1,10 +1,10 @@
 #########################################################################
 #									#
 # Script ID: src/man/3/buf-msg/Makefile.am				#
-# Author: Copyright (C) 2015-2020  Mark Grant				#
+# Author: Copyright (C) 2015-2021  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0					#
+# SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to generate libmgec Section 3 buffer and	#
@@ -31,6 +31,7 @@
 #				Merge into one project.			#
 # 20/07/2020	MG	1.1.0	Remove non-API man pages.		#
 #				Merge buffer and message man pages.	#
+# 03/12/2021	MG	1.1.1	Tighten SPDX tag.			#
 #									#
 #########################################################################
 
