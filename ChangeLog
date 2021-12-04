@@ -1,3 +1,19 @@
+2021-12-04 v1.5.3 Mark Grant <m.grant.prg@gmail.com>
+	* all: Tighten SPDX tags
+	at: Upgrade gen-gnulib.sh to v1.0.3
+	at: Add AC_COPYRIGHT macro
+	m4: Update linker mavros to v1.0.2
+	m4: Update c-compiler macros to v1.0.11
+	at: Use git to enhance package version
+	clang: Update clang-format to v1.0.2
+	at: Upgrade bootstrap.sh to v1.4.10
+	git: Update mailmap to v1.0.2
+	git: Update gitignore to v1.0.7
+	git: Update gitattributes to v1.0.3
+	at: Use normal / debug flags built by configure
+	doc: Add branch / distro-rel status
+	doc: Add Fedora 34 EOL date nad add 35
+
 2021-10-28 v1.5.2 Mark Grant <m.grant.prg@gmail.com>
 	* actions: Minimum version now Focal
 	test-sllist: Fix mix declarations and code warnings
