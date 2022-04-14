@@ -5,12 +5,12 @@
  *
  * Specification of mge_errno values and all mge_errno related information.
  *
- * @author Copyright (C) 2017-2021  Mark Grant
+ * @author Copyright (C) 2017-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 03/12/2021_
+ * @version _v1.0.14 ==== 14/04/2022_
  */
 
 /* **********************************************************************
@@ -33,6 +33,7 @@
  * 08/06/2019	MG	1.0.11	clang-format coding style changes.	*
  * 12/03/2020	MG	1.0.12	Add identification error.		*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
+ * 14/04/2022	MG	1.0.14	Add MGE_PROTO and MGE_GENERAL.		*
  *									*
  ************************************************************************
  */
@@ -63,10 +64,11 @@ extern int sav_errno;
 #define MGE_LOCK_NOT_FOUND 11 /**< Lock does not exist. */
 #define MGE_CLIENT_BLOCKED 12 /**< Client is blocked on the server. */
 #define MGE_ID 13	      /**< Identification error. */
+#define MGE_PROTO 14	      /**< Protocol error. */
+#define MGE_GENERAL 15	      /**< General error. */
 
 const char *mge_strerror(const int mge_err);
 
 END_C_DECLS
 
 #endif /* ndef MGE_ERRNO_H */
-

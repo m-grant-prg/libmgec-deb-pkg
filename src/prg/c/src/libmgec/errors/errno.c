@@ -5,12 +5,12 @@
  *
  * Definition of mge_errno error descriptions and global error variables.
  *
- * @author Copyright (C) 2017-2021  Mark Grant
+ * @author Copyright (C) 2017-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 03/12/2021_
+ * @version _v1.0.14 ==== 14/04/2022_
  */
 
 /* **********************************************************************
@@ -34,6 +34,7 @@
  * 12/03/2020	MG	1.0.11	Add identification error.		*
  * 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	*
  * 03/12/2021	NG	1.0.13	Tighten SPDX tag.			*
+ * 14/04/2022	MG	1.0.14	Add MGE_PROTO and MGE_GENERAL.		*
  *									*
  ************************************************************************
  */
@@ -64,10 +65,11 @@ const char *errno_desc[] = { "Success.",
 			     "SSH error.",
 			     "No such lock.",
 			     "Client is blocked.",
-			     "Identification error." };
+			     "Identification error.",
+			     "Protocol error.",
+			     "General error" };
 
 /**
  * Size of the error description array.
  */
 const size_t errno_desc_size = ARRAY_SIZE(errno_desc);
-
