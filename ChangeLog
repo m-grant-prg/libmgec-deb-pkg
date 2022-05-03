@@ -1,3 +1,8 @@
+2022-05-03 v1.5.4 Mark Grant <m.grant.prg@gmail.com>
+	* doc: misc: Add jammy as supported by this branch
+	errors: Add MGE_PROTO and MGE_GENERAL
+	doc: Store distribution / release info for this branch
+
 2021-12-04 v1.5.3 Mark Grant <m.grant.prg@gmail.com>
 	* all: Tighten SPDX tags
 	at: Upgrade gen-gnulib.sh to v1.0.3
