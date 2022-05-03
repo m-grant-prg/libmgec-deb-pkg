@@ -11,6 +11,7 @@ Distro Release		EOL Date
 ==============		========
 
 bullseye		June 2026
+jammy			April 2027
 focal			April 2025
 35
 34			May 2022
