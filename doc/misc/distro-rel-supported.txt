@@ -10,10 +10,11 @@ produce build warnings, development focus is Debian.
 Distro Release		EOL Date
 ==============		========
 
-bullseye		June 2026
 jammy			April 2027
+bullseye		June 2026
 focal			April 2025
-35
+36			May 2023
+35			November 2022
 34			May 2022
 15.3			November 2022
 
