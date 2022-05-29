@@ -5,12 +5,12 @@
  *
  * All buffer manipulation support functions.
  *
- * @author Copyright (C) 2017-2021  Mark Grant
+ * @author Copyright (C) 2017-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 03/12/2021_
+ * @version _v1.0.14 ==== 29/05/2022_
  */
 
 /* **********************************************************************
@@ -46,6 +46,7 @@
  *				compaction algorithms.			*
  * 15/04/2021	MG	1.0.12	Add function to print default values.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
+ * 29/05/2022	MG	1.0.14	Improve function (Doxygen) comments.	*
  *									*
  ************************************************************************
  */
@@ -98,11 +99,12 @@ struct mgebuffer *concat_buf(const char *s_buf, const size_t s_buf_os,
  * Remove processed data from a buffer object if deemed necessary.
  * Re-sizing the buffer every time this function is called would not be
  * efficient. So, the function first tests whether the buffer has a defined
- * multiple of the default buffer size free, and if so shrinks the buffer and
- * relocates valid data to the start of the buffer. If that test does not result
- * in action, the second test determines if the percentage of unreachable
- * portion of the buffer to the size of the buffer exceeds a defined value, and
- * if so, it relocates data to the start of the buffer.
+ * multiple of the default buffer size (BUF_UNUSED_DEF_SIZE_MULT) free, and if
+ * so shrinks the buffer and relocates valid data to the start of the buffer.
+ * If that test does not result in action, the second test determines if the
+ * percentage of unreachable portion of the buffer to the size of the buffer
+ * exceeds a defined value (BUF_MAX_UNREACH_PERCENT), and if so, it relocates
+ * data to the start of the buffer.
  * On failure NULL is returned, the function argument is unchanged and
  * mge_errno will be set.
  * @param m_buf Pointer to the buffer object to process.
@@ -168,4 +170,3 @@ void print_def_buf_values(void)
 	printf("BUF_UNUSED_DEF_SIZE_MULT - %i\n", BUF_UNUSED_DEF_SIZE_MULT);
 	printf("BUF_MAX_UNREACH_PERCENT - %i\n", BUF_MAX_UNREACH_PERCENT);
 }
-
