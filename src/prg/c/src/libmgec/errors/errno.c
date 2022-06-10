@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.14 ==== 14/04/2022_
+ * @version _v1.0.15 ==== 09/06/2022_
  */
 
 /* **********************************************************************
@@ -35,6 +35,9 @@
  * 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	*
  * 03/12/2021	NG	1.0.13	Tighten SPDX tag.			*
  * 14/04/2022	MG	1.0.14	Add MGE_PROTO and MGE_GENERAL.		*
+ * 09/06/2022	MG	1.0.15	Change headers from mge-internal.h to	*
+ *				libmgec.h as the array size macro is	*
+ *				now part of the API.			*
  *									*
  ************************************************************************
  */
@@ -43,7 +46,7 @@
 
 #include "internal.h"
 #include <mge-errno.h>
-#include <mge-internal.h>
+#include <libmgec.h>
 
 /* Error variables. */
 int mge_errno; /**< Error number. */

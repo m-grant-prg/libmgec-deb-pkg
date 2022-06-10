@@ -3,12 +3,12 @@
  *
  * Header file for the libmgec shared library.
  *
- * @author Copyright (C) 2015-2019, 2021  Mark Grant
+ * @author Copyright (C) 2015-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.6 ==== 03/12/2021_
+ * @version _v1.0.7 ==== 09/06/2022_
  */
 
 /* **********************************************************************
@@ -23,6 +23,8 @@
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
  * 08/06/2019	MG	1.0.5	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.6	Tighten SPDX tag.			*
+ * 09/06/2022	MG	1.0.7	Move array size macro here from the	*
+ *				internal header file.			*
  *									*
  ************************************************************************
  */
@@ -33,6 +35,12 @@
 #include <portability.h>
 
 BEGIN_C_DECLS
+
+/**
+ * A simple macro to standardise on the preferred method of determining the size
+ * of an array.
+ */
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
 char *libmgec_get_pkg_version(void);
 
