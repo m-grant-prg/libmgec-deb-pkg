@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: common.c							*
- * Author Copyright (C) 2019, 2021  Mark Grant				*
+ * Author Copyright (C) 2019, 2021, 2022  Mark Grant			*
  *									*
  * Purpose:								*
  *	Common test functions for use in tests on singly linked lists	*
@@ -59,7 +59,7 @@ char *printlist(struct sllistnode *root, char *output)
 
 	for_each_sll_node (currentnode, root) {
 		pnode = currentnode->object;
-		sprintf(tmpoutput, "%s ", pnode->key);
+		snprintf(tmpoutput, ARRAY_SIZE(tmpoutput), "%s ", pnode->key);
 		strcat(output, tmpoutput);
 	}
 	strcat(output, "\n");
@@ -137,4 +137,3 @@ int nodecmp(const void *node1, const void *node2)
 	return (strcmp(((struct testnode *)node1)->key,
 		       ((struct testnode *)node2)->key));
 }
-

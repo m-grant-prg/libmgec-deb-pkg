@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: sllisttest05.c						*
- * Author Copyright (C) 2019, 2021  Mark Grant				*
+ * Author Copyright (C) 2019, 2021, 2022  Mark Grant			*
  *									*
  * Purpose:								*
  *	Test find_sll_node.						*
@@ -18,6 +18,7 @@
 #include <string.h>
 
 #include "sllisttest.h"
+#include <libmgec.h>
 #include <mge-errno.h>
 #include <sllist.h>
 
@@ -41,13 +42,15 @@ int test05(void)
 
 	root = create_list(root);
 
-	sprintf(presult, "mge_errno after single linked list population:- %d\n",
-		mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "mge_errno after single linked list population:- %d\n",
+		 mge_errno);
 	presult = emit_outputs(presult, fp);
 
 	if (mge_errno) {
-		sprintf(presult, "Test 05 failed with error - %s\n",
-			mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Test 05 failed with error - %s\n",
+			 mge_strerror(mge_errno));
 		printf("%s\n", presult);
 		fputs(result, fp);
 		fclose(fp);
@@ -62,43 +65,52 @@ int test05(void)
 
 	/* Try finding non-existent object */
 
-	sprintf(presult, "Trying to find node with key %s\n", name.key);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Trying to find node with key %s\n", name.key);
 	presult = emit_outputs(presult, fp);
 	node = find_sll_node(root, &name, nodecmp);
-	sprintf(presult, "mge_errno after find_sll_node is %d\n", mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "mge_errno after find_sll_node is %d\n", mge_errno);
 	presult = emit_outputs(presult, fp);
 
-	sprintf(presult, "Node address returned is: %p\n", node);
+	snprintf(presult, ARRAY_SIZE(result), "Node address returned is: %p\n",
+		 node);
 	presult = emit_outputs(presult, fp);
 
 	/* Try finding root node */
 	strcpy(test.key, "give");
 	test.payload = 0;
-	sprintf(presult, "Looking for root node\n");
+	snprintf(presult, ARRAY_SIZE(result), "Looking for root node\n");
 	presult = emit_outputs(presult, fp);
 	node = find_sll_node(root, &test, nodecmp);
-	sprintf(presult, "mge_errno after find_sll_node is %d\n", mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "mge_errno after find_sll_node is %d\n", mge_errno);
 	presult = emit_outputs(presult, fp);
 	if (mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		presult = emit_outputs(presult, fp);
 	}
-	sprintf(presult, "Node found with key %s\n", node->key);
+	snprintf(presult, ARRAY_SIZE(result), "Node found with key %s\n",
+		 node->key);
 	presult = emit_outputs(presult, fp);
 
 	/* Try finding non-root node */
 	strcpy(test1.key, "this");
 	test1.payload = 0;
-	sprintf(presult, "Looking for non-root node\n");
+	snprintf(presult, ARRAY_SIZE(result), "Looking for non-root node\n");
 	presult = emit_outputs(presult, fp);
 	node = find_sll_node(root, &test1, nodecmp);
-	sprintf(presult, "mge_errno after find_sll_node is %d\n", mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "mge_errno after find_sll_node is %d\n", mge_errno);
 	presult = emit_outputs(presult, fp);
 	if (mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		presult = emit_outputs(presult, fp);
 	}
-	sprintf(presult, "Node found with key %s\n", node->key);
+	snprintf(presult, ARRAY_SIZE(result), "Node found with key %s\n",
+		 node->key);
 	presult = emit_outputs(presult, fp);
 
 	/* Tidy up and go */
@@ -114,7 +126,8 @@ int test05(void)
 	presult = printlist(root, presult);
 	presult = emit_outputs(presult, fp);
 
-	sprintf(presult, "Root address after freeing is: %p\n", root);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Root address after freeing is: %p\n", root);
 	presult = emit_outputs(presult, fp);
 
 	fclose(fp);
@@ -128,4 +141,3 @@ int test05(void)
 
 	return prog_error;
 }
-

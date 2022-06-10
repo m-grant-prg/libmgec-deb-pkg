@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: sllisttest04.c						*
- * Author Copyright (C) 2019, 2021  Mark Grant				*
+ * Author Copyright (C) 2019, 2021, 2022  Mark Grant			*
  *									*
  * Purpose:								*
  *	SLL create and free test program using add_head.		*
@@ -18,6 +18,7 @@
 #include <string.h>
 
 #include "sllisttest.h"
+#include <libmgec.h>
 #include <mge-errno.h>
 #include <sllist.h>
 
@@ -39,7 +40,6 @@ int test04(void)
 		return 1;
 	}
 
-
 	for (i = 0; *str[i] && !mge_errno; i++) {
 		struct testnode test;
 		strcpy(test.key, str[i]);
@@ -47,17 +47,20 @@ int test04(void)
 		root = add_head_sll_node(root, &test, sizeof test);
 		if (root == NULL)
 			return 1;
-		sprintf(presult, "Add node - %s\n", test.key);
+		snprintf(presult, ARRAY_SIZE(result), "Add node - %s\n",
+			 test.key);
 		presult = emit_outputs(presult, fp);
 	}
 
-	sprintf(presult, "mge_errno after single linked list population:- %d\n",
-		mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "mge_errno after single linked list population:- %d\n",
+		 mge_errno);
 	presult = emit_outputs(presult, fp);
 
 	if (mge_errno) {
-		sprintf(presult, "Test 04 failed with error - %s\n",
-			mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Test 04 failed with error - %s\n",
+			 mge_strerror(mge_errno));
 		printf("%s\n", presult);
 		fputs(result, fp);
 		fclose(fp);
@@ -84,7 +87,8 @@ int test04(void)
 	presult = printlist(root, presult);
 	presult = emit_outputs(presult, fp);
 
-	sprintf(presult, "Root address after freeing is: %p\n", root);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Root address after freeing is: %p\n", root);
 	presult = emit_outputs(presult, fp);
 
 	fclose(fp);
@@ -98,4 +102,3 @@ int test04(void)
 
 	return prog_error;
 }
-

@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: sllisttest03.c						*
- * Author Copyright (C) 2019, 2021  Mark Grant				*
+ * Author Copyright (C) 2019, 2021, 2022  Mark Grant			*
  *									*
  * Purpose:								*
  *	SLL test find next node.					*
@@ -18,6 +18,7 @@
 #include <string.h>
 
 #include "sllisttest.h"
+#include <libmgec.h>
 #include <mge-errno.h>
 #include <sllist.h>
 
@@ -39,13 +40,15 @@ int test03(void)
 
 	root = create_list(root);
 
-	sprintf(presult, "mge_errno after single linked list population:- %d\n",
-		mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "mge_errno after single linked list population:- %d\n",
+		 mge_errno);
 	presult = emit_outputs(presult, fp);
 
 	if (mge_errno) {
-		sprintf(presult, "Test 03 failed with error - %s\n",
-			mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Test 03 failed with error - %s\n",
+			 mge_strerror(mge_errno));
 		printf("%s\n", presult);
 		fputs(result, fp);
 		fclose(fp);
@@ -58,7 +61,7 @@ int test03(void)
 	focus = root;
 	do {
 		pnode = focus->object;
-		sprintf(presult, "%s\n", pnode->key);
+		snprintf(presult, ARRAY_SIZE(result), "%s\n", pnode->key);
 		presult = emit_outputs(presult, fp);
 	} while ((focus = find_next_sll_node(focus)) != NULL);
 
@@ -70,7 +73,8 @@ int test03(void)
 	presult = printlist(root, presult);
 	presult = emit_outputs(presult, fp);
 
-	sprintf(presult, "Root address after freeing is: %p\n", root);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Root address after freeing is: %p\n", root);
 	presult = emit_outputs(presult, fp);
 
 	fclose(fp);
@@ -84,4 +88,3 @@ int test03(void)
 
 	return prog_error;
 }
-

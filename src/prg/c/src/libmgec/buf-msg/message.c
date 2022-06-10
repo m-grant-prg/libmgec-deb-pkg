@@ -5,12 +5,12 @@
  *
  * All message handling support functions.
  *
- * @author Copyright (C) 2017-2021  Mark Grant
+ * @author Copyright (C) 2017-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.16 ==== 03/12/2021_
+ * @version _v1.0.17 ==== 10/06/2022_
  */
 
 /* **********************************************************************
@@ -70,6 +70,7 @@
  *				Remove deconstruct_msg() from the API.	*
  * 16/04/2021	MG	1.0.15	Add print default values function.	*
  * 03/12/2021	MG	1.0.16	Tighten SPDX tag.			*
+ * 10/06/2022	MG	1.0.17	Replace sprintf with safer snprintf.	*
  *									*
  ************************************************************************
  */
@@ -82,6 +83,7 @@
 #include <syslog.h>
 
 #include "internal.h"
+#include <libmgec.h>
 #include <mge-errno.h>
 #include <mgebuffer.h>
 #include <mgememory.h>
@@ -227,7 +229,8 @@ static struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 		return NULL;
 	}
 
-	sprintf(toks, "%c%c", msg->separator, msg->terminator);
+	snprintf(toks, ARRAY_SIZE(toks), "%c%c", msg->separator,
+		 msg->terminator);
 	strcpy(msg_tmp, msg->message);
 	start_tok = msg_tmp;
 
@@ -302,4 +305,3 @@ void print_def_msg_values(void)
 {
 	printf("DEF_MSG_SIZE - %i\n", DEF_MSG_SIZE);
 }
-

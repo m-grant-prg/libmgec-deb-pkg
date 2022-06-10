@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: main.c							*
- * Author Copyright (C) 2017-2019, 2021  Mark Grant			*
+ * Author Copyright (C) 2017-2019, 2021, 2022  Mark Grant		*
  *									*
  * Purpose:								*
  *	Test program for binary search trees in libmgec shared library.	*
@@ -18,8 +18,8 @@
 #include <string.h>
 
 #include <bstree.h>
-#include <mge-errno.h>
 #include <libmgec.h>
+#include <mge-errno.h>
 
 struct testnode {
 	char key[20];
@@ -27,7 +27,6 @@ struct testnode {
 };
 
 static int verbose;
-
 
 int nodecmp(const struct testnode *node1, const struct testnode *node2);
 struct bstree *pop_tree(struct bstree *tree, int duplicates);
@@ -44,11 +43,10 @@ int testdelonlynode(void);
 int testdeldupnode(void);
 int testaddduptounique(void);
 
-
 /*
  * bstree test program.
  */
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	int i;
 	int status = 0, status1 = 0;
@@ -59,7 +57,6 @@ int main(int argc, char** argv)
 		char key[20];
 		int payload;
 	};
-
 
 	printf("Choose one of :-\n");
 	printf("a) Test  1 - Load bstree and report.\n");
@@ -82,7 +79,7 @@ int main(int argc, char** argv)
 	printf("r) Test  9 - Delete duplicate node - verbose.\n");
 	printf("s) Test 10 - Attempt add duplicate node to unique tree.\n");
 	printf("t) Test 10 - Attempt add duplicate node to unique tree - "
-		"verbose.\n");
+	       "verbose.\n");
 	printf("u) Run all Tests.\n");
 	printf("v) Run all Tests - verbose.\n");
 	printf("\n[Choice]: ");
@@ -122,7 +119,7 @@ int main(int argc, char** argv)
 		verbose = 0;
 		status = testget_counter_bst_node();
 		break;
-	case'f':
+	case 'f':
 		verbose = 1;
 		status = testget_counter_bst_node();
 		break;
@@ -253,7 +250,6 @@ int main(int argc, char** argv)
 		break;
 	}
 
-
 	libmgec_print_src_version();
 	libmgec_print_pkg_version();
 
@@ -273,9 +269,9 @@ int nodecmp(const struct testnode *node1, const struct testnode *node2)
  */
 struct bstree *pop_tree(struct bstree *tree, int duplicates)
 {
-
-	char *str[] = {"consistency", "is", "all", "i", "ask", "give",
-			"us", "this", "day", "our", "daily", "mask", "\0"};
+	char *str[] = { "consistency", "is",   "all",  "i",   "ask",
+			"give",	       "us",   "this", "day", "our",
+			"daily",       "mask", "\0" };
 	struct testnode test;
 	struct bstree *res;
 	int i;
@@ -333,14 +329,16 @@ char *printtree(struct bstree *tree, char *output)
 
 	while (pobjcoord->object != NULL) {
 		pnode = objcoord.object;
-		sprintf(tmpoutput, "(%i, %i)%s[%i]\t", objcoord.xdir,
-			objcoord.ydir, pnode->key, objcoord.count);
+		snprintf(tmpoutput, ARRAY_SIZE(tmpoutput), "(%i, %i)%s[%i]\t",
+			 objcoord.xdir, objcoord.ydir, pnode->key,
+			 objcoord.count);
 		strcat(output, tmpoutput);
 		pobjcoord = find_next_bst_node_trace(tree, pobjcoord);
 	}
 
-	sprintf(tmpoutput, "\nCount total is %i and node total is %i\n",
-		tree->count_total, tree->node_total);
+	snprintf(tmpoutput, ARRAY_SIZE(tmpoutput),
+		 "\nCount total is %i and node total is %i\n",
+		 tree->count_total, tree->node_total);
 	strcat(output, tmpoutput);
 
 	if (verbose)
@@ -355,7 +353,7 @@ int cmpresfile(char *result, char *answer)
 {
 	FILE *fp, *fp1;
 	int status = 0;
-	char ans[500] = {'\0' };
+	char ans[500] = { '\0' };
 	char res[500] = { '\0' };
 	char *pans = ans;
 	char *pres = res;
@@ -405,7 +403,6 @@ int cmpresfile(char *result, char *answer)
  */
 int test_tree_pop(void)
 {
-
 	char result[500] = { '\0' };
 	char *presult = result;
 	int status;
@@ -470,138 +467,149 @@ int testfind_bst_node(void)
 		return 1;
 	}
 
-
 	strcpy(node2.key, "aaa");
 	pnode = find_bst_node(tree, &node2);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d with mge_errno "
-			"%d\n", node2.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node2.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node2.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node2.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node3.key, "all");
 	pnode = find_bst_node(tree, &node3);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d with mge_errno "
-			"%d\n", node3.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node3.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node3.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node3.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node4.key, "ask");
 	pnode = find_bst_node(tree, &node4);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d with mge_errno "
-			"%d\n", node4.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node4.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node4.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node4.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node5.key, "this");
 	pnode = find_bst_node(tree, &node5);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d with mge_errno "
-			"%d\n", node5.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node5.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node5.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node5.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node6.key, "thiss");
 	pnode = find_bst_node(tree, &node6);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d with mge_errno "
-			"%d\n", node6.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node6.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node6.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node6.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node7.key, "zzz");
 	pnode = find_bst_node(tree, &node7);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d with mge_errno "
-			"%d\n", node7.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node7.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node7.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node7.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	fclose(fp);
 
@@ -658,65 +666,69 @@ int testget_counter_bst_node(void)
 		return 1;
 	}
 
-
 	strcpy(node1.key, "give");
 	count = get_counter_bst_node(tree, &node1);
-	sprintf(presult, "%s found %d times with mge_errno %d\n", node1.key,
-		count, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "%s found %d times with mge_errno %d\n", node1.key, count,
+		 mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
 	if (count < 0) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node1.key, "zzzz");
 	count = get_counter_bst_node(tree, &node1);
-	sprintf(presult, "%s found %d times with mge_errno %d\n", node1.key,
-		count, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "%s found %d times with mge_errno %d\n", node1.key, count,
+		 mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
 	if (count < 0) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node1.key, "aaaa");
 	count = get_counter_bst_node(tree, &node1);
-	sprintf(presult, "%s found %d times with mge_errno %d\n", node1.key,
-		count, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "%s found %d times with mge_errno %d\n", node1.key, count,
+		 mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
 	if (count < 0) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
 
-
 	strcpy(node1.key, "this");
 	count = get_counter_bst_node(tree, &node1);
-	sprintf(presult, "%s found %d times with mge_errno %d\n", node1.key,
-		count, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "%s found %d times with mge_errno %d\n", node1.key, count,
+		 mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
 	if (count < 0) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
@@ -730,7 +742,6 @@ int testget_counter_bst_node(void)
 		printf("Test 3a passed.\n");
 	else
 		printf("Test 3a failed.\n");
-
 
 	/* Now compare the resulting tree. */
 	if ((fp = fopen("./Test03bResult.txt", "w")) == NULL) {
@@ -751,7 +762,8 @@ int testget_counter_bst_node(void)
 	else
 		printf("Test 3b failed.\n");
 
-	return (status ? status : status1);;
+	return (status ? status : status1);
+	;
 }
 /*
  * Test 4.
@@ -784,138 +796,149 @@ int testfind_next_bst_node(void)
 		return 1;
 	}
 
-
 	strcpy(node2.key, "aa");
 	pnode = find_next_bst_node(tree, &node2);
 	if (pnode)
-		sprintf(presult, "Next found after %s is %s payload %d & "
-			"mge_errno %d\n", node2.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s payload %d & "
+			 "mge_errno %d\n",
+			 node2.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Next found after %s is %s & mge_errno %d\n",
-			node2.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s & mge_errno %d\n",
+			 node2.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node3.key, "all");
 	pnode = find_next_bst_node(tree, &node3);
 	if (pnode)
-		sprintf(presult, "Next found after %s is %s payload %d & "
-			"mge_errno %d\n", node3.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s payload %d & "
+			 "mge_errno %d\n",
+			 node3.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Next found after %s is %s & mge_errno %d\n",
-			node3.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s & mge_errno %d\n",
+			 node3.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node4.key, "give");
 	pnode = find_next_bst_node(tree, &node4);
 	if (pnode)
-		sprintf(presult, "Next found after %s is %s payload %d & "
-			"mge_errno %d\n", node4.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s payload %d & "
+			 "mge_errno %d\n",
+			 node4.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Next found after %s is %s & mge_errno %d\n",
-			node4.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s & mge_errno %d\n",
+			 node4.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node5.key, "this");
 	pnode = find_next_bst_node(tree, &node5);
 	if (pnode)
-		sprintf(presult, "Next found after %s is %s payload %d & "
-			"mge_errno %d\n", node5.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s payload %d & "
+			 "mge_errno %d\n",
+			 node5.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Next found after %s is %s & mge_errno %d\n",
-			node5.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s & mge_errno %d\n",
+			 node5.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node6.key, "us");
 	pnode = find_next_bst_node(tree, &node6);
 	if (pnode)
-		sprintf(presult,"Next found after %s is %s payload %d & "
-			"mge_errno %d\n", node6.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s payload %d & "
+			 "mge_errno %d\n",
+			 node6.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Next found after %s is %s & mge_errno %d\n",
-			node6.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s & mge_errno %d\n",
+			 node6.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node7.key, "zzz");
 	pnode = find_next_bst_node(tree, &node7);
 	if (pnode)
-		sprintf(presult, "Next found after %s is %s payload %d & "
-			"mge_errno %d\n", node7.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s payload %d & "
+			 "mge_errno %d\n",
+			 node7.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Next found after %s is %s & mge_errno %d\n",
-			node7.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Next found after %s is %s & mge_errno %d\n",
+			 node7.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	fclose(fp);
 
@@ -962,160 +985,180 @@ int testfind_prev_bst_node(void)
 		return 1;
 	}
 
-
 	strcpy(node2.key, "aa");
 	pnode = find_prev_bst_node(tree, &node2);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node2.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node2.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node2.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node2.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node3.key, "all");
 	pnode = find_prev_bst_node(tree, &node3);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node3.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node3.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node3.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node3.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node4.key, "ask");
 	pnode = find_prev_bst_node(tree, &node4);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node4.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node4.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node4.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node4.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node5.key, "give");
 	pnode = find_prev_bst_node(tree, &node5);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node5.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node5.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node5.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node5.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node6.key, "i");
 	pnode = find_prev_bst_node(tree, &node6);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node6.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node6.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node6.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node6.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node7.key, "us");
 	pnode = find_prev_bst_node(tree, &node7);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node7.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node7.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node7.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node7.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node8.key, "zzz");
 	pnode = find_prev_bst_node(tree, &node8);
 	if (pnode)
-		sprintf(presult, "Prior found before %s is %s payload %d, "
-			"mge_errno %d\n", node8.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Prior found before %s is %s payload %d, "
+			 "mge_errno %d\n",
+			 node8.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Previous found before %s is %s with "
-			"mge_errno %d\n", node8.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Previous found before %s is %s with "
+			 "mge_errno %d\n",
+			 node8.key, pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	fclose(fp);
 
@@ -1156,23 +1199,24 @@ int testupd_bst_node(void)
 		return 1;
 	}
 
-
 	strcpy(node.key, "NULL root");
 	pnode = find_bst_node(NULL, &node);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d, mge_errno %d\n",
-			node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d, mge_errno %d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
@@ -1180,41 +1224,45 @@ int testupd_bst_node(void)
 	node.payload = 999;
 	pnode = upd_bst_node(NULL, &node, sizeof node);
 	if (pnode)
-		sprintf(presult, "Update %s found %s payload %d with mge_errno "
-			"%d\n", node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Update %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
 
-
 	strcpy(node.key, "NULL updobj");
 	pnode = find_bst_node(tree, NULL);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d, mge_errno %d\n",
-			node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d, mge_errno %d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
@@ -1222,41 +1270,45 @@ int testupd_bst_node(void)
 	node.payload = 999;
 	pnode = upd_bst_node(tree, NULL, sizeof node);
 	if (pnode)
-		sprintf(presult, "Update %s found %s payload %d with mge_errno "
-			"%d\n", node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Update %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	strcpy(node.key, "zzzzz");
 	pnode = find_bst_node(tree, &node);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d, mge_errno %d\n",
-			node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d, mge_errno %d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
@@ -1264,42 +1316,45 @@ int testupd_bst_node(void)
 	node.payload = 999;
 	pnode = upd_bst_node(tree, &node, sizeof node);
 	if (pnode)
-		sprintf(presult, "Update %s found %s payload %d with mge_errno "
-			"%d\n", node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Update %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
-
 
 	strcpy(node.key, "mask");
 	pnode = find_bst_node(tree, &node);
 	if (pnode)
-		sprintf(presult, "Find %s found %s payload %d, mge_errno %d\n",
-			node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s payload %d, mge_errno %d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Find %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Find %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
@@ -1307,24 +1362,26 @@ int testupd_bst_node(void)
 	node.payload = 999;
 	pnode = upd_bst_node(tree, &node, sizeof node);
 	if (pnode)
-		sprintf(presult, "Update %s found %s payload %d with mge_errno "
-			"%d\n", node.key, pnode->key, pnode->payload,
-			mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s payload %d with mge_errno "
+			 "%d\n",
+			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
-		sprintf(presult, "Update %s found %s with mge_errno %d\n",
-			node.key, pnode->key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Update %s found %s with mge_errno %d\n", node.key,
+			 pnode->key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if ((pnode == NULL) && mge_errno) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
-
 
 	fclose(fp);
 
@@ -1361,12 +1418,10 @@ int testdel_bst_node(void)
 		return 1;
 	}
 
-
 	if ((fp = fopen("./Test07aResult.txt", "w")) == NULL) {
 		printf("Cannot create result file.\n");
 		return 1;
 	}
-
 
 	/* First add the word to give a fully populated parent. */
 	strcpy(node.key, "twin");
@@ -1382,14 +1437,12 @@ int testdel_bst_node(void)
 	if (verbose)
 		printf("Add word - %s\n", node.key);
 
-	sprintf(presult, "Node %s added with mge_errno %d\n",
-			node.key, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Node %s added with mge_errno %d\n", node.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
-
-
 
 	/* Now delete that parent. */
 	strcpy(node.key, "this");
@@ -1399,26 +1452,27 @@ int testdel_bst_node(void)
 	res = del_bst_node(tree, &node);
 
 	if (res)
-		sprintf(presult, "Node %s deleted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Node %s deleted with mge_errno %d\n", node.key,
+			 mge_errno);
 	else
-		sprintf(presult, "Delete of %s attempted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Delete of %s attempted with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if (res == NULL) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
-	}
-	else {
+	} else {
 		tree = res;
 	}
-
 
 	strcpy(node.key, "Harry");
 	if (verbose)
@@ -1427,26 +1481,27 @@ int testdel_bst_node(void)
 	res = del_bst_node(tree, &node);
 
 	if (res)
-		sprintf(presult, "Node %s deleted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Node %s deleted with mge_errno %d\n", node.key,
+			 mge_errno);
 	else
-		sprintf(presult, "Delete of %s attempted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Delete of %s attempted with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if (res == NULL) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
-	}
-	else {
+	} else {
 		tree = res;
 	}
-
 
 	strcpy(node.key, "consistency");
 	if (verbose)
@@ -1455,26 +1510,28 @@ int testdel_bst_node(void)
 	res = del_bst_node(tree, &node);
 
 	if (res)
-		sprintf(presult, "Root node %s deleted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Root node %s deleted with mge_errno %d\n", node.key,
+			 mge_errno);
 	else
-		sprintf(presult, "Delete of root node %s attempted with "
-			"mge_errno %d\n", node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Delete of root node %s attempted with "
+			 "mge_errno %d\n",
+			 node.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if (res == NULL) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
-	}
-	else {
+	} else {
 		tree = res;
 	}
-
 
 	fclose(fp);
 
@@ -1484,7 +1541,6 @@ int testdel_bst_node(void)
 		printf("Test 7a passed.\n");
 	else
 		printf("Test 7a failed.\n");
-
 
 	/* Now compare the resulting tree. */
 	if ((fp = fopen("./Test07bResult.txt", "w")) == NULL) {
@@ -1523,19 +1579,17 @@ int testdelonlynode(void)
 	FILE *fp;
 
 	tree = cre_bst(BST_NODES_UNIQUE,
-			(int (*)(const void *, const void *))nodecmp);
+		       (int (*)(const void *, const void *))nodecmp);
 	if (tree == NULL) {
 		if (verbose)
 			printf("Create binary search tree failed.\n");
 		return 1;
 	}
 
-
 	if ((fp = fopen("./Test08Result.txt", "w")) == NULL) {
 		printf("Cannot create result file.\n");
 		return 1;
 	}
-
 
 	/* First add the word to give a count of 2. */
 	strcpy(node.key, "mark");
@@ -1550,13 +1604,12 @@ int testdelonlynode(void)
 	if (verbose)
 		printf("Add word - %s\n", node.key);
 
-	sprintf(presult, "Node %s added with mge_errno %d\n",
-			node.key, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Node %s added with mge_errno %d\n", node.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
-
 
 	/* Now delete that solitary node. */
 	if (verbose)
@@ -1565,26 +1618,27 @@ int testdelonlynode(void)
 	res = del_bst_node(tree, &node);
 
 	if (res == NULL)
-		sprintf(presult, "Delete of %s attempted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Delete of %s attempted with mge_errno %d\n", node.key,
+			 mge_errno);
 	else
-		sprintf(presult, "Node %s deleted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Node %s deleted with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if (res == NULL) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
-	}
-	else {
+	} else {
 		tree = res;
 	}
-
 
 	fclose(fp);
 
@@ -1627,8 +1681,9 @@ int testdeldupnode(void)
 		return 1;
 	}
 
-	sprintf(presult, "Count total is %i and node total is %i\n",
-		tree->count_total, tree->node_total);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Count total is %i and node total is %i\n", tree->count_total,
+		 tree->node_total);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
@@ -1646,33 +1701,34 @@ int testdeldupnode(void)
 	if (verbose)
 		printf("Add word - %s\n", node.key);
 
-	sprintf(presult, "Node %s added with mge_errno %d\n",
-			node.key, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Node %s added with mge_errno %d\n", node.key, mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
-
 	count = get_counter_bst_node(tree, &node);
-	sprintf(presult, "%s found %d times with mge_errno %d\n", node.key,
-		count, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "%s found %d times with mge_errno %d\n", node.key, count,
+		 mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
 	if (count < 0) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
 
-	sprintf(presult, "Count total is %i and node total is %i\n",
-		tree->count_total, tree->node_total);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Count total is %i and node total is %i\n", tree->count_total,
+		 tree->node_total);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
-
 
 	/* Now delete that duplicate node. */
 	if (verbose)
@@ -1681,47 +1737,50 @@ int testdeldupnode(void)
 	res = del_bst_node(tree, &node);
 
 	if (res)
-		sprintf(presult, "Node %s deleted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Node %s deleted with mge_errno %d\n", node.key,
+			 mge_errno);
 	else
-		sprintf(presult, "Delete of %s attempted with mge_errno %d\n",
-			node.key, mge_errno);
+		snprintf(presult, ARRAY_SIZE(result),
+			 "Delete of %s attempted with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if (res == NULL) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
-	}
-	else {
+	} else {
 		tree = res;
 	}
 
-
 	count = get_counter_bst_node(tree, &node);
-	sprintf(presult, "%s found %d times with mge_errno %d\n", node.key,
-		count, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "%s found %d times with mge_errno %d\n", node.key, count,
+		 mge_errno);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
 
 	if (count < 0) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
 	}
 
-	sprintf(presult, "Count total is %i and node total is %i\n",
-		tree->count_total, tree->node_total);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Count total is %i and node total is %i\n", tree->count_total,
+		 tree->node_total);
 	fputs(result, fp);
 	if (verbose)
 		printf("%s", presult);
-
 
 	fclose(fp);
 
@@ -1758,12 +1817,10 @@ int testaddduptounique(void)
 		return 1;
 	}
 
-
 	if ((fp = fopen("./Test10Result.txt", "w")) == NULL) {
 		printf("Cannot create result file.\n");
 		return 1;
 	}
-
 
 	/* Attempt add tof duplicate word. */
 	strcpy(node.key, "give");
@@ -1772,23 +1829,23 @@ int testaddduptounique(void)
 	if (verbose)
 		printf("Add word - %s\n", node.key);
 
-	sprintf(presult, "Node ptr %p word %s add attempt with mge_errno %d\n",
-		res, node.key, mge_errno);
+	snprintf(presult, ARRAY_SIZE(result),
+		 "Node ptr %p word %s add attempt with mge_errno %d\n", res,
+		 node.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
 		printf("%s", presult);
 
 	if (res == NULL) {
-		sprintf(presult, "%s\n", mge_strerror(mge_errno));
+		snprintf(presult, ARRAY_SIZE(result), "%s\n",
+			 mge_strerror(mge_errno));
 		fputs(result, fp);
 		if (verbose)
 			printf("%s", presult);
-	}
-	else {
+	} else {
 		tree = res;
 	}
-
 
 	fclose(fp);
 

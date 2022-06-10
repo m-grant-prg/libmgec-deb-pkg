@@ -5,12 +5,12 @@
  *
  * Functions supporting the use of the mge_errno system.
  *
- * @author Copyright (C) 2017-2019, 2021  Mark Grant
+ * @author Copyright (C) 2017-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.7 ==== 03/12/2021_
+ * @version _v1.0.8 ==== 10/06/2022_
  */
 
 /* **********************************************************************
@@ -27,6 +27,7 @@
  *				non-public internal.h header file.	*
  * 08/06/2019	MG	1.0.6	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.7	Tighten SPDX tag.			*
+ * 10/06/2022	MG	1.0.8	Replace sprintf with safer snprintf.	*
  *									*
  ************************************************************************
  */
@@ -37,6 +38,7 @@
 #include <string.h>
 
 #include "internal.h"
+#include <libmgec.h>
 #include <mge-errno.h>
 
 static char err_msg[80]; /**< Storage for 'unknown error' string. */
@@ -50,7 +52,8 @@ static char err_msg[80]; /**< Storage for 'unknown error' string. */
 const char *mge_strerror(const int mge_err)
 {
 	if ((mge_err > (int)errno_desc_size) || (mge_err < 0)) {
-		sprintf(err_msg, "Unknown error %i", mge_err);
+		snprintf(err_msg, ARRAY_SIZE(err_msg), "Unknown error %i",
+			 mge_err);
 		return err_msg;
 	}
 
@@ -61,4 +64,3 @@ const char *mge_strerror(const int mge_err)
 	else
 		return errno_desc[mge_err];
 }
-
