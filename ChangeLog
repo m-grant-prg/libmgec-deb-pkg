@@ -1,3 +1,13 @@
+2022-06-16 v1.5.5 Mark Grant <m.grant.prg@gmail.com>
+	* doc: Update distro releases for this branch
+	all: Replace sprintf with safer snprintf
+	at: Upgrade bootstrap.sh to v1.5.1
+	at: Add support for gcc analyzer option
+	at: Upgrade compiler and linker macros to v1.1.1
+	inc: Move ARRAY_SIZE() macro to public header file
+	doc: Update distro releases and EOLs
+	buf-msg: Improve trim_buf() (Doxygen) comments
+
 2022-05-03 v1.5.4 Mark Grant <m.grant.prg@gmail.com>
 	* doc: misc: Add jammy as supported by this branch
 	errors: Add MGE_PROTO and MGE_GENERAL
