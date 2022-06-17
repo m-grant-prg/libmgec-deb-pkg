@@ -189,7 +189,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.5.4+rc1)
+m4_define(pkg_version, 1.6.1)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
@@ -200,10 +200,10 @@ AC_INIT([MGE General C Library], m4_esyscmd([ \
 
 AC_MSG_NOTICE(initialisation and setup)
 
-AC_DEFINE(SOURCE_VERSION, "1.2.5", \
+AC_DEFINE(SOURCE_VERSION, "1.2.6", \
 	Define to the version of source code in this package.)
 
-AC_SUBST(lib_version_info, "6:0:4")
+AC_SUBST(lib_version_info, "6:1:4")
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
