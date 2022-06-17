@@ -1,3 +1,7 @@
+Release 1.6.1 2022-06-17
+Move ARRAY_SIZE() macro to public header file
+Technical changes can be found in the ChangeLog.
+
 Release 1.5.4 2022-05-03
 No user visible changes.
 Technical changes can be found in the ChangeLog.
