@@ -42,23 +42,25 @@
 #				enable use of EXTRA_DIST on subdir src.	#
 # 03/12/2021	MG	1.1.5	Tighten SPDX tag.			#
 # 19/07/2022	MG	1.1.6	Add doxygen target.			#
+#				Add dependency on document sources and	#
+#				C sources.				#
 #									#
 #########################################################################
+
+
+srcdepends := $(shell find $(srcdir)/src -type f -printf "%p ") \
+	$(shell find $(top_srcdir) -type f -name *.c -printf "%p " \
+		-o -name *.h -printf "%p ")
 
 
 # Build API documentation.
 
 docpkg = $(PACKAGE_TARNAME)-doxy-$(PACKAGE_VERSION).tar.gz
 
-# The dependencies below start with Doxyfile which is produced by configure, so
-# only changes to Doxyfile.in will re-build the documentation. Changes to
-# documentation source or c source will require either make doxygen, a make
-# clean and make or the deletion of the stamp files and make to force an update.
-
 $(docpkg): doxygen.stamp
 	tar -chz --format=posix -f $@ html
 
-doxygen.stamp: Doxyfile
+doxygen.stamp: Doxyfile $(srcdepends)
 	if $(AM_V_P); then \
 		DOXYGEN_QUIET=NO \
 			DOXYGEN_PROJECT_NAME="MGE General C Library - API Documentation" \
@@ -84,7 +86,7 @@ intdocpkg = $(PACKAGE_TARNAME)-int-doxy-$(PACKAGE_VERSION).tar.gz
 $(intdocpkg): doxygen1.stamp
 	tar -chz --format=posix -f $@ html-int
 
-doxygen1.stamp: Doxyfile
+doxygen1.stamp: Doxyfile $(srcdepends)
 	if $(AM_V_P); then \
 		DOXYGEN_QUIET=NO \
 			DOXYGEN_PROJECT_NAME="MGE General C Library - Full Internal Documentation" \
