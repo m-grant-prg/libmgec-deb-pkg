@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: doc/doxygen/Makefile.am					#
-# Author: Copyright (C) 2017-2021  Mark Grant				#
+# Author: Copyright (C) 2017-2022  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -41,6 +41,7 @@
 #				Move main source documents into src to	#
 #				enable use of EXTRA_DIST on subdir src.	#
 # 03/12/2021	MG	1.1.5	Tighten SPDX tag.			#
+# 19/07/2022	MG	1.1.6	Add doxygen target.			#
 #									#
 #########################################################################
 
@@ -50,9 +51,9 @@
 docpkg = $(PACKAGE_TARNAME)-doxy-$(PACKAGE_VERSION).tar.gz
 
 # The dependencies below start with Doxyfile which is produced by configure, so
-# thereafter no updates to these documents will happen by make alone. Re-run
-# configure and make, or, delete the stamp file and run make to force an update.
-#
+# only changes to Doxyfile.in will re-build the documentation. Changes to
+# documentation source or c source will require either make doxygen, a make
+# clean and make or the deletion of the stamp files and make to force an update.
 
 $(docpkg): doxygen.stamp
 	tar -chz --format=posix -f $@ html
@@ -100,6 +101,12 @@ doxygen1.stamp: Doxyfile
 			doxygen $< ; \
 	fi
 	echo Timestamp > $@
+
+
+# Create a target to facilitate make doxygen
+doxygen: $(docpkg) $(intdocpkg) libmgec libmgec-int
+
+.PHONY: doxygen
 
 
 apidir = $(htmldir)/api
