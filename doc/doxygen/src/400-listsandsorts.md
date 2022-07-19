@@ -1,6 +1,6 @@
 Lists and Sorts
 ===============
-
+\tableofcontents
 This area of the library provides support for some lists and sorts:-
 
 Binary search trees which support object independence by specifying a comparison

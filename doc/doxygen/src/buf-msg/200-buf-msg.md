@@ -1,6 +1,6 @@
 Message Buffers and Messages
 ============================
-[TOC]
+\tableofcontents
 
 \section overview Overview
 

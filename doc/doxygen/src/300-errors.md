@@ -1,6 +1,6 @@
 Errors
 ======
-[TOC]
+\tableofcontents
 
 \section errormsgs Messages
 

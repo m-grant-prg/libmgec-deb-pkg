@@ -1,6 +1,6 @@
 Memory
 ======
-
+\tableofcontents
 \section mgrealloc mg_realloc
 
 [mg_realloc](@ref mg_realloc) is a wrapper for realloc adding error handling in
