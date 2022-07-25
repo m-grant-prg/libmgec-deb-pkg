@@ -63,6 +63,9 @@
 # 14/09/2021	MG	1.1.5	Add misc and doc/misc to Dist.		#
 # 03/12/2021	MG	1.1.6	Tighten SPDX tag.			#
 # 19/07/2022	MG	1.1.7	Add doxygen target.			#
+# 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
+#				using GitHub Pages to host Doxygen	#
+#				documentation.				#
 #									#
 #########################################################################
 
@@ -87,7 +90,7 @@ SUBDIRS += src/prg/c/src/test-dllist
 SUBDIRS += src/prg/c/src/test-errno
 SUBDIRS += src/prg/c/src/test-sllist
 SUBDIRS += src/prg/c/src/run-tests
-SUBDIRS += doc/doxygen
+SUBDIRS += docs/doxygen
 
 
 doc_DATA = AUTHORS ChangeLog COPYING NEWS README
@@ -96,7 +99,7 @@ doc_DATA = AUTHORS ChangeLog COPYING NEWS README
 EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
 		$(srcdir)/NEWS $(srcdir)/README
 EXTRA_DIST += m4/gnulib-cache.m4
-EXTRA_DIST += doc/misc misc
+EXTRA_DIST += docs/misc misc
 
 
 srctarball:
@@ -112,7 +115,7 @@ srctarball:
 	cd -
 
 doxygen:
-	(cd doc/doxygen && rm -f *.stamp && $(MAKE) $(AM_MAKEFLAGS) $@) \
+	(cd docs/doxygen && rm -f *.stamp && $(MAKE) $(AM_MAKEFLAGS) $@) \
 		|| exit 1
 
 .PHONY: doxygen
