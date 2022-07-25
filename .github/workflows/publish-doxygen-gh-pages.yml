@@ -44,6 +44,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
+          ref: ${{ github.event.release.tag_name }}
 
       - name: Add the extra PPA
         run: sudo add-apt-repository ppa:m-grant-prg/utils -y
