@@ -8,7 +8,7 @@
 #									#
 # Purpose:								#
 # Configuration file for GitHub Actions publication of Doxygen          #
-# documentation to Github Pages.                                        #
+# documentation to Github Pages. Only runs on published release event.  #
 #									#
 #########################################################################
 
@@ -26,14 +26,8 @@
 name: Publish Doxygen Documentation to Github Pages
 
 on:
-  push:
-    branches:
-      - gh-pages
   release:
     types: [released]
-
-  # Allows manual invocation from the Actions tab.
-  workflow_dispatch:
 
 jobs:
   publish-doxygen:
