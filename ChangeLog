@@ -1,3 +1,9 @@
+2022-08-16 v1.6.4 Mark Grant <m.grant.prg@gmail.com>
+	* editors: Update editorconfig to v1.0.3
+	editors: Update editorconfig to v1.0.2
+	editors: Add editorconfig file
+	docs: Correct missed directory name change
+
 2022-07-25 v1.6.3 Mark Grant <m.grant.prg@gmail.com>
 	* actions: Publish documentation only on release
 	actions Specify the ref
