@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/bstree.h
+ * @file src/prg/c/inc/mge-bstree.h
  *
  * Binary search tree header file.
  *
@@ -37,12 +37,13 @@
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
  * 18/08/2022	MG	1.0.14	New name for portability.h		*
+ *				Rename to add namespace.		*
  *									*
  ************************************************************************
  */
 
-#ifndef BSTREE_H
-#define BSTREE_H
+#ifndef MGE_BSTREE_H
+#define MGE_BSTREE_H
 
 #include <mge-portability.h>
 
@@ -101,4 +102,4 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
 
 END_C_DECLS
 
-#endif /* ndef BSTREE_H */
+#endif /* ndef MGE_BSTREE_H */

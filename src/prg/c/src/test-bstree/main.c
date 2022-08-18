@@ -17,8 +17,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <bstree.h>
 #include <libmgec.h>
+#include <mge-bstree.h>
 #include <mge-errno.h>
 
 struct testnode {

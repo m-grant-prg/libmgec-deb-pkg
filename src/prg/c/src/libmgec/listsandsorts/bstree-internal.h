@@ -31,6 +31,7 @@
  *				specific individual files.		*
  * 03/12/2021	MG	1.0.10	Tighten SPDX tag.			*
  * 18/08/2022	MG	1.0.11	Rename of portability.h			*
+ *				Rename of bstree.h			*
  *									*
  ************************************************************************
  */
@@ -40,7 +41,7 @@
 
 #include <mge-portability.h>
 
-#include <bstree.h>
+#include <mge-bstree.h>
 
 BEGIN_C_DECLS
 

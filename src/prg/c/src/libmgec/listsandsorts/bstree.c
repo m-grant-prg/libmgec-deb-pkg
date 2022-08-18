@@ -15,12 +15,12 @@
  *
  * _In fact, the same as strcmp()._
  *
- * @author Copyright (C) 2015-2021  Mark Grant
+ * @author Copyright (C) 2015-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.10 ==== 03/12/2021_
+ * @version _v1.1.11 ==== 18/08/2022_
  */
 
 /* **********************************************************************
@@ -83,6 +83,7 @@
  * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
  *				static (non-API) function.		*
  * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
+ * 18/08/2022	MG	1.1.11	Rename of bstree.h			*
  *									*
  ************************************************************************
  */
@@ -93,7 +94,7 @@
 #include <string.h>
 
 #include "bstree-internal.h"
-#include <bstree.h>
+#include <mge-bstree.h>
 #include <mge-errno.h>
 
 /**
@@ -863,4 +864,3 @@ find_next_node_trace(const struct bstreenode *currentnode,
 	return nextcoord;
 }
 /* @endcond */
-
