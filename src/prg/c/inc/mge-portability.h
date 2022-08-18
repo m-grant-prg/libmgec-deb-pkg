@@ -1,16 +1,16 @@
 /**
- * @file src/prg/c/inc/portability.h
+ * @file src/prg/c/inc/mge-portability.h
  *
  * Header file to ease portability.
  *
  * Includes suggestions from the GNU Libtools documentation.
  *
- * @author Copyright (C) 2015-2019, 2021  Mark Grant
+ * @author Copyright (C) 2015-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.7 ==== 03/12/2021_
+ * @version _v1.0.8 ==== 18/08/2022_
  */
 
 /* **********************************************************************
@@ -26,12 +26,13 @@
  * 02/01/2018	MG	1.0.5	Move to new source directory structure.	*
  * 08/06/2019	MG	1.0.6	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.7	Tighten SPDX tag.			*
+ * 18/08/2022	MG	1.0.8	Rename to add mge- namespace.		*
  *									*
  ************************************************************************
  */
 
-#ifndef PORTABILITY_H
-#define PORTABILITY_H
+#ifndef MGE_PORTABILITY_H
+#define MGE_PORTABILITY_H
 
 #undef BEGIN_C_DECLS
 #undef END_C_DECLS
@@ -66,5 +67,4 @@
 	#define PARAMS(protos) ()
 #endif
 
-#endif /* ndef PORTABILITY_H */
-
+#endif /* ndef MGE_PORTABILITY_H */

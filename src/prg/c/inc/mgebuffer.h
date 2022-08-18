@@ -5,12 +5,12 @@
  *
  * All buffer manipulation related information.
  *
- * @author Copyright (C) 2017-2019, 2021  Mark Grant
+ * @author Copyright (C) 2017-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.11 ==== 03/12/2021_
+ * @version _v1.0.12 ==== 18/08/2022_
  */
 
 /* **********************************************************************
@@ -36,6 +36,7 @@
  * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
  * 15/04/2021	MG	1.0.10	Add print_def_buf_values() prototype.	*
  * 03/12/2021	MG	1.0.11	Tighten SPDX tag.			*
+ * 18/08/2022	MG	1.0.12	Rename of portability.h			*
  *									*
  ************************************************************************
  */
@@ -43,7 +44,7 @@
 #ifndef MGEBUFFER_H
 #define MGEBUFFER_H
 
-#include <portability.h>
+#include <mge-portability.h>
 #include <sys/types.h>
 
 BEGIN_C_DECLS
@@ -78,4 +79,3 @@ void print_def_buf_values(void);
 END_C_DECLS
 
 #endif /* ndef MGEBUFFER_H */
-

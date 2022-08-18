@@ -4,12 +4,12 @@
  * Non-public header file for binary search trees in the libmgec shared library.
  * No distribution required.
  *
- * @author Copyright (C) 2015-2019, 2021  Mark Grant
+ * @author Copyright (C) 2015-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.10 ==== 03/12/2021_
+ * @version _v1.0.11 ==== 18/08/2022_
  */
 
 /* **********************************************************************
@@ -30,6 +30,7 @@
  * 12/07/2019	MG	1.0.9	Separate combined header file into	*
  *				specific individual files.		*
  * 03/12/2021	MG	1.0.10	Tighten SPDX tag.			*
+ * 18/08/2022	MG	1.0.11	Rename of portability.h			*
  *									*
  ************************************************************************
  */
@@ -37,7 +38,7 @@
 #ifndef BSTREE_INTERNAL_H
 #define BSTREE_INTERNAL_H
 
-#include <portability.h>
+#include <mge-portability.h>
 
 #include <bstree.h>
 
@@ -81,4 +82,3 @@ find_next_node_trace(const struct bstreenode *currentnode,
 END_C_DECLS
 
 #endif /* ndef BSTREE_INTERNAL_H */
-
