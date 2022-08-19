@@ -1,7 +1,7 @@
 NAME
 clear_msg - Clears an mgemessage message struct.
 SYNOPSIS
-#include <mgemessage.h>
+#include <mge-message.h>
 
 void clear_msg(struct mgemessage *msg, const char terminator,
 	const char separator);
@@ -28,7 +28,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019-2021 Mark Grant
+Copyright (C) 2015-2017, 2019-2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br

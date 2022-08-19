@@ -73,6 +73,7 @@
  * 10/06/2022	MG	1.0.17	Replace sprintf with safer snprintf.	*
  * 19/08/2022	MG	1.0.18	Rename mgebuffer.h			*
  *				Rename mgememory.h			*
+ *				Rename mgemessage.h			*
  *									*
  ************************************************************************
  */
@@ -89,7 +90,7 @@
 #include <mge-buffer.h>
 #include <mge-errno.h>
 #include <mge-memory.h>
-#include <mgemessage.h>
+#include <mge-message.h>
 
 /* @cond INTERNAL */
 static struct mgemessage *get_msg(struct mgebuffer *buf,

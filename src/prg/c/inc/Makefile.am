@@ -39,12 +39,13 @@
 #				Rename of bstree.h			#
 #				Rename of mgebuffer.h			#
 #				Rename mgememory.h			#
+#				Rename mgemessage.h			#
 #									#
 #########################################################################
 
 
 include_HEADERS = mge-portability.h
 include_HEADERS += mge-bstree.h sllist.h dllist.h
-include_HEADERS += mge-buffer.h mge-errno.h mge-memory.h mgemessage.h
+include_HEADERS += mge-buffer.h mge-errno.h mge-memory.h mge-message.h
 include_HEADERS += libmgec.h
 

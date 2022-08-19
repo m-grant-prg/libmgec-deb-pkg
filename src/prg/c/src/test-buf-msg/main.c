@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 #include <mge-buffer.h>
-#include <mgemessage.h>
+#include <mge-message.h>
 
 /*
  * buffers and messages test program.

@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mgemessage.h
+ * @file src/prg/c/inc/mge-message.h
  *
  * Header file for message processing.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 18/08/2022_
+ * @version _v1.0.13 ==== 19/08/2022_
  */
 
 /* **********************************************************************
@@ -41,12 +41,13 @@
  * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
  * 19/08/2022	MG	1.0.13	Rename of portability.h			*
  *				Rename mgebuffer.h			*
+ *				Rename to standard format mge-message.h	*
  *									*
  ************************************************************************
  */
 
-#ifndef MGEMESSAGE_H
-#define MGEMESSAGE_H
+#ifndef MGE_MESSAGE_H
+#define MGE_MESSAGE_H
 
 #include <mge-portability.h>
 #include <sys/types.h>
@@ -106,4 +107,4 @@ void print_def_msg_values(void);
 
 END_C_DECLS
 
-#endif /* ndef MGEMESSAGE_H */
+#endif /* ndef MGE_MESSAGE_H */
