@@ -40,12 +40,13 @@
 #				Rename of mgebuffer.h			#
 #				Rename mgememory.h			#
 #				Rename mgemessage.h			#
+#				Install in package specific include	#
+#				directory.				#
 #									#
 #########################################################################
 
-
-include_HEADERS = mge-portability.h
-include_HEADERS += mge-bstree.h sllist.h dllist.h
-include_HEADERS += mge-buffer.h mge-errno.h mge-memory.h mge-message.h
-include_HEADERS += libmgec.h
+pkginclude_HEADERS = mge-portability.h
+pkginclude_HEADERS += mge-bstree.h sllist.h dllist.h
+pkginclude_HEADERS += mge-buffer.h mge-errno.h mge-memory.h mge-message.h
+pkginclude_HEADERS += libmgec.h
 

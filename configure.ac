@@ -164,6 +164,12 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
+# 20/08/2022	MG	1.2.2	Do not generate pkg-config file with	#
+#				AC_CONFIG_FILES as it does not support	#
+#				extended Installation Directory		#
+#				Variables such as pkgincludedir. Use	#
+#				Makefile.am variable substitution	#
+#				instead.				#
 #									#
 #########################################################################
 
@@ -178,7 +184,7 @@ AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.1 $)
+AC_REVISION($Revision: 1.2.2 $)
 
 AC_PREREQ(2.69)
 
@@ -211,6 +217,8 @@ AC_DEFINE(SOURCE_VERSION, "1.2.6", \
 	Define to the version of source code in this package.)
 
 AC_SUBST(lib_version_info, "6:1:4")
+
+AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
@@ -607,6 +615,7 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #	pkglibexecdir	${libexecdir}/${PACKAGE}
 #
 AC_SUBST([edit], ["sed \
+		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
@@ -698,9 +707,12 @@ AC_MSG_NOTICE(processing output files)
 # AC_CONFIG_FILES should not be used to substitute AutoConf Installation
 # Directory Variables, (bindir and friends), except in Makefiles and pkg-config
 # files. See GNU AutoConf manual section 4.8.2 Installation Directory Variables.
+# This manual section mentions bindir, includedir etc but makes no mention of
+# any extended forms such as pkgincludedir, and it indeed seems that they are
+# not supported. Variable substitution in the Makefile.am's should be used
+# instead.
 #
 AC_CONFIG_FILES(docs/doxygen/Doxyfile)
-AC_CONFIG_FILES(src/prg/c/pkg-config/libmgec.pc)
 
 # Causes AC_OUTPUT to create a c preprocessor file with #define statements about
 # the configuration.
