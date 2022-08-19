@@ -72,6 +72,7 @@
  * 03/12/2021	MG	1.0.16	Tighten SPDX tag.			*
  * 10/06/2022	MG	1.0.17	Replace sprintf with safer snprintf.	*
  * 19/08/2022	MG	1.0.18	Rename mgebuffer.h			*
+ *				Rename mgememory.h			*
  *									*
  ************************************************************************
  */
@@ -87,7 +88,7 @@
 #include <libmgec.h>
 #include <mge-buffer.h>
 #include <mge-errno.h>
-#include <mgememory.h>
+#include <mge-memory.h>
 #include <mgemessage.h>
 
 /* @cond INTERNAL */

@@ -5,12 +5,12 @@
  *
  * All memory related support functions.
  *
- * @author Copyright (C) 2017-2019, 2021  Mark Grant
+ * @author Copyright (C) 2017-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.7 ==== 03/12/2021_
+ * @version _v1.0.8 ==== 19/08/2022_
  */
 
 /* **********************************************************************
@@ -29,6 +29,7 @@
  *				sparse warning).			*
  * 09/06/2019	MG	1.0.6	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.7	Tighten SPDX tag.			*
+ * 19/08/2022	MG	1.0.8	Rename mgememory.h			*
  *									*
  ************************************************************************
  */
@@ -40,7 +41,7 @@
 #include <syslog.h>
 
 #include <mge-errno.h>
-#include <mgememory.h>
+#include <mge-memory.h>
 
 /**
  * Wrap realloc to include error handling.
@@ -65,4 +66,3 @@ char *mg_realloc(char *mem_ptr, const size_t mem_sz)
 	}
 	return new_ptr;
 }
-

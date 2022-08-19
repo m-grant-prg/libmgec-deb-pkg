@@ -38,12 +38,13 @@
 # 19/08/2022	MG	1.0.15	Rename of portability.h			#
 #				Rename of bstree.h			#
 #				Rename of mgebuffer.h			#
+#				Rename mgememory.h			#
 #									#
 #########################################################################
 
 
 include_HEADERS = mge-portability.h
 include_HEADERS += mge-bstree.h sllist.h dllist.h
-include_HEADERS += mge-buffer.h mge-errno.h mgememory.h mgemessage.h
+include_HEADERS += mge-buffer.h mge-errno.h mge-memory.h mgemessage.h
 include_HEADERS += libmgec.h
 
