@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mgebuffer.h
+ * @file src/prg/c/inc/mge-buffer.h
  *
  * Header file for buffer processing.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.12 ==== 18/08/2022_
+ * @version _v1.0.12 ==== 19/08/2022_
  */
 
 /* **********************************************************************
@@ -36,13 +36,14 @@
  * 08/06/2019	MG	1.0.9	clang-format coding style changes.	*
  * 15/04/2021	MG	1.0.10	Add print_def_buf_values() prototype.	*
  * 03/12/2021	MG	1.0.11	Tighten SPDX tag.			*
- * 18/08/2022	MG	1.0.12	Rename of portability.h			*
+ * 19/08/2022	MG	1.0.12	Rename of portability.h			*
+ *				Rename to standard format mge-buffer.h	*
  *									*
  ************************************************************************
  */
 
-#ifndef MGEBUFFER_H
-#define MGEBUFFER_H
+#ifndef MGE_BUFFER_H
+#define MGE_BUFFER_H
 
 #include <mge-portability.h>
 #include <sys/types.h>
@@ -78,4 +79,4 @@ void print_def_buf_values(void);
 
 END_C_DECLS
 
-#endif /* ndef MGEBUFFER_H */
+#endif /* ndef MGE_BUFFER_H */

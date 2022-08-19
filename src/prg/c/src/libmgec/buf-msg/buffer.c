@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.14 ==== 29/05/2022_
+ * @version _v1.0.15 ==== 19/08/2022_
  */
 
 /* **********************************************************************
@@ -47,6 +47,7 @@
  * 15/04/2021	MG	1.0.12	Add function to print default values.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
  * 29/05/2022	MG	1.0.14	Improve function (Doxygen) comments.	*
+ * 19/08/2022	MG	1.0.15	Rename mgebuffer.h			*
  *									*
  ************************************************************************
  */
@@ -58,8 +59,8 @@
 #include <sys/types.h>
 
 #include "internal.h"
+#include <mge-buffer.h>
 #include <mge-errno.h>
-#include <mgebuffer.h>
 
 /**
  * Concatenate the used portion of a flat buffer into a buffer object.

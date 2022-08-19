@@ -39,7 +39,8 @@
  *				remove it from API.			*
  * 16/04/2021	MG	1.0.11	Add print_def_msg_values() prototype.	*
  * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
- * 18/08/2022	MG	1.0.13	Rename of portability.h			*
+ * 19/08/2022	MG	1.0.13	Rename of portability.h			*
+ *				Rename mgebuffer.h			*
  *									*
  ************************************************************************
  */
@@ -67,7 +68,7 @@
 	#define __bool_true_false_are_defined 1
 #endif
 
-#include <mgebuffer.h>
+#include <mge-buffer.h>
 
 BEGIN_C_DECLS
 
