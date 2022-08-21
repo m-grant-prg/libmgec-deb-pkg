@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/src/run-tests/Makefile.am			#
-# Author: Copyright (C) 2019, 2021  Mark Grant				#
+# Author: Copyright (C) 2019, 2021, 2022  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -22,6 +22,7 @@
 #				tests as the package may be getting	#
 #				built under user mode qemu.		#
 # 03/12/2021	MG	1.0.3	Tighten SPDX tag.			#
+# 21/08/2022	MG	1.0.4	Add test-headers.			#
 #									#
 #########################################################################
 
@@ -38,4 +39,5 @@ TESTS += ../test-sllist/sllisttest02.sh
 TESTS += ../test-sllist/sllisttest03.sh
 TESTS += ../test-sllist/sllisttest04.sh
 TESTS += ../test-sllist/sllisttest05.sh
+TESTS += ../test-headers/compile-headers.sh
 

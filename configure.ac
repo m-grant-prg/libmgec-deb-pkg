@@ -164,12 +164,13 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
-# 20/08/2022	MG	1.2.2	Do not generate pkg-config file with	#
+# 21/08/2022	MG	1.2.2	Do not generate pkg-config file with	#
 #				AC_CONFIG_FILES as it does not support	#
 #				extended Installation Directory		#
 #				Variables such as pkgincludedir. Use	#
 #				Makefile.am variable substitution	#
 #				instead.				#
+#				Add test-headers build.			#
 #									#
 #########################################################################
 
@@ -738,6 +739,7 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/src/test-dllist/Makefile
 		src/prg/c/src/test-errno/Makefile
 		src/prg/c/src/test-sllist/Makefile
+		src/prg/c/src/test-headers/Makefile
 		src/prg/c/src/run-tests/Makefile)
 
 AC_OUTPUT
