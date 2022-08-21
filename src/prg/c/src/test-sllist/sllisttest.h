@@ -17,6 +17,9 @@
 
 #include <mge-portability.h>
 
+#include <stddef.h>
+#include <stdio.h>
+
 BEGIN_C_DECLS
 
 extern int verbose;

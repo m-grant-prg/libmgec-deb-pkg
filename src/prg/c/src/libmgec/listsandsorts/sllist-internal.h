@@ -9,7 +9,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.11 ==== 18/08/2022_
+ * @version _v1.0.11 ==== 21/08/2022_
  */
 
 /* **********************************************************************
@@ -30,7 +30,8 @@
  * 12/07/2019	MG	1.0.9	Separate combined header file into	*
  *				specific individual files.		*
  * 03/12/2021	MG	1.0.10	Tighten SPDX tag.			*
- * 18/08/2022	MG	1.0.11	Rename of portability.h			*
+ * 21/08/2022	MG	1.0.11	Rename of portability.h			*
+ *				Add stddef.h for size_t.		*
  *									*
  ************************************************************************
  */
@@ -39,8 +40,9 @@
 #define SLLIST_INTERNAL_H
 
 #include <mge-portability.h>
-
 #include <sllist.h>
+
+#include <stddef.h>
 
 BEGIN_C_DECLS
 

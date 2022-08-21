@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.14 ==== 18/08/2022_
+ * @version _v1.0.14 ==== 21/08/2022_
  */
 
 /* **********************************************************************
@@ -36,8 +36,9 @@
  *				struct.					*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
- * 18/08/2022	MG	1.0.14	New name for portability.h		*
+ * 21/08/2022	MG	1.0.14	New name for portability.h		*
  *				Rename to add namespace.		*
+ *				Add stddef.h for size_t.		*
  *									*
  ************************************************************************
  */
@@ -46,6 +47,8 @@
 #define MGE_BSTREE_H
 
 #include <mge-portability.h>
+
+#include <stddef.h>
 
 BEGIN_C_DECLS
 
