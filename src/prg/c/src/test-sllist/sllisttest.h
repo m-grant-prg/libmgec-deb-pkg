@@ -5,7 +5,7 @@
  *
  * Header file for testing singly linked lists in the libmgec shared library.
  *
- * Author Copyright (C) 2019, 2021  Mark Grant
+ * Author Copyright (C) 2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
@@ -15,7 +15,10 @@
 #ifndef SLLISTTEST_H
 #define SLLISTTEST_H
 
-#include <portability.h>
+#include <mge-portability.h>
+
+#include <stddef.h>
+#include <stdio.h>
 
 BEGIN_C_DECLS
 
@@ -49,4 +52,3 @@ int test05(void);
 END_C_DECLS
 
 #endif /* ndef SLLISTTEST_H */
-

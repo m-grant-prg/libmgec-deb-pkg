@@ -1,16 +1,16 @@
 /**
- * @file src/prg/c/inc/bstree.h
+ * @file src/prg/c/inc/mge-bstree.h
  *
  * Binary search tree header file.
  *
  * Header file for binary search trees in the libmgec shared library.
  *
- * @author Copyright (C) 2015-2019, 2021  Mark Grant
+ * @author Copyright (C) 2015-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 03/12/2021_
+ * @version _v1.0.14 ==== 21/08/2022_
  */
 
 /* **********************************************************************
@@ -36,14 +36,19 @@
  *				struct.					*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
+ * 21/08/2022	MG	1.0.14	New name for portability.h		*
+ *				Rename to add namespace.		*
+ *				Add stddef.h for size_t.		*
  *									*
  ************************************************************************
  */
 
-#ifndef BSTREE_H
-#define BSTREE_H
+#ifndef MGE_BSTREE_H
+#define MGE_BSTREE_H
 
-#include <portability.h>
+#include <mge-portability.h>
+
+#include <stddef.h>
 
 BEGIN_C_DECLS
 
@@ -100,5 +105,4 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
 
 END_C_DECLS
 
-#endif /* ndef BSTREE_H */
-
+#endif /* ndef MGE_BSTREE_H */

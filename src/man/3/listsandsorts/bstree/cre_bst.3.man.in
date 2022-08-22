@@ -1,7 +1,7 @@
 NAME
 cre_bst - Create a new, empty generic binary search tree.
 SYNOPSIS
-	#include <bstree.h>
+	#include <mge-bstree.h>
 
 	struct bstree *cre_bst(int unique,
 				int (*comp)(const void *, const void *))
@@ -37,7 +37,7 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <bstree.h>
+	#include <mge-bstree.h>
 	#include <mge-errno.h>
 
 	//...
@@ -66,7 +66,7 @@ comparison:-
 A more complex example using a struct as the object with comparison function,
 nodecmp, supplied:-
 
-	#include <bstree.h>
+	#include <mge-bstree.h>
 	#include <mge-errno.h>
 
 	//...
@@ -171,7 +171,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+Copyright (C) 2015-2017, 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br

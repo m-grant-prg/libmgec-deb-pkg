@@ -1,16 +1,16 @@
 /**
- * @file src/prg/c/inc/mgemessage.h
+ * @file src/prg/c/inc/mge-message.h
  *
  * Header file for message processing.
  *
  * All message manipulation related information.
  *
- * @author Copyright (C) 2017-2021  Mark Grant
+ * @author Copyright (C) 2017-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.12 ==== 03/12/2021_
+ * @version _v1.0.13 ==== 19/08/2022_
  */
 
 /* **********************************************************************
@@ -39,14 +39,17 @@
  *				remove it from API.			*
  * 16/04/2021	MG	1.0.11	Add print_def_msg_values() prototype.	*
  * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
+ * 19/08/2022	MG	1.0.13	Rename of portability.h			*
+ *				Rename mgebuffer.h			*
+ *				Rename to standard format mge-message.h	*
  *									*
  ************************************************************************
  */
 
-#ifndef MGEMESSAGE_H
-#define MGEMESSAGE_H
+#ifndef MGE_MESSAGE_H
+#define MGE_MESSAGE_H
 
-#include <portability.h>
+#include <mge-portability.h>
 #include <sys/types.h>
 
 /* Standard GNU AC_HEADER_STDBOOL ifdeffery. */
@@ -66,7 +69,7 @@
 	#define __bool_true_false_are_defined 1
 #endif
 
-#include <mgebuffer.h>
+#include <mge-buffer.h>
 
 BEGIN_C_DECLS
 
@@ -104,5 +107,4 @@ void print_def_msg_values(void);
 
 END_C_DECLS
 
-#endif /* ndef MGEMESSAGE_H */
-
+#endif /* ndef MGE_MESSAGE_H */

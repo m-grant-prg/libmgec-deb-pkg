@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: main.c							*
- * Author Copyright (C) 2018-2019, 2021  Mark Grant			*
+ * Author Copyright (C) 2018-2019, 2021, 2022  Mark Grant		*
  *									*
  * Purpose:								*
  *	Test program for buffers & messages in libmgec shared library.	*
@@ -13,12 +13,11 @@
  ************************************************************************
  */
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-#include <mgebuffer.h>
-#include <mgemessage.h>
-
+#include <mge-buffer.h>
+#include <mge-message.h>
 
 /*
  * buffers and messages test program.
@@ -34,4 +33,3 @@ int main(void)
 	print_def_msg_values();
 	print_msg(&msg);
 }
-

@@ -3,12 +3,13 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 datarootdir=@datarootdir@
 datadir=@datadir@
-includedir=@includedir@
+pkgincludedir=@pkgincludedir@
 
 Name: libmgec
 Description: MGE general C library.
-Version: @PACKAGE_VERSION@
+Version: @pkgversion@
+URL: https://github.com/m-grant-prg/libmgec/wiki
 Requires:
 Libs: -L${libdir} -lmgec
-Cflags: -I${includedir}
+Cflags: -I${pkgincludedir}
 

@@ -2,7 +2,7 @@ NAME
 upd_bst_node - Update a node in a generic binary search tree.
 
 SYNOPSIS
-#include <bstree.h>
+#include <mge-bstree.h>
 
 void *upd_bst_node(const struct bstree *tree, const void *updobj,
 		size_t objsize);
@@ -42,7 +42,7 @@ MGE_NODE_NOT_FOUND - The node containing the requested object does not exist.
 EXAMPLE
 An example using a struct as the object. (Note the comparison function):-
 
-	#include <bstree.h>
+	#include <mge-bstree.h>
 	#include <mge-errno.h>
 
 	int nodecmp(const struct testnode *node1,
@@ -166,7 +166,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+Copyright (C) 2015-2017, 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br

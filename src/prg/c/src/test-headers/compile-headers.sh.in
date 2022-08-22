@@ -1,0 +1,21 @@
+set -e
+cd $(dirname "$0")
+testdir=$(pwd)
+
+# srcdir is set in the TEST directive but not otherwise. So running the
+# run-tests be it as make check or make distcheck works. This is needed because
+# the directory structure is different during make distcheck.
+if [[ -z $srcdir ]]; then
+	cliheaders="../../../../../../src/prg/c/inc"
+	headers=$(find ../../../../../../src -name *.h)
+else
+	cliheaders="$srcdir/../../../../../src/prg/c/inc"
+	headers=$(find $srcdir/../../../../../src -name *.h)
+fi
+for headerpath in $headers; do
+	header=${headerpath##*/}
+	cc $headerpath -I$cliheaders -Wall -Wextra -o $testdir/$header.gch \
+		-save-temps=obj
+done
+cd -
+
