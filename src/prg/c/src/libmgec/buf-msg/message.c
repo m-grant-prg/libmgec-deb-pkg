@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.18 ==== 19/08/2022_
+ * @version _v1.0.18 ==== 01/09/2022_
  */
 
 /* **********************************************************************
@@ -71,9 +71,10 @@
  * 16/04/2021	MG	1.0.15	Add print default values function.	*
  * 03/12/2021	MG	1.0.16	Tighten SPDX tag.			*
  * 10/06/2022	MG	1.0.17	Replace sprintf with safer snprintf.	*
- * 19/08/2022	MG	1.0.18	Rename mgebuffer.h			*
+ * 01/09/2022	MG	1.0.18	Rename mgebuffer.h			*
  *				Rename mgememory.h			*
  *				Rename mgemessage.h			*
+ *				Remove unnecessary header syslog.h	*
  *									*
  ************************************************************************
  */
@@ -83,7 +84,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <syslog.h>
 
 #include "internal.h"
 #include <libmgec.h>

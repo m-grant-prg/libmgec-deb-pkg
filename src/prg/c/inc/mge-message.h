@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 19/08/2022_
+ * @version _v1.0.14 ==== 01/09/2022_
  */
 
 /* **********************************************************************
@@ -42,6 +42,7 @@
  * 19/08/2022	MG	1.0.13	Rename of portability.h			*
  *				Rename mgebuffer.h			*
  *				Rename to standard format mge-message.h	*
+ * 01/09/2022	MG	1.0.14	Remove stdbool ifdeffery.		*
  *									*
  ************************************************************************
  */
@@ -49,27 +50,11 @@
 #ifndef MGE_MESSAGE_H
 #define MGE_MESSAGE_H
 
-#include <mge-portability.h>
+#include <stdbool.h>
 #include <sys/types.h>
 
-/* Standard GNU AC_HEADER_STDBOOL ifdeffery. */
-#ifdef HAVE_STDBOOL_H
-	#include <stdbool.h>
-#else
-	#ifndef HAVE__BOOL
-		#ifdef __cplusplus /* clang-format off */
-			typedef bool _Bool; /* clang-format on */
-		#else
-			#define _Bool signed char
-		#endif
-	#endif
-	#define bool _Bool
-	#define false 0
-	#define true 1
-	#define __bool_true_false_are_defined 1
-#endif
-
 #include <mge-buffer.h>
+#include <mge-portability.h>
 
 BEGIN_C_DECLS
 
