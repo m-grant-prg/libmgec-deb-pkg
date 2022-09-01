@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.8 ==== 10/06/2022_
+ * @version _v1.0.9 ==== 01/09/2022_
  */
 
 /* **********************************************************************
@@ -28,11 +28,11 @@
  * 08/06/2019	MG	1.0.6	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.7	Tighten SPDX tag.			*
  * 10/06/2022	MG	1.0.8	Replace sprintf with safer snprintf.	*
+ * 01/09/2022	MG	1.0.9	Remove unnecessary header errno.h	*
  *									*
  ************************************************************************
  */
 
-#include <errno.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <string.h>
