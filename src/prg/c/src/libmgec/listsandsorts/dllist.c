@@ -6,12 +6,12 @@
  * Build, manipulate and bi-directional traverse functionality for doubly
  * linked lists.
  *
- * @author Copyright (C) 2016-2021  Mark Grant
+ * @author Copyright (C) 2016-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.12 ==== 03/12/2021_
+ * @version _v1.0.13 ==== 03/09/2022_
  */
 
 /* **********************************************************************
@@ -41,6 +41,7 @@
  * 29/06/2020	MG	1.0.11	Add internal-only documentation of	*
  *				static (non-API) function.		*
  * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
+ * 03/09/2022	MG	1.0.13	Move static function declarations here.	*
  *									*
  ************************************************************************
  */
@@ -50,9 +51,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "dllist-internal.h"
 #include <dllist.h>
 #include <mge-errno.h>
+
+static void free_dll_node(struct dllistnode *currentnode);
 
 /**
  * @cond INTERNAL
@@ -142,4 +144,3 @@ static void free_dll_node(struct dllistnode *currentnode)
 	free(currentnode);
 }
 /* @endcond */
-

@@ -72,6 +72,7 @@
 #				Use (non-)debug CFLAGS from configure	#
 # 03/12/2021	MG	1.0.29	Tighten SPDX tag.			#
 # 10/06/2022	MG	1.0.30	Add compiler analyzer option.		#
+# 03/09/2022	MG	1.0.31	Remove now deleted dllist-internal.	#
 #									#
 #########################################################################
 
@@ -114,7 +115,6 @@ endif
 
 noinst_HEADERS = buf-msg/internal.h errors/internal.h
 noinst_HEADERS += listsandsorts/bstree-internal.h
-noinst_HEADERS += listsandsorts/dllist-internal.h
 noinst_HEADERS += listsandsorts/sllist-internal.h
 
 
