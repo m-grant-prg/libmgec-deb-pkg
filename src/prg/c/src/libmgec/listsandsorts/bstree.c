@@ -85,6 +85,8 @@
  * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
  * 03/09/2022	MG	1.1.11	Rename of bstree.h			*
  *				Move static function declarations here.	*
+ *				Mark test tracing function as internal	*
+ *				as it is not part of the API.		*
  *									*
  ************************************************************************
  */
@@ -812,6 +814,7 @@ static struct bstreenode *free_bst_node(struct bstreenode *currentnode)
 /* @endcond */
 
 /**
+ * @cond INTERNAL
  * Find and return the next object and it's coordinates in the bst 'tree'.
  * This is only really useful for testing purposes where this function can be
  * used to verify the tree coordinates of nodes.
@@ -833,6 +836,7 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
 	}
 	return find_next_node_trace(tree->root, searchobj, tree->comp);
 }
+/* @endcond */
 
 /**
  * @cond INTERNAL

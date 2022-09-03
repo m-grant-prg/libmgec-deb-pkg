@@ -40,6 +40,8 @@
  *				Rename to add namespace.		*
  *				Add stddef.h for size_t.		*
  *				Improve member comments.		*
+ *				Move test tracing elements to internal	*
+ *				header, they are not part of the API.	*
  *									*
  ************************************************************************
  */
@@ -55,14 +57,6 @@ BEGIN_C_DECLS
 
 #define BST_NODES_UNIQUE 1     /**< BST allows unique nodes only. */
 #define BST_NODES_DUPLICATES 0 /**< BST allows duplicate nodes. */
-
-/** Node coordinates for test tracing. */
-struct bstobjcoord {
-	void *object; /**< The object. */
-	int count;    /**< The node counter. */
-	int xdir;     /**< The x coordinate. */
-	int ydir;     /**< The y coordinate. */
-};
 
 /** Binary search tree node. */
 struct bstreenode {
@@ -108,9 +102,6 @@ void *upd_bst_node(const struct bstree *tree, const void *updobj,
 struct bstree *del_bst_node(struct bstree *tree, const void *searchobj);
 
 struct bstree *del_bst(struct bstree *tree);
-
-struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
-					     struct bstobjcoord *searchobj);
 
 END_C_DECLS
 

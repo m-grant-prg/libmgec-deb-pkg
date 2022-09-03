@@ -35,6 +35,8 @@
  *				Add stddef.h for size_t.		*
  *				Move static function declarations to .c	*
  *				file.
+ *				Test tracing elements moved here as	*
+ *				they are not part of the API.		*
  *									*
  ************************************************************************
  */
@@ -42,11 +44,23 @@
 #ifndef BSTREE_INTERNAL_H
 #define BSTREE_INTERNAL_H
 
+#include <mge-bstree.h>
 #include <mge-portability.h>
 
 #include <stddef.h>
 
 BEGIN_C_DECLS
+
+/** Node coordinates for test tracing. */
+struct bstobjcoord {
+	void *object; /**< The object. */
+	int count;    /**< The node counter. */
+	int xdir;     /**< The x coordinate. */
+	int ydir;     /**< The y coordinate. */
+};
+
+struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
+					     struct bstobjcoord *searchobj);
 
 END_C_DECLS
 
