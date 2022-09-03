@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.11 ==== 18/08/2022_
+ * @version _v1.1.11 ==== 03/09/2022_
  */
 
 /* **********************************************************************
@@ -83,7 +83,8 @@
  * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
  *				static (non-API) function.		*
  * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
- * 18/08/2022	MG	1.1.11	Rename of bstree.h			*
+ * 03/09/2022	MG	1.1.11	Rename of bstree.h			*
+ *				Move static function declarations here.	*
  *									*
  ************************************************************************
  */
@@ -96,6 +97,41 @@
 #include "bstree-internal.h"
 #include <mge-bstree.h>
 #include <mge-errno.h>
+
+static struct bstreenode *add_node(struct bstreenode *currentnode,
+				   const void *object, size_t objsize,
+				   struct bstree *tree);
+
+static void *find_node(const struct bstreenode *currentnode,
+		       const void *searchobj,
+		       int (*comp)(const void *, const void *));
+
+static int get_counter_node(const struct bstreenode *currentnode,
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
+
+static void *find_next_node(const struct bstreenode *currentnode,
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
+
+static void *find_prev_node(const struct bstreenode *currentnode,
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
+
+static void *upd_node(struct bstreenode *currentnode, const void *updobj,
+		      size_t objsize, int (*comp)(const void *, const void *));
+
+static struct bstreenode *del_node(struct bstreenode *currentnode,
+				   const void *searchobj, struct bstree *tree);
+
+static struct bstreenode *free_bstree(struct bstreenode *currentnode);
+
+static struct bstreenode *free_bst_node(struct bstreenode *currentnode);
+
+static struct bstobjcoord *
+find_next_node_trace(const struct bstreenode *currentnode,
+		     struct bstobjcoord *searchobj,
+		     int (*comp)(const void *, const void *));
 
 /**
  * Create a binary search tree.

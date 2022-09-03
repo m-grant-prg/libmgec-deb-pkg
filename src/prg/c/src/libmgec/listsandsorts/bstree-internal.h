@@ -9,7 +9,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.11 ==== 21/08/2022_
+ * @version _v1.0.11 ==== 03/09/2022_
  */
 
 /* **********************************************************************
@@ -30,9 +30,11 @@
  * 12/07/2019	MG	1.0.9	Separate combined header file into	*
  *				specific individual files.		*
  * 03/12/2021	MG	1.0.10	Tighten SPDX tag.			*
- * 21/08/2022	MG	1.0.11	Rename of portability.h			*
+ * 03/09/2022	MG	1.0.11	Rename of portability.h			*
  *				Rename of bstree.h			*
  *				Add stddef.h for size_t.		*
+ *				Move static function declarations to .c	*
+ *				file.
  *									*
  ************************************************************************
  */
@@ -40,47 +42,11 @@
 #ifndef BSTREE_INTERNAL_H
 #define BSTREE_INTERNAL_H
 
-#include <mge-bstree.h>
 #include <mge-portability.h>
 
 #include <stddef.h>
 
 BEGIN_C_DECLS
-
-static struct bstreenode *add_node(struct bstreenode *currentnode,
-				   const void *object, size_t objsize,
-				   struct bstree *tree);
-
-static void *find_node(const struct bstreenode *currentnode,
-		       const void *searchobj,
-		       int (*comp)(const void *, const void *));
-
-static int get_counter_node(const struct bstreenode *currentnode,
-			    const void *searchobj,
-			    int (*comp)(const void *, const void *));
-
-static void *find_next_node(const struct bstreenode *currentnode,
-			    const void *searchobj,
-			    int (*comp)(const void *, const void *));
-
-static void *find_prev_node(const struct bstreenode *currentnode,
-			    const void *searchobj,
-			    int (*comp)(const void *, const void *));
-
-static void *upd_node(struct bstreenode *currentnode, const void *updobj,
-		      size_t objsize, int (*comp)(const void *, const void *));
-
-static struct bstreenode *del_node(struct bstreenode *currentnode,
-				   const void *searchobj, struct bstree *tree);
-
-static struct bstreenode *free_bstree(struct bstreenode *currentnode);
-
-static struct bstreenode *free_bst_node(struct bstreenode *currentnode);
-
-static struct bstobjcoord *
-find_next_node_trace(const struct bstreenode *currentnode,
-		     struct bstobjcoord *searchobj,
-		     int (*comp)(const void *, const void *));
 
 END_C_DECLS
 
