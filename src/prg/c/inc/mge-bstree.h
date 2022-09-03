@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.14 ==== 21/08/2022_
+ * @version _v1.0.14 ==== 03/09/2022_
  */
 
 /* **********************************************************************
@@ -36,9 +36,10 @@
  *				struct.					*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
- * 21/08/2022	MG	1.0.14	New name for portability.h		*
+ * 03/09/2022	MG	1.0.14	New name for portability.h		*
  *				Rename to add namespace.		*
  *				Add stddef.h for size_t.		*
+ *				Improve member comments.		*
  *									*
  ************************************************************************
  */
@@ -66,18 +67,26 @@ struct bstobjcoord {
 /** Binary search tree node. */
 struct bstreenode {
 	void *object;		      /**< The object attached to the node. */
-	int count;		      /**< The node counter. */
-	struct bstreenode *childless; /**< Child node less than this. */
-	struct bstreenode *childgreater; /**< Child node greater than this. */
+	int count;		      /**< The node counter. If duplicates are
+					allowed in the tree then this counter
+					keeps track of the additions and
+					deletions of this node. */
+	struct bstreenode *childless; /**< Child node less than this node. */
+	struct bstreenode *childgreater; /**< Child node greater than this
+					   node. */
 };
 
 /** Binary search tree. */
 struct bstree {
 	struct bstreenode *root; /**< The root node of the tree. */
-	int unique;		 /**< Uniqueness of nodes. */
+	int unique;		 /**< Uniqueness of nodes. Should be either
+				   BST_NODES_UNIQUE or BST_NODES_DUPLICATES. */
 	int count_total;	 /**< Sum of all node counters. */
 	int node_total;		 /**< Number of nodes in the tree. */
-	int (*comp)(const void *, const void *); /**< Comparison function. */
+	int (*comp)(const void *, const void *); /**< Comparison function. This
+						   function must have the same
+						   signature as strcmp() allbeit
+						   with void parameters. */
 };
 
 struct bstree *cre_bst(int unique, int (*comp)(const void *, const void *));
