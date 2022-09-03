@@ -87,6 +87,8 @@
  *				Move static function declarations here.	*
  *				Mark test tracing function as internal	*
  *				as it is not part of the API.		*
+ *				Rename of bstree-internal.h to		*
+ *				internal.h				*
  *									*
  ************************************************************************
  */
@@ -96,7 +98,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "bstree-internal.h"
+#include "internal.h"
 #include <mge-bstree.h>
 #include <mge-errno.h>
 

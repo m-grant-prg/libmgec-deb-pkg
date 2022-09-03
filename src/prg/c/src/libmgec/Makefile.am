@@ -74,6 +74,8 @@
 # 10/06/2022	MG	1.0.30	Add compiler analyzer option.		#
 # 03/09/2022	MG	1.0.31	Remove now deleted dllist-internal.	#
 #				Remove now deleted sllist-internal.	#
+#				Rename of bstree-internal.h to		#
+#				internal.h				#
 #									#
 #########################################################################
 
@@ -115,7 +117,7 @@ endif
 
 
 noinst_HEADERS = buf-msg/internal.h errors/internal.h
-noinst_HEADERS += listsandsorts/bstree-internal.h
+noinst_HEADERS += listsandsorts/internal.h
 
 
 lib_LTLIBRARIES = libmgec.la

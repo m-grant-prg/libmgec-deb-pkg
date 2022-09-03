@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/src/libmgec/listsandsorts/bstree-internal.h
+ * @file src/prg/c/src/libmgec/listsandsorts/internal.h
  *
  * Non-public header file for binary search trees in the libmgec shared library.
  * No distribution required.
@@ -34,15 +34,16 @@
  *				Rename of bstree.h			*
  *				Add stddef.h for size_t.		*
  *				Move static function declarations to .c	*
- *				file.
+ *				file.					*
  *				Test tracing elements moved here as	*
  *				they are not part of the API.		*
+ *				Rename internal.h			*
  *									*
  ************************************************************************
  */
 
-#ifndef BSTREE_INTERNAL_H
-#define BSTREE_INTERNAL_H
+#ifndef INTERNAL_H
+#define INTERNAL_H
 
 #include <mge-bstree.h>
 #include <mge-portability.h>
@@ -64,4 +65,4 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
 
 END_C_DECLS
 
-#endif /* ndef BSTREE_INTERNAL_H */
+#endif /* ndef INTERNAL_H */
