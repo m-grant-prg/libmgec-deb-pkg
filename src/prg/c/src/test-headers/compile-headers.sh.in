@@ -14,8 +14,8 @@ else
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
-	cc $headerpath -I$cliheaders -Wall -Wextra -o $testdir/$header.gch \
-		-save-temps=obj
+	@CC@ $headerpath -I$cliheaders -Wall -Wextra \
+		-o $testdir/$header.gch
 done
 cd -
 

@@ -164,13 +164,15 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
-# 21/08/2022	MG	1.2.2	Do not generate pkg-config file with	#
+# 04/09/2022	MG	1.2.2	Do not generate pkg-config file with	#
 #				AC_CONFIG_FILES as it does not support	#
 #				extended Installation Directory		#
 #				Variables such as pkgincludedir. Use	#
 #				Makefile.am variable substitution	#
 #				instead.				#
 #				Add test-headers build.			#
+#				Make the contents of $CC available in	#
+#				scripts.				#
 #									#
 #########################################################################
 
@@ -618,6 +620,7 @@ AC_MSG_NOTICE(processing additional checks and variables)
 AC_SUBST([edit], ["sed \
 		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
+		-e 's|@CC[@]|\$(CC)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
 		-e 's|@bindir[@]|\$(bindir)|g' \
