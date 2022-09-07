@@ -18,9 +18,3 @@ have both -I${includedir} and -I${pkgincludedir} making a large pool.
 If headers are installed in pkgincludedir and all #includes use
 ${PACKAGE}/example.h then the names can be anything.
 
-#include Positioning
-====================
-#include statements for project headers should appear before system /external
-headers to prevent masking of include problems in the project headers. Each
-header file should compile individually.
-
