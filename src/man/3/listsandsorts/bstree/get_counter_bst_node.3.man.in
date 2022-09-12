@@ -2,7 +2,7 @@ NAME
 get_counter_bst_node - Get the counter for a node in a generic binary search
 tree.
 SYNOPSIS
-#include <mge-bstree.h>
+#include <libmgec/mge-bstree.h>
 
 int get_counter_bst_node(const struct bstree *tree,
 			const void *searchobj);
@@ -41,8 +41,8 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 

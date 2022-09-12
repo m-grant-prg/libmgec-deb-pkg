@@ -1,7 +1,7 @@
 NAME
 find_sll_node - Find a node in a single linked list.
 SYNOPSIS
-	#include <sllist.h>
+	#include <libmgec/sllist.h>
 
 	void *find_sll_node(struct sllistnode *head, const void *searchobj,
 		    int (*comp)(const void *, const void *));
@@ -36,8 +36,8 @@ MGE_PARAM if an argument contains an error.
 EXAMPLE
 A simple example using a character string:-
 
-	#include <sllist.h>
-	#include <mge-errno.h>
+	#include <libmgec/sllist.h>
+	#include <libmgec/mge-errno.h>
 
 	int nodecmp(const void *node1, const void *node2);
 
@@ -111,7 +111,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2019, 2021 Mark Grant
+Copyright (C) 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br

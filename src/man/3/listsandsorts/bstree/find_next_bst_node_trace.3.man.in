@@ -3,7 +3,7 @@ find_next_bst_node_trace - Find the next node in a generic binary search tree
 and provide coordinates for that node.
 
 SYNOPSIS
-#include <mge-bstree.h>
+#include <libmgec/mge-bstree.h>
 
 struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
 	struct bstobjcoord *searchobj);
@@ -44,8 +44,8 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 

@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 03/09/2022_
+ * @version _v1.0.13 ==== 12/09/2022_
  */
 
 /* **********************************************************************
@@ -44,7 +44,8 @@
  * 29/06/2020	MG	1.0.11	Add internal-only documentation of	*
  *				static (non-API) function.		*
  * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
- * 03/09/2022	MG	1.0.13	Move static function declarations here.	*
+ * 12/09/2022	MG	1.0.13	Move static function declarations here.	*
+ *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -54,8 +55,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <mge-errno.h>
-#include <sllist.h>
+#include <libmgec/mge-errno.h>
+#include <libmgec/sllist.h>
 
 static void free_sll_node(struct sllistnode *currentnode);
 

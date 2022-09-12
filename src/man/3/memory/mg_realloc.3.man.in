@@ -1,7 +1,7 @@
 NAME
 mg_realloc - Wrapper for realloc to include error handling.
 SYNOPSIS
-#include <mge-memory.h>
+#include <libmgec/mge-memory.h>
 
 char *mg_realloc(char *mem_ptr, const size_t mem_sz);
 

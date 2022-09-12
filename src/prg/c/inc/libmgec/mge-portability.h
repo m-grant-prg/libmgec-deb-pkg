@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mge-portability.h
+ * @file src/prg/c/inc/libmgec/mge-portability.h
  *
  * Header file to ease portability.
  *

@@ -1,7 +1,7 @@
 NAME
 print_buf - Print the mgebuffer struct to stdout.
 SYNOPSIS
-#include <mge-buffer.h>
+#include <libmgec/mge-buffer.h>
 
 void print_buf(struct mgebuffer *m_buf);
 

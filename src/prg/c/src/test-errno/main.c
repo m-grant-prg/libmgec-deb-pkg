@@ -13,16 +13,14 @@
  ************************************************************************
  */
 
-#include <stdio.h>
-#include <string.h>
 #include <errno.h>
 #include <netdb.h>
+#include <stdio.h>
+#include <string.h>
 
-#include <mge-errno.h>
+#include <libmgec/mge-errno.h>
 
-
-extern const size_t errno_desc_size;	/* Need this for testing */
-
+extern const size_t errno_desc_size; /* Need this for testing */
 
 /*
  * mge_errno test program.
@@ -36,7 +34,7 @@ int main(void)
 
 	printf("The error descriptions are:-\n\n");
 
-	for ( i = 0; i < (int) errno_desc_size; i++)
+	for (i = 0; i < (int)errno_desc_size; i++)
 		printf("%i\t%s\n", i, mge_strerror(i));
 
 	/* For when mge_errno says look at gai_strerror */
@@ -44,10 +42,10 @@ int main(void)
 
 	printf("\n\nThe error descriptions are:-\n\n");
 
-	for ( i = 0; i < (int) errno_desc_size; i++)
+	for (i = 0; i < (int)errno_desc_size; i++)
 		printf("%i\t%s\n", i, mge_strerror(i));
 
-	printf("errno_desc has %i elements.\n", (int) errno_desc_size);
+	printf("errno_desc has %i elements.\n", (int)errno_desc_size);
 
 	printf("mge_errno %i gives message - %s\n", 0, mge_strerror(0));
 

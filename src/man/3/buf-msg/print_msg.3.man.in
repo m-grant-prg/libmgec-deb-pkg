@@ -1,7 +1,7 @@
 NAME
 print_msg - Prints an mgemessage message struct to stdout.
 SYNOPSIS
-#include <mge-message.h>
+#include <libmgec/mge-message.h>
 
 void print_msg(struct mgemessage *msg);
 

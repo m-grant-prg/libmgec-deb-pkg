@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mge-errno.h
+ * @file src/prg/c/inc/libmgec/mge-errno.h
  *
  * Details for mge_errno system.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.15 ==== 18/08/2022_
+ * @version _v1.0.15 ==== 12/09/2022_
  */
 
 /* **********************************************************************
@@ -34,7 +34,8 @@
  * 12/03/2020	MG	1.0.12	Add identification error.		*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
  * 14/04/2022	MG	1.0.14	Add MGE_PROTO and MGE_GENERAL.		*
- * 18/08/2022	MG	1.0.15	Rename of portability.h			*
+ * 12/09/2022	MG	1.0.15	Rename of portability.h			*
+ *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -44,7 +45,7 @@
 
 #include <sys/types.h>
 
-#include <mge-portability.h>
+#include <libmgec/mge-portability.h>
 
 BEGIN_C_DECLS
 

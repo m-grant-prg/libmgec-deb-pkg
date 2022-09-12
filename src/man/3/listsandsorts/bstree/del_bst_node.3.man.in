@@ -1,7 +1,7 @@
 NAME
 del_bst_node - Delete a node from a generic binary search tree.
 SYNOPSIS
-	#include <mge-bstree.h>
+	#include <libmgec/mge-bstree.h>
 
 	struct bstree *del_bst_node(struct bstree *tree,
 					const void *searchobj);
@@ -36,8 +36,8 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -83,8 +83,8 @@ comparison:-
 
 A more complex example adding a duplicate key:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 

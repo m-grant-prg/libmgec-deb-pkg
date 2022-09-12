@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.8 ==== 01/09/2022_
+ * @version _v1.0.8 ==== 12/09/2022_
  */
 
 /* **********************************************************************
@@ -27,7 +27,8 @@
  *				AC_DEFINE'd value in config.h		*
  * 11/06/2019	MG	1.0.6	clang-format coding style changes.	*
  * 04/12/2021	MG	1.0.7	Tighten SPDX tag.			*
- * 01/09/2022	MG	1.0.8	Remove unnecessary header stdlib.h	*
+ * 12/09/2022	MG	1.0.8	Remove unnecessary header stdlib.h	*
+ *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -35,7 +36,7 @@
 #include <config.h>
 #include <stdio.h>
 
-#include <libmgec.h>
+#include <libmgec/libmgec.h>
 
 /**
  * Get the git-describe based package version.

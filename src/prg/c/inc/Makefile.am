@@ -35,18 +35,21 @@
 # 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	#
 # 03/12/2021	MG	1.0.13	Tighten SPDX tag.			#
 # 09/06/2022	MG	1.0.14	Remove now empty mge-internal.h		#
-# 19/08/2022	MG	1.0.15	Rename of portability.h			#
+# 12/09/2022	MG	1.0.15	Rename of portability.h			#
 #				Rename of bstree.h			#
 #				Rename of mgebuffer.h			#
 #				Rename mgememory.h			#
 #				Rename mgemessage.h			#
 #				Install in package specific include	#
 #				directory.				#
+#				Correct header file location in package	#
+#				sub-directory.				#
 #									#
 #########################################################################
 
-pkginclude_HEADERS = mge-portability.h
-pkginclude_HEADERS += mge-bstree.h sllist.h dllist.h
-pkginclude_HEADERS += mge-buffer.h mge-errno.h mge-memory.h mge-message.h
-pkginclude_HEADERS += libmgec.h
+pkginclude_HEADERS = libmgec/mge-portability.h
+pkginclude_HEADERS += libmgec/mge-bstree.h libmgec/sllist.h libmgec/dllist.h
+pkginclude_HEADERS += libmgec/mge-buffer.h libmgec/mge-errno.h
+pkginclude_HEADERS += libmgec/mge-memory.h libmgec/mge-message.h
+pkginclude_HEADERS += libmgec/libmgec.h
 

@@ -17,9 +17,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <mge-errno.h>
-#include <dllist.h>
-#include <libmgec.h>
+#include <libmgec/dllist.h>
+#include <libmgec/libmgec.h>
+#include <libmgec/mge-errno.h>
 
 struct testnode {
 	char key[20];
@@ -35,8 +35,9 @@ void testparamerr(struct dllistnode *root);
  */
 int main(void)
 {
-	char *str[] = {"give", "consistency", "is", "all", "i", "ask", "give",
-			"us", "this", "day", "our", "daily", "mask", "\0"};
+	char *str[] = { "give", "consistency", "is",   "all",  "i",
+			"ask",	"give",	       "us",   "this", "day",
+			"our",	"daily",       "mask", "\0" };
 	int prog_error = 0;
 	int i;
 
@@ -57,7 +58,7 @@ int main(void)
 	}
 	printf("\n");
 	printf("mge_errno after double linked list population is %d\n",
-		mge_errno);
+	       mge_errno);
 	if (mge_errno)
 		printf("%s\n", mge_strerror(mge_errno));
 	printf("\n");
@@ -154,5 +155,4 @@ void testparamerr(struct dllistnode *root)
 	if (mge_errno)
 		printf("%s\n", mge_strerror(mge_errno));
 	printf("Root is %p\n", root);
-
 }

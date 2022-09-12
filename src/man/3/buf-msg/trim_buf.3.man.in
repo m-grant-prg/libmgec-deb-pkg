@@ -1,7 +1,7 @@
 NAME
 trim_buf - Optimise an mgebuffer struct.
 SYNOPSIS
-#include <mge-buffer.h>
+#include <libmgec/mge-buffer.h>
 
 struct mgebuffer *trim_buf(struct mgebuffer *msg_buf);
 

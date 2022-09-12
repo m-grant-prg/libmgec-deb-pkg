@@ -1,7 +1,7 @@
 NAME
 add_bst_node - Add a node to a generic binary search tree.
 SYNOPSIS
-	#include <mge-bstree.h>
+	#include <libmgec/mge-bstree.h>
 
 	struct bstree *add_bst_node(struct bstree *tree,
 			const void *object, size_t objsize)
@@ -42,8 +42,8 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -71,8 +71,8 @@ comparison:-
 A more complex example using a struct as the object with comparison function,
 nodecmp, supplied:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 

@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mge-bstree.h
+ * @file src/prg/c/inc/libmgec/mge-bstree.h
  *
  * Binary search tree header file.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.14 ==== 03/09/2022_
+ * @version _v1.0.14 ==== 12/09/2022_
  */
 
 /* **********************************************************************
@@ -36,12 +36,13 @@
  *				struct.					*
  * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
- * 03/09/2022	MG	1.0.14	New name for portability.h		*
+ * 12/09/2022	MG	1.0.14	New name for portability.h		*
  *				Rename to add namespace.		*
  *				Add stddef.h for size_t.		*
  *				Improve member comments.		*
  *				Move test tracing elements to internal	*
  *				header, they are not part of the API.	*
+ *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -49,7 +50,7 @@
 #ifndef MGE_BSTREE_H
 #define MGE_BSTREE_H
 
-#include <mge-portability.h>
+#include <libmgec/mge-portability.h>
 
 #include <stddef.h>
 

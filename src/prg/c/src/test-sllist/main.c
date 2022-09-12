@@ -1,7 +1,7 @@
 /* **********************************************************************
  *									*
  * Source: main.c							*
- * Author Copyright (C) 2017-2019, 2021  Mark Grant			*
+ * Author Copyright (C) 2017-2019, 2021, 2022  Mark Grant		*
  *									*
  * Purpose:								*
  *	Test program for singly linked lists in libmgec shared library.	*
@@ -18,7 +18,7 @@
 #include <string.h>
 
 #include "sllisttest.h"
-#include <libmgec.h>
+#include <libmgec/libmgec.h>
 
 int verbose;
 
@@ -148,4 +148,3 @@ int main(int argc, char **argv)
 
 	exit(status);
 }
-

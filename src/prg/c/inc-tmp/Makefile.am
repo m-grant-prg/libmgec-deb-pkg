@@ -30,13 +30,12 @@
 #				Add mgemessage.h as a possible.		#
 # 08/05/2019	MG	1.0.5	Remove shebang.				#
 # 03/12/2021	MG	1.0.6	Tighten SPDX tag.			#
-# 19/08/2022	MG	1.0.7	Rename mgebuffer.h			#
-#				Rename mgemessage.h			#
+# 11/09/2022	MG	1.0.7	Empty EXTRA_HEADERS.			#
 #									#
 #########################################################################
 
 
 noinst_HEADERS = $(tmpheaders)
 
-EXTRA_HEADERS = mge-buffer.h mge-message.h
+EXTRA_HEADERS =
 

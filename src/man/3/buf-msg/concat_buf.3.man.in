@@ -1,7 +1,7 @@
 NAME
 concat_buf - Concatenate a memory block into an mgebuffer struct.
 SYNOPSIS
-#include <mge-buffer.h>
+#include <libmgec/mge-buffer.h>
 
 struct mgebuffer *concat_buf(const char *s_buf, const ssize_t s_buf_os,
 		struct mgebuffer *m_buf);

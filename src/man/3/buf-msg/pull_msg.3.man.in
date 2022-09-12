@@ -1,7 +1,7 @@
 NAME
 pull_msg - Pull a message from the buffer.
 SYNOPSIS
-#include <mge-message.h>
+#include <libmgec/mge-message.h>
 
 struct mgemessage *pull_msg(struct mgebuffer *buf,
 		struct mgemessage *msg);

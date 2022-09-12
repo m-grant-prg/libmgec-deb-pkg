@@ -1,7 +1,7 @@
 NAME
 del_bst - Deletes a generic binary search tree.
 SYNOPSIS
-	#include <mge-bstree.h>
+	#include <libmgec/mge-bstree.h>
 
 	struct bstree *del_bst(struct bstree *tree);
 
@@ -24,8 +24,8 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <mge-bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 

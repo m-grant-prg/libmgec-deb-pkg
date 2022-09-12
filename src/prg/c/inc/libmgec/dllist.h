@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/dllist.h
+ * @file src/prg/c/inc/libmgec/dllist.h
  *
  * Doubly linked list header file.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.9 ==== 21/08/2022_
+ * @version _v1.0.9 ==== 12/09/2022_
  */
 
 /* **********************************************************************
@@ -29,8 +29,9 @@
  *				Extract find_prev and find_next from .c	*
  *				file and make static inline.		*
  * 03/12/2021	MG	1.0.8	Tighten SPDX tag.			*
- * 21/08/2022	MG	1.0.9	Rename of portability.h			*
+ * 12/09/2022	MG	1.0.9	Rename of portability.h			*
  *				Add stddef.h for size_t.		*
+ *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -38,7 +39,7 @@
 #ifndef DLLIST_H
 #define DLLIST_H
 
-#include <mge-portability.h>
+#include <libmgec/mge-portability.h>
 
 #include <stddef.h>
 
