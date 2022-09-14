@@ -6,17 +6,21 @@ testdir=$(pwd)
 # run-tests be it as make check or make distcheck works. This is needed because
 # the directory structure is different during make distcheck.
 if [[ -z $srcdir ]]; then
-	cliheaders="../../../../../../src/prg/c/inc"
+	cliheaders="-I../../../../../../src/prg/c/inc"
+	cliheaders+=" -I../../../../../../src/prg/c/inc/libmgec"
+	cliheaders+=" -I../../../../../../src/prg/c/inc-tmp"
 	headers=$(find ../../../../../../src -name inc-tmp -prune \
 		-o -name *.h -print)
 else
-	cliheaders="$srcdir/../../../../../src/prg/c/inc"
+	cliheaders="-I$srcdir/../../../../../src/prg/c/inc"
+	cliheaders+=" -I$srcdir/../../../../../src/prg/c/inc/libmgec"
+	cliheaders+=" -I$srcdir/../../../../../src/prg/c/inc-tmp"
 	headers=$(find $srcdir/../../../../../src -name inc-tmp -prune \
 		-o -name *.h -print)
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
-	@CC@ $headerpath -I$cliheaders -Wall -Wextra \
+	@CC@ $headerpath $cliheaders -Wall -Wextra \
 		-o $testdir/$header.gch
 done
 cd -
