@@ -7,10 +7,12 @@ testdir=$(pwd)
 # the directory structure is different during make distcheck.
 if [[ -z $srcdir ]]; then
 	cliheaders="../../../../../../src/prg/c/inc"
-	headers=$(find ../../../../../../src -name *.h)
+	headers=$(find ../../../../../../src -name inc-tmp -prune \
+		-o -name *.h -print)
 else
 	cliheaders="$srcdir/../../../../../src/prg/c/inc"
-	headers=$(find $srcdir/../../../../../src -name *.h)
+	headers=$(find $srcdir/../../../../../src -name inc-tmp -prune \
+		-o -name *.h -print)
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
