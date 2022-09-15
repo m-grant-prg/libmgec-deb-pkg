@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/libmgec/libmgec.h
+ * @file src/prg/c/inc/libmgec.h
  *
  * Header file for the libmgec shared library.
  *
@@ -8,7 +8,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.8 ==== 12/09/2022_
+ * @version _v1.0.8 ==== 15/09/2022_
  */
 
 /* **********************************************************************
@@ -25,8 +25,7 @@
  * 03/12/2021	MG	1.0.6	Tighten SPDX tag.			*
  * 09/06/2022	MG	1.0.7	Move array size macro here from the	*
  *				internal header file.			*
- * 12/09/2022	MG	1.0.8	Rename of portability.h			*
- *				Use pkginclude location.		*
+ * 15/09/2022	MG	1.0.8	Rename of portability.h			*
  *									*
  ************************************************************************
  */
@@ -34,7 +33,7 @@
 #ifndef LIBMGEC_H
 #define LIBMGEC_H
 
-#include <libmgec/mge-portability.h>
+#include <mge-portability.h>
 
 BEGIN_C_DECLS
 

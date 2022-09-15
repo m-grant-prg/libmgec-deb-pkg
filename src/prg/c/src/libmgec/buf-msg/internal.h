@@ -8,7 +8,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.6 ==== 12/09/2022_
+ * @version _v1.0.6 ==== 15/09/2022_
  */
 
 /* **********************************************************************
@@ -24,8 +24,7 @@
  * 14/04/2021	MG	1.0.4	Allow some default values to be 	*
  *				overridden on the gcc CL.		*
  * 03/12/2021	MG	1.0.5	Tighten SPDX tag.			*
- * 12/09/2022	MG	1.0.6	Rename of portability.h			*
- *				Use pkginclude location.		*
+ * 15/09/2022	MG	1.0.6	Rename of portability.h			*
  *									*
  ************************************************************************
  */
@@ -33,7 +32,7 @@
 #ifndef BUFMSG_INTERNAL_H
 #define BUFMSG_INTERNAL_H
 
-#include <libmgec/mge-portability.h>
+#include <mge-portability.h>
 
 BEGIN_C_DECLS
 

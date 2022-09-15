@@ -17,9 +17,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <libmgec/dllist.h>
-#include <libmgec/libmgec.h>
-#include <libmgec/mge-errno.h>
+#include <dllist.h>
+#include <libmgec.h>
+#include <mge-errno.h>
 
 struct testnode {
 	char key[20];

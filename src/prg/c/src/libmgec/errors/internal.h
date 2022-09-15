@@ -8,7 +8,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.5 ==== 12/09/2022_
+ * @version _v1.0.5 ==== 15/09/2022_
  */
 
 /* **********************************************************************
@@ -21,9 +21,8 @@
  * 20/05/2018	MG	1.0.2	Add re-inclusion prevention #defines.	*
  * 08/06/2019	MG	1.0.3	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.4	Tighten SPDX tag.			*
- * 12/09/2022	MG	1.0.5	Rename of portability.h			*
+ * 15/09/2022	MG	1.0.5	Rename of portability.h			*
  *				Add stddef.h for size_t.		*
- *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -31,7 +30,7 @@
 #ifndef ERRORS_INTERNAL_H
 #define ERRORS_INTERNAL_H
 
-#include <libmgec/mge-portability.h>
+#include <mge-portability.h>
 
 #include <stddef.h>
 

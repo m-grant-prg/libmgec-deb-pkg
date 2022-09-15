@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <libmgec/mge-errno.h>
+#include <mge-errno.h>
 
 extern const size_t errno_desc_size; /* Need this for testing */
 

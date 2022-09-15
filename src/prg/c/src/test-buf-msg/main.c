@@ -16,8 +16,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include <libmgec/mge-buffer.h>
-#include <libmgec/mge-message.h>
+#include <mge-buffer.h>
+#include <mge-message.h>
 
 /*
  * buffers and messages test program.

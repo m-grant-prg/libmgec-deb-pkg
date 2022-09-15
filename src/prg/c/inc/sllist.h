@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/libmgec/sllist.h
+ * @file src/prg/c/inc/sllist.h
  *
  * Singly linked list header file.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.9 ==== 12/09/2022_
+ * @version _v1.0.9 ==== 15/09/2022_
  */
 
 /* **********************************************************************
@@ -34,9 +34,8 @@
  *				Add add_head_sll_node			*
  *				Add find_sll_node.			*
  * 03/12/2021	MG	1.0.8	Tighten SPDX tag.			*
- * 12/09/2022	MG	1.0.9	Rename of portability.h			*
+ * 15/09/2022	MG	1.0.9	Rename of portability.h			*
  *				Add stddef.h for size_t.		*
- *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -44,7 +43,7 @@
 #ifndef SLLIST_H
 #define SLLIST_H
 
-#include <libmgec/mge-portability.h>
+#include <mge-portability.h>
 
 #include <stddef.h>
 

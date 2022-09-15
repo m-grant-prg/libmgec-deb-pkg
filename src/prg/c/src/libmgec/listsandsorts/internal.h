@@ -9,7 +9,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.11 ==== 12/09/2022_
+ * @version _v1.0.11 ==== 15/09/2022_
  */
 
 /* **********************************************************************
@@ -30,7 +30,7 @@
  * 12/07/2019	MG	1.0.9	Separate combined header file into	*
  *				specific individual files.		*
  * 03/12/2021	MG	1.0.10	Tighten SPDX tag.			*
- * 12/09/2022	MG	1.0.11	Rename of portability.h			*
+ * 15/09/2022	MG	1.0.11	Rename of portability.h			*
  *				Rename of bstree.h			*
  *				Add stddef.h for size_t.		*
  *				Move static function declarations to .c	*
@@ -38,7 +38,6 @@
  *				Test tracing elements moved here as	*
  *				they are not part of the API.		*
  *				Rename internal.h			*
- *				Use pkginclude location.		*
  *									*
  ************************************************************************
  */
@@ -46,8 +45,8 @@
 #ifndef INTERNAL_H
 #define INTERNAL_H
 
-#include <libmgec/mge-bstree.h>
-#include <libmgec/mge-portability.h>
+#include <mge-bstree.h>
+#include <mge-portability.h>
 
 #include <stddef.h>
 
