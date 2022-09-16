@@ -7,11 +7,13 @@ testdir=$(pwd)
 # the directory structure is different during make distcheck.
 if [[ -z $srcdir ]]; then
 	cliheaders="-I../../../../../../src/prg/c/inc"
+	cliheaders+=" -I../../../../../../src/prg/c/inc/libmgec"
 	cliheaders+=" -I../../../../../../src/prg/c/inc-tmp"
 	headers=$(find ../../../../../../src -name inc-tmp -prune \
 		-o -name *.h -print)
 else
 	cliheaders="-I$srcdir/../../../../../src/prg/c/inc"
+	cliheaders+=" -I$srcdir/../../../../../src/prg/c/inc/libmgec"
 	cliheaders+=" -I$srcdir/../../../../../src/prg/c/inc-tmp"
 	headers=$(find $srcdir/../../../../../src -name inc-tmp -prune \
 		-o -name *.h -print)

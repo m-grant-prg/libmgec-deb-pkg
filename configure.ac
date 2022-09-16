@@ -736,7 +736,7 @@ AC_CONFIG_FILES(Makefile
 		src/man/3/memory/Makefile
 		src/man/3/listsandsorts/sllist/Makefile
 		src/prg/c/gen/lib/Makefile
-		src/prg/c/inc/Makefile
+		src/prg/c/inc/libmgec/Makefile
 		src/prg/c/inc-tmp/Makefile
 		src/prg/c/lib-tmp/Makefile
 		src/prg/c/pkg-config/Makefile

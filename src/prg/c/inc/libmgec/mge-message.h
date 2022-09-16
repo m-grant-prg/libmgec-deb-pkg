@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mge-message.h
+ * @file src/prg/c/inc/libmgec/mge-message.h
  *
  * Header file for message processing.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 15/09/2022_
+ * @version _v1.0.13 ==== 16/09/2022_
  */
 
 /* **********************************************************************
@@ -39,7 +39,7 @@
  *				remove it from API.			*
  * 16/04/2021	MG	1.0.11	Add print_def_msg_values() prototype.	*
  * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
- * 15/09/2022	MG	1.0.13	Rename of portability.h			*
+ * 16/09/2022	MG	1.0.13	Rename of portability.h			*
  *				Rename mgebuffer.h			*
  *				Rename to standard format mge-message.h	*
  *				Remove stdbool ifdeffery.		*
@@ -53,8 +53,8 @@
 #include <stdbool.h>
 #include <sys/types.h>
 
-#include <mge-buffer.h>
-#include <mge-portability.h>
+#include <libmgec/mge-buffer.h>
+#include <libmgec/mge-portability.h>
 
 BEGIN_C_DECLS
 

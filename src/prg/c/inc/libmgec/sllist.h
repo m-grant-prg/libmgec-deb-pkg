@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/sllist.h
+ * @file src/prg/c/inc/libmgec/sllist.h
  *
  * Singly linked list header file.
  *
@@ -43,7 +43,7 @@
 #ifndef SLLIST_H
 #define SLLIST_H
 
-#include <mge-portability.h>
+#include <libmgec/mge-portability.h>
 
 #include <stddef.h>
 

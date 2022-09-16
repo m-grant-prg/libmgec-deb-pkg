@@ -1,5 +1,5 @@
 /**
- * @file src/prg/c/inc/mge-memory.h
+ * @file src/prg/c/inc/libmgec/mge-memory.h
  *
  * Header file for memory functions.
  *
@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.7 ==== 15/09/2022_
+ * @version _v1.0.7 ==== 16/09/2022_
  */
 
 /* **********************************************************************
@@ -25,7 +25,7 @@
  * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
  * 08/06/2019	MG	1.0.5	clang-format coding style changes.	*
  * 03/12/2021	MG	1.0.6	Tighten SPDX tag.			*
- * 15/09/2022	MG	1.0.7	Rename of portability.h			*
+ * 16/09/2022	MG	1.0.7	Rename of portability.h			*
  *				Rename to standard format mge-memory.h	*
  *									*
  ************************************************************************
@@ -34,7 +34,7 @@
 #ifndef MGE_MEMORY_H
 #define MGE_MEMORY_H
 
-#include <mge-portability.h>
+#include <libmgec/mge-portability.h>
 
 #include <sys/types.h>
 

@@ -18,7 +18,7 @@
 #include <string.h>
 
 #include "sllisttest.h"
-#include <libmgec.h>
+#include <libmgec/libmgec.h>
 
 int verbose;
 

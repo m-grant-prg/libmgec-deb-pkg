@@ -15,7 +15,7 @@
 #ifndef SLLISTTEST_H
 #define SLLISTTEST_H
 
-#include <mge-portability.h>
+#include <libmgec/mge-portability.h>
 
 #include <stddef.h>
 #include <stdio.h>

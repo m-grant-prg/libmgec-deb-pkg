@@ -1,6 +1,6 @@
 #########################################################################
 #									#
-# Script ID: src/prg/c/inc/Makefile.am					#
+# Script ID: src/prg/c/inc/libmgec/Makefile.am				#
 # Author: Copyright (C) 2015-2022  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
@@ -35,7 +35,7 @@
 # 29/06/2020	MG	1.0.12	Rename mge-general.h to mge-internal.h	#
 # 03/12/2021	MG	1.0.13	Tighten SPDX tag.			#
 # 09/06/2022	MG	1.0.14	Remove now empty mge-internal.h		#
-# 15/09/2022	MG	1.0.15	Rename of portability.h			#
+# 16/09/2022	MG	1.0.15	Rename of portability.h			#
 #				Rename of bstree.h			#
 #				Rename of mgebuffer.h			#
 #				Rename mgememory.h			#

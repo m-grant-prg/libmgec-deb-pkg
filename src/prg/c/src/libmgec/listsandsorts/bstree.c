@@ -20,7 +20,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.11 ==== 15/09/2022_
+ * @version _v1.1.11 ==== 16/09/2022_
  */
 
 /* **********************************************************************
@@ -83,7 +83,7 @@
  * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
  *				static (non-API) function.		*
  * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
- * 15/09/2022	MG	1.1.11	Rename of bstree.h			*
+ * 16/09/2022	MG	1.1.11	Rename of bstree.h			*
  *				Move static function declarations here.	*
  *				Mark test tracing function as internal	*
  *				as it is not part of the API.		*
@@ -99,8 +99,8 @@
 #include <string.h>
 
 #include "internal.h"
-#include <mge-bstree.h>
-#include <mge-errno.h>
+#include <libmgec/mge-bstree.h>
+#include <libmgec/mge-errno.h>
 
 static struct bstreenode *add_node(struct bstreenode *currentnode,
 				   const void *object, size_t objsize,
