@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/src/test-sllist/Makefile.am			#
-# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
+# Author: Copyright (C) 2015-2019, 2021, 2022  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -49,6 +49,7 @@
 # 05/11/2021	MG	1.0.15	Use (non-)debug CPPFLAGS from configure	#
 #				Use (non-)debug CFLAGS from configure	#
 # 03/12/2021	MG	1.0.16	Tighten SPDX tag.			#
+# 16/09/2022	MG	1.0.17	Rename tmplibraries.			#
 #									#
 #########################################################################
 
@@ -82,7 +83,7 @@ check_LTLIBRARIES = libsllisttest.la
 libsllisttest_la_SOURCES = common.c
 libsllisttest_la_SOURCES += sllisttest01.c sllisttest02.c sllisttest03.c
 libsllisttest_la_SOURCES += sllisttest04.c sllisttest05.c
-libsllisttest_la_LIBADD = ../libmgec/libmgec.la $(tmplibraries)
+libsllisttest_la_LIBADD = ../libmgec/libmgec.la $(tmplibraries_depth_2)
 
 
 check_PROGRAMS = sllisttest
