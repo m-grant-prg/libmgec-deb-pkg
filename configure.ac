@@ -51,7 +51,7 @@
 # SECTION  9: Check for structures					#
 # SECTION 10: Check for compiler characteristics			#
 # SECTION 11: Check for library functions				#
-# SECTION 12: Check for pkg-config files				#
+# SECTION 12: Check for pkg-config files or alternatives		#
 # SECTION 13: Check for system services					#
 # SECTION 14: Additional checks & variables				#
 # SECTION 15: Specify the output files					#
