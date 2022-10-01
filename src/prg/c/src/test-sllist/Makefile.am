@@ -49,7 +49,7 @@
 # 05/11/2021	MG	1.0.15	Use (non-)debug CPPFLAGS from configure	#
 #				Use (non-)debug CFLAGS from configure	#
 # 03/12/2021	MG	1.0.16	Tighten SPDX tag.			#
-# 16/09/2022	MG	1.0.17	Rename tmplibraries.			#
+# 30/09/2022	MG	1.0.17	Re-order tmplibraries.			#
 #									#
 #########################################################################
 
@@ -83,12 +83,15 @@ check_LTLIBRARIES = libsllisttest.la
 libsllisttest_la_SOURCES = common.c
 libsllisttest_la_SOURCES += sllisttest01.c sllisttest02.c sllisttest03.c
 libsllisttest_la_SOURCES += sllisttest04.c sllisttest05.c
-libsllisttest_la_LIBADD = ../libmgec/libmgec.la $(tmplibraries_depth_2)
 
 
 check_PROGRAMS = sllisttest
 sllisttest_SOURCES = main.c
-sllisttest_LDADD = ./libsllisttest.la
+
+
+LDADD = $(tmplibraries)
+LDADD += ../libmgec/libmgec.la
+LDADD += ./libsllisttest.la
 
 
 Test01Answer.txt Test02Answer.txt Test03Answer.txt Test04Answer.txt \

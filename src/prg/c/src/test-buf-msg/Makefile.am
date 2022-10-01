@@ -30,7 +30,7 @@
 # 05/11/2021	MG	1.0.7	Use (non-)debug CPPFLAGS from configure	#
 #				Use (non-)debug CFLAGS from configure	#
 # 03/12/2021	MG	1.0.8	Tighten SPDX tag.			#
-# 16/09/2022	MG	1.0.9	Rename tmplibraries.			#
+# 30/09/2022	MG	1.0.9	Re-order tmplibraries.			#
 #									#
 #########################################################################
 
@@ -61,6 +61,6 @@ bufmsgtest_SOURCES = main.c
 AM_LDFLAGS = $(MG_LDFLAGS)
 
 
-LDADD = ../libmgec/libmgec.la
-LDADD += $(tmplibraries_depth_2)
+LDADD = $(tmplibraries)
+LDADD += ../libmgec/libmgec.la
 

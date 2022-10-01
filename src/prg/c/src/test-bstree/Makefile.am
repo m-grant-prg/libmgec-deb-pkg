@@ -48,7 +48,7 @@
 # 05/11/2021	MG	1.0.17	Use (non-)debug CPPFLAGS from configure	#
 #				Use (non-)debug CFLAGS from configure	#
 # 03/12/2021	MG	1.0.18	Tighten SPDX tag.			#
-# 16/09/2022	MG	1.0.19	Rename tmplibraries.			#
+# 30/09/2022	MG	1.0.19	Re-order tmplibraries.			#
 #									#
 #########################################################################
 
@@ -79,8 +79,8 @@ bstreetest_SOURCES = main.c
 AM_LDFLAGS = $(MG_LDFLAGS)
 
 
-LDADD = ../libmgec/libmgec.la
-LDADD += $(tmplibraries_depth_2)
+LDADD = $(tmplibraries)
+LDADD += ../libmgec/libmgec.la
 
 
 Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt Test03aAnswer.txt \

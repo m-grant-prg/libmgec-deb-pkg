@@ -72,11 +72,10 @@
 #				Use (non-)debug CFLAGS from configure	#
 # 03/12/2021	MG	1.0.29	Tighten SPDX tag.			#
 # 10/06/2022	MG	1.0.30	Add compiler analyzer option.		#
-# 16/09/2022	MG	1.0.31	Remove now deleted dllist-internal.	#
+# 30/09/2022	MG	1.0.31	Remove now deleted dllist-internal.	#
 #				Remove now deleted sllist-internal.	#
 #				Rename of bstree-internal.h to		#
 #				internal.h				#
-#				Rename tmplibraries.			#
 #									#
 #########################################################################
 
@@ -136,5 +135,5 @@ AM_LDFLAGS = $(MG_LDFLAGS)
 AM_LDFLAGS += -version-info @lib_version_info@
 
 
-libmgec_la_LIBADD = $(tmplibraries_depth_2)
+libmgec_la_LIBADD = $(tmplibraries)
 
