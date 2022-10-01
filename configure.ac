@@ -164,7 +164,7 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
-# 30/09/2022	MG	1.2.2	Do not generate pkg-config file with	#
+# 01/10/2022	MG	1.2.2	Do not generate pkg-config file with	#
 #				AC_CONFIG_FILES as it does not support	#
 #				extended Installation Directory		#
 #				Variables such as pkgincludedir. Use	#
@@ -175,6 +175,7 @@
 #				scripts.				#
 #				Change tmplibraries to use an absolute	#
 #				path.					#
+#				Use find for tmpheaders.		#
 #									#
 #########################################################################
 
@@ -664,12 +665,11 @@ AC_SUBST([edit], ["sed \
 #
 AC_SUBST(tmpheaders)
 
-for entry in `dirname $0`/src/prg/c/inc-tmp/*.h
-do
-	if test -f "$entry" ;then
-		tmpheaders=$tmpheaders" "$(basename "$entry")
-	fi
-done
+AC_MSG_NOTICE(Looking for temporary headers...)
+cd `dirname $0`/src/prg/c/inc-tmp
+tmpheaders=$(echo $(find -name *.h))
+cd - > /dev/null
+AC_MSG_NOTICE(Temporary headers to be used are $tmpheaders)
 
 #
 # This creates an AutoConf substitution variable for temporary libraries.
