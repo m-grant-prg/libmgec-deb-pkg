@@ -164,7 +164,7 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
-# 16/09/2022	MG	1.2.2	Do not generate pkg-config file with	#
+# 30/09/2022	MG	1.2.2	Do not generate pkg-config file with	#
 #				AC_CONFIG_FILES as it does not support	#
 #				extended Installation Directory		#
 #				Variables such as pkgincludedir. Use	#
@@ -173,8 +173,8 @@
 #				Add test-headers build.			#
 #				Make the contents of $CC available in	#
 #				scripts.				#
-#				Rename tmplibraries variable to have	#
-#				directory depth figure.			#
+#				Change tmplibraries to use an absolute	#
+#				path.					#
 #									#
 #########################################################################
 
@@ -672,31 +672,35 @@ do
 done
 
 #
-# This creates AutoConf substitution variables for temporary libraries.
+# This creates an AutoConf substitution variable for temporary libraries.
 # Temporary libraries are development copies of libraries from other packages
 # which are being tested / modified in conjunction with this package.
-# These variables can be consumed in the AutoMake XXX_LDADD line.
+# This variable can be consumed in the AutoMake XXX_LDADD line.
 # The use of `dirname $0` to get the configure invocation directory is critical
 # for parallel builds and make distcheck as the relative path always stays the
 # same but configure may be invoked from different directories.
-# The depth_X part of the variable name indicates how many directory levels
-# must be traversed upwards to reach the level containing the lib-tmp directory.
 #
-AC_SUBST(tmplibraries_depth_2)
+AC_SUBST(tmplibraries)
 
-for direntry in `dirname $0`/src/prg/c/lib-tmp/*
+AC_MSG_NOTICE(Looking for temporary libraries...)
+
+cd `dirname $0`
+topdir=$(find ~+ -type d -name atbuild -prune -o -type d -name lib-tmp -print)
+cd - > /dev/null
+
+for direntry in $topdir/*
 do
 	if test -d "$direntry" ;then
-		for entry in `dirname $0`\
-/src/prg/c/lib-tmp/$(basename "$direntry")/*.la
+		for entry in $direntry/*.la
 		do
 			if test -f "$entry" ;then
-				tmplibraries_depth_2=$tmplibraries_depth_2\
-" \$(srcdir)/../../lib-tmp/"$(basename "$direntry")"/"$(basename "$entry")
+				AC_MSG_NOTICE(Temporary library $entry found.)
+				tmplibraries+=" $entry"
 			fi
 		done
 	fi
 done
+AC_MSG_NOTICE(Temporary libraries to be used are $tmplibraries)
 
 # Check a source file to ensure no command line --srcdir typo.
 AC_CONFIG_SRCDIR(src/prg/c/src/libmgec/version.c)
