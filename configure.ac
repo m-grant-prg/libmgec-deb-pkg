@@ -176,6 +176,7 @@
 #				Change tmplibraries to use an absolute	#
 #				path.					#
 #				Use find for tmpheaders.		#
+# 04/10/2022	MG	1.2.3	Use AC MSG CHECKING where appropriate.	#
 #									#
 #########################################################################
 
@@ -190,7 +191,7 @@ AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.2 $)
+AC_REVISION($Revision: 1.2.3 $)
 
 AC_PREREQ(2.69)
 
@@ -266,8 +267,11 @@ AC_ARG_ENABLE(analyzer,
 	esac],analyzer=false)
 AM_CONDITIONAL(ANALYZER, test x$analyzer = xtrue)
 
+AC_MSG_CHECKING([whether to build for analyzer output])
 if test "x${analyzer}" = xtrue; then
-	AC_MSG_NOTICE(building to display compiler analyzer output)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -286,11 +290,13 @@ AC_ARG_ENABLE(atonly,
 	esac],atonly=false)
 AM_CONDITIONAL(ATONLY, test x$atonly = xtrue)
 
+AC_MSG_CHECKING([whether to build for AT only testing or installation])
 if test "x${atonly}" = xtrue; then
-	AC_MSG_NOTICE(building for AT only testing or installing)
 	AC_SUBST(docbaseloc,"/usr/share/doc-base")
+	AC_MSG_RESULT([yes])
 else
 	AC_SUBST(docbaseloc,"$datarootdir/doc-base")
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -311,8 +317,11 @@ AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 # and leave the selection to the Makefile.am's.
 : ${CFLAGS=""}
 
+AC_MSG_CHECKING([whether to build in debug mode])
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(build in debug mode)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -333,10 +342,11 @@ AC_ARG_ENABLE([distcheckfake],
 	esac],[distcheckfake=false])
 AM_CONDITIONAL([DISTCHECKFAKE], [test x$distcheckfake = xtrue])
 
+AC_MSG_CHECKING([whether to use workarounds to facilitate distcheck])
 if test "x${distcheckfake}" = xtrue; then
-	AC_MSG_NOTICE([using workarounds to facilitate distcheck])
+	AC_MSG_RESULT([yes])
 else
-	AC_MSG_NOTICE([using distcheck incompatible setup])
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -352,8 +362,11 @@ AC_ARG_ENABLE(headercheck,
 	esac],headercheck=false)
 AM_CONDITIONAL(HEADERCHECK, test x$headercheck = xtrue)
 
+AC_MSG_CHECKING([whether to print header stack depth])
 if test "x${headercheck}" = xtrue; then
-	AC_MSG_NOTICE(building to display include stack depth)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -369,8 +382,11 @@ AC_ARG_ENABLE(sparse,
 	esac],sparse=false)
 AM_CONDITIONAL(SPARSE, test x$sparse = xtrue)
 
+AC_MSG_CHECKING([whether to use sparse])
 if test "x${sparse}" = xtrue; then
-	AC_MSG_NOTICE(building using sparse)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 # Pass on some CLA default values to Makefile.am
@@ -665,11 +681,15 @@ AC_SUBST([edit], ["sed \
 #
 AC_SUBST(tmpheaders)
 
-AC_MSG_NOTICE(Looking for temporary headers...)
+AC_MSG_CHECKING([for temporary headers])
 cd `dirname $0`/src/prg/c/inc-tmp
 tmpheaders=$(echo $(find -name *.h))
 cd - > /dev/null
-AC_MSG_NOTICE(Temporary headers to be used are $tmpheaders)
+if test X"$tmpheaders" = X ; then
+	AC_MSG_RESULT([none])
+else
+	AC_MSG_RESULT([using $tmpheaders])
+fi
 
 #
 # This creates an AutoConf substitution variable for temporary libraries.
@@ -682,7 +702,7 @@ AC_MSG_NOTICE(Temporary headers to be used are $tmpheaders)
 #
 AC_SUBST(tmplibraries)
 
-AC_MSG_NOTICE(Looking for temporary libraries...)
+AC_MSG_CHECKING([for temporary libraries])
 
 cd `dirname $0`
 topdir=$(find ~+ -type d -name atbuild -prune -o -type d -name lib-tmp -print)
@@ -694,13 +714,16 @@ do
 		for entry in $direntry/*.la
 		do
 			if test -f "$entry" ;then
-				AC_MSG_NOTICE(Temporary library $entry found.)
 				tmplibraries+=" $entry"
 			fi
 		done
 	fi
 done
-AC_MSG_NOTICE(Temporary libraries to be used are $tmplibraries)
+if test X"$tmplibraries" = X ; then
+	AC_MSG_RESULT([none])
+else
+	AC_MSG_RESULT([using $tmplibraries])
+fi
 
 # Check a source file to ensure no command line --srcdir typo.
 AC_CONFIG_SRCDIR(src/prg/c/src/libmgec/version.c)
