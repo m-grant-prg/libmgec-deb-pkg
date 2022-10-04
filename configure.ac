@@ -177,6 +177,8 @@
 #				path.					#
 #				Use find for tmpheaders.		#
 # 04/10/2022	MG	1.2.3	Use AC MSG CHECKING where appropriate.	#
+#				Separate AutoTools generated files from	#
+#				project root.				#
 #									#
 #########################################################################
 
@@ -226,6 +228,9 @@ AC_DEFINE(SOURCE_VERSION, "1.2.6", \
 AC_SUBST(lib_version_info, "6:1:4")
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
+
+# Separate AutoTools generated files from project root.
+AC_CONFIG_AUX_DIR([build-aux])
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
