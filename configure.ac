@@ -176,9 +176,11 @@
 #				Change tmplibraries to use an absolute	#
 #				path.					#
 #				Use find for tmpheaders.		#
-# 04/10/2022	MG	1.2.3	Use AC MSG CHECKING where appropriate.	#
+# 06/10/2022	MG	1.2.3	Use AC MSG CHECKING where appropriate.	#
 #				Separate AutoTools generated files from	#
 #				project root.				#
+#				Move CFLAGS init to Compiler setup	#
+#				section.				#
 #									#
 #########################################################################
 
@@ -317,11 +319,6 @@ AC_ARG_ENABLE(debug,
 	esac],debug=false)
 AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 
-# CFLAGS is usually set to -g -O2, but for debugging we will probably
-# want -g -Og and for production we will probably want -O2. So empty CFLAGS here
-# and leave the selection to the Makefile.am's.
-: ${CFLAGS=""}
-
 AC_MSG_CHECKING([whether to build in debug mode])
 if test "x${debug}" = xtrue; then
 	AC_MSG_RESULT([yes])
@@ -408,6 +405,14 @@ AC_MSG_NOTICE([checking compiler setup])
 
 # Set language for compilation tests.
 AC_LANG(C)
+
+# CFLAGS is usually set to -g -O2, but for debugging we will probably
+# want -g -Og and for production we will probably want -O2. So empty CFLAGS here
+# and leave the selection to the Makefile.am's. Both this clearing of the flags
+# and the default setting mentioned above are still overridden if CFLAGS is set
+# on the command line by the user. (This must appear between AC INIT and
+# AC PROG CC).
+: ${CFLAGS=""}
 
 # Checks the compiler to use from either a standard list or one to use for
 # sparse, stores it in the CC variable and checks its capabilities.
