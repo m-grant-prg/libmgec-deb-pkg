@@ -16,6 +16,8 @@ Contents
 
 4 ... Utility Scripts
 
+5 ... Further Information
+
 
 
 -------------------------
@@ -142,4 +144,20 @@ building in what is required and thinking about it, thereafter it is best to use
 ../bootstrap.sh --gnulib ..
 as it determines whether to do a re-generate based on whether the cache file
 exists, i.e. it has been wanted before.
+
+-------------------------
+5 ... Further Information
+=========================
+Further information can be found on the wiki at:-
+
+https://github.com/m-grant-prg/libmgec/wiki
+
+Programmer oriented documentation can for the latest stable release can be found
+at:-
+
+https://m-grant-prg.github.io/libmgec/
+
+The API link will provide documentation relevant to a consumer of the project,
+whereas, the internal documentation provides that documentation plus
+documentation aimed at contributors to the project.
 
