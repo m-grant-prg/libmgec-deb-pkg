@@ -41,7 +41,7 @@ then you must install the development files from libmgec-dev.
 
 Related packages are the libmgec-dev MGE General C Library Development Files,
 an API documentation package libmgec-doc and a full documentation package
-libmgec-int-doc. These Doxygen documentation packages are also avilable online
+libmgec-int-doc. These Doxygen documentation packages are also available online
 at - https://m-grant-prg.github.io/libmgec/
 
 N.B.
