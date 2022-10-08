@@ -183,6 +183,7 @@
 #				section.				#
 # 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
 #				Add AC CHECK FUNCS for memmove.		#
+#				Add AC CHECK HEADERS for stddef.h	#
 #									#
 #########################################################################
 
@@ -556,6 +557,7 @@ AC_MSG_NOTICE(checking for particular programs required at run time)
 AC_MSG_NOTICE(checking for header files required by this application)
 
 AC_CHECK_HEADERS(stdio.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS(stddef.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(stdlib.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(string.h, [], AC_MSG_ERROR(header not found))
 AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
