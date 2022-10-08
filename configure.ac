@@ -182,6 +182,7 @@
 #				Move CFLAGS init to Compiler setup	#
 #				section.				#
 # 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
+#				Add AC CHECK FUNCS for memmove.		#
 #									#
 #########################################################################
 
@@ -603,7 +604,7 @@ AC_MSG_NOTICE(checking for GNU compatible library functions)
 
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
-AC_CHECK_FUNCS(memset strerror)
+AC_CHECK_FUNCS(memmove memset strerror)
 
 
 #################################################
