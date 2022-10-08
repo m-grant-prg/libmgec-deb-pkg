@@ -181,6 +181,7 @@
 #				project root.				#
 #				Move CFLAGS init to Compiler setup	#
 #				section.				#
+# 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
 #									#
 #########################################################################
 
@@ -195,7 +196,7 @@ AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.3 $)
+AC_REVISION($Revision: 1.2.4 $)
 
 AC_PREREQ(2.69)
 
@@ -582,6 +583,8 @@ AC_TYPE_SSIZE_T
 #########################################################
 
 AC_MSG_NOTICE(checking for compiler characteristics)
+
+AC_C_INLINE
 
 # Build suitable pre-processor, compiler and linker flags.
 MG_BUILD_COMPILER_VERSION_CPPFLAGS(MG_CPPFLAGS, MG_DEBUG_CPPFLAGS)
