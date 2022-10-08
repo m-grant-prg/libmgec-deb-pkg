@@ -556,14 +556,14 @@ AC_MSG_NOTICE(checking for particular programs required at run time)
 
 AC_MSG_NOTICE(checking for header files required by this application)
 
-AC_CHECK_HEADERS(stdio.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(stddef.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(stdlib.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(string.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(syslog.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS([errno.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([netdb.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([stdio.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([stddef.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([stdlib.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([string.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([sys/types.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([syslog.h], [], [AC_MSG_ERROR([header not found])])
 
 AC_HEADER_STDBOOL
 
