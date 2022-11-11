@@ -210,7 +210,7 @@ AC_MSG_NOTICE(initialisation and setup)
 AC_DEFINE(SOURCE_VERSION, "1.2.6", \
 	Define to the version of source code in this package.)
 
-AC_SUBST(lib_version_info, "6:1:4")
+AC_SUBST(lib_version_info, "6:2:4")
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
