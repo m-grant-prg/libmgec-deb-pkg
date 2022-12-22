@@ -1,0 +1,54 @@
+NAME
+trim_buf - Optimise an mgebuffer struct.
+SYNOPSIS
+#include <mgebuffer.h>
+
+struct mgebuffer *trim_buf(struct mgebuffer *msg_buf);
+
+DESCRIPTION
+Remove processed data from a buffer object if deemed necessary. Re-sizing the
+buffer every time this function is called would not be efficient. So, the
+function first tests whether the buffer has a defined multiple
+(BUF_UNUSED_DEF_SIZE_MULT) of the default buffer size (DEF_BUF_SIZE) free, and
+if so shrinks the buffer and relocates valid data to the start of the buffer. If
+that test does not result in action, the second test determines if the
+percentage of unreachable portion of the buffer to the size of the buffer
+exceeds a defined value (BUF_MAX_UNREACH_PERCENT), and if so, it relocates data
+to the start of the buffer.
+.br
+On failure NULL is returned, the function argument is unchanged and
+mge_errno will be set.
+
+PARAMETERS
+msg_buf - a pointer to the mgebuffer struct buffer to use.
+
+RETURN VALUE
+Return value is a pointer to the updated mgebuffer struct or NULL on error.
+
+ERRORS
+NULL is returned.
+
+mge_errno is set as required. Possible values are:-
+.RS
+MGE_ERRNO due to realloc failure.
+.RE
+
+Functions arguments are unchanged.
+
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2015-2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+clear_msg(3) concat_buf(3) print_buf(3) print_msg(3) pull_msg(3)
+

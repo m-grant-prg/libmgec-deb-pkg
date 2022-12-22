@@ -1,0 +1,112 @@
+NAME
+for_each_sll_node - Macro to iterate through a singly linked list.
+SYNOPSIS
+	#include <sllist.h>
+
+	for_each_sll_node(struct sllistnode *focus,
+			struct sllistnode *head)
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a single linked list.
+
+This macro will iterate over a singly linked list, head, with the current node
+being focus.
+PARAMETERS
+focus - Is a pointer to the node being processed.
+
+head - The root node of the list.
+
+EXAMPLE
+A simple example using a character string:-
+
+	#include <sllist.h>
+	#include <mge-errno.h>
+
+	//...
+
+	int i;
+
+	struct testnode {
+		char key[20];
+		int payload;
+	};
+
+	struct sllistnode *root = NULL;
+
+	printf("Words entered:-\\t");
+	char *str[] = {"consistency", "is", "all", "i", "ask", "give",
+			"us", "this", "day", "our", "daily", "mask",
+			"\\0"};
+
+	for (i = 0; *str[i] && !mge_errno; i++) {
+		printf("%s ", str[i]);
+		struct testnode test;
+		strcpy(test.key, str[i]);
+		test.payload = i;
+		root = add_tail_sll_node(root, &test, sizeof test);
+	}
+
+	printf("\\n");
+	printf("mge_errno is %d\\n", mge_errno);
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+	printf("\\n");
+
+	struct testnode *pnode;
+	struct sllistnode *currentnode;
+
+	printf("Linked List:-\\t");
+
+	// This should print - "consistency is all i ask give us this
+	// day our daily mask"
+	for_each_sll_node(currentnode, root) {
+		pnode = currentnode->object;
+		printf("%s ", pnode->key);
+	}
+	printf("\\n");
+
+OVERVIEW
+This is one of a series of functions and macros implementing a single linked
+list. A single linked list has only a forward link to the next node. The node,
+which is defined in sllist.h, is shown below:-
+
+	struct sllistnode {
+		void *object;
+		struct sllistnode *next;
+	};
+
+Each node in the linked list has an object as payload. It can be any form of
+data element, memory permitting.
+
+This single linked list implementation is supported by the following functions:-
+
+add_head_sll_node() - add a node to the beginning of a single linked list.
+
+add_tail_sll_node() - add a node to the end of a single linked list.
+
+find_next_sll_node() - find the next node after the supplied node.
+
+find_sll_node() - find a node in the list
+
+for_each_sll_node() - macro iterating over the list.
+
+free_sllist() - Delete the entire single linked list.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_head_sll_node(3) add_tail_sll_node(3) find_next_sll_node(3) find_sll_node(3)
+free_sllist(3) mge_strerror(3)
+

@@ -1,0 +1,181 @@
+NAME
+upd_bst_node - Update a node in a generic binary search tree.
+
+SYNOPSIS
+#include <bstree.h>
+
+void *upd_bst_node(const struct bstree *tree, const void *updobj,
+		size_t objsize);
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a generic binary search tree.
+
+upd_bst_node updates a binary search tree node with the data of 'updobj'. This
+function only really makes sense if the object embedded in a node carries a
+payload, i.e. object = key part + payload part.
+.br
+mge_errno will be set as required.
+
+PARAMETERS
+tree - a pointer to the binary search tree.
+
+updobj - The object to find and replace. It does not need to be a fully
+populated object. It only needs enough information to support the comparison
+function. E.g. a key.
+
+objsize - The size of the object.
+
+RETURN VALUE
+A pointer to the updated object, or, NULL if error, (See mge_errno).
+
+ERRORS
+These values for mge_errno are defined in mge-errno.h:-
+
+MGE_PARAM - One or more supplied parameters are invalid.
+
+MGE_ERRNO - Error allocating memory for the object. See the copy of errno
+in sav_errno and / or use mge_strerror(mge_errno).
+
+MGE_NODE_NOT_FOUND - The node containing the requested object does not exist.
+
+EXAMPLE
+An example using a struct as the object. (Note the comparison function):-
+
+	#include <bstree.h>
+	#include <mge-errno.h>
+
+	int nodecmp(const struct testnode *node1,
+			const struct testnode *node2);
+
+	//...
+
+	struct bstree *tree;
+	struct nodeobj {
+		char key[20];
+		int payload;
+	} obj;
+	struct nodeobj *pobj;
+	obj.key = "Bill";
+	obj.payload = 1;
+
+	tree = cre_bst(BST_NODES_UNIQUE,
+			(int (*)(const void *, const void *))nodecmp);
+	if (tree == NULL) {
+		printf("%s\\n", mge_strerror(mge_errno));
+		return 1;
+	}
+
+	pt = add_bst_node(tree, &obj, sizeof obj);
+	if (pt == NULL) {
+		printf("%s\\n", mge_strerror(mge_errno));
+		tree = del_bst(tree);
+		return 1;
+	}
+
+	tree = pt;
+
+	// This will print Found object Bill with payload 1.
+	pobj = find_bst_node(tree, &obj);
+	if (!mge_errno)
+		printf("Found object %s with payload %d\\n",
+			pobj->key, pobj->payload;
+	else
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	obj.payload = 999;
+	// This will print Found object Bill with payload 999.
+	pobj = upd_bst_node(root, &obj, sizeof obj);
+	if (pobj != NULL)
+		printf("Found object %s with payload %d\\n",
+			pobj->key, pobj->payload;
+	else
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	tree = del_bst(tree);
+
+	// ...
+
+	int nodecmp(const struct testnode *node1,
+			const struct testnode *node2)
+	{
+		return (strcmp(node1->key, node2->key));
+	}
+
+OVERVIEW
+This is one of a series of functions implementing a generic binary search tree.
+It is generic because each node contains an object which can be of any type.
+
+Binary search trees work by comparing nodes which means that we must have a
+means of comparing 'objects'. In order to do this the consumer of the binary
+search tree must provide a comparison function at tree creation time which has
+the same prototype as strcmp, i.e.
+
+int comparison_function(const void *parameter1, const void *parameter2)
+
+returning a value of less than, equal to, or greater than zero depending on
+whether parameter1 is less than, equal to, or greater than, parameter2.
+
+Binary search trees are fundamentally mechanisms for storing and retrieving
+objects related by contents and purpose. As such they can order lists and
+provide speedy random access to their elements. In addition, a generic binary
+search tree such as this, may be used to implement sparse arrays. A revealing
+example of this would be a spreadsheet implementation where a binary search tree
+would represent the spreadsheet as a sparse array and each node would represent
+a cell. The 'object', (or cell), contained in each node could take the form:-
+
+	struct cell {
+		char *column;
+		int row;
+		char *contents;
+		};
+
+The column / row combination provides the cell reference, (e.g. A1), and the
+contents is the payload of the cell, (a formula or value). The user-supplied
+comparison function would obviously have to compare column and row.
+
+This generic binary search tree implementation is supported by the following
+functions:-
+
+cre_bst() - create a new binary search tree.
+
+add_bst_node() - add a node to the binary search tree or increment the counter
+of a pre-existing node.
+
+del_bst() - delete a binary tree, empty or not.
+
+del_bst_node() - delete a node from the binary search tree or decrement the
+counter of a pre-existing node.
+
+find_bst_node() - find an object in the tree.
+
+find_next_bst_node() - find the next object after the supplied object.
+
+find_next_bst_node_trace() - find the next object and trace information after
+the supplied object.
+
+find_prev_bst_node() - find the object preceding the supplied object.
+
+get_counter_bst_node() - find an object in the tree and return the node counter.
+
+upd_bst_node() - Update the object in a node. This only makes sense if the
+object has a key part and a payload part, so the match is made on the key and
+essentially the payload is updated.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_bst_node(3) cre_bst(3) del_bst(3) del_bst_node(3) find_bst_node(3)
+find_next_bst_node(3) find_next_bst_node_trace(3) find_prev_bst_node(3)
+get_counter_bst_node(3) mge_strerror(3)

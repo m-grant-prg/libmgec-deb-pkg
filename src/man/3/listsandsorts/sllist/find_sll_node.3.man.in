@@ -1,0 +1,126 @@
+NAME
+find_sll_node - Find a node in a single linked list.
+SYNOPSIS
+	#include <sllist.h>
+
+	void *find_sll_node(struct sllistnode *head, const void *searchobj,
+		    int (*comp)(const void *, const void *));
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a single linked list.
+
+find_sll_node looks for a node whose payload matches searchobj.
+
+.br
+N.B.
+.br
+There is no contsraint that the node key be unique nor that the list be ordered.
+Therefore this function will only ever find the first match.
+
+.br
+mge_errno will be set as required.
+PARAMETERS
+head - Is a pointer to the root node.
+
+searchobj - Is a pointer to a payload type object which contains the data (key)
+to be matched.
+
+comp - Is a pointer to a function which will compare the node payload and the
+searchobj. It should return an int in a completely comparable way to strcmp.
+RETURN VALUE
+A pointer to the found node, NULL if no matching node exists in the linked
+list or if an error occurs.
+ERRORS
+MGE_PARAM if an argument contains an error.
+EXAMPLE
+A simple example using a character string:-
+
+	#include <sllist.h>
+	#include <mge-errno.h>
+
+	int nodecmp(const void *node1, const void *node2);
+
+	//...
+
+	struct sllistnode *root;
+	char *key = "John";
+	root = NULL;
+	char result[100];
+	char *presult = result;
+
+	root = add_tail_sll_node(root, key, strlen(key) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	char *key1 = "Henry";
+
+	root = add_tail_sll_node(root, key1, strlen(key1) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	presult = find_sll_node(root, key1, nodecmp);
+
+	// This will print Searching for node Henry,
+	// found node with object Henry.
+
+	printf("Searching for node Henry, found object %s\\n",
+		presult);
+
+	//...
+
+	/*
+	 * node comparison function.
+	 */
+	int nodecmp(const void *node1, const void *node2)
+	{
+		return (strcmp((char *)node1, (char *)node2));
+	}
+
+
+OVERVIEW
+This is one of a series of functions implementing a single linked list. A single
+linked list has only a forward link to the next node. The node, which is defined
+in sllist.h, is shown below:-
+
+	struct sllistnode {
+		void *object;
+		struct sllistnode *next;
+	};
+
+Each node in the linked list has an object as payload. It can be any form of
+data element, memory permitting.
+
+This single linked list implementation is supported by the following functions:-
+
+add_head_sll_node() - add a node to the beginning of a single linked list.
+
+add_tail_sll_node() - add a node to the end of a single linked list.
+
+find_next_sll_node() - find the next node after the supplied node.
+
+find_sll_node() - find a node in the list
+
+for_each_sll_node() - macro iterating over the list.
+
+free_sllist() - Delete the entire single linked list.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_head_sll_node(3) add_tail_sll_node(3) find_next_sll_node(3)
+for_each_sll_node(3) free_sllist(3) mge_strerror(3)
+

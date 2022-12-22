@@ -1,0 +1,102 @@
+NAME
+find_next_sll_node - Find the next node in a single linked list.
+SYNOPSIS
+	#include <sllist.h>
+
+	static inline struct sllistnode *find_next_sll_node(
+					struct sllistnode *focus);
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a single linked list.
+
+find_next_sll_node looks for the next node in the linked list after focus.
+.br
+mge_errno will always be zero.
+PARAMETERS
+focus - Is a pointer to the current node.
+RETURN VALUE
+A pointer to the found node, or, NULL if no subsequent node exists in the linked
+list.
+ERRORS
+None.
+EXAMPLE
+A simple example using a character string:-
+
+	#include <sllist.h>
+	#include <mge-errno.h>
+
+	//...
+
+	struct sllistnode *root;
+	char *key = "John";
+	root = NULL;
+
+	root = add_tail_sll_node(root, key, strlen(key) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	char *key1 = "Henry";
+
+	root = add_tail_sll_node(root, key1, strlen(key1) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	struct sllistnode *nextnode = find_next_sll_node(root);
+
+	// This will print Searching for node after root (John),
+	// found node with object Henry.
+
+	printf("Searching for node after root, found object %s\\n",
+		nextnode->object);
+
+	// This will print End of linked list,
+	if (find_next_sll_node(nextnode) == NULL)
+		printf("End of linked list.\\n");
+
+OVERVIEW
+This is one of a series of functions implementing a single linked list. A single
+linked list has only a forward link to the next node. The node, which is defined
+in sllist.h, is shown below:-
+
+	struct sllistnode {
+		void *object;
+		struct sllistnode *next;
+	};
+
+Each node in the linked list has an object as payload. It can be any form of
+data element, memory permitting.
+
+This single linked list implementation is supported by the following functions:-
+
+add_head_sll_node() - add a node to the beginning of a single linked list.
+
+add_tail_sll_node() - add a node to the end of a single linked list.
+
+find_next_sll_node() - find the next node after the supplied node.
+
+find_sll_node() - find a node in the list
+
+for_each_sll_node() - macro iterating over the list.
+
+free_sllist() - Delete the entire single linked list.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_head_sll_node(3) add_tail_sll_node(3) find_sll_node(3) for_each_sll_node(3)
+free_sllist(3) mge_strerror(3)
+

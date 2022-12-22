@@ -1,0 +1,127 @@
+NAME
+add_dll_node - Add a node to a double linked list.
+SYNOPSIS
+	#include <dllist.h>
+
+	struct dllistnode *add_dll_node(struct dllistnode *currentnode,
+				const void *object, size_t objsize);
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a double linked list.
+
+add_dll_node adds a node with data of 'object' to the end of a linked list.
+If currentnode is NULL then add_dll_node creates the root node of a new linked
+list.
+.br
+mge_errno will be set as required. If memory cannot be allocated for the node
+then mge_errno is set to MGE_ERRNO and sav_errno will be a copy of errno as
+set by malloc. mge_strerror(mge_errno) will produce the correct error string.
+PARAMETERS
+currentnode - Is a pointer to the root node or NULL if the linked list is not
+yet started.
+
+object - A void pointer to any type or struct.
+
+objsize - The size of the object.
+
+RETURN VALUE
+A pointer to the root node.
+ERRORS
+These values for mge_errno are defined in mge-errno.h:-
+
+MGE_PARAM - One or more supplied parameters are invalid.
+
+MGE_ERRNO - Memory allocation for node or object via malloc produced an
+error. See the copy of errno in sav_errno and / or use mge_strerror(mge_errno).
+
+EXAMPLE
+A simple example using a character string:-
+
+	#include <dllist.h>
+	#include <mge-errno.h>
+
+	//...
+
+	int i;
+
+	struct testnode {
+		char key[20];
+		int payload;
+	};
+
+	struct dllistnode *root = NULL;
+
+	printf("Words entered:-\\t");
+	char *str[] = {"consistency", "is", "all", "i", "ask", "give",
+			"us", "this", "day", "our", "daily", "mask",
+			"\\0"};
+
+	for (i = 0; *str[i] && !mge_errno; i++) {
+		printf("%s ", str[i]);
+		struct testnode test;
+		strcpy(test.key, str[i]);
+		test.payload = i;
+		root = add_dll_node(root, &test, sizeof test);
+	}
+
+	printf("\\n");
+	printf("mge_errno is %d\\n", mge_errno);
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+	printf("\\n");
+
+	struct testnode *pnode;
+	struct dllistnode *currentnode;
+	currentnode = root;
+
+	printf("Linked List:-\\t");
+
+	// This should print - "consistency is all i ask give us this
+	// day our daily mask"
+	while (currentnode != NULL) {
+		pnode = currentnode->object;
+		printf("%s ", pnode->key);
+		currentnode = find_next_dll_node(currentnode);
+	}
+	printf("\\n");
+
+OVERVIEW
+This is one of a series of functions implementing a double linked list. A double
+linked list has forward and backward links to the next and previous nodes. The
+node, which is defined in dllist.h, is shown below:-
+
+	struct dllistnode {
+		void *object;
+		struct dllistnode *prevnode;
+		struct dllistnode *nextnode;
+	};
+
+Each node in the linked list has an object as payload. It can be any form of
+data element, memory permitting.
+
+This double linked list implementation is supported by the following functions:-
+
+add_dll_node() - add a node to the end of a double linked list.
+
+find_prev_dll_node() - find the node prior to the supplied node.
+
+find_next_dll_node() - find the next node after the supplied node.
+
+free_dllist() - Delete the entire double linked list.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+find_prev_dll_node(3) find_next_dll_node(3) free_dllist(3) mge_strerror(3)

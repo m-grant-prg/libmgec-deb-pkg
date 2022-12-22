@@ -1,0 +1,85 @@
+NAME
+free_dllist - Deletes a double linked list.
+SYNOPSIS
+	#include <dllist.h>
+
+	struct dllistnode *free_dllist(struct dllistnode *root);
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a double linked list.
+
+free_dllist deletes a double linked list.
+.br
+mge_errno will be set to 0 on return from this function.
+PARAMETERS
+root - Is a pointer to the root node.
+Care must be taken to pass the pointer to the ROOT node as free_dllist deletes
+from the node passed to the end of the list. If an intermediate node address is
+passed, then the preceding node will have an invalid pointer.
+
+RETURN VALUE
+Return value is always NULL.
+ERRORS
+mge_errno is always set to 0 on return from this function.
+EXAMPLE
+A simple example using a character string:-
+
+	#include <dllist.h>
+	#include <mge-errno.h>
+
+	//...
+
+	struct dllistnode *root;
+	char *key = "John";
+	root = NULL;
+
+	root = add_dll_node(root, key, strlen(key) + 1);
+
+	if (mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+
+	root = free_dllist(root);
+
+	// This will print Root node pointer: NULL, i.e. List deleted.
+	printf("Root node pointer: %p\\n", root);
+
+OVERVIEW
+This is one of a series of functions implementing a double linked list. A double
+linked list has forward and backward links to the next and previous nodes. The
+node, which is defined in dllist.h, is shown below:-
+
+	struct dllistnode {
+		void *object;
+		struct dllistnode *prevnode;
+		struct dllistnode *nextnode;
+	};
+
+Each node in the linked list has an object as payload. It can be any form of
+data element, memory permitting.
+
+This double linked list implementation is supported by the following functions:-
+
+add_dll_node() - add a node to the end of a double linked list.
+
+find_prev_dll_node() - find the node prior to the supplied node.
+
+find_next_dll_node() - find the next node after the supplied node.
+
+free_dllist() - Delete the entire double linked list.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_dll_node(3) find_prev_dll_node(3) find_next_bst_node(3) mge_strerror(3)

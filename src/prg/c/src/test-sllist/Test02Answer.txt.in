@@ -1,0 +1,14 @@
+mge_errno after single linked list population:- 0
+Print single linked list.
+Linked List:-	give consistency is all i ask give us this day our daily mask 
+Adding object whose pointer value is  (nil)
+mge_errno after add_tail_sll_node is 4
+Error in parameters passed.
+Adding object whose size is  0
+mge_errno after add_tail_sll_node is 4
+Error in parameters passed.
+Print list just before freeing list.
+Linked List:-	give consistency is all i ask give us this day our daily mask 
+Freeing tree.
+Linked List:-	
+Root address after freeing is: (nil)

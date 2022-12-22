@@ -1,0 +1,174 @@
+NAME
+find_next_bst_node - Find the next node in a generic binary search tree.
+SYNOPSIS
+#include <bstree.h>
+
+void *find_next_bst_node(const struct bstree *tree,
+			const void *searchobj);
+
+DESCRIPTION
+See the Overview section of this manual page for a broad description of this
+MGE General C Library implementation of a generic binary search tree.
+
+find_next_bst_node looks for the next binary search tree node following
+'searchobj'.
+.br
+mge_errno will be set as required. (Searching for a non-existent node is not
+an error, nor is failing to find a subsequent node). A return of NULL and
+mge_errno != 0 defines an error.
+
+PARAMETERS
+tree - a pointer to the binary search tree.
+
+searchobj - The starting object. It does not need to be a fully populated
+object. It only needs enough information to support the comparison function.
+E.g. a key.
+
+RETURN VALUE
+A pointer to the found object, (i.e. the fully populated object), or, NULL if
+no subsequent object exists in the bstree or an error was encountered.
+
+ERRORS
+mge_errno is guaranteed = 0 if no error has occurred.
+These values for mge_errno are defined in mge-errno.h:-
+
+MGE_PARAM - One or more supplied parameters are invalid.
+
+EXAMPLE
+A simple example using a character string and the strcmp function for
+comparison:-
+
+	#include <bstree.h>
+	#include <mge-errno.h>
+
+	//...
+
+	struct bstree *tree;
+	struct bstree *pt;
+	char result[20];
+	char *presult = result;
+	char *key = "John";
+
+	tree = cre_bst(BST_NODES_UNIQUE,
+			(int (*)(const void *, const void *))strcmp);
+	if (tree == NULL) {
+		printf("%s\\n", mge_strerror(mge_errno));
+		return 1;
+	}
+
+	pt = add_bst_node(tree, key, strlen(key) + 1);
+	if (pt == NULL) {
+		printf("%s\\n", mge_strerror(mge_errno));
+		tree = del_bst(tree);
+		return 1;
+	}
+	tree = pt;
+
+	char *key1 = "Henry";
+	pt = add_bst_node(tree, key1, strlen(key1) + 1);
+	if (pt == NULL) {
+		printf("%s\\n", mge_strerror(mge_errno));
+		tree = del_bst(tree);
+		return 1;
+	}
+	tree = pt;
+
+	// This will print Searching for object after Homer,
+	// found object John.
+	char *key2 = "Homer";
+	presult = find_next_bst_node(tree, key2);
+	if ((presult == NULL) && mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+	else
+		printf("Searching for object %s, found object %s\\n",
+			key2, presult);
+
+	// This will print Searching for object after zzzz,
+	// found object Nil.
+	char *key3 = "zzzz";
+	presult = find_next_bst_node(tree, key3);
+	if ((presult == NULL) && mge_errno)
+		printf("%s\\n", mge_strerror(mge_errno));
+	else
+		printf("Searching for object %s, found object %s\\n",
+			key3, presult);
+
+	tree = del_bst(tree);
+
+OVERVIEW
+This is one of a series of functions implementing a generic binary search tree.
+It is generic because each node contains an object which can be of any type.
+
+Binary search trees work by comparing nodes which means that we must have a
+means of comparing 'objects'. In order to do this the consumer of the binary
+search tree must provide a comparison function at tree creation time which has
+the same prototype as strcmp, i.e.
+
+int comparison_function(const void *parameter1, const void *parameter2)
+
+returning a value of less than, equal to, or greater than zero depending on
+whether parameter1 is less than, equal to, or greater than, parameter2.
+
+Binary search trees are fundamentally mechanisms for storing and retrieving
+objects related by contents and purpose. As such they can order lists and
+provide speedy random access to their elements. In addition, a generic binary
+search tree such as this, may be used to implement sparse arrays. A revealing
+example of this would be a spreadsheet implementation where a binary search tree
+would represent the spreadsheet as a sparse array and each node would represent
+a cell. The 'object', (or cell), contained in each node could take the form:-
+
+	struct cell {
+		char *column;
+		int row;
+		char *contents;
+		};
+
+The column / row combination provides the cell reference, (e.g. A1), and the
+contents is the payload of the cell, (a formula or value). The user-supplied
+comparison function would obviously have to compare column and row.
+
+This generic binary search tree implementation is supported by the following
+functions:-
+
+cre_bst() - create a new binary search tree.
+
+add_bst_node() - add a node to the binary search tree or increment the counter
+of a pre-existing node.
+
+del_bst() - delete a binary tree, empty or not.
+
+del_bst_node() - delete a node from the binary search tree or decrement the
+counter of a pre-existing node.
+
+find_bst_node() - find an object in the tree.
+
+find_next_bst_node() - find the next object after the supplied object.
+
+find_next_bst_node_trace() - find the next object and trace information after
+the supplied object.
+
+find_prev_bst_node() - find the object preceding the supplied object.
+
+get_counter_bst_node() - find an object in the tree and return the node counter.
+
+upd_bst_node() - Update the object in a node. This only makes sense if the
+object has a key part and a payload part, so the match is made on the key and
+essentially the payload is updated.
+AUTHOR
+Written by Mark Grant.
+REPORTING BUGS
+Report bugs to <m.grant.prg@gmail.com>
+COPYRIGHT
+Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+.br
+License GPLv3: GNU GPL version 3 only
+.br
+<http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+.br
+There is NO WARRANTY, to the extent permitted by law.
+SEE ALSO
+add_bst_node(3) cre_bst(3) del_bst(3) del_bst_node(3)
+find_bst_node(3) find_next_bst_node_trace(3) find_prev_bst_node(3)
+get_counter_bst_node(3) mge_strerror(3) upd_bst_node(3)

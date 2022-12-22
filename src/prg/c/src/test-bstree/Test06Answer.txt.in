@@ -1,0 +1,13 @@
+Find NULL root found (null) with mge_errno 4
+Error in parameters passed.
+Update NULL root found (null) with mge_errno 4
+Error in parameters passed.
+Find NULL updobj found (null) with mge_errno 4
+Error in parameters passed.
+Update NULL updobj found (null) with mge_errno 4
+Error in parameters passed.
+Find zzzzz found (null) with mge_errno 0
+Update zzzzz found (null) with mge_errno 6
+Node not found.
+Find mask found mask payload 11, mge_errno 0
+Update mask found mask payload 999 with mge_errno 0

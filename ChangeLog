@@ -1,0 +1,354 @@
+2022-08-16 v1.6.4 Mark Grant <m.grant.prg@gmail.com>
+	* editors: Update editorconfig to v1.0.3
+	editors: Update editorconfig to v1.0.2
+	editors: Add editorconfig file
+	docs: Correct missed directory name change
+
+2022-07-25 v1.6.3 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Publish documentation only on release
+	actions Specify the ref
+	actions: Use default branch for documentation publication
+
+2022-07-25 v1.6.2 Mark Grant <m.grant.prg@gmail.com>
+	* at: Add URL for online documentation on GitHub Pages
+	docs: Host Doxygen documentation at GitHub Pages
+	at: doc: Add Doxygen build dependency on sources
+	at: doc: Introduce doxygen target
+	doc: Replace non-working [TOC] with \tableofcontents
+	doc: Remove distro / branch information
+
+2022-06-17 v1.6.1 Mark Grant <m.grant.prg@gmail.com>
+	* doc: Update distro releases for this branch
+	all: Replace sprintf with safer snprintf
+	at: Upgrade bootstrap.sh to v1.5.1
+	at: Add support for gcc analyzer option
+	at: Upgrade compiler and linker macros to v1.1.1
+	inc: Move ARRAY_SIZE() macro to public header file
+	doc: Update distro releases and EOLs
+	buf-msg: Improve trim_buf() (Doxygen) comments
+
+2022-05-03 v1.5.4 Mark Grant <m.grant.prg@gmail.com>
+	* doc: misc: Add jammy as supported by this branch
+	errors: Add MGE_PROTO and MGE_GENERAL
+	doc: Store distribution / release info for this branch
+
+2021-12-04 v1.5.3 Mark Grant <m.grant.prg@gmail.com>
+	* all: Tighten SPDX tags
+	at: Upgrade gen-gnulib.sh to v1.0.3
+	at: Add AC_COPYRIGHT macro
+	m4: Update linker mavros to v1.0.2
+	m4: Update c-compiler macros to v1.0.11
+	at: Use git to enhance package version
+	clang: Update clang-format to v1.0.2
+	at: Upgrade bootstrap.sh to v1.4.10
+	git: Update mailmap to v1.0.2
+	git: Update gitignore to v1.0.7
+	git: Update gitattributes to v1.0.3
+	at: Use normal / debug flags built by configure
+	doc: Add branch / distro-rel status
+	doc: Add Fedora 34 EOL date nad add 35
+
+2021-10-28 v1.5.2 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Minimum version now Focal
+	test-sllist: Fix mix declarations and code warnings
+	test-errno: Fix unused parameter warnings
+	test-dllist: Fix unused parameter warning
+	test-dllist: Fix mixed declarations and code warning
+	test-buf-msg: Fix Wunused-parameter warning
+	test-bstree: Eliminate -Wdeclaration-after-statement warnings
+	doc: Explain branches, releases and EOL
+	at: Upgrade gen-gnulib.sh to v1.0.2
+	at: Update c-compiler macros to v1.0.9
+	at: Change debug optimisation to -O0
+
+2021-09-30 v1.5.1 Mark Grant <m.grant.prg@gmail.com>
+	* doc: Keep singular words in file name
+	doc: Add branch relationship to distro rel notes
+	m4: Add -std=gnu11 to gcc initial compiler flags
+	doc: Update Doxyfile after Doxygen upgrade
+	git: Exclude tracking of .bak files
+	git: Update gitignore to v1.0.4
+	doc: Add gnulib notes
+	at: gnulib-tool --update
+	at: gnulib update
+	at: Automatic libtool upgrade
+	misc: Update TODO list
+	lxcu: Add support for Fedora and openSUSE
+	at: Add doc/misc and misc to Dist
+	doc: Add AT installation notes
+	at: README: Add ldconfig instruction
+	at: docs: Move source files to src
+	at: Update AT install section for enable-atonly
+	at: Register docs with scrollkeeper only if ATONLY
+	at: Use LDFLAGS prepared by configure
+	at: Add linker macro v1.0.1
+	at: Use CPPFLAGS prepared in configure
+	at: Upggrade c-compiler macros to v1.0.7
+	test-sllist: Add conditional use Sparse CFLAGS
+	test-sllist: Use CFLAGS prepared in configure
+	test-errno: Add conditional use Sparse CFLAGS
+	test-errno: Use CFLAGS prepared in configure
+	test-dllist: Add conditional use Sparse CFLAGS
+	test-dllist: Use CFLAGS prepared in configure
+	test-buf-msg: Add conditional use Sparse CFLAGS
+	test-buf-msg: Use CFLAGS prepared in configure
+	test-bstree: Add conditional use Sparse CFLAGS
+	test-bstree: Use CFLAGS prepared by configure
+	git: Refine AutoTools section
+	git: Add ctags files exclusion
+	git: Correct file ChangeLog cut and paste
+	at: Differentiate full and API documentation
+
+2021-06-15 v1.3.4 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.3
+	Library v5:0:3
+	git: Add gitattributes file
+	git: Add mailmap file
+	doc: Place package version in Doxygen project number
+	at: Upgrade bootstrap.sh to v1.4.9 final
+	at: Re-write config script using dialog
+	buf-msg: Add message defaults print function
+	buf-msg: Add buffer defaults print function
+	at: Add whiptail configurable options menu
+	at: Allow CPP overrides from bootstrap.sh and CL
+	at: Capitalise var names in configure and Makefiles
+	travis: Stop using Travis
+	actions: Initial build action setup
+
+2020-11-02 v1.3.3 Mark Grant <m.grant.prg@gmail.com>
+	* at: lxcu: Add lxc test build setup
+
+2020-07-23 v1.3.2 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.2
+	Library v4:0:2
+	TODO: Add lists and sorts Doxygen
+	doc: listsandsorts: Add bare bones header
+	doc: buf-msg: Update API and Internal
+	listsandsorts: Add missing Doxygen param comments
+	man: listsandsorts: Move pages under l and s dir
+	man: buf-msg: Merge buffer and message man pages
+	man: buf-msg: Remove non-API man pages
+	buf-msg: Remove deconstruct_msg() from the API
+	buf-msg: Remove get_msg() from API
+	bstree: Mark non-API documentation with cond
+	dllist: Mark non-API documentation with cond
+	sllist: Mark non-API documentation with cond
+	doc: Enable documentation of static functions
+	inc: Document the array size macro
+	inc: Rename mge-general.h to mge-internal.h
+	doc: Explicitly state source directory
+	README: Correct git command
+	doc: Separate internal and API docs
+
+2020-05-18 v1.3.1 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.1
+	Library v4:0:2
+	man3: Move trim_buf() from get_msg() to pull_msg()
+	man3: Update functionality of trim_buf()
+	man3: Improve ERROR section for concat_buf()
+	buf-msg: trim_buf() improve algorithm
+	buf-msg: Move trim_buf() from get_msg to pull_msg
+	buf-msg: Simplify code by using macro
+	buf-msg: Correct get_msg unchanged args on error
+	buf-msg: Ensure partially-processed buffer support
+	buf-msg: Add if complete msg append NUL comment
+	buf-msg: Remove duplicate msg buffer malloc code
+	buf-msg: Remove \n \r debug support
+	buf-msg: Clarify message buffer capacity calc
+	buf-msg: Improve function header comment
+	buf-msg: Use realloc as no logging required
+	buf-msg: Ensure minimum buffer size is DEF_BUF_SIZE
+	buf-msg: Improve function header comment
+	buf-msg: concat_buf() guarantee unchanged arguments on error
+	errors: Add identification error
+	at: Update bootstrap.sh to v1.4.7
+	travis: Make the build use Bionic
+
+2019-10-27 v1.3.0 Mark Grant <m.grant.prg@gmail.com>
+	* Source v1.2.0
+	Library v3:0:1
+	tests: Do not automatically run the valgrind tests
+	tests: Build valgrind cmd dependent on version
+	travis: Reinstate default build environment
+	m4: Update to tooling packages
+	man: Stress find_sll_node only finds first match
+	listsandsorts: Use individual internal header files
+	docs: Respect verbosity under enable-silent-rules
+	sllist: Add find_sll_node(), man page and test
+	sllist: Add add_head_sll_node()
+	sllist: Rename add_sll_node to add_tail_sll_node
+	test-sllist: Add find next node test
+	test-sllist: Correct cut and paste error
+	test-sllist: Re-write all the tests
+	at: configure.ac: Add header comments on --enable-
+	at: Fix make distcheck
+	at: configure.ac: Correct ARG_ENABLE help
+	at: Update bootstrap.sh to v1.4.5
+	at: README: Point bootstrap.sh part at acmbuild wiki
+	at: Run all make check tests in one block
+	test-sllist: Move to check target
+	test-errno: Move to check target
+	test-dllist: Move under check target
+	test-buf-msg: Move under check target
+	test-bstree: Run tests individually in make check
+	travis: Add make check and distcheck to the tests
+	test-bstree: Move to check target
+	git: Ignore test-driver auto-created for make check
+	travis: Initial Travis CI build test setup
+	at: Update compiler m4 to version 1.0.4
+	clang-format: version.c: Initial style cleanup
+	listsandsorts: Inline dll find_prev & find_next
+	listsandsorts: dllist.c: Improve code legibility
+	listsandsorts: sllist: Improve parameter naming
+	listsandsorts: Add for_each_sll_node macro
+	listsandsorts: Inline find_next_sll_node
+	listsandsorts: sllist.c: Improve code legibility
+	listsandsorts: Remove 2 unneeded void ptr casts
+	clang-format: memory: Initial coding style changes
+	clang-format: listsandsorts: Initial style cleanup
+	clang-format: errors: Initial coding style changes
+	clang-format: buf-msg: Initial coding style changes
+	clang-format: inc: Initial coding style changes
+	clang-format: Initial setup
+	git: Add file header comments plus SPDX identifier
+	at: Add missing header checks
+	configure: Update overlooked revision number
+	Use AC_HEADER_STDBOOL and standard GNU ifdeffery
+
+2019-05-29 v 1.2.1 Mark Grant <m.grant.prg@gmail.com>
+	* Correct src buffer offset type to unsigned
+	Source v1.1.8
+	Library v2:0:0
+	Add checks for dia and dot programs
+	Add srcdir to DIAFILE_DIR for Doxygen
+	Do not check for own header files
+	Collapse into one AutoTools project
+	configure.ac: Revamp to latest standard
+	Update Copyright statements where required
+	Update bootstrap.sh to v1.4.3
+	Make package install references generic
+	Add README.md link to README
+	README: Add Copyright statement and title
+	Install standard GNU files such as AUTHORS
+	Make source tarball name == GitHub
+	Remove v from package version
+	Remove shebangs from Makefile.ams
+	Update c compiler flags macro to v1.0.3
+	Update README to refer to new project wiki
+
+2018-10-22 v 1.1.10 Mark Grant <m.grant.prg@gmail.com>
+	*  Add buffers and messages test program.
+	Add general project-wide header file.
+	Use new ARRAY_SIZE macro.
+	srctarball filename to include -src-.
+	Update README to refer to new project wiki.
+
+2018-08-30 v 1.1.9 Mark Grant <m.grant.prg@gmail.com>
+	*  Improve debug flags used. Use gdb orientated level 3 (includes
+	pre-processor macros).
+	Correct the expected answers in the bstree test suite.
+	Rename mgebuffer.offset member to proc_next.
+	Rename mgebuffer.index member to next_free.
+	If the buffer in the mgebuffer struct passed to concat_buf is NULL,
+	allocate the default buffer size.
+	Correct the types of some local variables.
+	Change mgebuffer index fields to type size_t.
+	Rename mgemessage.offset member to next_free.
+	Change mgemessage.complete member type to bool.
+	Assign value to mgebuffer.size on allocation, not before.
+	get_msg() - realloc using buffer size macro for readability.
+	Add build support for using gcc -H for header file checks.
+	Introduce compiler version dependent CFLAGS.
+	Remove excessive configure debug messages.
+	Update bootstrap.sh version to 1.3.7
+
+2018-06-20 v 1.1.8 Mark Grant <m.grant.prg@gmail.com>
+	*  Use better source file for AC_CONFIG_SRCDIR check.
+	Define SOURCE_VERSION in configure.ac
+	Remove pkgversion AC_SUBST as it is available as standard.
+	Add lib_version_info, all top level versioning now in configure.ac
+
+2018-06-19 v 1.1.7 Mark Grant <m.grant.prg@gmail.com>
+	*  Add informational messages to make srctarball output.
+	get_msg now accommodates partial messages without re-processing the
+	entire buffer. Data from the buffer extracted to the message struct
+	could be a complete message, (terminated with the
+	mgemessage.terminator), or a partial message. If it is an incomplete
+	message then data will be appended to the partial message next time this
+	function is invoked, repeating until a complete message is held in the
+	struct.
+	In deconstruct_msg replace hardcoded token string ",;" with message
+	struct separator and terminator fields.
+	In deconstruct_msg() add check that the message is complete.
+	Disable sparse Variable Length Array warnings.
+	Improve README file.
+
+2018-06-03 v 1.1.6 Mark Grant <m.grant.prg@gmail.com>
+	*  Improve README file.
+	Make get_functions return -mge_errno AOT -1.
+	Add 'Client blocked' error message.
+	Introduce internal.h for non-public declarations.
+	Add counter and node totals to the bstree struct.
+
+2018-04-16 v 1.1.5 Mark Grant <m.grant.prg@gmail.com>
+	*  Ensure required directories exist, even if empty.
+
+2018-04-16 v 1.1.4 Mark Grant <m.grant.prg@gmail.com>
+	*  Start git tracking of m4 and src/prg/c/gen/lib as downstream
+	packaging using a source (AOT distribution) tarball requires these
+	gnulib elements to be present.
+	Add information on utility scripts to the README file.
+
+2018-04-15 v 1.1.3 Mark Grant <m.grant.prg@gmail.com>
+	*  Update this project bootstrap.sh to latest version 1.3.4.
+	Improve README file.
+	Add a make target srctarball to make a source tarball. This can be used
+	in the same way as github's source tarball enabling 1 package methodolgy
+	irrespective of source repository.
+
+2018-02-27 v 1.1.2 Mark Grant <m.grant.prg@gmail.com>
+	*  Add Doxygen comments.
+	Overhaul of AutoTools project structure.
+
+2017-05-03 v 1.1.0 Mark Grant <m.grant.prg@gmail.com>
+	*  Return NULL pointer, -1 or error number when possible on error.
+	Apply coding standards from template atclstv v1.0.0
+	Add buffer, message and memory functions.
+	Introduce library-wide mge_errno variable and error handling.
+	Add bst trace function to provide node coordinates.
+	Add exhaustive bstree tests.
+	Introduce concept and support for a discreet bst object.
+
+2016-05-06 v 1.0.7 Mark Grant <m.grant.prg@gmail.com>
+	*  Add double linked list functionality.
+
+2016-05-05 v 1.0.6 Mark Grant <m.grant.prg@gmail.com>
+	*  Add single linked list functionality.
+
+2015-11-04 v 1.0.5 Mark Grant <m.grant.prg@gmail.com>
+	*  Change from bt and btree names to bst and bstree as this is a binary
+	search tree, not a b-tree.
+
+2015-10-25 v 1.0.4 Mark Grant <m.grant.prg@gmail.com>
+	*  Restructure and change to conform to AutoTools General Template v1.0.6.
+
+2015-09-18 v 1.0.3 Mark Grant <m.grant.prg@gmail.com>
+	*  All changes are to btree.
+	Change function names to XXX_bt_node().
+	Change find_bt_node() to get_counter_bt_node() as it returns the count.
+	Add find_bt_node(), upd_bt_node().
+	Change free_btree() to return NULL.
+	Add unique flag to add_bt_node().
+	Improve overall use of btree_errno.
+	Modify del_bt_node() to decrement the node counter instead of deleting the
+	node if the counter is > 1, (i.e. duplicates are allowed).
+	Add function parameter checking.
+	Change defined flags and errors to be easily identifiable as btree elements.
+	Complies with MG AutoTools General standard version 1.0.4.
+
+2015-08-11 v 1.0.2 Mark Grant <m.grant.prg@gmail.com>
+	*  Add btree functions delnode() and static freenode().
+
+2015-08-07 v 1.0.1 Mark Grant <m.grant.prg@gmail.com>
+	*  Initial release.
+
