@@ -1,3 +1,9 @@
+libmgec7 (1.7.2-1+deb11u1) bullseye; urgency=medium
+
+  * New upstream release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 28 Oct 2022 10:13:44 +0100
+
 libmgec7 (1.7.1-1+deb11u2) bullseye; urgency=medium
 
   * Rename packages as libmgec7 as the soname is now 7.
