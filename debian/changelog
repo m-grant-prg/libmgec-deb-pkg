@@ -1,4 +1,11 @@
-libmgec2 (1.6.4-1ubuntu22.04u1) jammy; urgency=medium
+libmgec2 (1.6.6-1ubuntu22.04u1) jammy; urgency=medium
+
+  * New upstream release.
+  * Change overall project name to libmgec3.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Mon, 07 Nov 2022 14:40:03 +0000
+
+ibmgec2 (1.6.4-1ubuntu22.04u1) jammy; urgency=medium
 
   * New upstream release.
 
