@@ -1,0 +1,57 @@
+Source: libmgec2
+Priority: optional
+Maintainer: Mark Grant <m.grant.prg@gmail.com>
+Build-Depends: debhelper-compat (= 13), autoconf-archive, libtool-bin, valgrind,
+	dia, doxygen, graphviz, tar(>= 1.26), txt2man, txt2manwrap
+Standards-Version: 4.5.1
+Section: libs
+Vcs-Git: https://github.com/m-grant-prg/libmgec.git
+Vcs-Browser: https://github.com/m-grant-prg/libmgec
+
+Package: libmgec2-dev
+Provides: libmgec-dev
+Conflicts: libmgec-dev
+Replaces: libmgec-dev
+Section: libdevel
+Architecture: any
+Depends: libmgec2 (= ${binary:Version}), ${misc:Depends},
+	mgrant-obs-deb-keyring
+Description: MGE C General Library Development Files
+ This package contains the development files such as static libraries, header
+ files and man pages.
+
+Package: libmgec2-doc
+Provides: libmgec-doc
+Conflicts: libmgec-doc
+Replaces: libmgec-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends},
+	mgrant-obs-deb-keyring
+Recommends: doc-base
+Suggests: dochelp
+Description: MGE C General Library API Documentation
+ This package contains the API documentation of the library and development
+ package.
+
+Package: libmgec2-int-doc
+Provides: libmgec-int-doc
+Conflicts: libmgec-int-doc
+Replaces: libmgec-int-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends},
+	mgrant-obs-deb-keyring
+Recommends: doc-base
+Suggests: dochelp
+Description: MGE C General Library Internal Documentation
+ This package contains the full internal documentation of the library and
+ development package.
+
+Package: libmgec2
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+	mgrant-obs-deb-keyring
+Description: MGE C General Library
+ This package contains the MGE General C library.
+
