@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: src/prg/c/inc-tmp/Makefile.am				#
-# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
+# Author: Copyright (C) 2015-2019, 2021, 2022  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -30,11 +30,12 @@
 #				Add mgemessage.h as a possible.		#
 # 08/05/2019	MG	1.0.5	Remove shebang.				#
 # 03/12/2021	MG	1.0.6	Tighten SPDX tag.			#
+# 11/09/2022	MG	1.0.7	Empty EXTRA_HEADERS.			#
 #									#
 #########################################################################
 
 
 noinst_HEADERS = $(tmpheaders)
 
-EXTRA_HEADERS = mgebuffer.h mgemessage.h
+EXTRA_HEADERS =
 

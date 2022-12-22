@@ -3,12 +3,12 @@
  *
  * Non-public header file. No distribution required.
  *
- * @author Copyright (C) 2018-2021  Mark Grant
+ * @author Copyright (C) 2018-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.5 ==== 03/12/2021_
+ * @version _v1.0.6 ==== 16/09/2022_
  */
 
 /* **********************************************************************
@@ -24,6 +24,7 @@
  * 14/04/2021	MG	1.0.4	Allow some default values to be 	*
  *				overridden on the gcc CL.		*
  * 03/12/2021	MG	1.0.5	Tighten SPDX tag.			*
+ * 16/09/2022	MG	1.0.6	Rename of portability.h			*
  *									*
  ************************************************************************
  */
@@ -31,7 +32,7 @@
 #ifndef BUFMSG_INTERNAL_H
 #define BUFMSG_INTERNAL_H
 
-#include <portability.h>
+#include <libmgec/mge-portability.h>
 
 BEGIN_C_DECLS
 
@@ -40,7 +41,7 @@ BEGIN_C_DECLS
  * If DEF_BUF_SIZE exists it came from the gcc command line.
  */
 #ifndef DEF_BUF_SIZE
-#define DEF_BUF_SIZE 256
+	#define DEF_BUF_SIZE 256
 #endif
 
 /**
@@ -50,7 +51,7 @@ BEGIN_C_DECLS
  * If BUF_UNUSED_DEF_SIZE_MULT exists it came from the gcc CL.
  */
 #ifndef BUF_UNUSED_DEF_SIZE_MULT
-#define BUF_UNUSED_DEF_SIZE_MULT 3
+	#define BUF_UNUSED_DEF_SIZE_MULT 3
 #endif
 
 /**
@@ -60,7 +61,7 @@ BEGIN_C_DECLS
  * If BUF_MAX_UNREACH_PERCENT exists it came from the gcc CL.
  */
 #ifndef BUF_MAX_UNREACH_PERCENT
-#define BUF_MAX_UNREACH_PERCENT 33
+	#define BUF_MAX_UNREACH_PERCENT 33
 #endif
 
 /**
@@ -68,10 +69,9 @@ BEGIN_C_DECLS
  * If DEF_MSG_SIZE exists it came form the gcc CL.
  */
 #ifndef DEF_MSG_SIZE
-#define DEF_MSG_SIZE 256
+	#define DEF_MSG_SIZE 256
 #endif
 
 END_C_DECLS
 
 #endif /* ndef BUFMSG_INTERNAL_H */
-
