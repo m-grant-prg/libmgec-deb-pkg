@@ -1,3 +1,6 @@
+2022-11-11 v1.6.7 Mark Grant <m.grant.prg@gmail.com>
+	* Bump library version
+
 2022-11-07 v1.6.6 Mark Grant <m.grant.prg@gmail.com>
 	* actions: Only build docs on latest release
 
