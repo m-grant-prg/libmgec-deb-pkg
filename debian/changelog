@@ -1,3 +1,18 @@
+libmgec7 (1.7.1-1+deb11u2) bullseye; urgency=medium
+
+  * Rename packages as libmgec7 as the soname is now 7.
+  * Ensure dev package replaces any previous dev package.
+  * Correct git repo URLs.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Wed, 26 Oct 2022 15:36:52 +0100
+
+libmgec7 (1.7.1-1+deb11u1) bullseye; urgency=medium
+
+  * New upstream release v1.7.1.
+  * Update watch file to use mode=git for GitHub.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Tue, 25 Oct 2022 15:01:52 +0100
+
 libmgec7 (1.7.0-1+deb11u1) bullseye; urgency=medium
 
   * New upstream release v1.7.0.
