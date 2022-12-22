@@ -1,3 +1,7 @@
+Release 1.7.3 2022-11-09
+No user visible changes.
+Technical changes can be found in the ChangeLog.
+
 Release 1.7.2 2022-10-28
 Bump version to fix downstream packaging.
 
