@@ -1,0 +1,12 @@
+usr/include/*
+usr/lib/*/lib*.a
+usr/lib/*/lib*.la
+usr/lib/*/lib*.so
+usr/lib/*/pkgconfig/*
+usr/share/man/man3/*
+usr/share/doc/libmgec/AUTHORS usr/share/doc/libmgec2-dev
+usr/share/doc/libmgec/ChangeLog usr/share/doc/libmgec2-dev
+usr/share/doc/libmgec/COPYING usr/share/doc/libmgec2-dev
+usr/share/doc/libmgec/NEWS usr/share/doc/libmgec2-dev
+usr/share/doc/libmgec/README usr/share/doc/libmgec2-dev
+
