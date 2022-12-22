@@ -51,7 +51,7 @@
 # SECTION  9: Check for structures					#
 # SECTION 10: Check for compiler characteristics			#
 # SECTION 11: Check for library functions				#
-# SECTION 12: Check for pkg-config files				#
+# SECTION 12: Check for pkg-config files or alternatives		#
 # SECTION 13: Check for system services					#
 # SECTION 14: Additional checks & variables				#
 # SECTION 15: Specify the output files					#
@@ -164,6 +164,26 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
+# 01/10/2022	MG	1.2.2	Do not generate pkg-config file with	#
+#				AC_CONFIG_FILES as it does not support	#
+#				extended Installation Directory		#
+#				Variables such as pkgincludedir. Use	#
+#				Makefile.am variable substitution	#
+#				instead.				#
+#				Add test-headers build.			#
+#				Make the contents of $CC available in	#
+#				scripts.				#
+#				Change tmplibraries to use an absolute	#
+#				path.					#
+#				Use find for tmpheaders.		#
+# 06/10/2022	MG	1.2.3	Use AC MSG CHECKING where appropriate.	#
+#				Separate AutoTools generated files from	#
+#				project root.				#
+#				Move CFLAGS init to Compiler setup	#
+#				section.				#
+# 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
+#				Add AC CHECK FUNCS for memmove.		#
+#				Add AC CHECK HEADERS for stddef.h	#
 #									#
 #########################################################################
 
@@ -178,7 +198,7 @@ AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.1 $)
+AC_REVISION($Revision: 1.2.4 $)
 
 AC_PREREQ(2.69)
 
@@ -196,7 +216,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.6.4)
+m4_define(pkg_version, 1.7.0)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
@@ -207,10 +227,15 @@ AC_INIT([MGE General C Library], m4_esyscmd([ \
 
 AC_MSG_NOTICE(initialisation and setup)
 
-AC_DEFINE(SOURCE_VERSION, "1.2.6", \
+AC_DEFINE(SOURCE_VERSION, "1.3.0", \
 	Define to the version of source code in this package.)
 
-AC_SUBST(lib_version_info, "6:1:4")
+AC_SUBST(lib_version_info, "7:0:0")
+
+AC_SUBST(pkgversion, $PACKAGE_VERSION)
+
+# Separate AutoTools generated files from project root.
+AC_CONFIG_AUX_DIR([build-aux])
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
@@ -252,8 +277,11 @@ AC_ARG_ENABLE(analyzer,
 	esac],analyzer=false)
 AM_CONDITIONAL(ANALYZER, test x$analyzer = xtrue)
 
+AC_MSG_CHECKING([whether to build for analyzer output])
 if test "x${analyzer}" = xtrue; then
-	AC_MSG_NOTICE(building to display compiler analyzer output)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -272,11 +300,13 @@ AC_ARG_ENABLE(atonly,
 	esac],atonly=false)
 AM_CONDITIONAL(ATONLY, test x$atonly = xtrue)
 
+AC_MSG_CHECKING([whether to build for AT only testing or installation])
 if test "x${atonly}" = xtrue; then
-	AC_MSG_NOTICE(building for AT only testing or installing)
 	AC_SUBST(docbaseloc,"/usr/share/doc-base")
+	AC_MSG_RESULT([yes])
 else
 	AC_SUBST(docbaseloc,"$datarootdir/doc-base")
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -292,13 +322,11 @@ AC_ARG_ENABLE(debug,
 	esac],debug=false)
 AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 
-# CFLAGS is usually set to -g -O2, but for debugging we will probably
-# want -g -Og and for production we will probably want -O2. So empty CFLAGS here
-# and leave the selection to the Makefile.am's.
-: ${CFLAGS=""}
-
+AC_MSG_CHECKING([whether to build in debug mode])
 if test "x${debug}" = xtrue; then
-	AC_MSG_NOTICE(build in debug mode)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -319,10 +347,11 @@ AC_ARG_ENABLE([distcheckfake],
 	esac],[distcheckfake=false])
 AM_CONDITIONAL([DISTCHECKFAKE], [test x$distcheckfake = xtrue])
 
+AC_MSG_CHECKING([whether to use workarounds to facilitate distcheck])
 if test "x${distcheckfake}" = xtrue; then
-	AC_MSG_NOTICE([using workarounds to facilitate distcheck])
+	AC_MSG_RESULT([yes])
 else
-	AC_MSG_NOTICE([using distcheck incompatible setup])
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -338,8 +367,11 @@ AC_ARG_ENABLE(headercheck,
 	esac],headercheck=false)
 AM_CONDITIONAL(HEADERCHECK, test x$headercheck = xtrue)
 
+AC_MSG_CHECKING([whether to print header stack depth])
 if test "x${headercheck}" = xtrue; then
-	AC_MSG_NOTICE(building to display include stack depth)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 #
@@ -355,8 +387,11 @@ AC_ARG_ENABLE(sparse,
 	esac],sparse=false)
 AM_CONDITIONAL(SPARSE, test x$sparse = xtrue)
 
+AC_MSG_CHECKING([whether to use sparse])
 if test "x${sparse}" = xtrue; then
-	AC_MSG_NOTICE(building using sparse)
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
 fi
 
 # Pass on some CLA default values to Makefile.am
@@ -373,6 +408,14 @@ AC_MSG_NOTICE([checking compiler setup])
 
 # Set language for compilation tests.
 AC_LANG(C)
+
+# CFLAGS is usually set to -g -O2, but for debugging we will probably
+# want -g -Og and for production we will probably want -O2. So empty CFLAGS here
+# and leave the selection to the Makefile.am's. Both this clearing of the flags
+# and the default setting mentioned above are still overridden if CFLAGS is set
+# on the command line by the user. (This must appear between AC INIT and
+# AC PROG CC).
+: ${CFLAGS=""}
 
 # Checks the compiler to use from either a standard list or one to use for
 # sparse, stores it in the CC variable and checks its capabilities.
@@ -513,13 +556,14 @@ AC_MSG_NOTICE(checking for particular programs required at run time)
 
 AC_MSG_NOTICE(checking for header files required by this application)
 
-AC_CHECK_HEADERS(stdio.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(stdlib.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(string.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(netdb.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(errno.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(sys/types.h, [], AC_MSG_ERROR(header not found))
-AC_CHECK_HEADERS(syslog.h, [], AC_MSG_ERROR(header not found))
+AC_CHECK_HEADERS([errno.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([netdb.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([stdio.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([stddef.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([stdlib.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([string.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([sys/types.h], [], [AC_MSG_ERROR([header not found])])
+AC_CHECK_HEADERS([syslog.h], [], [AC_MSG_ERROR([header not found])])
 
 AC_HEADER_STDBOOL
 
@@ -543,6 +587,8 @@ AC_TYPE_SSIZE_T
 
 AC_MSG_NOTICE(checking for compiler characteristics)
 
+AC_C_INLINE
+
 # Build suitable pre-processor, compiler and linker flags.
 MG_BUILD_COMPILER_VERSION_CPPFLAGS(MG_CPPFLAGS, MG_DEBUG_CPPFLAGS)
 MG_BUILD_COMPILER_VERSION_CFLAGS(MG_CFLAGS, MG_DEBUG_CFLAGS)
@@ -560,7 +606,7 @@ AC_MSG_NOTICE(checking for GNU compatible library functions)
 
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
-AC_CHECK_FUNCS(memset strerror)
+AC_CHECK_FUNCS(memmove memset strerror)
 
 
 #################################################
@@ -607,7 +653,9 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #	pkglibexecdir	${libexecdir}/${PACKAGE}
 #
 AC_SUBST([edit], ["sed \
+		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
+		-e 's|@CC[@]|\$(CC)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
 		-e 's|@bindir[@]|\$(bindir)|g' \
@@ -649,12 +697,15 @@ AC_SUBST([edit], ["sed \
 #
 AC_SUBST(tmpheaders)
 
-for entry in `dirname $0`/src/prg/c/inc-tmp/*.h
-do
-	if test -f "$entry" ;then
-		tmpheaders=$tmpheaders" "$(basename "$entry")
-	fi
-done
+AC_MSG_CHECKING([for temporary headers])
+cd `dirname $0`/src/prg/c/inc-tmp
+tmpheaders=$(echo $(find -name *.h))
+cd - > /dev/null
+if test X"$tmpheaders" = X ; then
+	AC_MSG_RESULT([none])
+else
+	AC_MSG_RESULT([using $tmpheaders])
+fi
 
 #
 # This creates an AutoConf substitution variable for temporary libraries.
@@ -667,19 +718,28 @@ done
 #
 AC_SUBST(tmplibraries)
 
-for direntry in `dirname $0`/src/prg/c/lib-tmp/*
+AC_MSG_CHECKING([for temporary libraries])
+
+cd `dirname $0`
+topdir=$(find ~+ -type d -name atbuild -prune -o -type d -name lib-tmp -print)
+cd - > /dev/null
+
+for direntry in $topdir/*
 do
 	if test -d "$direntry" ;then
-		for entry in `dirname $0`\
-/src/prg/c/lib-tmp/$(basename "$direntry")/*.la
+		for entry in $direntry/*.la
 		do
 			if test -f "$entry" ;then
-				tmplibraries=$tmplibraries\
-" \$(srcdir)/../../lib-tmp/"$(basename "$direntry")"/"$(basename "$entry")
+				tmplibraries+=" $entry"
 			fi
 		done
 	fi
 done
+if test X"$tmplibraries" = X ; then
+	AC_MSG_RESULT([none])
+else
+	AC_MSG_RESULT([using $tmplibraries])
+fi
 
 # Check a source file to ensure no command line --srcdir typo.
 AC_CONFIG_SRCDIR(src/prg/c/src/libmgec/version.c)
@@ -698,9 +758,12 @@ AC_MSG_NOTICE(processing output files)
 # AC_CONFIG_FILES should not be used to substitute AutoConf Installation
 # Directory Variables, (bindir and friends), except in Makefiles and pkg-config
 # files. See GNU AutoConf manual section 4.8.2 Installation Directory Variables.
+# This manual section mentions bindir, includedir etc but makes no mention of
+# any extended forms such as pkgincludedir, and it indeed seems that they are
+# not supported. Variable substitution in the Makefile.am's should be used
+# instead.
 #
 AC_CONFIG_FILES(docs/doxygen/Doxyfile)
-AC_CONFIG_FILES(src/prg/c/pkg-config/libmgec.pc)
 
 # Causes AC_OUTPUT to create a c preprocessor file with #define statements about
 # the configuration.
@@ -716,7 +779,7 @@ AC_CONFIG_FILES(Makefile
 		src/man/3/memory/Makefile
 		src/man/3/listsandsorts/sllist/Makefile
 		src/prg/c/gen/lib/Makefile
-		src/prg/c/inc/Makefile
+		src/prg/c/inc/libmgec/Makefile
 		src/prg/c/inc-tmp/Makefile
 		src/prg/c/lib-tmp/Makefile
 		src/prg/c/pkg-config/Makefile
@@ -726,6 +789,7 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/src/test-dllist/Makefile
 		src/prg/c/src/test-errno/Makefile
 		src/prg/c/src/test-sllist/Makefile
+		src/prg/c/src/test-headers/Makefile
 		src/prg/c/src/run-tests/Makefile)
 
 AC_OUTPUT

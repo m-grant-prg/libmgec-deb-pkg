@@ -17,9 +17,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <bstree.h>
-#include <libmgec.h>
-#include <mge-errno.h>
+#include "../libmgec/listsandsorts/internal.h"
+#include <libmgec/libmgec.h>
+#include <libmgec/mge-bstree.h>
+#include <libmgec/mge-errno.h>
 
 struct testnode {
 	char key[20];

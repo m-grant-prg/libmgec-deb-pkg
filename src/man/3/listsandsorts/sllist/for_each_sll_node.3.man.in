@@ -1,7 +1,7 @@
 NAME
 for_each_sll_node - Macro to iterate through a singly linked list.
 SYNOPSIS
-	#include <sllist.h>
+	#include <libmgec/sllist.h>
 
 	for_each_sll_node(struct sllistnode *focus,
 			struct sllistnode *head)
@@ -20,8 +20,8 @@ head - The root node of the list.
 EXAMPLE
 A simple example using a character string:-
 
-	#include <sllist.h>
-	#include <mge-errno.h>
+	#include <libmgec/sllist.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -97,7 +97,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2019, 2021 Mark Grant
+Copyright (C) 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br
