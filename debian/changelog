@@ -1,3 +1,9 @@
+libmgec7 (1.7.3-1ubuntu20.04u1) focal; urgency=medium
+
+  * New upstream release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 11 Nov 2022 09:08:21 +0000
+
 libmgec7 (1.7.2-1ubuntu20.04u2) focal; urgency=medium
 
   * Switch to git packaging.
