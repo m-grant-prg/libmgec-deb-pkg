@@ -1,3 +1,9 @@
+2022-11-07 v1.6.6 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Only build docs on latest release
+
+2022-11-04 v1.6.5 Mark Grant <m.grant.prg@gmail.com>
+	* Version bump for downstream packaging changes.
+
 2022-08-16 v1.6.4 Mark Grant <m.grant.prg@gmail.com>
 	* editors: Update editorconfig to v1.0.3
 	editors: Update editorconfig to v1.0.2
