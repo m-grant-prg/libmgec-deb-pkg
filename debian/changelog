@@ -1,3 +1,15 @@
+libmgec7 (1.7.2-1ubuntu20.04u2) focal; urgency=medium
+
+  * Switch to git packaging.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 03 Nov 2022 08:46:21 +0000
+
+libmgec7 (1.7.2-1ubuntu20.04u1) focal; urgency=medium
+
+  * New upstream release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 28 Oct 2022 10:17:21 +0100
+
 libmgec7 (1.7.1-1ubuntu20.04u2) focal; urgency=medium
 
   * Change package name to libmgec7 after soname bump.
