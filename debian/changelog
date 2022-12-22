@@ -1,3 +1,22 @@
+libmgec7 (1.7.0-1+deb11u1) bullseye; urgency=medium
+
+  * New upstream release v1.7.0.
+  * Update watch file for GitHub after web UI releases page breakage.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Mon, 24 Oct 2022 10:16:54 +0100
+
+libmgec7 (1.6.4+rc2-1+deb11u1) bullseye; urgency=medium
+
+  * New upstream development release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 07 Oct 2022 14:56:29 +0100
+
+libmgec7 (1.6.4+rc1-1+deb11u1) bullseye; urgency=medium
+
+  * New upstream development release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Sun, 02 Oct 2022 14:02:57 +0100
+
 libmgec7 (1.6.4-1+deb11u1) bullseye; urgency=medium
 
   * New upstream release.
