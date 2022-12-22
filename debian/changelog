@@ -1,3 +1,10 @@
+libmgec7 (1.7.0-1ubuntu20.04u1) focal; urgency=medium
+
+  * New upstream release.
+  * Update watch file after GitHub web UI releases page breakage.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Mon, 24 Oct 2022 09:59:38 +0100
+
 libmgec7 (1.6.4-0ubuntu20.04u1) focal; urgency=medium
 
   * New upstream release.
