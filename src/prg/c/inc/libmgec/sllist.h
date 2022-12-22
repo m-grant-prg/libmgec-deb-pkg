@@ -1,16 +1,16 @@
 /**
- * @file src/prg/c/inc/sllist.h
+ * @file src/prg/c/inc/libmgec/sllist.h
  *
  * Singly linked list header file.
  *
  * Header file for singly linked lists in the libmgec shared library.
  *
- * @author Copyright (C) 2016-2019, 2021  Mark Grant
+ * @author Copyright (C) 2016-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.8 ==== 03/12/2021_
+ * @version _v1.0.9 ==== 15/09/2022_
  */
 
 /* **********************************************************************
@@ -34,6 +34,8 @@
  *				Add add_head_sll_node			*
  *				Add find_sll_node.			*
  * 03/12/2021	MG	1.0.8	Tighten SPDX tag.			*
+ * 15/09/2022	MG	1.0.9	Rename of portability.h			*
+ *				Add stddef.h for size_t.		*
  *									*
  ************************************************************************
  */
@@ -41,7 +43,9 @@
 #ifndef SLLIST_H
 #define SLLIST_H
 
-#include <portability.h>
+#include <libmgec/mge-portability.h>
+
+#include <stddef.h>
 
 BEGIN_C_DECLS
 
@@ -84,4 +88,3 @@ struct sllistnode *free_sllist(struct sllistnode *head);
 END_C_DECLS
 
 #endif /* ndef SLLIST_H */
-

@@ -19,9 +19,9 @@
 #include <string.h>
 
 #include "sllisttest.h"
-#include <libmgec.h>
-#include <mge-errno.h>
-#include <sllist.h>
+#include <libmgec/libmgec.h>
+#include <libmgec/mge-errno.h>
+#include <libmgec/sllist.h>
 
 /*
  * Create test list

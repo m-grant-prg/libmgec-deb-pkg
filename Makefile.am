@@ -66,6 +66,7 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages to host Doxygen	#
 #				documentation.				#
+# 21/08/2022	MG	1.2.2	Add test-headers build.			#
 #									#
 #########################################################################
 
@@ -79,7 +80,7 @@ SUBDIRS = src/man/3/listsandsorts/bstree src/man/3/listsandsorts/sllist
 SUBDIRS += src/man/3/listsandsorts/dllist
 SUBDIRS += src/man/3/buf-msg src/man/3/errno src/man/3/memory
 SUBDIRS += src/prg/c/gen/lib
-SUBDIRS += src/prg/c/inc
+SUBDIRS += src/prg/c/inc/libmgec
 SUBDIRS += src/prg/c/inc-tmp
 SUBDIRS += src/prg/c/lib-tmp
 SUBDIRS += src/prg/c/pkg-config
@@ -89,6 +90,7 @@ SUBDIRS += src/prg/c/src/test-buf-msg
 SUBDIRS += src/prg/c/src/test-dllist
 SUBDIRS += src/prg/c/src/test-errno
 SUBDIRS += src/prg/c/src/test-sllist
+SUBDIRS += src/prg/c/src/test-headers
 SUBDIRS += src/prg/c/src/run-tests
 SUBDIRS += docs/doxygen
 

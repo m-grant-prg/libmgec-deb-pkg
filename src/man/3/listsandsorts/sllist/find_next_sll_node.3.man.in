@@ -1,7 +1,7 @@
 NAME
 find_next_sll_node - Find the next node in a single linked list.
 SYNOPSIS
-	#include <sllist.h>
+	#include <libmgec/sllist.h>
 
 	static inline struct sllistnode *find_next_sll_node(
 					struct sllistnode *focus);
@@ -23,8 +23,8 @@ None.
 EXAMPLE
 A simple example using a character string:-
 
-	#include <sllist.h>
-	#include <mge-errno.h>
+	#include <libmgec/sllist.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -87,7 +87,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+Copyright (C) 2015-2017, 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br

@@ -1,7 +1,7 @@
 NAME
 free_dllist - Deletes a double linked list.
 SYNOPSIS
-	#include <dllist.h>
+	#include <libmgec/dllist.h>
 
 	struct dllistnode *free_dllist(struct dllistnode *root);
 
@@ -25,8 +25,8 @@ mge_errno is always set to 0 on return from this function.
 EXAMPLE
 A simple example using a character string:-
 
-	#include <dllist.h>
-	#include <mge-errno.h>
+	#include <libmgec/dllist.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -72,7 +72,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+Copyright (C) 2015-2017, 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br
