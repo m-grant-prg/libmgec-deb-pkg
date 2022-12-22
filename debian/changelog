@@ -1,3 +1,17 @@
+libmgec7 (1.7.1-1ubuntu20.04u2) focal; urgency=medium
+
+  * Change package name to libmgec7 after soname bump.
+  * Correct git repo URLs.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 28 Oct 2022 09:31:31 +0100
+
+libmgec7 (1.7.1-1ubuntu20.04u1) focal; urgency=medium
+
+  * New upstream release v1.7.1.
+  * Update watch file to use mode=git.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Tue, 25 Oct 2022 16:21:31 +0100
+
 libmgec7 (1.7.0-1ubuntu20.04u1) focal; urgency=medium
 
   * New upstream release.
