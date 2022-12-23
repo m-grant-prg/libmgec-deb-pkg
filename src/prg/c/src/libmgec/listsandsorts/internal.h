@@ -1,15 +1,15 @@
 /**
- * @file src/prg/c/src/libmgec/listsandsorts/sllist-internal.h
+ * @file src/prg/c/src/libmgec/listsandsorts/internal.h
  *
- * Non-public header file for single linked lists in the libmgec shared library.
+ * Non-public header file for binary search trees in the libmgec shared library.
  * No distribution required.
  *
- * @author Copyright (C) 2015-2019, 2021  Mark Grant
+ * @author Copyright (C) 2015-2019, 2021, 2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.10 ==== 03/12/2021_
+ * @version _v1.0.11 ==== 16/09/2022_
  */
 
 /* **********************************************************************
@@ -30,22 +30,39 @@
  * 12/07/2019	MG	1.0.9	Separate combined header file into	*
  *				specific individual files.		*
  * 03/12/2021	MG	1.0.10	Tighten SPDX tag.			*
+ * 16/09/2022	MG	1.0.11	Rename of portability.h			*
+ *				Rename of bstree.h			*
+ *				Add stddef.h for size_t.		*
+ *				Move static function declarations to .c	*
+ *				file.					*
+ *				Test tracing elements moved here as	*
+ *				they are not part of the API.		*
+ *				Rename internal.h			*
  *									*
  ************************************************************************
  */
 
-#ifndef SLLIST_INTERNAL_H
-#define SLLIST_INTERNAL_H
+#ifndef INTERNAL_H
+#define INTERNAL_H
 
-#include <portability.h>
+#include <libmgec/mge-bstree.h>
+#include <libmgec/mge-portability.h>
 
-#include <sllist.h>
+#include <stddef.h>
 
 BEGIN_C_DECLS
 
-static void free_sll_node(struct sllistnode *currentnode);
+/** Node coordinates for test tracing. */
+struct bstobjcoord {
+	void *object; /**< The object. */
+	int count;    /**< The node counter. */
+	int xdir;     /**< The x coordinate. */
+	int ydir;     /**< The y coordinate. */
+};
+
+struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
+					     struct bstobjcoord *searchobj);
 
 END_C_DECLS
 
-#endif /* ndef SLLIST_INTERNAL_H */
-
+#endif /* ndef INTERNAL_H */

@@ -1,7 +1,7 @@
 NAME
 free_sllist - Deletes a single linked list.
 SYNOPSIS
-	#include <sllist.h>
+	#include libmgec/<sllist.h>
 
 	struct sllistnode *free_sllist(struct sllistnode *head);
 
@@ -25,8 +25,8 @@ mge_errno is always set to 0 on return from this function.
 EXAMPLE
 A simple example using a character string:-
 
-	#include <sllist.h>
-	#include <mge-errno.h>
+	#include <libmgec/sllist.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -75,7 +75,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+Copyright (C) 2015-2017, 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br

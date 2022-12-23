@@ -15,12 +15,12 @@
  *
  * _In fact, the same as strcmp()._
  *
- * @author Copyright (C) 2015-2021  Mark Grant
+ * @author Copyright (C) 2015-2022  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.10 ==== 03/12/2021_
+ * @version _v1.1.11 ==== 16/09/2022_
  */
 
 /* **********************************************************************
@@ -83,6 +83,12 @@
  * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
  *				static (non-API) function.		*
  * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
+ * 16/09/2022	MG	1.1.11	Rename of bstree.h			*
+ *				Move static function declarations here.	*
+ *				Mark test tracing function as internal	*
+ *				as it is not part of the API.		*
+ *				Rename of bstree-internal.h to		*
+ *				internal.h				*
  *									*
  ************************************************************************
  */
@@ -92,9 +98,44 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "bstree-internal.h"
-#include <bstree.h>
-#include <mge-errno.h>
+#include "internal.h"
+#include <libmgec/mge-bstree.h>
+#include <libmgec/mge-errno.h>
+
+static struct bstreenode *add_node(struct bstreenode *currentnode,
+				   const void *object, size_t objsize,
+				   struct bstree *tree);
+
+static void *find_node(const struct bstreenode *currentnode,
+		       const void *searchobj,
+		       int (*comp)(const void *, const void *));
+
+static int get_counter_node(const struct bstreenode *currentnode,
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
+
+static void *find_next_node(const struct bstreenode *currentnode,
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
+
+static void *find_prev_node(const struct bstreenode *currentnode,
+			    const void *searchobj,
+			    int (*comp)(const void *, const void *));
+
+static void *upd_node(struct bstreenode *currentnode, const void *updobj,
+		      size_t objsize, int (*comp)(const void *, const void *));
+
+static struct bstreenode *del_node(struct bstreenode *currentnode,
+				   const void *searchobj, struct bstree *tree);
+
+static struct bstreenode *free_bstree(struct bstreenode *currentnode);
+
+static struct bstreenode *free_bst_node(struct bstreenode *currentnode);
+
+static struct bstobjcoord *
+find_next_node_trace(const struct bstreenode *currentnode,
+		     struct bstobjcoord *searchobj,
+		     int (*comp)(const void *, const void *));
 
 /**
  * Create a binary search tree.
@@ -775,6 +816,7 @@ static struct bstreenode *free_bst_node(struct bstreenode *currentnode)
 /* @endcond */
 
 /**
+ * @cond INTERNAL
  * Find and return the next object and it's coordinates in the bst 'tree'.
  * This is only really useful for testing purposes where this function can be
  * used to verify the tree coordinates of nodes.
@@ -796,6 +838,7 @@ struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
 	}
 	return find_next_node_trace(tree->root, searchobj, tree->comp);
 }
+/* @endcond */
 
 /**
  * @cond INTERNAL
@@ -863,4 +906,3 @@ find_next_node_trace(const struct bstreenode *currentnode,
 	return nextcoord;
 }
 /* @endcond */
-

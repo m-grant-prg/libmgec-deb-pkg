@@ -1,3 +1,68 @@
+2022-11-09 v1.7.3 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Only build docs on latest release
+
+2022-10-28 v1.7.2 Mark Grant <m.grant.prg@gmail.com>
+	* Bump version nummber to fix downstream packaging.
+
+2022-10-25 v1.7.1 Mark Grant <m.grant.prg@gmail.com>
+	* Bump version nummber to fix downstream packaging.
+
+2022-10-21 v1.7.0 Mark Grant <m.grant.prg@gmail.com>
+	* at: Sort header checks alphabetically
+	at: Add header check for stddef.h
+	at: Add AC_CHECK_FUNCS for memmove
+	at: Add AC_C_INLINE check
+	at: Fix spelling mistake
+	at: Add Further Information section
+	docs: Add AutoTools section
+	at: Move CFLAGS init to Compiler Setup section
+	at: Use AC_CONFIG_AUX_DIR
+	git: Update gitignore to v1.0.9
+	at: Use AC MSG CHECKING where appropriate
+	at: Update section name change
+	at: Use find in tmpheaders
+	at: Use absolute paths in tmplibraries
+	at: Re-order tmplibraries
+	all: Move header files to inc/libmgec
+	at: Rename tmplibraries
+	all: pkgincludedir not required for project products
+	tests: Specify all include directories
+	tests: Do not compile test headers in inc-tmp
+	git: Ignore headers in sub-directories of inc-tmp
+	all: Correct structure of pkginclude directory
+	docs: Update header file guidelines
+	at: Upgrade bootstrap.sh to v1.5.4
+	docs: Remove globbed tarballs
+	tests: Use $CC AOT cc in test scripts
+	bstree: Rename bstree-internal.h to internal.h
+	sllist: Move static function declarations to .c file
+	dllist: Move static function declarations to .c file
+	bstree: Make test tracing internal
+	bstree: Move static function declarations to .c file
+	inc: Improve member comments
+	libmgec: Remove unnecessary headers
+	errors: Correct included headers
+	buf-msg: Remove unnecessary headers
+	at: Upgrade bootstrap.sh to v1.5.3
+	m4: Upgrade compiler macros to v1.2.2
+	at: Upgrade bootstrap.sh to v1.5.2
+	m4: Update c-compiler.m4 to v1.2.1
+	Merge branch 'namespace' into tip
+	docs: Exclude inc-tmp directory
+	c: Ensure header files are self-contained
+	at: tests: Add test compilation of headers
+	docs: Add header file conventions notes
+	at: pkg-config: Install API headers in pkgincludedir
+	editors: Add local vimrc file
+	git: Remove local vimrc exclusion
+	at: buf-msg: man: Rename mgemessage.h mge-message.h
+	at: memory: man: Rename mgememory.h mge-memory.h
+	at: buf-msg: man: Rename mgebuffer.h mge-buffer.h
+	at: bstree: man: Rename bstree.h mge-bstree.h
+	at: c: Rename portability.h mge-portability.h
+	editors: Add local vimrc file
+	git: Remove local vimrc exclusion
+
 2022-08-16 v1.6.4 Mark Grant <m.grant.prg@gmail.com>
 	* editors: Update editorconfig to v1.0.3
 	editors: Update editorconfig to v1.0.2

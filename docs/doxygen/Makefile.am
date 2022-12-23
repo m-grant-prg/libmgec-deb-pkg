@@ -44,6 +44,10 @@
 # 19/07/2022	MG	1.1.6	Add doxygen target.			#
 #				Add dependency on document sources and	#
 #				C sources.				#
+# 04/09/2022	MG	1.1.7	Remove all doxygen tarballs. Orphaned	#
+#				tarballs can be left if git describe	#
+#				changes and no make clean has been	#
+#				performed.				#
 #									#
 #########################################################################
 
@@ -168,9 +172,8 @@ EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/src $(srcdir)/libmgec.in \
 	     $(srcdir)/libmgec-int.in
 
 
-CLEANFILES = doxywarn.txt doxygen.stamp doxygen1.stamp $(docpkg) $(intdocpkg) \
-	libmgec libmgec-int
+CLEANFILES = doxywarn.txt doxygen.stamp doxygen1.stamp libmgec libmgec-int
 
 clean-local:
-	rm -rf html html-int
+	rm -rf html html-int libmgec*doxy*.tar.gz
 

@@ -1,7 +1,7 @@
 NAME
 find_bst_node - Find a node in a generic binary search tree.
 SYNOPSIS
-	#include <bstree.h>
+	#include <libmgec/mge-bstree.h>
 
 	void *find_bst_node(const struct bstree *tree,
 		const void *searchobj);
@@ -37,8 +37,8 @@ EXAMPLE
 A simple example using a character string and the strcmp function for
 comparison:-
 
-	#include <bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	//...
 
@@ -80,8 +80,8 @@ comparison:-
 A more complex example using a struct as the object. (Note the comparison
 function):-
 
-	#include <bstree.h>
-	#include <mge-errno.h>
+	#include <libmgec/mge-bstree.h>
+	#include <libmgec/mge-errno.h>
 
 	int nodecmp(const struct testnode *node1,
 			const struct testnode *node2);
@@ -192,7 +192,7 @@ Written by Mark Grant.
 REPORTING BUGS
 Report bugs to <m.grant.prg@gmail.com>
 COPYRIGHT
-Copyright (C) 2015-2017, 2019, 2021 Mark Grant
+Copyright (C) 2015-2017, 2019, 2021, 2022 Mark Grant
 .br
 License GPLv3: GNU GPL version 3 only
 .br
