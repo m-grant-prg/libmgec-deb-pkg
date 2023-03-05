@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2015-2022  Mark Grant				#
+# Author: Copyright (C) 2015-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -184,6 +184,9 @@
 # 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
 #				Add AC CHECK FUNCS for memmove.		#
 #				Add AC CHECK HEADERS for stddef.h	#
+# 04/03/2023	MG	1.2.5	Enforce compiler to use, in order; CC	#
+#				passed to configure, sparse if		#
+#				requested, or from a standard list.	#
 #									#
 #########################################################################
 
@@ -194,11 +197,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2015-2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.4 $)
+AC_REVISION($Revision: 1.2.5 $)
 
 AC_PREREQ(2.69)
 
@@ -417,12 +420,15 @@ AC_LANG(C)
 # AC PROG CC).
 : ${CFLAGS=""}
 
-# Checks the compiler to use from either a standard list or one to use for
-# sparse, stores it in the CC variable and checks its capabilities.
-if test "x$sparse" = "xtrue" ; then
-	compiler_list="cgcc gcc cc"
+# Checks the compiler to use, in order, from either the CC variable passed to
+# configure, if sparse is specified, or a standard list. The chosen value is
+# stored in the CC variable and then configure checks its capabilities.
+if test -n "$CC" ; then
+	compiler_list="$CC"
+elif test "x$sparse" = "xtrue" ; then
+	compiler_list="cgcc"
 else
-	compiler_list="gcc cc"
+	compiler_list="gcc clang cc"
 fi
 AC_PROG_CC($compiler_list)
 
