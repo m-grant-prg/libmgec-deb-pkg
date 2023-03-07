@@ -14,7 +14,7 @@
 #		[--enable-debug=<yes|no> [default: no]]			#
 #		[--enable-distcheckfake=<yes|no> [default: no]]		#
 #		[--enable-headercheck=<yes|no> [default: no]]		#
-#		[--enable-iwyu=<yes|no> [default: no]]		#
+#		[--enable-iwyu=<yes|no> [default: no]]			#
 #		[--enable-sparse=<yes|no> [default: no]]		#
 #									#
 # Parameters generic description. For specifics to this configure.ac	#
