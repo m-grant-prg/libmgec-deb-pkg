@@ -37,7 +37,7 @@
 # --enable-headercheck							#
 #	Used to set a flag to output the header file nesting.		#
 # --enable-iwyu								#
-#	Used to check that program is installed.			#
+#	Used to check that include-what-you-use is installed.		#
 # --enable-sparse							#
 #	Used to compile with the sparse static analyser.		#
 #									#
