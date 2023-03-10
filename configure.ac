@@ -14,6 +14,7 @@
 #		[--enable-debug=<yes|no> [default: no]]			#
 #		[--enable-distcheckfake=<yes|no> [default: no]]		#
 #		[--enable-headercheck=<yes|no> [default: no]]		#
+#		[--enable-scan-build=<yes|no> [default: no]]		#
 #		[--enable-iwyu=<yes|no> [default: no]]			#
 #		[--enable-sparse=<yes|no> [default: no]]		#
 #									#
@@ -38,6 +39,8 @@
 #	Used to set a flag to output the header file nesting.		#
 # --enable-iwyu								#
 #	Used to check that include-what-you-use is installed.		#
+# --enable-scan-build							#
+#	Used to check that clang's scan-build is installed.		#
 # --enable-sparse							#
 #	Used to compile with the sparse static analyser.		#
 #									#
@@ -187,12 +190,13 @@
 # 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
 #				Add AC CHECK FUNCS for memmove.		#
 #				Add AC CHECK HEADERS for stddef.h	#
-# 05/03/2023	MG	1.2.5	Enforce compiler to use, in order; CC	#
+# 10/03/2023	MG	1.2.5	Enforce compiler to use, in order; CC	#
 #				passed to configure, sparse if		#
 #				requested, or from a standard list.	#
-#				Add CL argument for enable-iwyu and use	#
-#				to determine if program availability	#
-#				checks should be performed.		#
+#				Add CL arguments for enable-iwyu and	#
+#				enable-scan-build and use to determine	#
+#				if program availability checks should	#
+#				be performed.				#
 #									#
 #########################################################################
 
@@ -403,6 +407,25 @@ else
 fi
 
 #
+# The following allows for an enable-scan-build=yes/no command line option.
+# The result is only used in configure.
+#
+AC_ARG_ENABLE(scan_build,
+	AS_HELP_STRING([--enable-scan-build], [scan-build use is selected]),
+	[case "${enableval}" in
+		yes) scan_build=true ;;
+		no)  scan_build=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} in enable-scan-build);;
+	esac],scan_build=false)
+
+AC_MSG_CHECKING([whether scan-build is selected])
+if test "x${scan_build}" = xtrue; then
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
+fi
+
+#
 # The following allows for an enable-sparse=yes/no command line option. The
 # conditional SPARSE is made available to the makefiles.
 #
@@ -563,6 +586,13 @@ if test "x${enable_iwyu}" = xtrue; then
 	AC_CHECK_PROG(IWYU, iwyu,yes, no)
 	if test "x$IWYU" = "xno" ; then
 		AC_MSG_ERROR(iwyu not found)
+	fi
+fi
+
+if test "x${scan_build}" = xtrue; then
+	AC_CHECK_PROG(SCAN_BUILD, scan-build,yes, no)
+	if test "x$SCAN_BUILD" = "xno" ; then
+		AC_MSG_ERROR(scan-build not found)
 	fi
 fi
 
