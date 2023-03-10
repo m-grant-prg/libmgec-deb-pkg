@@ -394,13 +394,13 @@ fi
 AC_ARG_ENABLE(iwyu,
 	AS_HELP_STRING([--enable-iwyu], [include-what-you-use is selected]),
 	[case "${enableval}" in
-		yes) enable_iwyu=true ;;
-		no)  enable_iwyu=false ;;
+		yes) iwyu=true ;;
+		no)  iwyu=false ;;
 		*) AC_MSG_ERROR(bad value ${enableval} in enable-iwyu);;
-	esac],enable_iwyu=false)
+	esac],iwyu=false)
 
-AC_MSG_CHECKING([whether include-what-you-use is selected])
-if test "x${enable_iwyu}" = xtrue; then
+AC_MSG_CHECKING([whether include-what-you-use (iwyu) is selected])
+if test "x${iwyu}" = xtrue; then
 	AC_MSG_RESULT([yes])
 else
 	AC_MSG_RESULT([no])
@@ -582,8 +582,8 @@ if test "x$DOXYGEN" = "xno" ; then
 	AC_MSG_ERROR(doxygen not found)
 fi
 
-if test "x${enable_iwyu}" = xtrue; then
-	AC_CHECK_PROG(IWYU, iwyu,yes, no)
+if test "x${iwyu}" = xtrue; then
+	AC_CHECK_PROG(IWYU, iwyu, yes, no)
 	if test "x$IWYU" = "xno" ; then
 		AC_MSG_ERROR(iwyu not found)
 	fi
