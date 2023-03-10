@@ -590,7 +590,7 @@ if test "x${iwyu}" = xtrue; then
 fi
 
 if test "x${scan_build}" = xtrue; then
-	AC_CHECK_PROG(SCAN_BUILD, scan-build,yes, no)
+	AC_CHECK_PROG(SCAN_BUILD, scan-build, yes, no)
 	if test "x$SCAN_BUILD" = "xno" ; then
 		AC_MSG_ERROR(scan-build not found)
 	fi
