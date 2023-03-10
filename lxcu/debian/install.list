@@ -1,5 +1,1 @@
-autoconf autoconf-archive automake autotools-dev libtool-bin
-valgrind
-dia doxygen graphviz
-txt2man txt2manwrap
 
