@@ -1,3 +1,6 @@
+2023-06-29 v1.6.8 Mark Grant <m.grant.prg@gmail.com>
+	* actions: Replace fetch-latest-release action
+
 2022-11-11 v1.6.7 Mark Grant <m.grant.prg@gmail.com>
 	* Bump library version
 
