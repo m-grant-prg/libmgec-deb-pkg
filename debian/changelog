@@ -1,10 +1,10 @@
-libmgec2 (1.6.8-1ubuntu22.04u1) UNRELEASED; urgency=medium
+libmgec2 (1.6.8-1ubuntu22.04u1) jammy; urgency=medium
 
   * Merge new upstream release.
   * Update Copyright for 2023.
   * Update watch file to support ~.
 
- -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 15:05:41 +0100
+ -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 15:10:12 +0100
 
 libmgec2 (1.6.7-1ubuntu22.04u2) jammy; urgency=medium
 
