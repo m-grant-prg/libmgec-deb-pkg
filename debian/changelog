@@ -2,6 +2,7 @@ libmgec2 (1.6.8-1ubuntu20.04u1) UNRELEASED; urgency=medium
 
   * Merge new upstream version.
   * Update Copyright for 2023.
+  * Update watch file to support ~.
 
  -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:51:48 +0100
 
