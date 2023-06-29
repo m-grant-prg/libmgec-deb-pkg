@@ -1,3 +1,9 @@
+libmgec2 (1.6.8-1+deb11u1) UNRELEASED; urgency=medium
+
+  * Merge new upstream release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:06:33 +0100
+
 libmgec2 (1.6.7-1+deb11u2) bullseye; urgency=medium
 
   * New upstream release.
