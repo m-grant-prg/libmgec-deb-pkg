@@ -1,1 +1,11 @@
+# This file should contain packages required to satisfy the Build-Depends of
+# this package.
+
+autoconf-archive
+libtool-bin
+valgrind
+dia graphviz
+doxygen
+tar
+txt2manwrap
 

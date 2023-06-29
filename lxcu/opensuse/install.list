@@ -1,1 +1,8 @@
+# This file should contain packages required to satisfy the Build-Depends of
+# this package.
+
+autoconf autoconf-archive automake libtool make valgrind
+dia doxygen graphviz graphviz-gd
+tar
+txt2manwrap
 
