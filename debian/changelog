@@ -1,3 +1,9 @@
+libmgec2 (1.6.8-1ubuntu20.04u1) UNRELEASED; urgency=medium
+
+  * Merge new upstream version.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:51:48 +0100
+
 libmgec2 (1.6.7-1ubuntu20.04u3) focal; urgency=medium
 
   * Bump version after test merges.
