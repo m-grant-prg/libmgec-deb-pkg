@@ -1,8 +1,8 @@
-libmgec2 (1.6.8-1+deb11u2) UNRELEASED; urgency=medium
+libmgec2 (1.6.8-1+deb11u2) bullseye; urgency=medium
 
   * Update watch file to support ~.
 
- -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:29:33 +0100
+ -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:30:31 +0100
 
 libmgec2 (1.6.8-1+deb11u1) bullseye; urgency=medium
 
