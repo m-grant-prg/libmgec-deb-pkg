@@ -1,6 +1,7 @@
 libmgec2 (1.6.8-1ubuntu22.04u1) UNRELEASED; urgency=medium
 
   * Merge new upstream release.
+  * Update Copyright for 2023.
 
  -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 15:05:41 +0100
 
