@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2015-2022  Mark Grant				#
+# Author: Copyright (C) 2015-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -164,6 +164,7 @@
 # 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
 #				using GitHub Pages for hosting Doxygen	#
 #				documentation.				#
+# 29/06/2023	MG	1.2.2	Update Copyright for 2023.		#
 #									#
 #########################################################################
 
@@ -174,11 +175,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2015-2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.1 $)
+AC_REVISION($Revision: 1.2.2 $)
 
 AC_PREREQ(2.69)
 
@@ -196,7 +197,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.6.7)
+m4_define(pkg_version, 1.6.8)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
