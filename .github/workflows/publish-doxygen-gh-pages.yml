@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # File ID: ./.github/workflows/publish-doxygen-gh-pages.yml		#
-# Author: Copyright (C) 2022  Mark Grant				#
+# Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -21,6 +21,11 @@
 # 25/07/2022	MG	1.0.1	Initial release.                        #
 # 06/11/2022    MG      1.0.2   Only build if this release is flagged   #
 #                               as the latest release.                  #
+# 29/06/2023    MG      1.0.3   Original action to fetch latest GitHub  #
+#                               release became unmaintained and was to   #
+#                               cease to work after GitHub updates. So  #
+#                               replaced by fork and update by          #
+#                               CityOfLosAngeles.                       #
 #									#
 #########################################################################
 
@@ -46,7 +51,7 @@ jobs:
 
       - name: Fetch latest release
         id: latest_release
-        uses: gregziegan/fetch-latest-release@v2.0.0
+        uses: CityOfLosAngeles/fetch-latest-github-release@v2.0.2
 
       - name: Print versions
         run: |
