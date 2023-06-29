@@ -1,10 +1,10 @@
-libmgec2 (1.6.8-1ubuntu20.04u1) UNRELEASED; urgency=medium
+libmgec2 (1.6.8-1ubuntu20.04u1) focal; urgency=medium
 
   * Merge new upstream version.
   * Update Copyright for 2023.
   * Update watch file to support ~.
 
- -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:51:48 +0100
+ -- Mark Grant <m.grant.prg@gmail.com>  Thu, 29 Jun 2023 14:56:23 +0100
 
 libmgec2 (1.6.7-1ubuntu20.04u3) focal; urgency=medium
 
