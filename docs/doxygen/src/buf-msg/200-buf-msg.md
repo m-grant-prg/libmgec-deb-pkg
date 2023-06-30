@@ -2,7 +2,7 @@ Message Buffers and Messages
 ============================
 \tableofcontents
 
-\section overview Overview
+\section buffers_messages_overview Overview
 
 These library functions address the need to exchange meassages, maybe between
 processes on the same machine, or, maybe between machines using UDP or TCP
