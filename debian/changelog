@@ -2,6 +2,7 @@ libmgec7 (1.7.4-1+deb11u1) UNRELEASED; urgency=medium
 
   * Merge new upstream release.
   * Update Copyright for 2023.
+  * Update watch file to support ~.
 
  -- Mark Grant <m.grant.prg@gmail.com>  Fri, 30 Jun 2023 07:10:39 +0100
 
