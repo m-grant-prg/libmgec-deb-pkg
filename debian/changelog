@@ -1,10 +1,10 @@
-libmgec7 (1.7.4-1ubuntu22.04u1) UNRELEASED; urgency=medium
+libmgec7 (1.7.4-1ubuntu22.04u1) jammy; urgency=medium
 
   * Merge new upstream release.
   * Update Copyright for 2023.
   * Update watch file to support ~.
 
- -- Mark Grant <m.grant.prg@gmail.com>  Fri, 30 Jun 2023 08:20:17 +0100
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 30 Jun 2023 08:23:04 +0100
 
 libmgec7 (1.7.3-1ubuntu22.04u1) jammy; urgency=medium
 
