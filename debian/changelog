@@ -1,8 +1,8 @@
-libmgec7 (1.7.4-1+deb11u2) UNRELEASED; urgency=medium
+libmgec7 (1.7.4-1+deb11u2) bullseye; urgency=medium
 
   * Move to upstream v1.7.y branch.
 
- -- Mark Grant <m.grant.prg@gmail.com>  Fri, 30 Jun 2023 08:40:25 +0100
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 30 Jun 2023 08:56:13 +0100
 
 libmgec7 (1.7.4-1+deb11u1) bullseye; urgency=medium
 
