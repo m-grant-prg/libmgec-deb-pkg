@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: ./configure.ac						#
-# Author: Copyright (C) 2015-2022  Mark Grant				#
+# Author: Copyright (C) 2015-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -14,6 +14,8 @@
 #		[--enable-debug=<yes|no> [default: no]]			#
 #		[--enable-distcheckfake=<yes|no> [default: no]]		#
 #		[--enable-headercheck=<yes|no> [default: no]]		#
+#		[--enable-iwyu=<yes|no> [default: no]]			#
+#		[--enable-scan-build=<yes|no> [default: no]]		#
 #		[--enable-sparse=<yes|no> [default: no]]		#
 #									#
 # Parameters generic description. For specifics to this configure.ac	#
@@ -35,6 +37,10 @@
 #	would normally fail.						#
 # --enable-headercheck							#
 #	Used to set a flag to output the header file nesting.		#
+# --enable-iwyu								#
+#	Used to check that include-what-you-use is installed.		#
+# --enable-scan-build							#
+#	Used to check that clang's scan-build is installed.		#
 # --enable-sparse							#
 #	Used to compile with the sparse static analyser.		#
 #									#
@@ -184,6 +190,13 @@
 # 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
 #				Add AC CHECK FUNCS for memmove.		#
 #				Add AC CHECK HEADERS for stddef.h	#
+# 10/03/2023	MG	1.2.5	Enforce compiler to use, in order; CC	#
+#				passed to configure, sparse if		#
+#				requested, or from a standard list.	#
+#				Add CL arguments for enable-iwyu and	#
+#				enable-scan-build and use to determine	#
+#				if program availability checks should	#
+#				be performed.				#
 #									#
 #########################################################################
 
@@ -194,11 +207,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2015-2022  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2015-2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.4 $)
+AC_REVISION($Revision: 1.2.5 $)
 
 AC_PREREQ(2.69)
 
@@ -216,7 +229,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.7.3)
+m4_define(pkg_version, 1.7.4)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
@@ -375,6 +388,44 @@ else
 fi
 
 #
+# The following allows for an enable-iwyu=yes/no command line option.
+# The result is only used in configure.
+#
+AC_ARG_ENABLE(iwyu,
+	AS_HELP_STRING([--enable-iwyu], [include-what-you-use is selected]),
+	[case "${enableval}" in
+		yes) iwyu=true ;;
+		no)  iwyu=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} in enable-iwyu);;
+	esac],iwyu=false)
+
+AC_MSG_CHECKING([whether include-what-you-use (iwyu) is selected])
+if test "x${iwyu}" = xtrue; then
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
+fi
+
+#
+# The following allows for an enable-scan-build=yes/no command line option.
+# The result is only used in configure.
+#
+AC_ARG_ENABLE(scan_build,
+	AS_HELP_STRING([--enable-scan-build], [scan-build use is selected]),
+	[case "${enableval}" in
+		yes) scan_build=true ;;
+		no)  scan_build=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} in enable-scan-build);;
+	esac],scan_build=false)
+
+AC_MSG_CHECKING([whether scan-build is selected])
+if test "x${scan_build}" = xtrue; then
+	AC_MSG_RESULT([yes])
+else
+	AC_MSG_RESULT([no])
+fi
+
+#
 # The following allows for an enable-sparse=yes/no command line option. The
 # conditional SPARSE is made available to the makefiles.
 #
@@ -417,12 +468,15 @@ AC_LANG(C)
 # AC PROG CC).
 : ${CFLAGS=""}
 
-# Checks the compiler to use from either a standard list or one to use for
-# sparse, stores it in the CC variable and checks its capabilities.
-if test "x$sparse" = "xtrue" ; then
-	compiler_list="cgcc gcc cc"
+# Checks the compiler to use, in order, from either the CC variable passed to
+# configure, if sparse is specified, or a standard list. The chosen value is
+# stored in the CC variable and then configure checks its capabilities.
+if test -n "$CC" ; then
+	compiler_list="$CC"
+elif test "x$sparse" = "xtrue" ; then
+	compiler_list="cgcc"
 else
-	compiler_list="gcc cc"
+	compiler_list="gcc clang cc"
 fi
 AC_PROG_CC($compiler_list)
 
@@ -526,6 +580,20 @@ fi
 AC_CHECK_PROG(DOXYGEN, doxygen, yes, no)
 if test "x$DOXYGEN" = "xno" ; then
 	AC_MSG_ERROR(doxygen not found)
+fi
+
+if test "x${iwyu}" = xtrue; then
+	AC_CHECK_PROG(IWYU, iwyu, yes, no)
+	if test "x$IWYU" = "xno" ; then
+		AC_MSG_ERROR(iwyu not found)
+	fi
+fi
+
+if test "x${scan_build}" = xtrue; then
+	AC_CHECK_PROG(SCAN_BUILD, scan-build, yes, no)
+	if test "x$SCAN_BUILD" = "xno" ; then
+		AC_MSG_ERROR(scan-build not found)
+	fi
 fi
 
 AC_CHECK_PROG([TAR], [tar], [yes], [no])

@@ -3,7 +3,7 @@ AutoTools
 
 \tableofcontents
 
-\section overview Overview
+\section autotools_overview Overview
 This documentation covers some important aspects of the AutoTools project
 structure and build.
 
