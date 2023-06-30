@@ -1,5 +1,8 @@
-autoconf autoconf-archive automake libtool
-valgrind
+# This file should contain packages required to satisfy the Build-Depends of
+# this package.
+
+autoconf autoconf-archive automake libtool make valgrind
 dia doxygen graphviz graphviz-gd
-txt2man txt2manwrap
+tar
+txt2manwrap
 
