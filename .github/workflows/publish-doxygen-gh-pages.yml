@@ -22,10 +22,11 @@
 # 06/11/2022    MG      1.0.2   Only build if this release is flagged   #
 #                               as the latest release.                  #
 # 29/06/2023    MG      1.0.3   Original action to fetch latest GitHub  #
-#                               release became unmaintained and was to   #
+#                               release became unmaintained and was to  #
 #                               cease to work after GitHub updates. So  #
 #                               replaced by fork and update by          #
 #                               CityOfLosAngeles.                       #
+# 13/07/2023    MG      1.0.4   Run on 22.04                            #
 #									#
 #########################################################################
 
@@ -40,7 +41,7 @@ jobs:
   version_check:
     outputs:
       status: ${{ steps.build.outputs.flag }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
@@ -72,7 +73,7 @@ jobs:
 
 
   publish-doxygen:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: version_check
     if: needs.version_check.outputs.status == 'build'
     steps:
