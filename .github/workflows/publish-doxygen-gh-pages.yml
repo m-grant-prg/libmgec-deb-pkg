@@ -98,10 +98,10 @@ jobs:
       - name: Add the PPA packages
         run: sudo apt-get install -y txt2manwrap
 
+      - name: Autoreconf
+        run: autoreconf -if .
       - name: Configure
-        run: |
-          autoreconf -if .
-          ./configure --enable-silent-rules=yes
+        run: ./configure --enable-silent-rules=yes
 
       - name: Make doxygen
         run: make doxygen
