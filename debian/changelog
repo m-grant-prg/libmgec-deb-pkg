@@ -1,3 +1,9 @@
+libmgec7 (1.8.0-1+deb12u1) bookworm; urgency=medium
+
+  * Merge new upstream release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 28 Jul 2023 10:16:18 +0100
+
 libmgec7 (1.7.4-1+deb12u1) bookworm; urgency=medium
 
   * Create new bookworm branch.
