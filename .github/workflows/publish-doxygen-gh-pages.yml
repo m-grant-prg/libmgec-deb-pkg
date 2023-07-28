@@ -22,10 +22,12 @@
 # 06/11/2022    MG      1.0.2   Only build if this release is flagged   #
 #                               as the latest release.                  #
 # 29/06/2023    MG      1.0.3   Original action to fetch latest GitHub  #
-#                               release became unmaintained and was to   #
+#                               release became unmaintained and was to  #
 #                               cease to work after GitHub updates. So  #
 #                               replaced by fork and update by          #
 #                               CityOfLosAngeles.                       #
+# 13/07/2023    MG      1.0.4   Run on 22.04                            #
+# 24/07/2023    MG      1.0.5   Organise standard repo and PPA actions. #
 #									#
 #########################################################################
 
@@ -40,7 +42,7 @@ jobs:
   version_check:
     outputs:
       status: ${{ steps.build.outputs.flag }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
@@ -72,7 +74,7 @@ jobs:
 
 
   publish-doxygen:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: version_check
     if: needs.version_check.outputs.status == 'build'
     steps:
@@ -82,17 +84,24 @@ jobs:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Install the extra PPA packages
+      - name: Update the package list
+        run: sudo apt-get update
+      - name: Add the extra standard packages
         run: |
-          sudo add-apt-repository ppa:m-grant-prg/utils -y
-          sudo apt-get update
           sudo apt-get install -y autoconf-archive libtool-bin valgrind
-          sudo apt-get install -y dia doxygen graphviz txt2man txt2manwrap
+          sudo apt-get install -y dia doxygen graphviz
 
+      - name: Add the extra PPA
+        run: sudo add-apt-repository ppa:m-grant-prg/utils -y
+      - name: Update the package list
+        run: sudo apt-get update
+      - name: Add the PPA packages
+        run: sudo apt-get install -y txt2manwrap
+
+      - name: Autoreconf
+        run: autoreconf -if .
       - name: Configure
-        run: |
-          autoreconf -if .
-          ./configure --enable-silent-rules=yes
+        run: ./configure --enable-silent-rules=yes
 
       - name: Make doxygen
         run: make doxygen
