@@ -1,3 +1,9 @@
+libmgec7 (1.8.0-1ubuntu22.04u1) jammy; urgency=medium
+
+  * Merge new upstream release.
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 28 Jul 2023 10:25:41 +0100
+
 libmgec7 (1.7.4-1ubuntu22.04u1) jammy; urgency=medium
 
   * Merge new upstream release.
