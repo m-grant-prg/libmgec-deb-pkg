@@ -2,7 +2,7 @@
 MGE General C Library
 =====================
 
-Author - Copyright (C) 2017-2022 Mark Grant
+Author - Copyright (C) 2017-2023 Mark Grant
 
 --------
 Contents
@@ -71,7 +71,8 @@ d) ... If you downloaded the source tarball type 'autoreconf -if'
 e) ... Documents can be registered with scrollkeeper but this process will
 	conflict if the documents have already been installed via a package
 	manager. So, if the documents have not been installed by a package
-	manager:-
+	manager. (For further information please see
+	docs/misc/AT-Installation.txt.):-
 
 	Type './configure --enable-atonly'
 
@@ -81,7 +82,8 @@ e) ... Documents can be registered with scrollkeeper but this process will
 
 f) ... As root or sudo, type 'make install clean'
 
-g) ... Update shared libraries links and cache
+g) ... Update shared libraries links and cache. (For further information please
+	see docs/misc/AT-Installation.txt.)
 
 	As root or sudo, type 'ldconfig'
 
@@ -137,7 +139,7 @@ https://github.com/m-grant-prg/acmbuild/wiki
 gen-gnulib.sh
 -------------
 This script generates or re-generates the gnulib requirements, I shan't go into
-detail here.
+detail here. Please refer to docs/misc/gnulib.txt for further information.
 
 It is useful when setting up the project initially, when you are actually
 building in what is required and thinking about it, thereafter it is best to use
