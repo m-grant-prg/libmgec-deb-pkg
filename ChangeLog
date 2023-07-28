@@ -1,3 +1,14 @@
+2023-07-27 v1.8.0 Mark Grant <m.grant.prg@gmail.com>
+	* at: docs: Add ldconfig and doc-base AT installation information
+	editors: Update local vimrc to v1.0.4
+	actions: Standardise configure steps
+	actions: Organise standard repo and PPA in publish
+	actions: Organise standard repo and PPA in build
+	docs: README: Update gnulib information
+	at: Upgrade gen-gnulib.sh to v1.1.0
+	at: gnulib updates
+	actions: Run on 22.04
+
 2023-06-29 v1.7.4 Mark Grant <m.grant.prg@gmail.com>
 	* actions: Replace fetch-latest-release action
 	at: Allow for v1.1.1~rc1 version numbering

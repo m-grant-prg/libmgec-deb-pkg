@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # File ID: ./.github/workflows/build-test.yml				#
-# Author: Copyright (C) 2021  Mark Grant				#
+# Author: Copyright (C) 2021, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -23,6 +23,8 @@
 # 03/12/2021    MG      1.0.3   Get tags as needed for git-enhanced     #
 #                               AC_INIT.                                #
 #                               Tighten SPDX tag.                       #
+# 13/07/2023    MG      1.0.4   Run on 22.04                            #
+# 24/07/2023    MG      1.0.5   Organise standard repo and PPA actions. #
 #									#
 #########################################################################
 
@@ -37,7 +39,7 @@ on:
 
 jobs:
   build-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
@@ -45,14 +47,19 @@ jobs:
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
 
+      - name: Update the package list
+        run: sudo apt-get update
+      - name: Add the extra standard packages
+        run: |
+          sudo apt-get install -y autoconf-archive libtool-bin valgrind
+          sudo apt-get install -y dia doxygen graphviz
+
       - name: Add the extra PPA
         run: sudo add-apt-repository ppa:m-grant-prg/utils -y
       - name: Update the package list
         run: sudo apt-get update
-      - name: Add the extra PPA packages
-        run: |
-          sudo apt-get install -y autoconf-archive libtool-bin valgrind
-          sudo apt-get install -y dia doxygen graphviz txt2man txt2manwrap
+      - name: Add the PPA packages
+        run: sudo apt-get install -y txt2manwrap
 
       - name: Autoreconf
         run: autoreconf -if .
