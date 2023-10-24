@@ -14,7 +14,8 @@ Conflicts: libmgec-dev
 Replaces: libmgec-dev
 Section: libdevel
 Architecture: any
-Depends: libmgec7 (= ${binary:Version}), ${misc:Depends}
+Depends: libmgec7 (= ${binary:Version}),
+	${misc:Depends}
 Description: MGE C General Library Development Files
  This package contains the development files such as static libraries, header
  files and man pages.
@@ -25,7 +26,8 @@ Conflicts: libmgec-doc
 Replaces: libmgec-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: mgrant-obs-deb-keyring,
+	${misc:Depends}
 Recommends: doc-base
 Suggests: dochelp
 Description: MGE C General Library API Documentation
@@ -38,7 +40,8 @@ Conflicts: libmgec-int-doc
 Replaces: libmgec-int-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends: mgrant-obs-deb-keyring,
+	${misc:Depends}
 Recommends: doc-base
 Suggests: dochelp
 Description: MGE C General Library Internal Documentation
@@ -47,7 +50,8 @@ Description: MGE C General Library Internal Documentation
 
 Package: libmgec7
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: mgrant-obs-deb-keyring,
+	${shlibs:Depends}, ${misc:Depends}
 Description: MGE C General Library
  This package contains the MGE General C library.
 
