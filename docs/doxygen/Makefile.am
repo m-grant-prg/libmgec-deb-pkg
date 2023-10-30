@@ -1,7 +1,7 @@
 #########################################################################
 #									#
 # Script ID: docs/doxygen/Makefile.am					#
-# Author: Copyright (C) 2017-2022  Mark Grant				#
+# Author: Copyright (C) 2017-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -48,6 +48,9 @@
 #				tarballs can be left if git describe	#
 #				changes and no make clean has been	#
 #				performed.				#
+# 28/10/2023	MG	1.1.8	Doxygen can no longer incorporate files	#
+#				in the dia format. They must now be	#
+#				exported to png format.			#
 #									#
 #########################################################################
 
@@ -65,6 +68,9 @@ $(docpkg): doxygen.stamp
 	tar -chz --format=posix -f $@ html
 
 doxygen.stamp: Doxyfile $(srcdepends)
+	cd $(srcdir)/gen-img/buf-msg \
+		&& dia ../../src/buf-msg/*.dia --filter=png \
+		&& cd -
 	if $(AM_V_P); then \
 		DOXYGEN_QUIET=NO \
 			DOXYGEN_PROJECT_NAME="MGE General C Library - API Documentation" \
@@ -80,6 +86,7 @@ doxygen.stamp: Doxyfile $(srcdepends)
 			DOXYGEN_EXCLUDE_PATTERNS="*internal*" \
 			doxygen $< ; \
 	fi
+	rm -f $(srcdir)/gen-img/buf-msg/*
 	echo Timestamp > $@
 
 
@@ -91,6 +98,9 @@ $(intdocpkg): doxygen1.stamp
 	tar -chz --format=posix -f $@ html-int
 
 doxygen1.stamp: Doxyfile $(srcdepends)
+	cd $(srcdir)/gen-img/buf-msg \
+		&& dia ../../src/buf-msg/*.dia --filter=png \
+		&& cd -
 	if $(AM_V_P); then \
 		DOXYGEN_QUIET=NO \
 			DOXYGEN_PROJECT_NAME="MGE General C Library - Full Internal Documentation" \
@@ -106,6 +116,7 @@ doxygen1.stamp: Doxyfile $(srcdepends)
 			DOXYGEN_EXCLUDE_PATTERNS= \
 			doxygen $< ; \
 	fi
+	rm -rf $(srcdir)/gen-img/buf-msg/*
 	echo Timestamp > $@
 
 
@@ -168,8 +179,8 @@ endif
 endif
 
 
-EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/src $(srcdir)/libmgec.in \
-	     $(srcdir)/libmgec-int.in
+EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/src $(srcdir)/gen-img \
+	     $(srcdir)/libmgec.in $(srcdir)/libmgec-int.in
 
 
 CLEANFILES = doxywarn.txt doxygen.stamp doxygen1.stamp libmgec libmgec-int

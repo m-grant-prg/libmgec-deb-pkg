@@ -22,7 +22,7 @@ a [mgemessage struct](@ref mgemessage) until it contains a complete message.
 When it contains a complete message it is parsed into individual arguments held
 in the struct.
 
-@diafile buf-msg.dia
+@image html buf-msg/buf-msg.png
 
 
 
@@ -49,7 +49,7 @@ Behind the scenes get_msg() and deconstruct_msg() are called from pull_msg().
 
 The following diagram shows a typical message workflow.
 
-@diafile msg-flow.dia
+@image html buf-msg/msg-flow.png
 
 
 \subsection msgfunctions Functions
@@ -62,19 +62,19 @@ trim_buf(). If the [mgemessage struct](@ref mgemessage) buffer then holds a
 complete message it @cond INTERNAL
 is deconstructed and@endcond fully populates the [mgemessage struct](@ref mgemessage).
 
-@diafile pull-msg-flow.dia
+@image html buf-msg/pull-msg-flow.png
 
 @cond INTERNAL
 The same diagram with function names.
 
-@diafile pull-msg-flow-int.dia
+@image html buf-msg/pull-msg-flow-int.png
 
 
 \subsubsection getmsg get_msg()
 The get_msg() function extracts data, (partial or complete messages), from the
 [mgebuffer struct](@ref mgebuffer) buffer and loads them into a
 [mgemessage struct](@ref mgemessage).
-@diafile get-msg-flow.dia
+@image html buf-msg/get-msg-flow.png
 
 
 \subsubsection deconstructmsg deconstruct_msg()
