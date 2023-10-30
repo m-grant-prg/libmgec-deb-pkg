@@ -1,3 +1,18 @@
+2023-10-30 v1.8.1 Mark Grant <m.grant.prg@gmail.com>
+	* build(deps): bump actions/checkout from 2 to 4
+	build(deps): bump JamesIves/github-pages-deploy-action
+dependabot[bot] (2):
+
+	docs: Doxygen silently fails to incorporate dia files
+	at: Upgrade bootstrap.sh to v1.5.7
+	Merge pull request #1 from m-grant-prg/dependabot/github_actions/JamesIves/github-pages-deploy-action-4.4.3
+	Merge pull request #2 from m-grant-prg/dependabot/github_actions/actions/checkout-4
+	github: Add dependabot version update config
+	docs: Update Doxygen configuration file
+	gnulib: Update from bookworm upgrade
+	actions: Upgrade fetch-latest-release to v2.0.3
+Mark Grant (8):
+
 2023-07-27 v1.8.0 Mark Grant <m.grant.prg@gmail.com>
 	* at: docs: Add ldconfig and doc-base AT installation information
 	editors: Update local vimrc to v1.0.4
