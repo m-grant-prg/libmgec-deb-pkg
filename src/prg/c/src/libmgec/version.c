@@ -10,7 +10,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 24/11/2023_
  */
 
 #include <config.h>
@@ -22,7 +22,7 @@
  * Get the git-describe based package version.
  * @return The package version string.
  */
-char *libmgec_get_pkg_version(void)
+__attribute__((const)) const char *libmgec_get_pkg_version(void)
 {
 	return PACKAGE_VERSION;
 }
@@ -31,7 +31,7 @@ char *libmgec_get_pkg_version(void)
  * Get the source version.
  * @return The source version string.
  */
-char *libmgec_get_src_version(void)
+__attribute__((const)) const char *libmgec_get_src_version(void)
 {
 	return SOURCE_VERSION;
 }

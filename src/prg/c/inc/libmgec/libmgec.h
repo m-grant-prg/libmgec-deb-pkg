@@ -8,7 +8,7 @@
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 24/11/2023_
  */
 
 #ifndef LIBMGEC_H
@@ -24,9 +24,9 @@ BEGIN_C_DECLS
  */
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
 
-char *libmgec_get_pkg_version(void);
+__attribute__((const)) const char *libmgec_get_pkg_version(void);
 
-char *libmgec_get_src_version(void);
+__attribute__((const)) const char *libmgec_get_src_version(void);
 
 void libmgec_print_pkg_version(void);
 
