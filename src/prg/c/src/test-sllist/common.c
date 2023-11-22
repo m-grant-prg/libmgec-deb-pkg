@@ -1,7 +1,6 @@
 /* **********************************************************************
  *									*
- * Source: common.c							*
- * Author Copyright (C) 2019, 2021, 2022  Mark Grant			*
+ * Author Copyright (C) 2019, 2021-2023  Mark Grant			*
  *									*
  * Purpose:								*
  *	Common test functions for use in tests on singly linked lists	*
@@ -30,9 +29,9 @@ struct sllistnode *create_list(struct sllistnode *root)
 {
 	int i;
 
-	char *str[] = { "give", "consistency", "is",   "all",  "i",
-			"ask",	"give",	       "us",   "this", "day",
-			"our",	"daily",       "mask", "\0" };
+	const char *str[] = { "give", "consistency", "is",   "all",  "i",
+			      "ask",  "give",	     "us",   "this", "day",
+			      "our",  "daily",	     "mask", "\0" };
 	for (i = 0; *str[i] && !mge_errno; i++) {
 		struct testnode test;
 		strcpy(test.key, str[i]);
@@ -69,7 +68,7 @@ char *printlist(struct sllistnode *root, char *output)
 /*
  * Compare the test result file to the pre-determined test answer file.
  */
-int cmpresfile(char *result, char *answer)
+int cmpresfile(const char *result, const char *answer)
 {
 	FILE *fp, *fp1;
 	int status = 0;

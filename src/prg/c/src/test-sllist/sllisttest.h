@@ -1,11 +1,9 @@
 /*
- * Source: sllisttest.h
- *
  * Singly linked list test header file.
  *
  * Header file for testing singly linked lists in the libmgec shared library.
  *
- * Author Copyright (C) 2019, 2021, 2022  Mark Grant
+ * Author Copyright (C) 2019, 2021-2023  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
@@ -33,7 +31,7 @@ struct sllistnode *create_list(struct sllistnode *root);
 
 char *printlist(struct sllistnode *root, char *output);
 
-int cmpresfile(char *result, char *answer);
+int cmpresfile(const char *result, const char *answer);
 
 char *emit_outputs(char *pr, FILE *fp);
 
