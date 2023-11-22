@@ -476,8 +476,8 @@ int testfind_bst_node(void)
 			 node2.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node2.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node2.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -500,8 +500,8 @@ int testfind_bst_node(void)
 			 node3.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node3.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node3.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -524,8 +524,8 @@ int testfind_bst_node(void)
 			 node4.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node4.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node4.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -548,8 +548,8 @@ int testfind_bst_node(void)
 			 node5.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node5.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node5.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -572,8 +572,8 @@ int testfind_bst_node(void)
 			 node6.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node6.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node6.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -596,8 +596,8 @@ int testfind_bst_node(void)
 			 node7.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node7.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node7.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -805,8 +805,8 @@ int testfind_next_bst_node(void)
 			 node2.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Next found after %s is %s & mge_errno %d\n",
-			 node2.key, pnode->key, mge_errno);
+			 "Next found after %s is NULL & mge_errno %d\n",
+			 node2.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -829,8 +829,8 @@ int testfind_next_bst_node(void)
 			 node3.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Next found after %s is %s & mge_errno %d\n",
-			 node3.key, pnode->key, mge_errno);
+			 "Next found after %s is NULL & mge_errno %d\n",
+			 node3.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -853,8 +853,8 @@ int testfind_next_bst_node(void)
 			 node4.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Next found after %s is %s & mge_errno %d\n",
-			 node4.key, pnode->key, mge_errno);
+			 "Next found after %s is NULL & mge_errno %d\n",
+			 node4.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -877,8 +877,8 @@ int testfind_next_bst_node(void)
 			 node5.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Next found after %s is %s & mge_errno %d\n",
-			 node5.key, pnode->key, mge_errno);
+			 "Next found after %s is NULL & mge_errno %d\n",
+			 node5.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -901,8 +901,8 @@ int testfind_next_bst_node(void)
 			 node6.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Next found after %s is %s & mge_errno %d\n",
-			 node6.key, pnode->key, mge_errno);
+			 "Next found after %s is NULL & mge_errno %d\n",
+			 node6.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -925,8 +925,8 @@ int testfind_next_bst_node(void)
 			 node7.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Next found after %s is %s & mge_errno %d\n",
-			 node7.key, pnode->key, mge_errno);
+			 "Next found after %s is NULL & mge_errno %d\n",
+			 node7.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -994,9 +994,9 @@ int testfind_prev_bst_node(void)
 			 node2.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node2.key, pnode->key, mge_errno);
+			 node2.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1019,9 +1019,9 @@ int testfind_prev_bst_node(void)
 			 node3.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node3.key, pnode->key, mge_errno);
+			 node3.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1044,9 +1044,9 @@ int testfind_prev_bst_node(void)
 			 node4.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node4.key, pnode->key, mge_errno);
+			 node4.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1069,9 +1069,9 @@ int testfind_prev_bst_node(void)
 			 node5.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node5.key, pnode->key, mge_errno);
+			 node5.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1094,9 +1094,9 @@ int testfind_prev_bst_node(void)
 			 node6.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node6.key, pnode->key, mge_errno);
+			 node6.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1119,9 +1119,9 @@ int testfind_prev_bst_node(void)
 			 node7.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node7.key, pnode->key, mge_errno);
+			 node7.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1144,9 +1144,9 @@ int testfind_prev_bst_node(void)
 			 node8.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Previous found before %s is %s with "
+			 "Previous found before %s is NULL with "
 			 "mge_errno %d\n",
-			 node8.key, pnode->key, mge_errno);
+			 node8.key, mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1207,8 +1207,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1230,8 +1230,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Update %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Update %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1253,8 +1253,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1276,8 +1276,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Update %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Update %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1299,8 +1299,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1322,8 +1322,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Update %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Update %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1345,8 +1345,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Find %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Find %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
@@ -1368,8 +1368,8 @@ int testupd_bst_node(void)
 			 node.key, pnode->key, pnode->payload, mge_errno);
 	else
 		snprintf(presult, ARRAY_SIZE(result),
-			 "Update %s found %s with mge_errno %d\n", node.key,
-			 pnode->key, mge_errno);
+			 "Update %s found NULL with mge_errno %d\n", node.key,
+			 mge_errno);
 	fputs(result, fp);
 
 	if (verbose)
