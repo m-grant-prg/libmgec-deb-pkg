@@ -1,7 +1,6 @@
 /* **********************************************************************
  *									*
- * Source: main.c							*
- * Author Copyright (C) 2017-2019, 2021, 2022  Mark Grant		*
+ * Author Copyright (C) 2017-2019, 2021-2023  Mark Grant		*
  *									*
  * Purpose:								*
  *	Test program for binary search trees in libmgec shared library.	*
@@ -32,7 +31,7 @@ static int verbose;
 int nodecmp(const struct testnode *node1, const struct testnode *node2);
 struct bstree *pop_tree(struct bstree *tree, int duplicates);
 char *printtree(struct bstree *root, char *output);
-int cmpresfile(char *result, char *answer);
+int cmpresfile(const char *result, const char *answer);
 int test_tree_pop(void);
 int testfind_bst_node(void);
 int testget_counter_bst_node(void);
@@ -270,9 +269,9 @@ int nodecmp(const struct testnode *node1, const struct testnode *node2)
  */
 struct bstree *pop_tree(struct bstree *tree, int duplicates)
 {
-	char *str[] = { "consistency", "is",   "all",  "i",   "ask",
-			"give",	       "us",   "this", "day", "our",
-			"daily",       "mask", "\0" };
+	const char *str[] = { "consistency", "is",   "all",  "i",   "ask",
+			      "give",	     "us",   "this", "day", "our",
+			      "daily",	     "mask", "\0" };
 	struct testnode test;
 	struct bstree *res;
 	int i;
@@ -350,7 +349,7 @@ char *printtree(struct bstree *tree, char *output)
 /*
  * Compare the test result file to the pre-determined test answer file.
  */
-int cmpresfile(char *result, char *answer)
+int cmpresfile(const char *result, const char *answer)
 {
 	FILE *fp, *fp1;
 	int status = 0;
