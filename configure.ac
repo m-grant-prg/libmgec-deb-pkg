@@ -109,10 +109,10 @@ AC_INIT([MGE General C Library], m4_esyscmd([ \
 
 AC_MSG_NOTICE(initialisation and setup)
 
-AC_DEFINE(SOURCE_VERSION, "1.3.0", \
+AC_DEFINE(SOURCE_VERSION, "1.4.0", \
 	Define to the version of source code in this package.)
 
-AC_SUBST(lib_version_info, "7:0:0")
+AC_SUBST(lib_version_info, "7:1:0")
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
