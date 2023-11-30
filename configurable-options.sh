@@ -50,7 +50,7 @@
 # Init variables #
 ##################
 
-readonly version=1.0.3			# set version variable
+readonly version=1.1.0			# set version variable
 
 output_target=$1			# Filename for the results
 
