@@ -1,7 +1,6 @@
 /* **********************************************************************
  *									*
- * Source: main.c							*
- * Author Copyright (C) 2017-2019, 2021  Mark Grant			*
+ * Author Copyright (C) 2017-2019, 2021, 2023  Mark Grant		*
  *									*
  * Purpose:								*
  *	Test program for doubly linked lists in libmgec shared library.	*
@@ -35,9 +34,9 @@ void testparamerr(struct dllistnode *root);
  */
 int main(void)
 {
-	char *str[] = { "give", "consistency", "is",   "all",  "i",
-			"ask",	"give",	       "us",   "this", "day",
-			"our",	"daily",       "mask", "\0" };
+	const char *str[] = { "give", "consistency", "is",   "all",  "i",
+			      "ask",  "give",	     "us",   "this", "day",
+			      "our",  "daily",	     "mask", "\0" };
 	int prog_error = 0;
 	int i;
 

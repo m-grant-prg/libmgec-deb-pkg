@@ -1,6 +1,5 @@
 #########################################################################
 #									#
-# Script ID: ./configure.ac						#
 # Author: Copyright (C) 2015-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
@@ -9,14 +8,21 @@
 # Purpose:								#
 #	AutoConf script file to configure libmgec project.		#
 #									#
-# cmd line syntax:							#
-# ./configure	[--enable-atonly=<yes|no> [default: no]]		#
-#		[--enable-debug=<yes|no> [default: no]]			#
-#		[--enable-distcheckfake=<yes|no> [default: no]]		#
-#		[--enable-headercheck=<yes|no> [default: no]]		#
-#		[--enable-iwyu=<yes|no> [default: no]]			#
-#		[--enable-scan-build=<yes|no> [default: no]]		#
-#		[--enable-sparse=<yes|no> [default: no]]		#
+# cmd line syntax of standard configure:				#
+# ./configure --help							#
+#									#
+# cmd line syntax of additional functionality:				#
+# ./configure	[--enable-atonly[={yes|no}]]				#
+#		[--enable-debug[={yes|no}]]				#
+#		[--enable-distcheckfake[={yes|no}]]			#
+#		[--enable-headercheck[={yes|no}]]			#
+#		[--enable-iwyu[={yes|no}]]				#
+#		[--enable-scan-build[={yes|no}]]			#
+#		[--enable-sparse[={yes|no}]]				#
+# Parameter defaults:							#
+#	When specified on the CL, but without the [={yes|no}], the	#
+#	default is yes.							#
+#	When not specified the default is no.				#
 #									#
 # Parameters generic description. For specifics to this configure.ac	#
 # please see inline comments at the point of definition:-		#
@@ -45,7 +51,6 @@
 #	Used to compile with the sparse static analyser.		#
 #									#
 # Layout: (Only relevant sections will exist).				#
-# ChangeLog : High level ChangeLog					#
 # SECTION  1: Initialisation & Setup					#
 # SECTION  2: Architecture, target and host checks			#
 # SECTION  3: Command line arguments					#
@@ -64,142 +69,6 @@
 #									#
 #########################################################################
 
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 07/08/2015	MG	1.0.1	First release.				#
-# 26/08/2015	MG	1.0.2	Remove redundant check for errno.h	#
-# 25/10/2015	MG	1.0.3	Restructure and change to conform to	#
-#				AutoTools General Template v1.0.6.	#
-# 03/11/2015	MG	1.0.4	Change from bt and btree names to bst	#
-#				and bstree as this is a binary search	#
-#				tree, not a b-tree.			#
-# 03/05/2016	MG	1.0.5	Add build of sllist test suite and	#
-#				checks for header files.		#
-# 06/05/2016	MG	1.0.6	Add build of dllist test suite and	#
-#				checks for header files.		#
-# 15/11/2016	MG	1.0.7	Add checks for buffer, memory and	#
-#				message headers.			#
-# 13/01/2017	MG	1.0.8	Change to empty CFLAGS here and leave	#
-#				setting to the Makefile.am's.		#
-# 24/01/2017	MG	1.0.9	Add build of errno test suite.		#
-#				Remove test for listsandsorts.h and add	#
-#				test for mge-errno.h.			#
-# 29/01/2017	MG	1.0.10	Correct header file checks.		#
-# 12/03/2017	MG	1.0.11	Adopt new code formatting.		#
-# 25/03/2017	MG	1.0.12	Add support for temporary header	#
-#				directory.				#
-# 26/03/2017	MG	1.0.13	Tidy AC_INIT and pkgversion AC_SUBST	#
-#				onto multiple lines.			#
-# 03/04/2017	MG	1.0.14	Add non-distribution header directory.	#
-# 09/06/2017	MG	1.0.15	Add support for temporary libraries.	#
-# 18/10/2017	MG	1.0.16	Add search for temporary libraries and	#
-#				store result in a variable for AutoMake	#
-#				consumption.				#
-# 10/12/2017	MG	1.0.17	Add SPDX license tags to source files.	#
-# 23/12/2017	MG	1.0.18	Change to manual package version	#
-#				numbering on adoption of project /	#
-#				sub-project structure.			#
-# 02/01/2018	MG	1.0.19	Move to new source directory structure.	#
-# 09/01/2018	MG	1.0.20	Correct generation of config.h		#
-# 17/01/2018	MG	1.0.21	Update minimum AutoTools version.	#
-# 11/02/2018	MG	1.0.22	Make AutoMake use posix format for tar.	#
-# 26/03/2018	MG	1.0.23	Add support for an enable-sparse CLA	#
-#				and passing a suitable variable to the	#
-#				Makefile.am's.				#
-# 20/06/2018	MG	1.0.24	Use better source file to check source	#
-#				directory in AC_CONFIG_SRCDIR.		#
-#				AC_DEFINE SOURCE_VERSION for use in	#
-#				version.c via config.h			#
-#				Remove pkgversion AC_SUBST as it is	#
-#				available via AC_CONFIG_HEADERS and	#
-#				AC_CONFIG_FILES from AC_INIT info.	#
-#				AC_SUBST the lib_version_info so that	#
-#				all top level versioning can be done	#
-#				from configure.ac			#
-# 08/08/2018	MG	1.0.25	Add check for stdbool.h			#
-#				Add support for an enable-headercheck	#
-#				CLA and passing a suitable variable to	#
-#				the Makefile.am's.			#
-#				Build suitable CFLAGS based on compiler	#
-#				version.				#
-# 06/09/2018	MG	1.0.26	Add buffers and messages test program.	#
-# 09/09/2018	MG	1.0.27	Add build for inc directory.		#
-# 10/02/2019	MG	1.0.28	Extract compiler-dependent CFLAGS build	#
-#				to m4extra macro.			#
-# 18/05/2019	MG	1.1.1	Remove v from package vesrion.		#
-#				Revamp to new standard layout.		#
-#				Merge dev sub-project.			#
-#				Merge doc sub-project.			#
-# 01/06/2019	MG	1.1.2	Use standard macro AC_HEADER_STDBOOL 	#
-#				in preference to AC_CHECK_HEADERS.	#
-#				Add missing header checks.		#
-# 28/06/2019	MG	1.1.3	Add directory to run make check tests.	#
-#				Correct ARG_ENABLE help text.		#
-#				Add enable-distcheckfake option.	#
-#				Add enable option descriptions in this	#
-#				file's header.				#
-# 20/07/2020	MG	1.1.4	Merge buffer and message man pages.	#
-#				Move lists and sorts man pages under	#
-#				that directory.				#
-# 15/04/2021	MG	1.1.5	Add support for passing some default	#
-#				values to Makefiles.am.			#
-# 25/05/2021	MG	1.1.6	Add check for dialog and emit warning.	#
-#				dialog can be used by bootstrap.sh -m.	#
-# 26/07/2021	MG	1.1.7	Make use of new CPPFLAGS macro.		#
-#				Make use of new LDFLAGS macro.		#
-# 14/09/2021	MG	1.1.8	Add enable-atonly CLA and add support	#
-#				for doc-base.				#
-# 05/11/2021	MG	1.1.9	Create debug version of flags where	#
-# 03/12/2021	MG	1.1.10	If git is available and we are inside a	#
-#				git tree then use git describe to add	#
-#				further package version information.	#
-#				Add AC_COPYRIGHT macro.			#
-#				Tighten SPDX tag.			#
-# 10/06/2022	MG	1.1.11	Use new namespace enhanced compiler and	#
-#				linker macros v1.1.1			#
-#				New CL option to enable compiler	#
-#				analyzer output.			#
-# 19/07/2022	MG	1.1.12	Remove portability restrictions for	#
-#				Automake. Allows automatic generation	#
-#				of source file depends in the doxygen	#
-#				Makefile.am				#
-# 25/07/2022	MG	1.2.1	Change doc directory to docs to support	#
-#				using GitHub Pages for hosting Doxygen	#
-#				documentation.				#
-# 01/10/2022	MG	1.2.2	Do not generate pkg-config file with	#
-#				AC_CONFIG_FILES as it does not support	#
-#				extended Installation Directory		#
-#				Variables such as pkgincludedir. Use	#
-#				Makefile.am variable substitution	#
-#				instead.				#
-#				Add test-headers build.			#
-#				Make the contents of $CC available in	#
-#				scripts.				#
-#				Change tmplibraries to use an absolute	#
-#				path.					#
-#				Use find for tmpheaders.		#
-# 06/10/2022	MG	1.2.3	Use AC MSG CHECKING where appropriate.	#
-#				Separate AutoTools generated files from	#
-#				project root.				#
-#				Move CFLAGS init to Compiler setup	#
-#				section.				#
-# 08/10/2022	MG	1.2.4	Add AC C INLINE check.			#
-#				Add AC CHECK FUNCS for memmove.		#
-#				Add AC CHECK HEADERS for stddef.h	#
-# 10/03/2023	MG	1.2.5	Enforce compiler to use, in order; CC	#
-#				passed to configure, sparse if		#
-#				requested, or from a standard list.	#
-#				Add CL arguments for enable-iwyu and	#
-#				enable-scan-build and use to determine	#
-#				if program availability checks should	#
-#				be performed.				#
-#									#
-#########################################################################
-
 
 #########################################
 #					#
@@ -211,7 +80,7 @@ AC_COPYRIGHT([Copyright (C) 2015-2023  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.2.5 $)
+AC_REVISION($Revision: 1.3.0 $)
 
 AC_PREREQ(2.69)
 
@@ -229,7 +98,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.8.0)
+m4_define(pkg_version, 1.8.2-rc1)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
@@ -240,10 +109,10 @@ AC_INIT([MGE General C Library], m4_esyscmd([ \
 
 AC_MSG_NOTICE(initialisation and setup)
 
-AC_DEFINE(SOURCE_VERSION, "1.3.0", \
+AC_DEFINE(SOURCE_VERSION, "1.4.0", \
 	Define to the version of source code in this package.)
 
-AC_SUBST(lib_version_info, "7:0:0")
+AC_SUBST(lib_version_info, "7:1:0")
 
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
 

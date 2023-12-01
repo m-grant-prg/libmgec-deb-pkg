@@ -5,78 +5,12 @@
  *
  * All message handling support functions.
  *
- * @author Copyright (C) 2017-2022  Mark Grant
+ * @author Copyright (C) 2017-2023  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.18 ==== 16/09/2022_
- */
-
-/* **********************************************************************
- *									*
- * Changelog								*
- *									*
- * Date		Author	Version	Description				*
- *									*
- * 03/05/2017	MG	1.0.1	First release.				*
- * 04/11/2017	MG	1.0.2	Add Doxygen comments.			*
- * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
- * 02/01/2018	MG	1.0.4	Move to new source directory structure.	*
- * 27/01/2018	MG	1.0.5	mg_realloc syslogs error, sets		*
- *				mge_errno and saves errno, so if it	*
- *				returns NULL then just return NULL.	*
- *				Preserve input parameters on error exit.*
- * 27/03/2018	MG	1.0.6	Use NULL not integer in strtok, (fixes	*
- *				sparse warning).			*
- * 19/05/2018	MG	1.0.7	Add args comment.			*
- * 17/06/2018	MG	1.0.8	get_msg now accommodates partial	*
- *				messages without re-processing the	*
- *				entire buffer. Data from the buffer	*
- *				extracted to the message struct could	*
- *				be a complete message, (terminated with	*
- *				the mgemessage.terminator), or a	*
- *				partial message. If it is an incomplete	*
- *				message then data will be appended to	*
- *				the partial message next time this	*
- *				function is invoked, repeating until a	*
- *				complete message is held in the struct.	*
- *				In deconstruct_msg replace hardcoded	*
- *				token string ",;" with message struct	*
- *				separator and terminator fields.	*
- * 04/08/2018	MG	1.0.9	Use new buffer.offset field name of	*
- *				proc_next.				*
- *				Use new buffer.index field name of	*
- *				next_free.				*
- *				Convert mgebuffer.proc_next to size_t.	*
- *				Convert mgemessage.offset to next_free	*
- *				and make it size_t.			*
- *				Change mgemessage.complete to bool.	*
- * 09/09/2018	MG	1.0.10	Include new internal.h			*
- * 08/05/2019	MG	1.0.11	x in deconstruct_msg is assigned by and	*
- *				used as a size_t so declare as such.	*
- * 08/06/2019	MG	1.0.12	clang-format coding style changes.	*
- * 30/03/2020	MG	1.0.13	Clarify message buffer capacity calc.	*
- *				Remove support for ignoring '\r' and	*
- *				'\n' in case debugging is in progress.	*
- *				Instead when using telnet for debugging	*
- *				- connect to host, go to telnet command	*
- *				prompt and enter mode character to	*
- *				communicate character by character with	*
- *				the server.				*
- *				Correctly ensure get_msg() returns	*
- *				unchanged arguments on error.		*
- * 19/07/2020	MG	1.0.14	Remove get_msg() from the API.		*
- *				Remove deconstruct_msg() from the API.	*
- * 16/04/2021	MG	1.0.15	Add print default values function.	*
- * 03/12/2021	MG	1.0.16	Tighten SPDX tag.			*
- * 10/06/2022	MG	1.0.17	Replace sprintf with safer snprintf.	*
- * 16/09/2022	MG	1.0.18	Rename mgebuffer.h			*
- *				Rename mgememory.h			*
- *				Rename mgemessage.h			*
- *				Remove unnecessary header syslog.h	*
- *									*
- ************************************************************************
+ * @version _v1.1.0 ==== 02/11/2023_
  */
 
 #include <errno.h>

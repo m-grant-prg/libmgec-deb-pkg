@@ -1,7 +1,6 @@
 #########################################################################
 #									#
-# Script ID: src/prg/c/src/test-sllist/Makefile.am			#
-# Author: Copyright (C) 2015-2019, 2021, 2022  Mark Grant		#
+# Author: Copyright (C) 2015-2019, 2021-2023  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -10,46 +9,6 @@
 #	AutoMake script file to generate sllist test program.		#
 #	(The use of a libtool convenience library is OTT but done as an	#
 #	exercise).							#
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 02/05/2016	MG	1.0.1	First release.				#
-# 13/01/2017	MG	1.0.2	Set debug or normal compile flags here.	#
-# 25/03/2017	MG	1.0.3	Add temporary header directory.		#
-# 27/10/2017	MG	1.0.4	Change to use _LDADD for temporary	#
-#				libraries as passing -L and the temp	#
-#				directory does not necessarily leave	#
-#				LD_LIBRARY_PATH in the correct order.	#
-#				Re-order into logical steps.		#
-# 10/12/2017	MG	1.0.5	Add SPDX license tags to source files.	#
-# 02/01/2018	MG	1.0.6	Move to new source directory structure.	#
-# 09/01/2018	MG	1.0.7	Correct usage of config.h		#
-# 04/07/2018	MG	1.0.8	Improve debug flags used. Use gdb	#
-#				orientated level 3 (includes		#
-#				pre-processor macros).			#
-# 08/05/2019	MG	1.0.9	Remove shebang.				#
-#				Merge into one project.			#
-# 17/06/2019	MG	1.0.10	Move to check target.			#
-# 05/07/2019	MG	1.0.11	Rewrite of the tests.			#
-#				Add valgrind tests.			#
-#				Add find next node test.		#
-#				Add add_head test.			#
-#				Add find_sll_node test.			#
-# 25/07/2021	MG	1.0.12	Use CFLAGS prepared in configure.	#
-#				Add conditional use Sparse CFLAGS.	#
-# 26/07/2021	MG	1.0.13	Use CPPFLAGS prepared by configure.	#
-#				Use LDFLAGS prepared by configure.	#
-# 15/10/2021	MG	1.0.14	Change debug optimisation to -O0	#
-# 05/11/2021	MG	1.0.15	Use (non-)debug CPPFLAGS from configure	#
-#				Use (non-)debug CFLAGS from configure	#
-# 03/12/2021	MG	1.0.16	Tighten SPDX tag.			#
-# 30/09/2022	MG	1.0.17	Re-order tmplibraries.			#
 #									#
 #########################################################################
 
