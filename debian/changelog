@@ -1,8 +1,8 @@
-libmgec7 (1.8.2~rc1-1+deb12u1) UNRELEASED; urgency=medium
+libmgec7 (1.8.2~rc1-1+deb12u1) bookworm; urgency=medium
 
   * New upstream release
 
- -- Mark Grant <m.grant.prg@gmail.com>  Fri, 01 Dec 2023 09:32:32 +0000
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 01 Dec 2023 09:36:30 +0000
 
 libmgec7 (1.8.0-1+deb12u1) bookworm; urgency=medium
 
