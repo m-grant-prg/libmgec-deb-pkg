@@ -1,7 +1,6 @@
 /* **********************************************************************
  *									*
- * Source: sllisttest04.c						*
- * Author Copyright (C) 2019, 2021, 2022  Mark Grant			*
+ * Author Copyright (C) 2019, 2021-2023  Mark Grant			*
  *									*
  * Purpose:								*
  *	SLL create and free test program using add_head.		*
@@ -24,9 +23,9 @@
 
 int test04(void)
 {
-	char *str[] = { "consistency", "is",   "all",  "i",   "ask",
-			"give",	       "us",   "this", "day", "our",
-			"daily",       "mask", "\0" };
+	const char *str[] = { "consistency", "is",   "all",  "i",   "ask",
+			      "give",	     "us",   "this", "day", "our",
+			      "daily",	     "mask", "\0" };
 	int prog_error = 0;
 	char result[500] = { '\0' };
 	char *presult = result;

@@ -1,6 +1,5 @@
 #########################################################################
 #									#
-# File ID: ./.github/workflows/publish-doxygen-gh-pages.yml		#
 # Author: Copyright (C) 2022, 2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
@@ -9,25 +8,6 @@
 # Purpose:								#
 # Configuration file for GitHub Actions publication of Doxygen          #
 # documentation to Github Pages. Only runs on published release event.  #
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 25/07/2022	MG	1.0.1	Initial release.                        #
-# 06/11/2022    MG      1.0.2   Only build if this release is flagged   #
-#                               as the latest release.                  #
-# 29/06/2023    MG      1.0.3   Original action to fetch latest GitHub  #
-#                               release became unmaintained and was to  #
-#                               cease to work after GitHub updates. So  #
-#                               replaced by fork and update by          #
-#                               CityOfLosAngeles.                       #
-# 13/07/2023    MG      1.0.4   Run on 22.04                            #
-# 24/07/2023    MG      1.0.5   Organise standard repo and PPA actions. #
 #									#
 #########################################################################
 
@@ -46,14 +26,14 @@ jobs:
 
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
           ref: ${{ github.event.release.tag_name }}
 
       - name: Fetch latest release
         id: latest_release
-        uses: CityOfLosAngeles/fetch-latest-github-release@v2.0.2
+        uses: CityOfLosAngeles/fetch-latest-github-release@v2.0.3
 
       - name: Print versions
         run: |
@@ -79,7 +59,7 @@ jobs:
     if: needs.version_check.outputs.status == 'build'
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
           ref: ${{ github.event.release.tag_name }}
@@ -110,7 +90,7 @@ jobs:
         run: touch docs/doxygen/.nojekyll
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           branch: gh-pages
           folder: docs/doxygen
