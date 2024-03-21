@@ -28,8 +28,7 @@ Conflicts: libmgec-doc
 Replaces: libmgec-doc
 Section: doc
 Architecture: all
-Depends: mgrant-obs-deb-keyring,
-	${misc:Depends}
+Depends: ${misc:Depends}
 Recommends: doc-base
 Suggests: dochelp
 Description: MGE C General Library API Documentation
@@ -42,8 +41,7 @@ Conflicts: libmgec-int-doc
 Replaces: libmgec-int-doc
 Section: doc
 Architecture: all
-Depends: mgrant-obs-deb-keyring,
-	${misc:Depends}
+Depends: ${misc:Depends}
 Recommends: doc-base
 Suggests: dochelp
 Description: MGE C General Library Internal Documentation
@@ -52,8 +50,7 @@ Description: MGE C General Library Internal Documentation
 
 Package: libmgec7
 Architecture: any
-Depends: mgrant-obs-deb-keyring,
-	${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: MGE C General Library
  This package contains the MGE General C library.
 
