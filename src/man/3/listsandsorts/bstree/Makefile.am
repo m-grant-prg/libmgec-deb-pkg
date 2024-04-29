@@ -1,7 +1,6 @@
 #########################################################################
 #									#
-# Script ID: src/man/3/listsandsorts/bstree/Makefile.am			#
-# Author: Copyright (C) 2015-2021  Mark Grant				#
+# Author: Copyright (C) 2015-2021, 2023  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -9,37 +8,6 @@
 # Purpose:								#
 #	AutoMake script file to generate libmgec Section 3 bstree	#
 # manual pages from source.						#
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 26/08/2015	MG	1.0.1	Started versioning of this script.	#
-# 17/09/2015	MG	1.0.2	Change to use cnv2man script which	#
-#				eliminates problems caused by the .3	#
-#				extensions.				#
-# 20/09/2015	MG	1.0.3	Convert to use txt2manwrap.		#
-# 25/10/2015	MG	1.0.4	Restructure and change to conform to	#
-#				AutoTools General Template v1.0.6.	#
-# 03/11/2015	MG	1.0.5	Change from bt and btree names to bst	#
-#				and bstree as this is a binary search	#
-#				tree, not a b-tree.			#
-# 13/04/2017	MG	1.0.6	Overhaul for new bstree object.		#
-#				Change source file suffixes to .man.in	#
-# 22/12/2017	MG	1.0.7	Add SPDX license tags to source files.	#
-# 31/12/2017	MG	1.0.8	Determine the manual section from the	#
-#				target suffix. If the suffix is blank	#
-#				(foo.) or if there is no suffix (foo)	#
-#				then error out.				#
-# 02/01/2018	MG	1.0.9	Move to new source directory structure.	#
-# 10/05/2019	MG	1.0.10	Remove shebang.				#
-#				Merge into one project.			#
-# 20/07/2020	MG	1.0.11	Move under listsandsorts directory.	#
-# 03/12/2021	MG	1.0.12	Tighten SPDX tag.			#
 #									#
 #########################################################################
 

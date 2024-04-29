@@ -3,30 +3,12 @@
  *
  * Non-public header file. No distribution required.
  *
- * @author Copyright (C) 2018-2022  Mark Grant
+ * @author Copyright (C) 2018-2023  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.6 ==== 16/09/2022_
- */
-
-/* **********************************************************************
- *									*
- * Changelog								*
- *									*
- * Date		Author	Version	Description				*
- *									*
- * 09/09/2018	MG	1.0.1	First release.				*
- * 08/06/2019	MG	1.0.2	clang-format coding style changes.	*
- * 29/04/2020	MG	1.0.3	Add BUF_UNUSED_DEF_SIZE_MULT and	*
- *				BUF_MAX_UNREACH_PERCENT.		*
- * 14/04/2021	MG	1.0.4	Allow some default values to be 	*
- *				overridden on the gcc CL.		*
- * 03/12/2021	MG	1.0.5	Tighten SPDX tag.			*
- * 16/09/2022	MG	1.0.6	Rename of portability.h			*
- *									*
- ************************************************************************
+ * @version _v1.1.0 ==== 02/11/2023_
  */
 
 #ifndef BUFMSG_INTERNAL_H

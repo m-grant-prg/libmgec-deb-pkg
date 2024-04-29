@@ -15,82 +15,12 @@
  *
  * _In fact, the same as strcmp()._
  *
- * @author Copyright (C) 2015-2022  Mark Grant
+ * @author Copyright (C) 2015-2023  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.11 ==== 16/09/2022_
- */
-
-/* **********************************************************************
- *									*
- * Changelog								*
- *									*
- * Date		Author	Version	Description				*
- *									*
- * 07/08/2015	MG	1.0.1	First release.				*
- * 11/08/2015	MG	1.0.2	Add functions delnode() & freenode().	*
- * 18/09/2015	MG	1.0.3	Change function names to XXX_bt_node().	*
- *				Change find_bt_node() to		*
- *				get_counter_bt_node() as it returns the	*
- *				count.					*
- *				Add find_bt_node(), upd_bt_node().	*
- *				Change free_btree() to return NULL.	*
- *				Add unique flag to add_bt_node().	*
- *				Improve overall use of btree_errno.	*
- *				Modify del_bt_node() to decrement the	*
- *				node counter instead of deleting the	*
- *				node if the counter is > 1, (i.e.	*
- *				duplicates are allowed).		*
- *				Add function parameter checking.	*
- *				Change defined flags and errors to be	*
- *				easily identifiable as btree elements.	*
- * 03/11/2015	MG	1.0.4	Change from bt and btree names to bst	*
- *				and bstree as this is a binary search	*
- *				tree, not a b-tree.			*
- * 11/11/2015	MG	1.0.5	Change for extraction of bstree.h from	*
- *				now umbrella listsandsorts.h.		*
- *				Add support for singly linked lists.	*
- *				Elevate errno defs to listsandsorts.h.	*
- *				Add base.c for common functions and	*
- *				definitions.				*
- * 16/07/2016	MG	1.0.6	Move towards kernel coding style.	*
- * 17/07/2016	MG	1.0.7	Further coding style change.		*
- * 12/03/2017	MG	1.0.8	get_counter_bst_node() now returns -1	*
- *				on error.				*
- * 03/05/2017	MG	1.1.0	Return NULL pointer, -1 or error number	*
- *				when possible on error.			*
- *				Apply coding standards from template	*
- *				atclstv v1.0.0				*
- *				Introduce library-wide mge_errno	*
- *				variable and error handling.		*
- *				Add bst trace function to provide node	*
- *				coordinates.				*
- *				Add exhaustive bstree tests.		*
- *				Introduce concept and support for a	*
- *				discreet bst object.			*
- * 04/11/2017	MG	1.1.1	Add Doxygen comments.			*
- * 09/11/2017	MG	1.1.2	Add SPDX license tag.			*
- * 02/01/2018	MG	1.1.3	Move to new source directory structure.	*
- * 27/03/2018	MG	1.1.4	Ensure variable declarations come	*
- *				before code, (fixes sparse warnings).	*
- * 12/05/2018	MG	1.1.5	Get_ functions now return -mge_errno	*
- *				instead of -1.				*
- * 02/06/2018	MG	1.1.6	Add counter and node totals for a tree.	*
- * 09/06/2019	MG	1.1.7	clang-format coding style changes.	*
- * 12/07/2019	MG	1.1.8	Change to specific internal header file.*
- * 20/07/2020	MG	1.1.9	Add internal-only documentation of	*
- *				static (non-API) function.		*
- * 03/12/2021	MG	1.1.10	Tighten SPDX tag.			*
- * 16/09/2022	MG	1.1.11	Rename of bstree.h			*
- *				Move static function declarations here.	*
- *				Mark test tracing function as internal	*
- *				as it is not part of the API.		*
- *				Rename of bstree-internal.h to		*
- *				internal.h				*
- *									*
- ************************************************************************
+ * @version _v1.2.0 ==== 02/11/2023_
  */
 
 #include <errno.h>

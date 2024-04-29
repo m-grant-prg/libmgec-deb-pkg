@@ -5,48 +5,12 @@
  *
  * Build, manipulate and traverse functionality for singly linked lists.
  *
- * @author Copyright (C) 2016-2022  Mark Grant
+ * @author Copyright (C) 2016-2023  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.13 ==== 16/09/2022_
- */
-
-/* **********************************************************************
- *									*
- * Changelog								*
- *									*
- * Date		Author	Version	Description				*
- *									*
- * 05/05/2016	MG	1.0.1	First release.				*
- * 16/07/2016	MG	1.0.2	Move towards kernel coding style.	*
- * 17/07/2016	MG	1.0.3	Further coding style change.		*
- * 03/05/2017	MG	1.0.4	Return NULL pointer, -1 or error number	*
- *				when possible on error.			*
- *				Apply coding standards from template	*
- *				atclstv v1.0.0				*
- *				Introduce library-wide mge_errno	*
- *				variable and error handling.		*
- * 05/11/2017	MG	1.0.5	Add Doxygen comments.			*
- * 09/11/2017	MG	1.0.6	Add SPDX license tag.			*
- * 02/01/2018	MG	1.0.7	Move to new source directory structure.	*
- * 19/05/2018	MG	1.0.8	Extract prototypes to internal.h	*
- * 05/07/2019	MG	1.0.9	clang-format coding style changes.	*
- *				Improve code legibility.		*
- *				Extract find_next_sll_node to header 	*
- *				file to make static inline.		*
- *				Improve parameter naming.		*
- *				%s/add_sll_node/add_tail_sll_node/g	*
- *				Add add_head_sll_node			*
- *				Add find_sll_node.			*
- * 12/07/2019	MG	1.0.10	Change to specific internal header file.*
- * 29/06/2020	MG	1.0.11	Add internal-only documentation of	*
- *				static (non-API) function.		*
- * 03/12/2021	MG	1.0.12	Tighten SPDX tag.			*
- * 16/09/2022	MG	1.0.13	Move static function declarations here.	*
- *									*
- ************************************************************************
+ * @version _v1.1.0 ==== 02/11/2023_
  */
 
 #include <errno.h>

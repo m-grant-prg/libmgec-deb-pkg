@@ -1,7 +1,6 @@
 #########################################################################
 #									#
-# Script ID: src/man/3/memory/Makefile.am				#
-# Author: Copyright (C) 2015-2019, 2021  Mark Grant			#
+# Author: Copyright (C) 2015-2019, 2021, 2023  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -9,27 +8,6 @@
 # Purpose:								#
 #	AutoMake script file to generate libmgec Section 3 memory	#
 # manual pages from source.						#
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 30/12/2016	MG	1.0.1	First release.				#
-# 23/04/2017	MG	1.0.2	Correct ignoring of $(edit) result.	#
-#				Change source extensions to .man.in	#
-# 22/12/2017	MG	1.0.3	Add SPDX license tags to source files.	#
-# 31/12/2017	MG	1.0.4	Determine the manual section from the	#
-#				target suffix. If the suffix is blank	#
-#				(foo.) or if there is no suffix (foo)	#
-#				then error out.				#
-# 02/01/2018	MG	1.0.5	Move to new source directory structure.	#
-# 10/05/2019	MG	1.0.6	Remove shebang.				#
-#				Merge into one project.			#
-# 03/12/2021	MG	1.0.7	Tighten SPDX tag.			#
 #									#
 #########################################################################
 
