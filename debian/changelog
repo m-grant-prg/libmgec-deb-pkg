@@ -1,3 +1,15 @@
+libmgec7 (1.8.2-1ubuntu22.04u1) jammy; urgency=medium
+
+  * Remove versions in Depends fields, too old
+  * Remove Depends on txt2man
+  * Re-order Depends to ease cherry picking to Ubuntu
+  * Silence lintian changelog-file-missing-explicit-entry warning
+  * Remove [Build-]Depends on essential packages
+  * Remove erroneous depends
+  * Update Copyright for 2024
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Mon, 29 Apr 2024 10:31:29 +0100
+
 libmgec7 (1.8.0-1ubuntu22.04u1) jammy; urgency=medium
 
   * Merge new upstream release.
