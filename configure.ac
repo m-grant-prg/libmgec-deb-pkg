@@ -80,7 +80,7 @@ AC_COPYRIGHT([Copyright (C) 2015-2024  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.3.1 $)
+AC_REVISION($Revision: 1.3.2 $)
 
 AC_PREREQ(2.69)
 
@@ -98,7 +98,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.8.2-rc2)
+m4_define(pkg_version, 1.8.2)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
@@ -452,9 +452,9 @@ if test "x$DOXYGEN" = "xno" ; then
 fi
 
 if test "x${iwyu}" = xtrue; then
-	AC_CHECK_PROG(IWYU, iwyu, yes, no)
+	AC_CHECK_PROG(IWYU, include-what-you-use, yes, no)
 	if test "x$IWYU" = "xno" ; then
-		AC_MSG_ERROR(iwyu not found)
+		AC_MSG_ERROR(include-what-you-use not found)
 	fi
 fi
 
