@@ -5,52 +5,12 @@
  *
  * All buffer manipulation support functions.
  *
- * @author Copyright (C) 2017-2022  Mark Grant
+ * @author Copyright (C) 2017-2023  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.0.15 ==== 16/09/2022_
- */
-
-/* **********************************************************************
- *									*
- * Changelog								*
- *									*
- * Date		Author	Version	Description				*
- *									*
- * 03/05/2017	MG	1.0.1	First release.				*
- * 04/11/2017	MG	1.0.2	Add Doxygen comments.			*
- * 09/11/2017	MG	1.0.3	Add SPDX license tag.			*
- * 21/11/2017	MG	1.0.4	Remove unnecessary initialisation of	*
- *				mge_errno.				*
- * 02/01/2018	MG	1.0.5	Move to new source directory structure.	*
- * 27/01/2018	MG	1.0.6	mg_realloc syslogs error, sets		*
- *				mge_errno and saves errno, so if it	*
- *				returns NULL then just return NULL.	*
- * 04/08/2018	MG	1.0.7	Use new buffer.offset field name of	*
- *				proc_next.				*
- *				Use new buffer.index field name of	*
- *				next_free.				*
- *				If the buffer is NULL allocate the	*
- *				default size.				*
- *				Convert mgebuffer.proc_next and 	*
- *				next_free to size_t.			*
- * 09/09/2018	MG	1.0.8	Include new internal.h			*
- * 25/05/2019	MG	1.0.9	Correct source buffer offset type to	*
- *				unsigned.				*
- * 08/06/2019	MG	1.0.10	clang-format coding style changes.	*
- * 29/04/2020	MG	1.0.11	Correct concat_buf() to guarantee	*
- *				arguments are unchanged if it fails.	*
- *				trim_buf() improve buffer shrinking and	*
- *				compaction algorithms.			*
- * 15/04/2021	MG	1.0.12	Add function to print default values.	*
- * 03/12/2021	MG	1.0.13	Tighten SPDX tag.			*
- * 29/05/2022	MG	1.0.14	Improve function (Doxygen) comments.	*
- * 16/09/2022	MG	1.0.15	Rename mgebuffer.h			*
- *				Remove unnecessary header sys/types.h	*
- *									*
- ************************************************************************
+ * @version _v1.1.0 ==== 02/11/2023_
  */
 
 #include <errno.h>

@@ -1,5 +1,5 @@
-Previous found before aa is (null) with mge_errno 0
-Previous found before all is (null) with mge_errno 0
+Previous found before aa is NULL with mge_errno 0
+Previous found before all is NULL with mge_errno 0
 Prior found before ask is all payload 2, mge_errno 0
 Prior found before give is day payload 8, mge_errno 0
 Prior found before i is give payload 5, mge_errno 0

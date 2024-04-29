@@ -1,53 +1,12 @@
 #########################################################################
 #									#
-# Script ID: docs/doxygen/Makefile.am					#
-# Author: Copyright (C) 2017-2022  Mark Grant				#
+# Author: Copyright (C) 2017-2023  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
 #									#
 # Purpose:								#
 #	AutoMake script file to produce doxygen html documentation.	#
-#									#
-#########################################################################
-
-#########################################################################
-#									#
-# Changelog								#
-#									#
-# Date		Author	Version	Description				#
-#									#
-# 28/12/2017	MG	1.0.1	First release.				#
-# 02/01/2018	MG	1.0.2	Move to new source directory structure.	#
-# 17/01/2018	MG	1.0.3	Update checks for source after source	#
-#				directory change.			#
-# 11/02/2018	MG	1.0.4	Make tar use the Posix format for	#
-#				longer filenames.			#
-# 20/06/2018	MG	1.0.5	Remove make, (leave install), of	#
-#				libmgec doc-base file as it is now	#
-#				built using AC_CONFIG_FILES.		#
-# 25/06/2018	MG	1.0.6	Reverse 1.0.5 as AC_CONFIG_FILES cannot	#
-#				be used for the substitution of		#
-#				Installation Directory Variables.	#
-# 10/05/2019	MG	1.1.1	Merge into one project.			#
-# 08/07/2019	MG	1.1.2	Do not register with doc-base or	#
-#				dochelp when running make distcheck.	#
-#				Reduce Doxygen out put when silent	#
-#				rules are enabled.			#
-# 19/06/2020	MG	1.1.3	Split into API and full internal	#
-#				documentation.				#
-# 14/09/2021	MG	1.1.4	Only register documents if building	#
-#				with ATONLY.				#
-#				Move main source documents into src to	#
-#				enable use of EXTRA_DIST on subdir src.	#
-# 03/12/2021	MG	1.1.5	Tighten SPDX tag.			#
-# 19/07/2022	MG	1.1.6	Add doxygen target.			#
-#				Add dependency on document sources and	#
-#				C sources.				#
-# 04/09/2022	MG	1.1.7	Remove all doxygen tarballs. Orphaned	#
-#				tarballs can be left if git describe	#
-#				changes and no make clean has been	#
-#				performed.				#
 #									#
 #########################################################################
 
@@ -65,6 +24,9 @@ $(docpkg): doxygen.stamp
 	tar -chz --format=posix -f $@ html
 
 doxygen.stamp: Doxyfile $(srcdepends)
+	cd $(srcdir)/gen-img/buf-msg \
+		&& dia ../../src/buf-msg/*.dia --filter=png \
+		&& cd -
 	if $(AM_V_P); then \
 		DOXYGEN_QUIET=NO \
 			DOXYGEN_PROJECT_NAME="MGE General C Library - API Documentation" \
@@ -80,6 +42,7 @@ doxygen.stamp: Doxyfile $(srcdepends)
 			DOXYGEN_EXCLUDE_PATTERNS="*internal*" \
 			doxygen $< ; \
 	fi
+	rm -f $(srcdir)/gen-img/buf-msg/*
 	echo Timestamp > $@
 
 
@@ -91,6 +54,9 @@ $(intdocpkg): doxygen1.stamp
 	tar -chz --format=posix -f $@ html-int
 
 doxygen1.stamp: Doxyfile $(srcdepends)
+	cd $(srcdir)/gen-img/buf-msg \
+		&& dia ../../src/buf-msg/*.dia --filter=png \
+		&& cd -
 	if $(AM_V_P); then \
 		DOXYGEN_QUIET=NO \
 			DOXYGEN_PROJECT_NAME="MGE General C Library - Full Internal Documentation" \
@@ -106,6 +72,7 @@ doxygen1.stamp: Doxyfile $(srcdepends)
 			DOXYGEN_EXCLUDE_PATTERNS= \
 			doxygen $< ; \
 	fi
+	rm -rf $(srcdir)/gen-img/buf-msg/*
 	echo Timestamp > $@
 
 
@@ -168,8 +135,8 @@ endif
 endif
 
 
-EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/src $(srcdir)/libmgec.in \
-	     $(srcdir)/libmgec-int.in
+EXTRA_DIST = $(docpkg) $(intdocpkg) $(srcdir)/src $(srcdir)/gen-img \
+	     $(srcdir)/libmgec.in $(srcdir)/libmgec-int.in
 
 
 CLEANFILES = doxywarn.txt doxygen.stamp doxygen1.stamp libmgec libmgec-int
