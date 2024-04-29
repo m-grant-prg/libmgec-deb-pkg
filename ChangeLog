@@ -1,3 +1,42 @@
+2024-04-29 v1.8.2 Mark Grant <m.grant.prg@gmail.com>
+	* build(deps): bump JamesIves/github-pages-deploy-action
+	build(deps): bump CityOfLosAngeles/fetch-latest-github-release
+	build(deps): bump JamesIves/github-pages-deploy-action
+dependabot[bot] (3):
+
+	git: Correct reasoning, empty vs untracked
+	git: Add gitignore to ensure directory is present even when empty
+	docs: Consolidate Header Naming Considerations in Doxygen
+	docs: Consolidate gnulib documentation in Doxygen
+	docs: Remove AT Installation document
+	Merge pull request #5 from m-grant-prg/dependabot/github_actions/JamesIves/github-pages-deploy-action-4.6.0
+	at: Check full iwyu command name
+	Merge pull request #4 from m-grant-prg/dependabot/github_actions/CityOfLosAngeles/fetch-latest-github-release-2.0.4
+	editors: Update editorconfig to v1.0.6
+	at: Update Copyright for 2024
+	actions: Add clang-format coding style check action
+	git: Update mailmap to v1.0.4
+	git: Update gitignore to v1.0.12
+	git: Update gitattributes to v1.0.5
+	editors: Update local.vimrc to v1.0.5
+	clang: Update clang-format to v1.0.4
+	Merge pull request #3 from m-grant-prg/dependabot/github_actions/JamesIves/github-pages-deploy-action-4.5.0
+	m4: Upgrade linker m4 to v1.2.0
+	Bump library and source version numbers
+	at: Bump version numbers as required
+	test-sllist: Constify as appropriate
+	test-dllist: Constify as appropriate
+	test-bstree: Fix print of NULL value
+	test-bstree: Constify as appropriate
+	libmgec: Constify as necessary
+	m4: Upgrade c-compiler m4 to v1.3.0
+	at: Upgrade gen-gnulib.sh to v1.2.0
+	at: Upgrade bootstrap.sh to v1.6.0
+	m4: Update gitignore format
+	at: Improve configure CL syntax description
+	all: Remove most in-file ChangeLogs and versioning
+Mark Grant (34):
+
 2023-10-30 v1.8.1 Mark Grant <m.grant.prg@gmail.com>
 	* build(deps): bump actions/checkout from 2 to 4
 	build(deps): bump JamesIves/github-pages-deploy-action
