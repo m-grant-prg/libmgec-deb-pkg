@@ -1,3 +1,9 @@
+libmgec7 (1.8.3~rc1-1+deb12u1) UNRELEASED; urgency=medium
+
+  * New upstream development release
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Fri, 24 May 2024 14:18:53 +0100
+
 libmgec7 (1.8.2-1+deb12u1) bookworm; urgency=medium
 
   * New upstream release
