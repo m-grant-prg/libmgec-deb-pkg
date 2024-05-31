@@ -1,6 +1,6 @@
 #########################################################################
 #									#
-# Author: Copyright (C) 2015-2019, 2021-2023  Mark Grant		#
+# Author: Copyright (C) 2015-2019, 2021-2024  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -11,46 +11,6 @@
 #	exercise).							#
 #									#
 #########################################################################
-
-
-if DEBUG
-AM_CPPFLAGS = $(MG_DEBUG_CPPFLAGS)
-else
-AM_CPPFLAGS = $(MG_CPPFLAGS)
-endif
-AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
-AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
-
-
-if DEBUG
-AM_CFLAGS = $(MG_DEBUG_CFLAGS)
-else
-AM_CFLAGS = $(MG_CFLAGS)
-endif
-if SPARSE
-AM_CFLAGS += -Wsparse-all -Wno-vla
-endif
-
-
-AM_LDFLAGS = $(MG_LDFLAGS)
-
-
-check_HEADERS = sllisttest.h
-
-
-check_LTLIBRARIES = libsllisttest.la
-libsllisttest_la_SOURCES = common.c
-libsllisttest_la_SOURCES += sllisttest01.c sllisttest02.c sllisttest03.c
-libsllisttest_la_SOURCES += sllisttest04.c sllisttest05.c
-
-
-check_PROGRAMS = sllisttest
-sllisttest_SOURCES = main.c
-
-
-LDADD = $(tmplibraries)
-LDADD += ../libmgec/libmgec.la
-LDADD += ./libsllisttest.la
 
 
 Test01Answer.txt Test02Answer.txt Test03Answer.txt Test04Answer.txt \
@@ -95,6 +55,62 @@ check_SCRIPTS = sllisttest01.sh sllisttest01vg.sh \
 		sllisttest04.sh sllisttest04vg.sh \
 		sllisttest05.sh sllisttest05vg.sh
 
+
+if DEBUG
+.gdbinit: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	no_dot_target=`echo $@ | sed "s/^.//"`; \
+		test -f ./$${no_dot_target}.in || srcdir=$(srcdir)/; \
+		no_dot_file=`echo $(@F) | sed "s/^.//"`; \
+		$(edit) $${srcdir}$${no_dot_file}.in > $@.tmp
+	mv $@.tmp $@
+.gdbinit: $(srcdir)/gdbinit.in
+
+check_SCRIPTS += .gdbinit
+endif
+
+
+if DEBUG
+AM_CPPFLAGS = $(MG_DEBUG_CPPFLAGS)
+else
+AM_CPPFLAGS = $(MG_CPPFLAGS)
+endif
+AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
+AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
+
+
+if DEBUG
+AM_CFLAGS = $(MG_DEBUG_CFLAGS)
+else
+AM_CFLAGS = $(MG_CFLAGS)
+endif
+if SPARSE
+AM_CFLAGS += -Wsparse-all -Wno-vla
+endif
+
+
+AM_LDFLAGS = $(MG_LDFLAGS)
+
+
+check_HEADERS = sllisttest.h
+
+
+check_LTLIBRARIES = libsllisttest.la
+libsllisttest_la_SOURCES = common.c
+libsllisttest_la_SOURCES += sllisttest01.c sllisttest02.c sllisttest03.c
+libsllisttest_la_SOURCES += sllisttest04.c sllisttest05.c
+
+
+check_PROGRAMS = sllisttest
+sllisttest_SOURCES = main.c
+
+
+LDADD = $(tmplibraries)
+LDADD += ../libmgec/libmgec.la
+LDADD += ./libsllisttest.la
+
+
 EXTRA_DIST = $(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \
 	$(srcdir)/Test03Answer.txt.in $(srcdir)/Test04Answer.txt.in \
 	$(srcdir)/Test05Answer.txt.in \
@@ -102,8 +118,9 @@ EXTRA_DIST = $(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \
 	$(srcdir)/sllisttest02.sh.in $(srcdir)/sllisttest02vg.sh.in \
 	$(srcdir)/sllisttest03.sh.in $(srcdir)/sllisttest03vg.sh.in \
 	$(srcdir)/sllisttest04.sh.in $(srcdir)/sllisttest04vg.sh.in \
-	$(srcdir)/sllisttest05.sh.in $(srcdir)/sllisttest05vg.sh.in
+	$(srcdir)/sllisttest05.sh.in $(srcdir)/sllisttest05vg.sh.in \
+	$(srcdir)/gdbinit.in
 
 
-CLEANFILES = *.tmp *.sh *.txt
+CLEANFILES = *.tmp *.sh *.txt .gdbinit
 
