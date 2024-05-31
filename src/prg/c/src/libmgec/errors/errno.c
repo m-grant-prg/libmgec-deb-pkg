@@ -5,12 +5,12 @@
  *
  * Definition of mge_errno error descriptions and global error variables.
  *
- * @author Copyright (C) 2017-2023  Mark Grant
+ * @author Copyright (C) 2017-2024  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 24/05/2024_
  */
 
 #include <stddef.h>
@@ -39,6 +39,7 @@ const char *errno_desc[] = { "Success.",
 			     "SSH error.",
 			     "No such lock.",
 			     "Client is blocked.",
+			     "Server is blocked.",
 			     "Identification error.",
 			     "Protocol error.",
 			     "General error" };
