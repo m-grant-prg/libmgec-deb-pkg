@@ -1,3 +1,9 @@
+libmgec7 (1.8.4-1ubuntu22.04u1) jammy; urgency=medium
+
+  * New upstream release
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Sun, 02 Jun 2024 15:49:17 +0100
+
 libmgec7 (1.8.2-1ubuntu22.04u1) jammy; urgency=medium
 
   * Remove versions in Depends fields, too old
