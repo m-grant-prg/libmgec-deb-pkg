@@ -1,3 +1,9 @@
+libmgec7 (1.8.4-1ubuntu24.04u1) noble; urgency=medium
+
+  * New upstream release
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Sun, 02 Jun 2024 15:54:06 +0100
+
 libmgec7 (1.8.2-1ubuntu24.04u1) noble; urgency=medium
 
   * Create noble
