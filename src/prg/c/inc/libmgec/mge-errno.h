@@ -5,12 +5,12 @@
  *
  * Specification of mge_errno values and all mge_errno related information.
  *
- * @author Copyright (C) 2017-2023  Mark Grant
+ * @author Copyright (C) 2017-2024  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 24/05/2024_
  */
 
 #ifndef MGE_ERRNO_H
@@ -38,9 +38,10 @@ extern int sav_errno;
 #define MGE_SSH 10	      /**< SSH error. */
 #define MGE_LOCK_NOT_FOUND 11 /**< Lock does not exist. */
 #define MGE_CLIENT_BLOCKED 12 /**< Client is blocked on the server. */
-#define MGE_ID 13	      /**< Identification error. */
-#define MGE_PROTO 14	      /**< Protocol error. */
-#define MGE_GENERAL 15	      /**< General error. */
+#define MGE_SERVER_BLOCKED 13 /**< Server is blocked. */
+#define MGE_ID 14	      /**< Identification error. */
+#define MGE_PROTO 15	      /**< Protocol error. */
+#define MGE_GENERAL 16	      /**< General error. */
 
 const char *mge_strerror(const int mge_err);
 
