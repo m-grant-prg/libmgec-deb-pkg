@@ -1,6 +1,6 @@
 #########################################################################
 #									#
-# Author: Copyright (C) 2015-2019, 2021-2023  Mark Grant		#
+# Author: Copyright (C) 2015-2019, 2021-2024  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -9,6 +9,21 @@
 #	AutoMake script file to generate dllist test program.		#
 #									#
 #########################################################################
+
+
+if DEBUG
+.gdbinit: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	no_dot_target=`echo $@ | sed "s/^.//"`; \
+		test -f ./$${no_dot_target}.in || srcdir=$(srcdir)/; \
+		no_dot_file=`echo $(@F) | sed "s/^.//"`; \
+		$(edit) $${srcdir}$${no_dot_file}.in > $@.tmp
+	mv $@.tmp $@
+.gdbinit: $(srcdir)/gdbinit.in
+
+check_SCRIPTS = .gdbinit
+endif
 
 
 if DEBUG
@@ -39,4 +54,10 @@ AM_LDFLAGS = $(MG_LDFLAGS)
 
 LDADD = $(tmplibraries)
 LDADD += ../libmgec/libmgec.la
+
+
+EXTRA_DIST = $(srcdir)/gdbinit.in
+
+
+CLEANFILES = *.tmp .gdbinit
 

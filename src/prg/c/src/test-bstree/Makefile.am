@@ -1,6 +1,6 @@
 #########################################################################
 #									#
-# Author: Copyright (C) 2015-2019, 2021-2023  Mark Grant		#
+# Author: Copyright (C) 2015-2019, 2021-2024  Mark Grant		#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -9,36 +9,6 @@
 #	AutoMake script file to generate bstree test program.		#
 #									#
 #########################################################################
-
-
-if DEBUG
-AM_CPPFLAGS = $(MG_DEBUG_CPPFLAGS)
-else
-AM_CPPFLAGS = $(MG_CPPFLAGS)
-endif
-AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
-AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
-
-
-if DEBUG
-AM_CFLAGS = $(MG_DEBUG_CFLAGS)
-else
-AM_CFLAGS = $(MG_CFLAGS)
-endif
-if SPARSE
-AM_CFLAGS += -Wsparse-all -Wno-vla
-endif
-
-
-check_PROGRAMS = bstreetest
-bstreetest_SOURCES = main.c
-
-
-AM_LDFLAGS = $(MG_LDFLAGS)
-
-
-LDADD = $(tmplibraries)
-LDADD += ../libmgec/libmgec.la
 
 
 Test00StartingBSTree.txt Test01Answer.txt Test02Answer.txt Test03aAnswer.txt \
@@ -98,6 +68,51 @@ check_SCRIPTS = bstreetest01b.sh bstreetest02d.sh bstreetest03f.sh \
 	bstreetest08p.sh bstreetest09r.sh bstreetest10t.sh
 
 
+if DEBUG
+.gdbinit: Makefile
+	mkdir -p $(@D)
+	rm -f $@ $@.tmp
+	no_dot_target=`echo $@ | sed "s/^.//"`; \
+		test -f ./$${no_dot_target}.in || srcdir=$(srcdir)/; \
+		no_dot_file=`echo $(@F) | sed "s/^.//"`; \
+		$(edit) $${srcdir}$${no_dot_file}.in > $@.tmp
+	mv $@.tmp $@
+.gdbinit: $(srcdir)/gdbinit.in
+
+check_SCRIPTS += .gdbinit
+endif
+
+
+if DEBUG
+AM_CPPFLAGS = $(MG_DEBUG_CPPFLAGS)
+else
+AM_CPPFLAGS = $(MG_CPPFLAGS)
+endif
+AM_CPPFLAGS += -I$(srcdir)/../../inc-tmp -I$(srcdir)/../../inc
+AM_CPPFLAGS += -I../../gen/inc -I../../gen/lib
+
+
+if DEBUG
+AM_CFLAGS = $(MG_DEBUG_CFLAGS)
+else
+AM_CFLAGS = $(MG_CFLAGS)
+endif
+if SPARSE
+AM_CFLAGS += -Wsparse-all -Wno-vla
+endif
+
+
+check_PROGRAMS = bstreetest
+bstreetest_SOURCES = main.c
+
+
+AM_LDFLAGS = $(MG_LDFLAGS)
+
+
+LDADD = $(tmplibraries)
+LDADD += ../libmgec/libmgec.la
+
+
 EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
 	$(srcdir)/Test01Answer.txt.in $(srcdir)/Test02Answer.txt.in \
 	$(srcdir)/Test03aAnswer.txt.in $(srcdir)/Test03bAnswer.txt.in \
@@ -110,8 +125,9 @@ EXTRA_DIST = $(srcdir)/Test00StartingBSTree.txt.in \
 	$(srcdir)/bstreetest03f.sh.in $(srcdir)/bstreetest04h.sh.in \
 	$(srcdir)/bstreetest05j.sh.in $(srcdir)/bstreetest06l.sh.in \
 	$(srcdir)/bstreetest07n.sh.in $(srcdir)/bstreetest08p.sh.in \
-	$(srcdir)/bstreetest09r.sh.in $(srcdir)/bstreetest10t.sh.in
+	$(srcdir)/bstreetest09r.sh.in $(srcdir)/bstreetest10t.sh.in \
+	$(srcdir)/gdbinit.in
 
 
-CLEANFILES = *.tmp *.sh *.txt
+CLEANFILES = *.tmp *.sh *.txt .gdbinit
 
