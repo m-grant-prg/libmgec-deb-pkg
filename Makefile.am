@@ -41,7 +41,7 @@ doc_DATA = AUTHORS ChangeLog COPYING NEWS README
 
 
 EXTRA_DIST = $(srcdir)/AUTHORS $(srcdir)/ChangeLog $(srcdir)/COPYING \
-		$(srcdir)/NEWS $(srcdir)/README
+	     $(srcdir)/NEWS $(srcdir)/README
 EXTRA_DIST += m4/gnulib-cache.m4
 EXTRA_DIST += docs/misc misc
 
