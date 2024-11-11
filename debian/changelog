@@ -1,3 +1,9 @@
+libmgec7 (1.8.4-1+deb13u2) trixie; urgency=medium
+
+  * Remove historical 2 package defense
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Mon, 11 Nov 2024 14:15:45 +0000
+
 libmgec7 (1.8.4-1+deb13u1) trixie; urgency=medium
 
   * New upstream release
