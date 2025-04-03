@@ -15,12 +15,12 @@
  *
  * _In fact, the same as strcmp()._
  *
- * @author Copyright (C) 2015-2023  Mark Grant
+ * @author Copyright (C) 2015-2023, 2025  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.2.0 ==== 02/11/2023_
+ * @version _v1.2.1 ==== 03/04/2025_
  */
 
 #include <errno.h>
@@ -31,41 +31,6 @@
 #include "internal.h"
 #include <libmgec/mge-bstree.h>
 #include <libmgec/mge-errno.h>
-
-static struct bstreenode *add_node(struct bstreenode *currentnode,
-				   const void *object, size_t objsize,
-				   struct bstree *tree);
-
-static void *find_node(const struct bstreenode *currentnode,
-		       const void *searchobj,
-		       int (*comp)(const void *, const void *));
-
-static int get_counter_node(const struct bstreenode *currentnode,
-			    const void *searchobj,
-			    int (*comp)(const void *, const void *));
-
-static void *find_next_node(const struct bstreenode *currentnode,
-			    const void *searchobj,
-			    int (*comp)(const void *, const void *));
-
-static void *find_prev_node(const struct bstreenode *currentnode,
-			    const void *searchobj,
-			    int (*comp)(const void *, const void *));
-
-static void *upd_node(struct bstreenode *currentnode, const void *updobj,
-		      size_t objsize, int (*comp)(const void *, const void *));
-
-static struct bstreenode *del_node(struct bstreenode *currentnode,
-				   const void *searchobj, struct bstree *tree);
-
-static struct bstreenode *free_bstree(struct bstreenode *currentnode);
-
-static struct bstreenode *free_bst_node(struct bstreenode *currentnode);
-
-static struct bstobjcoord *
-find_next_node_trace(const struct bstreenode *currentnode,
-		     struct bstobjcoord *searchobj,
-		     int (*comp)(const void *, const void *));
 
 /**
  * Create a binary search tree.
@@ -112,39 +77,6 @@ struct bstree *cre_bst(int unique, int (*comp)(const void *, const void *))
 	newtree->node_total = 0;
 	newtree->comp = comp;
 	return newtree;
-}
-
-/**
- * Add a node to a binary search tree.
- * Attempts to add a node to a binary search tree. If the node exists and unique
- * is true for this tree, an error is generated, if unique is false then the
- * node counter is incremented.
- * On error mge_errno is set and NULL is returned but the bst will remain as
- * before the failed add. Hence it is important to preserve the pointer to the
- * tree across this function.\n
- *
- *     tmp_tree = add_bst_node(tree, object, objsize);
- *     if (tmp_tree == NULL) {
- *     		... error handling
- * 		return error;
- *     }
- *     tree = tmp_tree;
- *
- * @param tree The tree to add to.
- * @param object The object to add.
- * @param objsize The size of the object.
- * @return A pointer to the binary tree 'tree' or NULL on error.
- */
-struct bstree *add_bst_node(struct bstree *tree, const void *object,
-			    size_t objsize)
-{
-	struct bstreenode *addnode;
-
-	addnode = add_node(tree->root, object, objsize, tree);
-	if (addnode == NULL)
-		return NULL;
-	tree->root = addnode;
-	return tree;
 }
 
 /**
@@ -247,23 +179,36 @@ static struct bstreenode *add_node(struct bstreenode *currentnode,
 /* @endcond */
 
 /**
- * Find an exact object match.
- * Find an exact object match in the bst 'tree'.
- * On error mge_errno will be set.
- * @param tree The bst to search.
- * @param searchobj The object to find. It does not need to be a fully
- * populated object. It only needs enough information to support the comparison
- * function. E.g. a key.
- * @return A pointer to the object found in the node, (i.e. the fully
- * populated object), or, NULL if not found or an error was encountered.
+ * Add a node to a binary search tree.
+ * Attempts to add a node to a binary search tree. If the node exists and unique
+ * is true for this tree, an error is generated, if unique is false then the
+ * node counter is incremented.
+ * On error mge_errno is set and NULL is returned but the bst will remain as
+ * before the failed add. Hence it is important to preserve the pointer to the
+ * tree across this function.\n
+ *
+ *     tmp_tree = add_bst_node(tree, object, objsize);
+ *     if (tmp_tree == NULL) {
+ *     		... error handling
+ * 		return error;
+ *     }
+ *     tree = tmp_tree;
+ *
+ * @param tree The tree to add to.
+ * @param object The object to add.
+ * @param objsize The size of the object.
+ * @return A pointer to the binary tree 'tree' or NULL on error.
  */
-void *find_bst_node(const struct bstree *tree, const void *searchobj)
+struct bstree *add_bst_node(struct bstree *tree, const void *object,
+			    size_t objsize)
 {
-	if (tree == NULL) {
-		mge_errno = MGE_PARAM;
+	struct bstreenode *addnode;
+
+	addnode = add_node(tree->root, object, objsize, tree);
+	if (addnode == NULL)
 		return NULL;
-	}
-	return find_node(tree->root, searchobj, tree->comp);
+	tree->root = addnode;
+	return tree;
 }
 
 /**
@@ -307,23 +252,23 @@ static void *find_node(const struct bstreenode *currentnode,
 /* @endcond */
 
 /**
- * Get the counter for a node.
- * Get the node counter for an object in the bst 'tree'.
+ * Find an exact object match.
+ * Find an exact object match in the bst 'tree'.
  * On error mge_errno will be set.
  * @param tree The bst to search.
  * @param searchobj The object to find. It does not need to be a fully
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
- * @return The number of times add_bst_node() was asked to create this node,
- * or, 0 if not found, or, -mge_errno on error.
+ * @return A pointer to the object found in the node, (i.e. the fully
+ * populated object), or, NULL if not found or an error was encountered.
  */
-int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
+void *find_bst_node(const struct bstree *tree, const void *searchobj)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
-		return -mge_errno;
+		return NULL;
 	}
-	return get_counter_node(tree->root, searchobj, tree->comp);
+	return find_node(tree->root, searchobj, tree->comp);
 }
 
 /**
@@ -368,23 +313,23 @@ static int get_counter_node(const struct bstreenode *currentnode,
 /* @endcond */
 
 /**
- * Find the next node.
- * Find the next node in the bst and return the object.
+ * Get the counter for a node.
+ * Get the node counter for an object in the bst 'tree'.
  * On error mge_errno will be set.
  * @param tree The bst to search.
  * @param searchobj The object to find. It does not need to be a fully
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
- * @return A pointer to the next object found in the tree, (i.e. a fully
- * populated object), or, NULL if not found or an error was encountered.
+ * @return The number of times add_bst_node() was asked to create this node,
+ * or, 0 if not found, or, -mge_errno on error.
  */
-void *find_next_bst_node(const struct bstree *tree, const void *searchobj)
+int get_counter_bst_node(const struct bstree *tree, const void *searchobj)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
-		return NULL;
+		return -mge_errno;
 	}
-	return find_next_node(tree->root, searchobj, tree->comp);
+	return get_counter_node(tree->root, searchobj, tree->comp);
 }
 
 /**
@@ -433,23 +378,23 @@ static void *find_next_node(const struct bstreenode *currentnode,
 /* @endcond */
 
 /**
- * Find the previous node.
- * Find and return the object attached to the previous node in the bst 'tree'.
+ * Find the next node.
+ * Find the next node in the bst and return the object.
  * On error mge_errno will be set.
  * @param tree The bst to search.
  * @param searchobj The object to find. It does not need to be a fully
  * populated object. It only needs enough information to support the comparison
  * function. E.g. a key.
- * @return A pointer to the preceding object in the tree, (i.e. a fully
+ * @return A pointer to the next object found in the tree, (i.e. a fully
  * populated object), or, NULL if not found or an error was encountered.
  */
-void *find_prev_bst_node(const struct bstree *tree, const void *searchobj)
+void *find_next_bst_node(const struct bstree *tree, const void *searchobj)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
-	return find_prev_node(tree->root, searchobj, tree->comp);
+	return find_next_node(tree->root, searchobj, tree->comp);
 }
 
 /**
@@ -498,24 +443,23 @@ static void *find_prev_node(const struct bstreenode *currentnode,
 /* @endcond */
 
 /**
- * Update a node's object.
- * Update the object in a node in the bst 'tree'. (This only makes sense if the
- * object is carrying a payload.)
+ * Find the previous node.
+ * Find and return the object attached to the previous node in the bst 'tree'.
  * On error mge_errno will be set.
  * @param tree The bst to search.
- * @param updobj The object to update. The node is found and the existing
- * object is replaced with the new object.
- * @param objsize The size of the new object.
- * @return A pointer to the new object, or, NULL if not found or error.
+ * @param searchobj The object to find. It does not need to be a fully
+ * populated object. It only needs enough information to support the comparison
+ * function. E.g. a key.
+ * @return A pointer to the preceding object in the tree, (i.e. a fully
+ * populated object), or, NULL if not found or an error was encountered.
  */
-void *upd_bst_node(const struct bstree *tree, const void *updobj,
-		   size_t objsize)
+void *find_prev_bst_node(const struct bstree *tree, const void *searchobj)
 {
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
-	return upd_node(tree->root, updobj, objsize, tree->comp);
+	return find_prev_node(tree->root, searchobj, tree->comp);
 }
 
 /**
@@ -566,32 +510,40 @@ static void *upd_node(struct bstreenode *currentnode, const void *updobj,
 /* @endcond */
 
 /**
- * Delete a node.
- * Delete a node in the bst 'tree'. Re-links any children. If the node counter
- * is > 1 then duplicates are allowed and the counter is decremented instead of
- * deleting the node.
+ * Update a node's object.
+ * Update the object in a node in the bst 'tree'. (This only makes sense if the
+ * object is carrying a payload.)
  * On error mge_errno will be set.
  * @param tree The bst to search.
- * @param searchobj The object to find. It does not need to be a fully
- * populated object. It only needs enough information to support the comparison
- * function. E.g. a key.
- * @return A pointer to the updated bst, or, NULL on error.
+ * @param updobj The object to update. The node is found and the existing
+ * object is replaced with the new object.
+ * @param objsize The size of the new object.
+ * @return A pointer to the new object, or, NULL if not found or error.
  */
-struct bstree *del_bst_node(struct bstree *tree, const void *searchobj)
+void *upd_bst_node(const struct bstree *tree, const void *updobj,
+		   size_t objsize)
 {
-	struct bstreenode *delnode;
-
 	if (tree == NULL) {
 		mge_errno = MGE_PARAM;
 		return NULL;
 	}
-
-	delnode = del_node(tree->root, searchobj, tree);
-	if (mge_errno)
-		return NULL;
-	tree->root = delnode;
-	return tree;
+	return upd_node(tree->root, updobj, objsize, tree->comp);
 }
+
+/**
+ * @cond INTERNAL
+ * Free memory allocated to the node. (Both node and object).
+ * @param currentnode The node to free.
+ * @return NULL
+ */
+static struct bstreenode *free_bst_node(struct bstreenode *currentnode)
+{
+	free(currentnode->object);
+	free(currentnode);
+
+	return NULL;
+}
+/* @endcond */
 
 /**
  * @cond INTERNAL
@@ -695,16 +647,31 @@ static struct bstreenode *del_node(struct bstreenode *currentnode,
 /* @endcond */
 
 /**
- * Delete a bst.
- * Delete a binary search tree.
- * @param tree The bst to delete.
- * @return NULL
+ * Delete a node.
+ * Delete a node in the bst 'tree'. Re-links any children. If the node counter
+ * is > 1 then duplicates are allowed and the counter is decremented instead of
+ * deleting the node.
+ * On error mge_errno will be set.
+ * @param tree The bst to search.
+ * @param searchobj The object to find. It does not need to be a fully
+ * populated object. It only needs enough information to support the comparison
+ * function. E.g. a key.
+ * @return A pointer to the updated bst, or, NULL on error.
  */
-struct bstree *del_bst(struct bstree *tree)
+struct bstree *del_bst_node(struct bstree *tree, const void *searchobj)
 {
-	free_bstree(tree->root);
-	free(tree);
-	return NULL;
+	struct bstreenode *delnode;
+
+	if (tree == NULL) {
+		mge_errno = MGE_PARAM;
+		return NULL;
+	}
+
+	delnode = del_node(tree->root, searchobj, tree);
+	if (mge_errno)
+		return NULL;
+	tree->root = delnode;
+	return tree;
 }
 
 /**
@@ -731,44 +698,17 @@ static struct bstreenode *free_bstree(struct bstreenode *currentnode)
 /* @endcond */
 
 /**
- * @cond INTERNAL
- * Free memory allocated to the node. (Both node and object).
- * @param currentnode The node to free.
+ * Delete a bst.
+ * Delete a binary search tree.
+ * @param tree The bst to delete.
  * @return NULL
  */
-static struct bstreenode *free_bst_node(struct bstreenode *currentnode)
+struct bstree *del_bst(struct bstree *tree)
 {
-	free(currentnode->object);
-	free(currentnode);
-
+	free_bstree(tree->root);
+	free(tree);
 	return NULL;
 }
-/* @endcond */
-
-/**
- * @cond INTERNAL
- * Find and return the next object and it's coordinates in the bst 'tree'.
- * This is only really useful for testing purposes where this function can be
- * used to verify the tree coordinates of nodes.
- * On error mge_errno will be set.
- * @param tree The bst to search.
- * @param searchobj The object to find. It does not need to be a fully
- * populated object. It only needs enough information to support the comparison
- * function. E.g. a key.
- * @return A pointer to the next coordinate object found in the tree, (i.e. a
- * fully populated object), or, the actual node object will be NULL if not
- * found. Returns NULL on error.
- */
-struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
-					     struct bstobjcoord *searchobj)
-{
-	if (tree == NULL) {
-		mge_errno = MGE_PARAM;
-		return NULL;
-	}
-	return find_next_node_trace(tree->root, searchobj, tree->comp);
-}
-/* @endcond */
 
 /**
  * @cond INTERNAL
@@ -834,5 +774,30 @@ find_next_node_trace(const struct bstreenode *currentnode,
 	}
 	x = y = 0;
 	return nextcoord;
+}
+/* @endcond */
+
+/**
+ * @cond INTERNAL
+ * Find and return the next object and it's coordinates in the bst 'tree'.
+ * This is only really useful for testing purposes where this function can be
+ * used to verify the tree coordinates of nodes.
+ * On error mge_errno will be set.
+ * @param tree The bst to search.
+ * @param searchobj The object to find. It does not need to be a fully
+ * populated object. It only needs enough information to support the comparison
+ * function. E.g. a key.
+ * @return A pointer to the next coordinate object found in the tree, (i.e. a
+ * fully populated object), or, the actual node object will be NULL if not
+ * found. Returns NULL on error.
+ */
+struct bstobjcoord *find_next_bst_node_trace(const struct bstree *tree,
+					     struct bstobjcoord *searchobj)
+{
+	if (tree == NULL) {
+		mge_errno = MGE_PARAM;
+		return NULL;
+	}
+	return find_next_node_trace(tree->root, searchobj, tree->comp);
 }
 /* @endcond */
