@@ -1,3 +1,10 @@
+libmgec7 (1.8.4-1+deb13u3) trixie; urgency=medium
+
+  * Create trixie branch
+  * Update Debian Copyright for 2025
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Thu, 24 Jul 2025 09:17:32 +0100
+
 libmgec7 (1.8.4-1+deb13u2) trixie; urgency=medium
 
   * Remove historical 2 package defense
