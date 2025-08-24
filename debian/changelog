@@ -1,3 +1,10 @@
+libmgec7 (1.8.4-1+deb14u1) forky; urgency=medium
+
+  * Transition from Trixie to Forky
+  * Update Debian Copyright for 2025
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Sun, 24 Aug 2025 14:47:42 +0100
+
 libmgec7 (1.8.4-1+deb13u2) trixie; urgency=medium
 
   * Remove historical 2 package defense
