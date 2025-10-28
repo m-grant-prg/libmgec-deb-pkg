@@ -1,14 +1,14 @@
 #########################################################################
-#									#
-# Author: Copyright (C) 2022, 2023  Mark Grant				#
-#									#
-# Released under the GPLv3 only.					#
-# SPDX-License-Identifier: GPL-3.0-only					#
-#									#
-# Purpose:								#
+#                                                                       #
+# Author: Copyright (C) 2022-2025  Mark Grant                           #
+#                                                                       #
+# Released under the GPLv3 only.                                        #
+# SPDX-License-Identifier: GPL-3.0-only                                 #
+#                                                                       #
+# Purpose:                                                              #
 # Configuration file for GitHub Actions publication of Doxygen          #
 # documentation to Github Pages. Only runs on published release event.  #
-#									#
+#                                                                       #
 #########################################################################
 
 
@@ -22,18 +22,18 @@ jobs:
   version_check:
     outputs:
       status: ${{ steps.build.outputs.flag }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
           ref: ${{ github.event.release.tag_name }}
 
       - name: Fetch latest release
         id: latest_release
-        uses: CityOfLosAngeles/fetch-latest-github-release@v2.0.4
+        uses: CityOfLosAngeles/fetch-latest-github-release@v3.0.1
 
       - name: Print versions
         run: |
@@ -59,7 +59,7 @@ jobs:
     if: needs.version_check.outputs.status == 'build'
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Get all incl tags, needed for git-enhanced AC_INIT
           ref: ${{ github.event.release.tag_name }}
@@ -90,7 +90,7 @@ jobs:
         run: touch docs/doxygen/.nojekyll
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.6.1
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           branch: gh-pages
           folder: docs/doxygen
