@@ -1,3 +1,10 @@
+libmgec7 (1.9.0-1+deb13u1) trixie; urgency=medium
+
+  * New upstream release
+  * Update upstream Copyright for 2025
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Tue, 28 Oct 2025 09:37:00 +0000
+
 libmgec7 (1.8.4-1+deb13u3) trixie; urgency=medium
 
   * Create trixie branch
