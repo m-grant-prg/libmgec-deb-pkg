@@ -6,3 +6,5 @@ dia doxygen graphviz graphviz-gd
 tar
 txt2manwrap
 
+# Because a container is not a full distribution install...
+

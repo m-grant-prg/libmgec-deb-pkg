@@ -1,4 +1,4 @@
-# This file should contain packages required to satisfy the Build-Depends of
+# These packages should represent those required to satisfy the Build-Depends of
 # this package.
 
 autoconf-archive
@@ -8,4 +8,6 @@ dia graphviz
 doxygen
 tar
 txt2manwrap
+
+# Because a container is not a full distribution install...
 
