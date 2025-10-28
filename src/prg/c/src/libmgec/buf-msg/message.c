@@ -5,12 +5,12 @@
  *
  * All message handling support functions.
  *
- * @author Copyright (C) 2017-2023  Mark Grant
+ * @author Copyright (C) 2017-2023, 2025  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 03/04/2025_
  */
 
 #include <errno.h>
@@ -26,47 +26,10 @@
 #include <libmgec/mge-memory.h>
 #include <libmgec/mge-message.h>
 
-/* @cond INTERNAL */
-static struct mgemessage *get_msg(struct mgebuffer *buf,
-				  struct mgemessage *msg);
-
-static struct mgemessage *deconstruct_msg(struct mgemessage *msg);
-/* @endcond */
-
 /**
  * Number of arguments in the message.
  */
 static int args;
-
-/**
- * Pull a message from a buffer object.
- * @cond INTERNAL
- * Pull = Get, trim buffer and deconstruct.
- * @endcond
- * On error NULL is returned and mge_errno is set.
- * @param buf A buffer object.
- * @param msg A message object.
- * @return The resulting message object, partial or complete, or NULL on error.
- */
-struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
-{
-	struct mgebuffer *t_buf;
-	struct mgemessage *t_msg;
-
-	t_msg = get_msg(buf, msg);
-	if (t_msg == NULL)
-		return NULL;
-	msg = t_msg;
-
-	t_buf = trim_buf(buf);
-	if (t_buf == NULL)
-		return NULL;
-
-	if (!msg->complete)
-		return msg;
-
-	return deconstruct_msg(msg);
-}
 
 /**
  * @cond INTERNAL
@@ -193,6 +156,36 @@ static struct mgemessage *deconstruct_msg(struct mgemessage *msg)
 	return msg;
 }
 /* @endcond */
+
+/**
+ * Pull a message from a buffer object.
+ * @cond INTERNAL
+ * Pull = Get, trim buffer and deconstruct.
+ * @endcond
+ * On error NULL is returned and mge_errno is set.
+ * @param buf A buffer object.
+ * @param msg A message object.
+ * @return The resulting message object, partial or complete, or NULL on error.
+ */
+struct mgemessage *pull_msg(struct mgebuffer *buf, struct mgemessage *msg)
+{
+	struct mgebuffer *t_buf;
+	struct mgemessage *t_msg;
+
+	t_msg = get_msg(buf, msg);
+	if (t_msg == NULL)
+		return NULL;
+	msg = t_msg;
+
+	t_buf = trim_buf(buf);
+	if (t_buf == NULL)
+		return NULL;
+
+	if (!msg->complete)
+		return msg;
+
+	return deconstruct_msg(msg);
+}
 
 /**
  * Clear message struct.

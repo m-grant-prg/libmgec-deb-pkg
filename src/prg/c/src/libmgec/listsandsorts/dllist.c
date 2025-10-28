@@ -6,12 +6,12 @@
  * Build, manipulate and bi-directional traverse functionality for doubly
  * linked lists.
  *
- * @author Copyright (C) 2016-2023  Mark Grant
+ * @author Copyright (C) 2016-2023, 2025  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 03/04/2025_
  */
 
 #include <errno.h>
@@ -83,6 +83,18 @@ node_fail:
 }
 
 /**
+ * @cond INTERNAL
+ * Free memory allocated to the node. (Both node and object).
+ * @param currentnode The node to free.
+ */
+static void free_dll_node(struct dllistnode *currentnode)
+{
+	free(currentnode->object);
+	free(currentnode);
+}
+/* @endcond */
+
+/**
  * Free the entire list.
  * Remove all nodes and free memory allocated to the dllist. Walks the list
  * deleting nodes.
@@ -100,15 +112,3 @@ struct dllistnode *free_dllist(struct dllistnode *currentnode)
 	free_dll_node(currentnode);
 	return NULL;
 }
-
-/**
- * @cond INTERNAL
- * Free memory allocated to the node. (Both node and object).
- * @param currentnode The node to free.
- */
-static void free_dll_node(struct dllistnode *currentnode)
-{
-	free(currentnode->object);
-	free(currentnode);
-}
-/* @endcond */
