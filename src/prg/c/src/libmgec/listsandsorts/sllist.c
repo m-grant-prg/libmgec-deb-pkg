@@ -5,12 +5,12 @@
  *
  * Build, manipulate and traverse functionality for singly linked lists.
  *
- * @author Copyright (C) 2016-2023  Mark Grant
+ * @author Copyright (C) 2016-2023, 2025  Mark Grant
  *
  * Released under the GPLv3 only.\n
  * SPDX-License-Identifier: GPL-3.0-only
  *
- * @version _v1.1.0 ==== 02/11/2023_
+ * @version _v1.1.1 ==== 03/04/2025_
  */
 
 #include <errno.h>
@@ -142,6 +142,18 @@ void *find_sll_node(struct sllistnode *head, const void *searchobj,
 }
 
 /**
+ * @cond INTERNAL
+ * Free memory allocated to the node. (Both node and object).
+ * @param focus The node to free.
+ */
+static void free_sll_node(struct sllistnode *focus)
+{
+	free(focus->object);
+	free(focus);
+}
+/* @endcond */
+
+/**
  * Free the entire list.
  * Walks the list deleting nodes.
  * @param head The root node.
@@ -159,15 +171,3 @@ struct sllistnode *free_sllist(struct sllistnode *head)
 	free_sll_node(head);
 	return NULL;
 }
-
-/**
- * @cond INTERNAL
- * Free memory allocated to the node. (Both node and object).
- * @param focus The node to free.
- */
-static void free_sll_node(struct sllistnode *focus)
-{
-	free(focus->object);
-	free(focus);
-}
-/* @endcond */
