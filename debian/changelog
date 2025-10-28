@@ -1,3 +1,10 @@
+libmgec7 (1.9.0-1ubuntu24.04u1) noble; urgency=medium
+
+  * New upstream release
+  * Update upstream Copyright for 2025
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Tue, 28 Oct 2025 10:02:36 +0000
+
 libmgec7 (1.8.4-1ubuntu24.04u2) noble; urgency=medium
 
   * Remove historical 2 package defense
