@@ -3,7 +3,7 @@ Upstream-Name: libmgec
 Source: https://github.com/m-grant-prg/libmgec
 
 Files: *
-Copyright: (C) 2015-2024 Mark Grant <m.grant.prg@gmail.com>
+Copyright: (C) 2015-2025 Mark Grant <m.grant.prg@gmail.com>
 License: GPL-3.0-only
 
 Files: debian/*
