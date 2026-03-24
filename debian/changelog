@@ -1,3 +1,10 @@
+libmgec7 (1.9.0-1ubuntu26.04u1) resolute; urgency=medium
+
+  * Add debian directory
+  * Update Copyright for 2026
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Tue, 24 Mar 2026 15:44:57 +0000
+
 libmgec7 (1.9.0-1ubuntu24.04u1) noble; urgency=medium
 
   * New upstream release
