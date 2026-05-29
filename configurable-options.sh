@@ -2,7 +2,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2021, 2023  Mark Grant				#
+# Author: Copyright (C) 2021, 2023, 2026  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -50,7 +50,7 @@
 # Init variables #
 ##################
 
-readonly version=1.1.0			# set version variable
+readonly version=1.1.1			# set version variable
 
 output_target=$1			# Filename for the results
 
@@ -107,6 +107,9 @@ std_cmd_err_handler()
 # Standard trap exit function.
 # No parameters.
 # No return value.
+# Do not warn about unreachable commands in trap functions, nor function is
+# never invoked as these are legitimate features of trap handlers.
+# shellcheck disable=SC2317,SC2329
 trap_exit()
 {
 	local -i exit_code=$?
