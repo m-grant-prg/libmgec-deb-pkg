@@ -130,7 +130,7 @@ dialog_reqd()
 {
 	which dialog > /dev/null
 	if (( $? )); then
-		printf "%s\n" "Please install dialog first." 1>&2
+		output "Please install dialog first." 1
 		return 69
 	fi
 	return 0
