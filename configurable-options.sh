@@ -61,11 +61,11 @@ BUF_MAX_UNREACH_PERCENT=33
 DEF_MSG_SIZE=256
 
 # Define the dialog exit status codes
-: ${DIALOG_OK=0}
-: ${DIALOG_CANCEL=1}
-: ${DIALOG_EXIT=1}
-: ${DIALOG_HELP=2}
-: ${DIALOG_ESC=255}
+: "${DIALOG_OK=0}"
+: "${DIALOG_CANCEL=1}"
+: "${DIALOG_EXIT=1}"
+: "${DIALOG_HELP=2}"
+: "${DIALOG_ESC=255}"
 
 
 #############
