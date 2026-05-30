@@ -157,7 +157,7 @@ validate_def_buf_size()
 	if (( $status == 0 )); then
 		DEF_BUF_SIZE=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Validate Buffer Unused Default Size Multiplier
@@ -184,7 +184,7 @@ validate_buf_unused_def_size_mult()
 	if (( $status == 0 )); then
 		BUF_UNUSED_DEF_SIZE_MULT=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Validate Buffer Max Unreachable Percentage
@@ -211,7 +211,7 @@ validate_buf_max_unreach_percent()
 	if (( $status == 0 )); then
 		BUF_MAX_UNREACH_PERCENT=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Process Buffer values
@@ -300,7 +300,7 @@ validate_def_msg_size()
 	if (( $status == 0 )); then
 		DEF_MSG_SIZE=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Process Message values
