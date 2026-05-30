@@ -128,8 +128,7 @@ trap trap_exit SIGHUP SIGINT SIGQUIT SIGTERM
 # Returns zero on success 69 on failure
 dialog_reqd()
 {
-	which dialog > /dev/null
-	if (( $? )); then
+	if ! which dialog > /dev/null ; then
 		output "Please install dialog first." 1
 		return 69
 	fi
