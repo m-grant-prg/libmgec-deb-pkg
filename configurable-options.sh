@@ -154,7 +154,7 @@ validate_def_buf_size()
 			"Invalid Buffer Size, must be between 256 Bytes and 10485760 Bytes" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		DEF_BUF_SIZE=$1
 	fi
 	return "$status"
@@ -181,7 +181,7 @@ validate_buf_unused_def_size_mult()
 			"Invalid Buffer Unused Default Size Multiplier, must be between 2 and 10" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		BUF_UNUSED_DEF_SIZE_MULT=$1
 	fi
 	return "$status"
@@ -208,7 +208,7 @@ validate_buf_max_unreach_percent()
 			"Invalid Buffer Max Unreachable Percentage, must be between 20 and 50" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		BUF_MAX_UNREACH_PERCENT=$1
 	fi
 	return "$status"
@@ -249,18 +249,18 @@ proc_buffer()
 				if (( i == 0 )); then
 					validate_def_buf_size "$value"
 					status=$?
-				elif (( $i == 1 )); then
+				elif (( i == 1 )); then
 					validate_buf_unused_def_size_mult \
 						"$value"
 					status+=$?
-				elif (( $i == 2 )); then
+				elif (( i == 2 )); then
 					validate_buf_max_unreach_percent \
 						"$value"
 					status+=$?
 				fi
 				(( i++ ))
 			done
-			if (( $status == 0 )); then
+			if (( status == 0 )); then
 				break
 			fi
 			;;
@@ -297,7 +297,7 @@ validate_def_msg_size()
 			"Invalid Message Size, must be between 256 Bytes and 10485760 Bytes" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		DEF_MSG_SIZE=$1
 	fi
 	return "$status"
@@ -330,7 +330,7 @@ proc_message()
 		$DIALOG_OK)
 			validate_def_msg_size "$value"
 			status=$?
-			if (( $status == 0 )); then
+			if (( status == 0 )); then
 				break
 			fi
 			;;
