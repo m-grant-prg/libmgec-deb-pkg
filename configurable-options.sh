@@ -91,7 +91,7 @@ output()
 # No return value.
 script_exit()
 {
-	exit $1
+	exit "$1"
 }
 
 # Standard function to test command error and exit if non-zero.
@@ -100,7 +100,7 @@ script_exit()
 std_cmd_err_handler()
 {
 	if (( $1 )); then
-		script_exit $1
+		script_exit "$1"
 	fi
 }
 
@@ -117,7 +117,7 @@ trap_exit()
 
 	msg="Script terminating with exit code $exit_code due to trap received."
 	output "$msg" 1
-	script_exit $exit_code
+	script_exit "$exit_code"
 }
 
 # Setup trap
@@ -403,7 +403,7 @@ proc_menu_0()
 	ret_string+=" -DBUF_MAX_UNREACH_PERCENT=$BUF_MAX_UNREACH_PERCENT"
 	ret_string+=" -DDEF_MSG_SIZE=$DEF_MSG_SIZE\""
 	if [[ -n  $output_target ]]; then
-		printf "%s\n" "$ret_string" > $output_target
+		printf "%s\n" "$ret_string" > "$output_target"
 	else
 		printf "%s\n" "$ret_string"
 	fi
