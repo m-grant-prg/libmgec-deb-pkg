@@ -243,7 +243,7 @@ proc_buffer()
 		exec 3>&-
 
 		case $retval in
-		$DIALOG_OK)
+		"$DIALOG_OK")
 			i=0
 			for value in $values; do
 				if (( i == 0 )); then
@@ -264,15 +264,15 @@ proc_buffer()
 				break
 			fi
 			;;
-		$DIALOG_CANCEL)
+		"$DIALOG_CANCEL")
 			break
 			;;
-		$DIALOG_HELP)
+		"$DIALOG_HELP")
 			dialog --title "Main menu help" \
 			--backtitle "Compile-time Values" \
 			--msgbox "$form_help_txt" 10 50
 			;;
-		$DIALOG_ESC)
+		"$DIALOG_ESC")
 			script_exit 0
 			;;
 		esac
@@ -327,22 +327,22 @@ proc_message()
 		exec 3>&-
 
 		case $retval in
-		$DIALOG_OK)
+		"$DIALOG_OK")
 			validate_def_msg_size "$value"
 			status=$?
 			if (( status == 0 )); then
 				break
 			fi
 			;;
-		$DIALOG_CANCEL)
+		"$DIALOG_CANCEL")
 			break
 			;;
-		$DIALOG_HELP)
+		"$DIALOG_HELP")
 			dialog --title "Main menu help" \
 			--backtitle "Compile-time Values" \
 			--msgbox "$input_help_txt" 10 50
 			;;
-		$DIALOG_ESC)
+		"$DIALOG_ESC")
 			script_exit 0
 			;;
 		esac
@@ -375,7 +375,7 @@ proc_menu_0()
 		exec 3>&-
 
 		case $retval in
-		$DIALOG_OK)
+		"$DIALOG_OK")
 			case $menu_item in
 			1)
 				proc_buffer
@@ -385,15 +385,15 @@ proc_menu_0()
 				;;
 			esac
 			;;
-		$DIALOG_EXIT)
+		"$DIALOG_EXIT")
 			break
 			;;
-		$DIALOG_HELP)
+		"$DIALOG_HELP")
 			dialog --title "Main menu help" \
 			--backtitle "Compile-time Values" \
 			--msgbox "$menu_help_txt" 10 60
 			;;
-		$DIALOG_ESC)
+		"$DIALOG_ESC")
 			script_exit 0
 			;;
 		esac
