@@ -1,3 +1,5 @@
+#! @envlocation@ bash
+
 set -e
 cd $(dirname "$0")
 ./sllisttest 5
