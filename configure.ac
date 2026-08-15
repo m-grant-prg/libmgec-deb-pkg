@@ -640,6 +640,7 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #					${libexecdir}/${PACKAGE}
 #
 AC_SUBST([edit], ["sed \
+		-e 's|@abstopsrcdir[@]|\$(abs_top_srcdir)|g' \
 		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
 		-e 's|@CC[@]|\$(CC)|g' \
@@ -777,7 +778,7 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/src/test-errno/Makefile
 		src/prg/c/src/test-sllist/Makefile
 		src/prg/c/src/test-headers/Makefile
-		src/prg/c/src/run-tests/Makefile)
+		src/run-tests/Makefile)
 
 AC_OUTPUT
 

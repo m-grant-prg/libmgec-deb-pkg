@@ -34,7 +34,7 @@ SUBDIRS += src/prg/c/src/test-dllist
 SUBDIRS += src/prg/c/src/test-errno
 SUBDIRS += src/prg/c/src/test-sllist
 SUBDIRS += src/prg/c/src/test-headers
-SUBDIRS += src/prg/c/src/run-tests
+SUBDIRS += src/run-tests
 
 
 doc_DATA = AUTHORS ChangeLog COPYING NEWS README
