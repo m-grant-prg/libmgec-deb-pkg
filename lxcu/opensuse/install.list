@@ -3,6 +3,7 @@
 
 autoconf autoconf-archive automake libtool make valgrind
 dia doxygen graphviz graphviz-gd
+ShellCheck
 tar
 txt2manwrap
 
