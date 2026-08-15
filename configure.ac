@@ -489,6 +489,10 @@ if test "x$TXT2MANWRAP" = "xno" ; then
 fi
 
 AC_MSG_NOTICE(checking for particular programs required at build and run time)
+AC_PATH_PROG([ENV], [env], [no])
+if test "x$ENV" = "xno" ; then
+	AC_MSG_ERROR([env not found])
+fi
 
 AC_MSG_NOTICE(checking for particular programs required at run time)
 
@@ -646,6 +650,8 @@ AC_MSG_NOTICE(processing additional checks and variables)
 #
 AC_SUBST([edit], ["$SED \
 		-e 's|@abstopsrcdir[@]|\$(abs_top_srcdir)|g' \
+		-e 's|@abstopbuilddir[@]|\$(abs_top_builddir)|g' \
+		-e 's|@envlocation[@]|\$(ENV)|g' \
 		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
 		-e 's|@CC[@]|\$(CC)|g' \
@@ -783,6 +789,7 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/src/test-errno/Makefile
 		src/prg/c/src/test-sllist/Makefile
 		src/prg/c/src/test-headers/Makefile
+		src/tests/shellcheck/Makefile
 		src/run-tests/Makefile)
 
 AC_OUTPUT
