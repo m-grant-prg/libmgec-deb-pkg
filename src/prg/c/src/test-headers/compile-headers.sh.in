@@ -12,13 +12,13 @@ if [[ -z $srcdir ]]; then
 	cliheaders+=" -I../../../../../../src/prg/c/inc/libmgec"
 	cliheaders+=" -I../../../../../../src/prg/c/inc-tmp"
 	headers=$(find ../../../../../../src -name inc-tmp -prune \
-		-o -name *.h -print)
+		-o -name "*.h" -print)
 else
 	cliheaders="-I$(realpath "@abstopsrcdir@")/src/prg/c/inc"
 	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc/libmgec"
 	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc-tmp"
 	headers=$(find $(realpath "@abstopsrcdir@")/src -name "inc-tmp" -prune \
-		-o -name *.h -print)
+		-o -name "*.h" -print)
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
