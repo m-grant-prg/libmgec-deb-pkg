@@ -22,6 +22,7 @@ else
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
+	# shellcheck disable=SC2086 # Header file list args needs word splitting
 	@CC@ $headerpath $cliheaders -Wall -Wextra \
 		-o "$testdir/$header.gch"
 done
