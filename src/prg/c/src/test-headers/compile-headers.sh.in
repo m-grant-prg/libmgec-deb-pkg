@@ -17,8 +17,8 @@ else
 	cliheaders="-I$(realpath "@abstopsrcdir@")/src/prg/c/inc"
 	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc/libmgec"
 	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc-tmp"
-	headers=$(find $(realpath "@abstopsrcdir@")/src -name "inc-tmp" -prune \
-		-o -name "*.h" -print)
+	headers=$(find "$(realpath "@abstopsrcdir@")/src" -name "inc-tmp" \
+		-prune -o -name "*.h" -print)
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
