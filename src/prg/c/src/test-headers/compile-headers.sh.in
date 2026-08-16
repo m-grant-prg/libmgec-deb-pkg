@@ -23,7 +23,7 @@ fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
 	@CC@ $headerpath $cliheaders -Wall -Wextra \
-		-o $testdir/$header.gch
+		-o "$testdir/$header.gch"
 done
 cd -
 
