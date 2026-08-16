@@ -1,7 +1,7 @@
 #! @envlocation@ bash
 
 set -e
-cd $(dirname "$0")
+cd "$(dirname "$0")"
 testdir=$(pwd)
 
 # srcdir is set in the TEST directive but not otherwise. So running the
@@ -17,7 +17,7 @@ else
 	cliheaders="-I$(realpath "@abstopsrcdir@")/src/prg/c/inc"
 	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc/libmgec"
 	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc-tmp"
-	headers=$(find $(realpath "@abstopsrcdir@")/src -name inc-tmp -prune \
+	headers=$(find $(realpath "@abstopsrcdir@")/src -name "inc-tmp" -prune \
 		-o -name *.h -print)
 fi
 for headerpath in $headers; do

@@ -1,7 +1,7 @@
 #! @envlocation@ bash
 
 set -e
-cd $(dirname "$0")
+cd "$(dirname "$0")"
 
 # To use errors-for-leak-kind verison must be at least 3.9.0
 minvalver=3.9.0
