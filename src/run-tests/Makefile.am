@@ -12,6 +12,7 @@
 
 
 TESTS = ../tests/shellcheck/run-dot-sh-dot-in-pattern.sh
+TESTS += ../tests/shellcheck/shellcheck-inline-dot-sh.sh
 TESTS += ../prg/c/src/test-bstree/bstreetest01b.sh
 TESTS += ../prg/c/src/test-bstree/bstreetest02d.sh
 TESTS += ../prg/c/src/test-bstree/bstreetest03f.sh
