@@ -4,6 +4,7 @@ Maintainer: Mark Grant <m.grant.prg@gmail.com>
 Build-Depends: debhelper-compat (= 13), autoconf-archive, libtool-bin, pkgconf,
 	valgrind,
 	dia, doxygen, graphviz,
+	shellcheck,
 	txt2manwrap
 Standards-Version: 4.5.1
 Section: libs
