@@ -1,6 +1,6 @@
 #########################################################################
 #									#
-# Author: Copyright (C) 2015-2025  Mark Grant				#
+# Author: Copyright (C) 2015-2026  Mark Grant				#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -79,11 +79,11 @@
 #					#
 #########################################
 
-AC_COPYRIGHT([Copyright (C) 2015-2025  Mark Grant
+AC_COPYRIGHT([Copyright (C) 2015-2026  Mark Grant
 	      This script is free to copy or distribute under the terms set out
 	      in the package license. See COPYING for details.])
 
-AC_REVISION($Revision: 1.3.3 $)
+AC_REVISION($Revision: 1.3.4 $)
 
 AC_PREREQ(2.69)
 
@@ -101,7 +101,7 @@ AC_PREREQ(2.69)
 # in source files.
 #
 # Set pkg_version for a default hard-coded version number.
-m4_define(pkg_version, 1.9.0)
+m4_define(pkg_version, 1.9.1-rc1)
 
 AC_INIT([MGE General C Library], m4_esyscmd([ \
 	git describe --always 1>/dev/null 2>/dev/null \
@@ -120,7 +120,9 @@ AC_SUBST(lib_version_info, "8:0:1")
 AC_SUBST(pkgversion, $PACKAGE_VERSION)
 
 # Separate AutoTools generated files from project root.
-AC_CONFIG_AUX_DIR([build-aux])
+m4_define([CONFIG_AUXDIR_NAME], [build-aux])
+AC_CONFIG_AUX_DIR(CONFIG_AUXDIR_NAME)
+AC_SUBST([config_aux_dir], [CONFIG_AUXDIR_NAME])
 
 #
 # Passes the options to all am files. Puts objects in the sub-directory
@@ -468,6 +470,11 @@ if test "x${scan_build}" = xtrue; then
 	fi
 fi
 
+AC_CHECK_PROG([SHELLCHECK], [shellcheck], [yes], [no])
+if test "x$SHELLCHECK" = "xno" ; then
+	AC_MSG_ERROR([shellcheck not found])
+fi
+
 AC_CHECK_PROG([TAR], [tar], [yes], [no])
 if test "x$TAR" = "xno" ; then
 	AC_MSG_ERROR([tar not found])
@@ -484,6 +491,15 @@ if test "x$TXT2MANWRAP" = "xno" ; then
 fi
 
 AC_MSG_NOTICE(checking for particular programs required at build and run time)
+AC_PATH_PROG([BASH], [bash], [no])
+if test "x$BASH" = "xno" ; then
+	AC_MSG_ERROR([bash not found])
+fi
+
+AC_PATH_PROG([ENV], [env], [no])
+if test "x$ENV" = "xno" ; then
+	AC_MSG_ERROR([env not found])
+fi
 
 AC_MSG_NOTICE(checking for particular programs required at run time)
 
@@ -564,37 +580,88 @@ AC_MSG_NOTICE(processing additional checks and variables)
 # discretion at sub-directory Makefile.am level.
 # ----------------------
 #
-# prefix	/usr/local (typically)
-#	exec_prefix	${prefix}
-#		bindir	${exec_prefix}/bin	user executables
-#		sbindir	${exec_prefix}/sbin	system admin executables
-#		libexecdir	${exec_prefix}/libexec	program executables
-#		libdir	${exec_prefix}/lib	object code libraries
-#	sysconfdir	 ${prefix}/etc	read-only single-machine data
-#	sharedstatedir	${prefix}/com	modifiable architecture-independent data
-#	localstatedir	${prefix}/var	modifiable single-machine data
-#	runstatedir	${localstatedir}/run
-#	includedir	${prefix}/include	C header files
-#	oldincludedir	$usr/include	C header files
-#	datarootdir	${prefix}/share	read-only arch.-independent data root
-#		localedir	${datarootdir}/locale	locale-dependent data
-#		datadir	${datarootdir}	read-only architecture-independent data
-#		mandir	${datarootdir}/man	man documentation
-#		infodir	${datarootdir}/info	info documentation
-#		docdir	${datarootdir}/doc/${PACKAGE}	documentation root
-#			htmldir	${docdir}	html documentation
-#			dvidir	${docdir}	dvi documentation
-#			pdfdir	${docdir}	pdf documentation
-#			psdir	${docdir}	ps documentation
-#		lispdir	${datarootdir}/emacs/site-lisp
-#	pkgdatadir	${datarootdir}/${PACKAGE}
-#	pkgincludedir	${includedir}/${PACKAGE}
-#	pkglibdir	${libdir}/${PACKAGE}
-#	pkglibexecdir	${libexecdir}/${PACKAGE}
+# Information gleaned from:-
+# https://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+# and for Debian from running the following command in the packaging root
+# directory containing the configure script
+# dh_auto_configure --no-act --verbose
+# ----------------------
 #
-AC_SUBST([edit], ["sed \
-		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
+# AT Installation variable	Description
+# ------------------------	-----------
+#					GNU implementation
+#					------------------
+#					Typical distro setting (if applicable)
+#					--------------------------------------
+# prefix			Installation root
+#					/usr/local
+#					/usr
+#	exec_prefix		Base for executables
+#					${prefix}
+#		bindir		Executables which users can run
+#					${exec_prefix}/bin
+#		sbindir		Executable run by system administrators
+#					${exec_prefix}/sbin
+#		libexecdir	Executables run by other programs
+#					${exec_prefix}/libexec
+#		libdir		Object code libraries
+#					${exec_prefix}/lib
+#					${prefix}/lib/x86_64-linux-gnu
+#	sysconfdir		Host configuration files
+#					${prefix}/etc
+#					/etc
+#	sharedstatedir		Program modifiable arch-independent data
+#					${prefix}/com
+#	localstatedir		Program modifiable host specific data
+#					${prefix}/var
+#					/var
+#	runstatedir		Program modifiable host persistent data
+#					${localstatedir}/run
+#					/run
+#	includedir		C header files
+#					${prefix}/include
+#	oldincludedir		C header files. Do not use, maybe empty
+#					/usr/include
+#	datarootdir		Arch-independant data root
+#					${prefix}/share
+#		localedir	Locale specific files
+#					${datarootdir}/locale
+#		datadir		Arch-independent package data files
+#					${datarootdir}
+#		mandir		Man page root
+#					${datarootdir}/man
+#					${prefix}/share/man
+#		infodir		Info files for this package
+#					${datarootdir}/info
+#					${prefix}/share/info
+#		docdir		Documentation files for this package
+#					${datarootdir}/doc/${PACKAGE}
+#				htmldir	html documentation
+#					${docdir}
+#				dvidir	dvi documentation
+#					${docdir}
+#				pdfdir	pdf documentation
+#					${docdir}
+#				psdir	ps documentation
+#					${docdir}
+#		lispdir		Emacs Lisp dir -  **Often empty, no check**
+#					${datarootdir}/emacs/site-lisp
+#	pkgdatadir		Package-specific data files
+#					${datarootdir}/${PACKAGE}
+#	pkgincludedir		Package-specific include directory
+#					${includedir}/${PACKAGE}
+#	pkglibdir		Package-specific object code libraries
+#					${libdir}/${PACKAGE}
+#	pkglibexecdir		Package-specific Executables run by other programs
+#					${libexecdir}/${PACKAGE}
+#
+AC_SUBST([edit], ["$SED \
+		-e 's|@abstopbuilddir[@]|\$(abs_top_builddir)|g' \
+		-e 's|@abstopsrcdir[@]|\$(abs_top_srcdir)|g' \
+		-e 's|@configauxdir[@]|\$(config_aux_dir)|g' \
 		-e 's|@docbaseloc[@]|\$(docbaseloc)|g' \
+		-e 's|@envlocation[@]|\$(ENV)|g' \
+		-e 's|@pkgversion[@]|\$(pkgversion)|g' \
 		-e 's|@CC[@]|\$(CC)|g' \
 		-e 's|@prefix[@]|\$(prefix)|g' \
 		-e 's|@exec_prefix[@]|\$(exec_prefix)|g' \
@@ -730,7 +797,8 @@ AC_CONFIG_FILES(Makefile
 		src/prg/c/src/test-errno/Makefile
 		src/prg/c/src/test-sllist/Makefile
 		src/prg/c/src/test-headers/Makefile
-		src/prg/c/src/run-tests/Makefile)
+		src/tests/shellcheck/Makefile
+		src/run-tests/Makefile)
 
 AC_OUTPUT
 
