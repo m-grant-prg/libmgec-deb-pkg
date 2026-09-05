@@ -2,7 +2,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2021, 2023  Mark Grant				#
+# Author: Copyright (C) 2021, 2023, 2026  Mark Grant			#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -50,7 +50,7 @@
 # Init variables #
 ##################
 
-readonly version=1.1.0			# set version variable
+#readonly version=1.1.1			# set version variable
 
 output_target=$1			# Filename for the results
 
@@ -61,11 +61,11 @@ BUF_MAX_UNREACH_PERCENT=33
 DEF_MSG_SIZE=256
 
 # Define the dialog exit status codes
-: ${DIALOG_OK=0}
-: ${DIALOG_CANCEL=1}
-: ${DIALOG_EXIT=1}
-: ${DIALOG_HELP=2}
-: ${DIALOG_ESC=255}
+: "${DIALOG_OK=0}"
+: "${DIALOG_CANCEL=1}"
+: "${DIALOG_EXIT=1}"
+: "${DIALOG_HELP=2}"
+: "${DIALOG_ESC=255}"
 
 
 #############
@@ -91,7 +91,7 @@ output()
 # No return value.
 script_exit()
 {
-	exit $1
+	exit "$1"
 }
 
 # Standard function to test command error and exit if non-zero.
@@ -100,13 +100,16 @@ script_exit()
 std_cmd_err_handler()
 {
 	if (( $1 )); then
-		script_exit $1
+		script_exit "$1"
 	fi
 }
 
 # Standard trap exit function.
 # No parameters.
 # No return value.
+# Do not warn about unreachable commands in trap functions, nor function is
+# never invoked as these are legitimate features of trap handlers.
+# shellcheck disable=SC2317,SC2329
 trap_exit()
 {
 	local -i exit_code=$?
@@ -114,7 +117,7 @@ trap_exit()
 
 	msg="Script terminating with exit code $exit_code due to trap received."
 	output "$msg" 1
-	script_exit $exit_code
+	script_exit "$exit_code"
 }
 
 # Setup trap
@@ -125,9 +128,8 @@ trap trap_exit SIGHUP SIGINT SIGQUIT SIGTERM
 # Returns zero on success 69 on failure
 dialog_reqd()
 {
-	which dialog > /dev/null
-	if (( $? )); then
-		printf "%s\n" "Please install dialog first." 1>&2
+	if ! which dialog > /dev/null ; then
+		output "Please install dialog first." 1
 		return 69
 	fi
 	return 0
@@ -151,10 +153,10 @@ validate_def_buf_size()
 			"Invalid Buffer Size, must be between 256 Bytes and 10485760 Bytes" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		DEF_BUF_SIZE=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Validate Buffer Unused Default Size Multiplier
@@ -178,10 +180,10 @@ validate_buf_unused_def_size_mult()
 			"Invalid Buffer Unused Default Size Multiplier, must be between 2 and 10" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		BUF_UNUSED_DEF_SIZE_MULT=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Validate Buffer Max Unreachable Percentage
@@ -205,10 +207,10 @@ validate_buf_max_unreach_percent()
 			"Invalid Buffer Max Unreachable Percentage, must be between 20 and 50" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		BUF_MAX_UNREACH_PERCENT=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Process Buffer values
@@ -240,36 +242,36 @@ proc_buffer()
 		exec 3>&-
 
 		case $retval in
-		$DIALOG_OK)
+		"$DIALOG_OK")
 			i=0
 			for value in $values; do
 				if (( i == 0 )); then
 					validate_def_buf_size "$value"
 					status=$?
-				elif (( $i == 1 )); then
+				elif (( i == 1 )); then
 					validate_buf_unused_def_size_mult \
 						"$value"
 					status+=$?
-				elif (( $i == 2 )); then
+				elif (( i == 2 )); then
 					validate_buf_max_unreach_percent \
 						"$value"
 					status+=$?
 				fi
 				(( i++ ))
 			done
-			if (( $status == 0 )); then
+			if (( status == 0 )); then
 				break
 			fi
 			;;
-		$DIALOG_CANCEL)
+		"$DIALOG_CANCEL")
 			break
 			;;
-		$DIALOG_HELP)
+		"$DIALOG_HELP")
 			dialog --title "Main menu help" \
 			--backtitle "Compile-time Values" \
 			--msgbox "$form_help_txt" 10 50
 			;;
-		$DIALOG_ESC)
+		"$DIALOG_ESC")
 			script_exit 0
 			;;
 		esac
@@ -294,10 +296,10 @@ validate_def_msg_size()
 			"Invalid Message Size, must be between 256 Bytes and 10485760 Bytes" 10 60
 		status=1
 	fi
-	if (( $status == 0 )); then
+	if (( status == 0 )); then
 		DEF_MSG_SIZE=$1
 	fi
-	return $status
+	return "$status"
 }
 
 # Process Message values
@@ -324,22 +326,22 @@ proc_message()
 		exec 3>&-
 
 		case $retval in
-		$DIALOG_OK)
+		"$DIALOG_OK")
 			validate_def_msg_size "$value"
 			status=$?
-			if (( $status == 0 )); then
+			if (( status == 0 )); then
 				break
 			fi
 			;;
-		$DIALOG_CANCEL)
+		"$DIALOG_CANCEL")
 			break
 			;;
-		$DIALOG_HELP)
+		"$DIALOG_HELP")
 			dialog --title "Main menu help" \
 			--backtitle "Compile-time Values" \
 			--msgbox "$input_help_txt" 10 50
 			;;
-		$DIALOG_ESC)
+		"$DIALOG_ESC")
 			script_exit 0
 			;;
 		esac
@@ -372,7 +374,7 @@ proc_menu_0()
 		exec 3>&-
 
 		case $retval in
-		$DIALOG_OK)
+		"$DIALOG_OK")
 			case $menu_item in
 			1)
 				proc_buffer
@@ -382,15 +384,15 @@ proc_menu_0()
 				;;
 			esac
 			;;
-		$DIALOG_EXIT)
+		"$DIALOG_EXIT")
 			break
 			;;
-		$DIALOG_HELP)
+		"$DIALOG_HELP")
 			dialog --title "Main menu help" \
 			--backtitle "Compile-time Values" \
 			--msgbox "$menu_help_txt" 10 60
 			;;
-		$DIALOG_ESC)
+		"$DIALOG_ESC")
 			script_exit 0
 			;;
 		esac
@@ -400,7 +402,7 @@ proc_menu_0()
 	ret_string+=" -DBUF_MAX_UNREACH_PERCENT=$BUF_MAX_UNREACH_PERCENT"
 	ret_string+=" -DDEF_MSG_SIZE=$DEF_MSG_SIZE\""
 	if [[ -n  $output_target ]]; then
-		printf "%s\n" "$ret_string" > $output_target
+		printf "%s\n" "$ret_string" > "$output_target"
 	else
 		printf "%s\n" "$ret_string"
 	fi

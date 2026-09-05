@@ -6,6 +6,7 @@ libtool-bin
 valgrind
 dia graphviz
 doxygen
+shellcheck
 tar
 txt2manwrap
 

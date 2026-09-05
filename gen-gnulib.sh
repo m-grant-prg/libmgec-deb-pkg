@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 #########################################################################
 #									#
 #	gen-gnulib.sh is automatically generated,			#
@@ -8,7 +8,7 @@
 
 #########################################################################
 #									#
-# Author: Copyright (C) 2018, 2021, 2023  Mark Grant			#
+# Author: Copyright (C) 2018, 2021, 2023, 2025, 2026  Mark Grant	#
 #									#
 # Released under the GPLv3 only.					#
 # SPDX-License-Identifier: GPL-3.0-only					#
@@ -50,8 +50,8 @@
 ##################
 # Init variables #
 ##################
-readonly version=1.2.0				# Script version
-readonly packageversion=1.3.0		# Package version
+readonly version=1.3.4				# Script version
+readonly packageversion=1.4.4-17-g06ec3e2b		# Package version
 
 basedir="."
 modules=()
@@ -67,14 +67,17 @@ modules=()
 usage()
 {
 cat << EOF
-Usage is $0 BASE_DIRECTORY MODULE [MODULE ...]
-Usage is $0 {-h|-V}
-Usage is $0 [OPTIONS]
-	[OPTIONS] are:-
+Usage is:-
+$(basename "$0") [-b BASE_DIRECTORY] MODULE [MODULE ...]
+$(basename "$0") {-h|-V}
+Usage is:-
+$(basename "$0") [options]
+	-b or --base-dir BASE_DIRECTORY
 	-h or --help Displays usage information
 	-V or --version Displays version information
 
-	BASE_DIRECTORY - Path to directory containing configure.ac
+	BASE_DIRECTORY - Absolute or relative path to project root (location of
+			configure.ac) - The default is "."
 	MODULE [MODULE ...] - 1 or more module names
 EOF
 }
@@ -114,6 +117,9 @@ std_cmd_err_handler()
 # Standard trap exit function.
 # No parameters.
 # No return value.
+# Do not warn about unreachable commands in trap functions, nor function is
+# never invoked as these are legitimate features of trap handlers.
+# shellcheck disable=SC2317,SC2329
 trap_exit()
 {
 	local -i exit_code=$?
@@ -121,7 +127,7 @@ trap_exit()
 
 	msg="Script terminating with exit code $exit_code due to trap received."
 	output "$msg" 1
-	script_exit $exit_code
+	script_exit "$exit_code"
 }
 
 # Setup trap.
@@ -135,7 +141,7 @@ proc_CL()
 	local GETOPTTEMP
 	local tmpGETOPTTEMP
 
-	tmpGETOPTTEMP="getopt -o hV --long help,version"
+	tmpGETOPTTEMP="getopt -o b:hV --long base-dir:,help,version"
 	GETOPTTEMP=$($tmpGETOPTTEMP -n "$0" -- "$@")
 	std_cmd_err_handler $?
 
@@ -144,14 +150,18 @@ proc_CL()
 
 	while true; do
 		case "$1" in
+		-b|--base-dir)
+			basedir=$2
+			shift 2
+			;;
 		-h|--help)
 			usage
 			shift
 			script_exit 0
 			;;
 		-V|--version)
-			printf "Script version %s\n" $version
-			printf "Package version %s\n" $packageversion
+			printf "Script version %s\n" "$version"
+			printf "Package version %s\n" "$packageversion"
 			shift
 			script_exit 0
 			;;
@@ -164,15 +174,13 @@ proc_CL()
 		esac
 	done
 
-	# First non-option arg is the base dir, where configure.ac is located.
-	if (( $# < 2 )); then
-		msg="Base Directory must be specified as the first non-option"
-		msg+=" argument followed by at least 1 module name."
+	# Non-option arguments are modules.
+	if (( $# < 1 )); then
+		msg="At least 1 module must be specified."
 		output "$msg" 1
 		script_exit 64
 	fi
-	basedir=$1
-	shift
+
 	modules=( "$@" )
 }
 
@@ -183,10 +191,25 @@ proc_CL()
 
 proc_CL "$@"
 
-gnulib-tool --import --dir="$basedir" --source-base=src/prg/c/gen/lib \
+if [[ ! -d "$basedir" ]]; then
+	output "Invalid directory" 1
+	script_exit 64
+fi
+# shellcheck disable=SC2164 # cd failure covered by std_cmd_err_handler.
+cd "$basedir"
+status=$?
+std_cmd_err_handler "$status"
+# N.B. --source-base is relative to --dir
+gnulib-tool --import --dir="." --source-base=src/prg/c/gen/lib \
 	--no-conditional-dependencies --no-libtool --no-vc-files "${modules[@]}"
 status=$?
-std_cmd_err_handler $status
+std_cmd_err_handler "$status"
+# cd failure covered by std_cmd_err_handler.
+# Cannot use subshell as using the standard error function
+# shellcheck disable=SC2164,2103
+cd -
+status=$?
+std_cmd_err_handler "$status"
 
 script_exit 0
 

@@ -1,5 +1,7 @@
+#! @envlocation@ bash
+
 set -e
-cd $(dirname "$0")
+cd "$(dirname "$0")"
 testdir=$(pwd)
 
 # srcdir is set in the TEST directive but not otherwise. So running the
@@ -10,18 +12,19 @@ if [[ -z $srcdir ]]; then
 	cliheaders+=" -I../../../../../../src/prg/c/inc/libmgec"
 	cliheaders+=" -I../../../../../../src/prg/c/inc-tmp"
 	headers=$(find ../../../../../../src -name inc-tmp -prune \
-		-o -name *.h -print)
+		-o -name "*.h" -print)
 else
-	cliheaders="-I$srcdir/../../../../../src/prg/c/inc"
-	cliheaders+=" -I$srcdir/../../../../../src/prg/c/inc/libmgec"
-	cliheaders+=" -I$srcdir/../../../../../src/prg/c/inc-tmp"
-	headers=$(find $srcdir/../../../../../src -name inc-tmp -prune \
-		-o -name *.h -print)
+	cliheaders="-I$(realpath "@abstopsrcdir@")/src/prg/c/inc"
+	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc/libmgec"
+	cliheaders+=" -I$(realpath "@abstopsrcdir@")/src/prg/c/inc-tmp"
+	headers=$(find "$(realpath "@abstopsrcdir@")/src" -name "inc-tmp" \
+		-prune -o -name "*.h" -print)
 fi
 for headerpath in $headers; do
 	header=${headerpath##*/}
+	# shellcheck disable=SC2086 # Header file list args needs word splitting
 	@CC@ $headerpath $cliheaders -Wall -Wextra \
-		-o $testdir/$header.gch
+		-o "$testdir/$header.gch"
 done
 cd -
 
