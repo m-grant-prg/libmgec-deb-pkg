@@ -1,3 +1,12 @@
+libmgec7 (1.9.1~rc1-1+deb13u1) trixie; urgency=medium
+
+  * Use pkgconf AOT pkg-config
+  * Update Copyright for 2026
+  * Add Build-depends on shellcheck
+  * New upstream development release
+
+ -- Mark Grant <m.grant.prg@gmail.com>  Sat, 05 Sep 2026 14:21:09 +0100
+
 libmgec7 (1.9.0-1+deb13u1) trixie; urgency=medium
 
   * New upstream release
